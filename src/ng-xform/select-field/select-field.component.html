@@ -1,0 +1,11 @@
+<div *ngIf="!editing" id="{{field.key}}-label">
+    <strong>{{ field.label }}</strong>
+    <p class="text-muted">{{ getOptionLabel() }} </p>
+</div>
+<div *ngIf="editing" class="form-group" [formGroup]="form" [ngClass]="displayFieldCss()" id="{{field.key}}-div">
+    <label for="{{elementId}}">{{field.label}}</label>
+    <select class="form-control" id='{{elementId}}' [formControlName]="elementId">
+        <option *ngFor="let optionValue of optionValues" value="{{ optionValue[0] }}">{{ optionValue[1] }}</option>
+    </select>
+    <ng-xform-field-error-message [control]="control"></ng-xform-field-error-message>
+</div>

@@ -1,0 +1,52 @@
+<div>
+  <form [formGroup]="form">
+    <div *ngFor="let field of fields">
+      <div [ngSwitch]="field.controlType">
+
+        <ng-xform-measure-field *ngSwitchCase="'MEASURE'"
+          [field]="field" [form]="form" [editing]="editing !== false">
+        </ng-xform-measure-field>
+
+        <ng-xform-editable-label *ngSwitchCase="'TEXT'"
+          [field]="field" [form]="form" [editing]="editing !== false">
+        </ng-xform-editable-label>
+
+        <ng-xform-multiline-field *ngSwitchCase="'MULTILINE'"
+          [field]="field" [form]="form" [editing]="editing !== false">
+        </ng-xform-multiline-field>
+
+        <ng-xform-select-field *ngSwitchCase="'SELECT'"
+          [field]="field" [form]="form" [editing]="editing !== false">
+        </ng-xform-select-field>
+
+        <ng-xform-checkbox-field *ngSwitchCase="'CHECKBOX'"
+          [field]="field" [form]="form"  [editing]="editing !== false">
+        </ng-xform-checkbox-field>
+
+        <ng-xform-autocomplete-field *ngSwitchCase="'AUTOCOMPLETE'"
+          [field]="field" [form]="form"  [editing]="editing !== false">
+        </ng-xform-autocomplete-field>
+
+        <pre *ngSwitchDefault>{{ field | json}}</pre>
+      </div>
+    </div>
+  </form>
+</div>
+<div class="row">
+  <div class="col-md-8">
+    <div class="alert alert-warning alert-dismissible" *ngIf="errorCode" role="alert">
+      <strong>Oops!</strong> Something went wrong with the server. Error code: {{ errorCode }}
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class=" col-sm-12 text-right">
+    <button type="submit" class="btn btn-primary" (click)="setEditing(true)" *ngIf="editing === false">
+      <span class="fa fa-pencil"></span> Edit
+    </button>
+    <ng-template [ngIf]="editing !== false">
+      <button [disabled]="form.invalid" type="submit" id="formSubmitBtn" class="btn btn-primary" (click)="submit()">Save</button>
+      <button type="button" class="btn btn-default" (click)="cancel()">Cancel</button>
+    </ng-template>
+  </div>
+</div>

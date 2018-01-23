@@ -1,0 +1,41 @@
+{
+  "generator-ngx-library": {
+    "version": "5.5.0",
+    "authorName": "Eder Soares",
+    "authorEmail": "edetec@gmail.com",
+    "githubUsername": "edetec",
+    "githubRepoName": "ng-xform",
+    "projectName": "@esss/ng-xform",
+    "projectVersion": "0.1.0",
+    "projectDescription": "Angular library built using ngx-library yeoman generator.",
+    "projectKeywords": [
+      "ng",
+      "angular",
+      "library"
+    ],
+    "ngVersion": "5.2.0",
+    "ngModules": [
+      "core",
+      "common",
+      "forms",
+      "http",
+      "compiler",
+      "platform-browser"
+    ],
+    "otherDependencies": [
+      "ngx-bootstrap"
+    ],
+    "dependenciesRange": "^",
+    "ngPrefix": "ng-xform",
+    "testingFramework": "karma",
+    "useGreenkeeper": false,
+    "useCompodoc": true,
+    "enforceNgGitCommitMsg": true,
+    "exclusions": [
+      "demo/src/jestGlobalMocks.ts",
+      "demo/src/setupJest.ts",
+      "config/jestGlobalMocks.ts",
+      "config/setupJest.ts"
+    ]
+  }
+}
