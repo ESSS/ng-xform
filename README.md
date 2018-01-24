@@ -8,7 +8,7 @@
 
 ## Demo
 
-View all the directives in action at https://edetec.github.io/ng-xform
+View all the directives in action at https://esss.github.io/ng-xform
 
 ## Dependencies
 * [Angular](https://angular.io) (*requires* Angular 4 or higher, tested with 5.2.0)
