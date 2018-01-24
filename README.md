@@ -1,10 +1,6 @@
-<p align="center">
-  <img height="256px" width="256px" style="text-align: center;" src="https://cdn.rawgit.com/edetec/ng-xform/master/demo/src/assets/logo.svg">
-</p>
+# ng-xform - Angular library built using ngx-library yeoman generator.
 
-# ng-xform - Angular library built with ❤ using ngx-library yeoman generator.
-
-[![npm version](https://badge.fury.io/js/ng-xform.svg)](https://badge.fury.io/js/ng-xform),
+[![npm version](https://badge.fury.io/js/%40esss%2Fng-xform.svg)](https://badge.fury.io/js/%40esss%2Fng-xform),
 [![Build Status](https://travis-ci.org/ESSS/ng-xform.svg?branch=master)](https://travis-ci.org/ESSS/ng-xform)
 [![Coverage Status](https://coveralls.io/repos/github/ESSS/ng-xform/badge.svg?branch=master)](https://coveralls.io/github/ESSS/ng-xform?branch=master)
 [![dependencies Status](https://david-dm.org/esss/ng-xform/status.svg)](https://david-dm.org/esss/ng-xform)
