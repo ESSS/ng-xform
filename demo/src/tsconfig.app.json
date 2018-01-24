@@ -7,7 +7,7 @@
     "types": [],
     "paths": {
       "@angular/*": ["../node_modules/@angular/*"],
-      "ngx-bootstrap": ["../node_modules/ngx-bootstrap"]
+      "@ngui/auto-complete": ["../node_modules/@ngui/auto-complete"]
     }
   },
   "exclude": [

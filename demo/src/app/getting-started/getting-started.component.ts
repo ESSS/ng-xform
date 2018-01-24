@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Title }     from '@angular/platform-browser';
-
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-getting-started',
@@ -8,11 +7,9 @@ import { Title }     from '@angular/platform-browser';
   styleUrls: ['./getting-started.component.scss']
 })
 export class GettingStartedComponent implements OnInit {
-
-  constructor(private titleService:Title) { }
+  constructor(private titleService: Title) {}
 
   ngOnInit() {
     this.titleService.setTitle('Getting Started | @esss/ng-xform');
   }
-
 }

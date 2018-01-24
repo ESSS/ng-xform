@@ -2,7 +2,7 @@ import { CheckboxFieldComponent } from './checkbox-field/checkbox-field.componen
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
+import { NguiAutoCompleteModule } from '@ngui/auto-complete';
 
 import { NgXformComponent } from './ng-xform.component';
 import { EditableLabelComponent } from './editable-label/editable-label.component';
@@ -17,7 +17,7 @@ import { AutocompleteFieldComponent } from './autocomplete-field/autocomplete-fi
 @NgModule({
   imports: [
     CommonModule,
-    TypeaheadModule.forRoot(),
+    NguiAutoCompleteModule,
     ReactiveFormsModule,
     PipesModule,
   ],

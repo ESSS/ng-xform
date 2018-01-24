@@ -23,7 +23,7 @@
       "platform-browser"
     ],
     "otherDependencies": [
-      "ngx-bootstrap"
+      "@ngui/auto-complete"
     ],
     "dependenciesRange": "^",
     "ngPrefix": "ng-xform",

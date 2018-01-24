@@ -25,9 +25,9 @@
     "@angular/platform-browser-dynamic": "^5.2.0",
     "@angular/platform-server": "^5.2.0",
     "@angular/router": "^5.2.0",
+    "@ngui/auto-complete": "^0.16.1",
     "bootstrap": "3.3.7",
     "core-js": "^2.4.1",
-    "ngx-bootstrap": "^2.0.1",
     "rxjs": "^5.5.2",
     "zone.js": "^0.8.14"
   },

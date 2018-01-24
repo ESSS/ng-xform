@@ -6,7 +6,37 @@
 
 <section class="getting-started">
   <div class="container">
-<!-- put your content here-->
-Put your content here. Typically instructions about how to install/use your library.
+    <!-- put your content here-->
+    <h2>Installation</h2>
+    <p>
+      Install above dependencies via *npm*.
+    </p>
+
+    Now install `@esss/ng-xform` via:
+<pre>
+  npm install --save @esss/ng-xform
+</pre>
+
+    <p>
+      Once installed you need to import the main module:
+    </p>
+<pre>
+  import &#123; NgXformModule &#125; from '@esss/ng-xform';
+</pre>
+    <p>
+      The only remaining part is to list the imported module in your application module. The exact method will be slightly different
+      for the root (top-level) module for which you should end up with the code similar to (notice ` NgXformModule`):
+    </p>
+<pre>
+  import &#123; NgXformModule &#125; from '@esss/ng-xform';
+
+  @NgModule(&#123;
+    declarations: [AppComponent, ...],
+    imports: [NgXformModule, ...],
+    bootstrap: [AppComponent]
+  &#125;)
+  export class AppModule &#123;
+  &#125;
+</pre>
   </div>
 </section>

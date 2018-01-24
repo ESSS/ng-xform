@@ -5,17 +5,17 @@
 # ng-xform - Angular library built with ❤ using ngx-library yeoman generator.
 
 [![npm version](https://badge.fury.io/js/ng-xform.svg)](https://badge.fury.io/js/ng-xform),
-[![Build Status](https://travis-ci.org/edetec/ng-xform.svg?branch=master)](https://travis-ci.org/edetec/ng-xform)
-[![Coverage Status](https://coveralls.io/repos/github/edetec/ng-xform/badge.svg?branch=master)](https://coveralls.io/github/edetec/ng-xform?branch=master)
-[![dependency Status](https://david-dm.org/edetec/ng-xform/status.svg)](https://david-dm.org/edetec/ng-xform)
-[![devDependency Status](https://david-dm.org/edetec/ng-xform/dev-status.svg?branch=master)](https://david-dm.org/edetec/ng-xform#info=devDependencies)
+[![Build Status](https://travis-ci.org/ESSS/ng-xform.svg?branch=master)](https://travis-ci.org/ESSS/ng-xform)
+[![Coverage Status](https://coveralls.io/repos/github/ESSS/ng-xform/badge.svg?branch=master)](https://coveralls.io/github/ESSS/ng-xform?branch=master)
+[![dependencies Status](https://david-dm.org/esss/ng-xform/status.svg)](https://david-dm.org/esss/ng-xform)
+[![devDependencies Status](https://david-dm.org/esss/ng-xform/dev-status.svg)](https://david-dm.org/esss/ng-xform?type=dev)
 
 ## Demo
 
 View all the directives in action at https://edetec.github.io/ng-xform
 
 ## Dependencies
-* [Angular](https://angular.io) (*requires* Angular 2 or higher, tested with 2.0.0)
+* [Angular](https://angular.io) (*requires* Angular 4 or higher, tested with 5.2.0)
 
 ## Installation
 Install above dependencies via *npm*. 
@@ -38,38 +38,108 @@ map: {
 
 Once installed you need to import the main module:
 ```js
-import { LibModule } from '@esss/ng-xform';
+import { NgXformModule } from '@esss/ng-xform';
 ```
 The only remaining part is to list the imported module in your application module. The exact method will be slightly
-different for the root (top-level) module for which you should end up with the code similar to (notice ` LibModule .forRoot()`):
+different for the root (top-level) module for which you should end up with the code similar to (notice ` NgXformModule`):
 ```js
-import { LibModule } from '@esss/ng-xform';
+import { NgXformModule } from '@esss/ng-xform';
 
 @NgModule({
   declarations: [AppComponent, ...],
-  imports: [LibModule.forRoot(), ...],  
+  imports: [NgXformModule, ...],  
   bootstrap: [AppComponent]
 })
 export class AppModule {
 }
 ```
 
-Other modules in your application can simply import ` LibModule `:
+Other modules in your application can simply import ` NgXformModule `:
 
 ```js
-import { LibModule } from '@esss/ng-xform';
+import { NgXformModule } from '@esss/ng-xform';
 
 @NgModule({
   declarations: [OtherComponent, ...],
-  imports: [LibModule, ...], 
+  imports: [NgXformModule, ...], 
 })
 export class OtherModule {
 }
 ```
 
 ## Usage
+Template:
+```html
+ <ng-xform (onSubmit)="onSubmit($event)" [fields]="fields" [editing]="editing"></ng-xform>
+```
+Component:
+```ts
+export class SampleComponent {
 
+  public editing = true;
+  public fields = [
+    new TextField({
+      key: 'name',
+      label: 'Name',
+      validators: [
+        Validators.required,
+        Validators.minLength(3)
+      ]
+    }),
+    new AutocompleteField({
+      key: 'color',
+      label: 'Color',
+      source: [{id: 1, name: 'Green'}, {id: 2, name: 'Blue'}, { id: 3, name: 'Yellow'}],
+      listFormatter: 'id - name',
+      valueFormatter: 'name'
+    }),
+    new AutocompleteField({
+      key: 'address',
+      label: 'Address',
+      source: this.observableSource.bind(this),
+      listFormatter: 'formatted_address',
+    }),
+    new TextField({
+      key: 'email',
+      label: 'E-mail',
+      validators: [
+        Validators.required,
+        Validators.email
+      ]
+    }),
+    new SelectField({
+      key: 'type',
+      label: 'Type',
+      options: ['a', 'b'],
+      validators: [
+        Validators.required
+      ]
+    }),
+    new MeasureField({
+      key: 'order',
+      label: 'Order',
+      // unit: 'º', // Do you can define a symbol here.
+    })
+  ];
 
+  constructor(private http: HttpClient) {}
+
+  public onSubmit(values: object) {
+    this.editing = false;
+    this.values = values;
+  }
+
+  public observableSource(keyword: any): Observable<any[]> {
+    const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${keyword}`;
+    if (keyword) {
+      return this.http.get(url)
+        .map((res) => res['results']);
+    } else {
+      return Observable.of([]);
+    }
+  }
+}
+```
 
 ## License
 

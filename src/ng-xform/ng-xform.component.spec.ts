@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
-import { TypeaheadModule } from 'ngx-bootstrap';
+import { NguiAutoCompleteModule } from '@ngui/auto-complete';
 
 import { NgXformComponent } from './ng-xform.component';
 import { EditableLabelComponent } from './editable-label/editable-label.component';
@@ -37,7 +37,7 @@ describe('DynamicFormComponent', () => {
       ],
       imports: [
         CommonModule,
-        TypeaheadModule.forRoot(),
+        NguiAutoCompleteModule,
         ReactiveFormsModule,
         PipesModule,
       ],

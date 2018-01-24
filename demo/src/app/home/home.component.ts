@@ -5,6 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/map';
 import { Title } from '@angular/platform-browser';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-home',
@@ -28,9 +29,14 @@ export class HomeComponent implements OnInit {
       key: 'color',
       label: 'Color',
       source: [{id: 1, name: 'Green'}, {id: 2, name: 'Blue'}, { id: 3, name: 'Yellow'}],
-      // source: ['Green', 'Blue', 'Yellow'],
-      // listFormatter: 'id - name',
-      optionLabel: 'name'
+      listFormatter: 'id - name',
+      valueFormatter: 'name'
+    }),
+    new AutocompleteField({
+      key: 'address',
+      label: 'Address',
+      source: this.observableSource.bind(this),
+      listFormatter: 'formatted_address',
     }),
     new TextField({
       key: 'email',
@@ -55,7 +61,7 @@ export class HomeComponent implements OnInit {
     })
   ];
 
-  constructor(private titleService: Title) {}
+  constructor(private titleService: Title, private http: HttpClient) {}
 
   ngOnInit() {
     this.titleService.setTitle('Home | @esss/ng-xform');
@@ -64,5 +70,15 @@ export class HomeComponent implements OnInit {
   public onSubmit(values: object) {
     this.editing = false;
     this.values = values;
+  }
+
+  public observableSource(keyword: any): Observable<any[]> {
+    const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${keyword}`;
+    if (keyword) {
+      return this.http.get(url)
+        .map((res) => res['results']);
+    } else {
+      return Observable.of([]);
+    }
   }
 }

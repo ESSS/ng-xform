@@ -5,12 +5,12 @@ export class AutocompleteField extends DynamicField {
   public controlType ? = 'AUTOCOMPLETE';
   public source?: string | any[] | Observable<any[]> | ((keyword: string) => Observable<any[]>);
   public valueFormatter?: string;
-  public optionLabel?: string;
+  public listFormatter?: string;
 
   constructor(options: AutocompleteField = {}) {
     super(options);
     this.source = options.source;
     this.valueFormatter = options.valueFormatter;
-    this.optionLabel = options.optionLabel;
+    this.listFormatter = options.listFormatter;
   }
 }
