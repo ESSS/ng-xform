@@ -15,10 +15,13 @@ View all the directives in action at https://esss.github.io/ng-xform
 
 ## Installation
 Install above dependencies via *npm*. 
+```shell
+npm i --save @ngui/auto-complete@^0.16.1
+```
 
 Now install `@esss/ng-xform` via:
 ```shell
-npm install --save @esss/ng-xform
+npm i --save @esss/ng-xform
 ```
 
 ---
