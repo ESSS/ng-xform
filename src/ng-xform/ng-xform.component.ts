@@ -56,6 +56,14 @@ export class NgXformComponent implements OnInit, OnChanges {
     this.form = new FormGroup(group);
   }
 
+  private getAttributeValue(attr: string, value: any): any {
+    const field = this.fields.find(_field => _field.key === attr);
+    if (field && field['valueAttribute']) {
+      return value[field['valueAttribute']] || null;
+    }
+    return value === '' ? null : value;
+  }
+
   submit() {
     if (this.form.invalid) {
       return;
@@ -67,8 +75,7 @@ export class NgXformComponent implements OnInit, OnChanges {
 
     for (const attr in this.form.value) {
       if (this.form.value.hasOwnProperty(attr)) {
-        const value = this.form.value[attr];
-        modelToSend[attr] = value === '' ? null : value;
+        modelToSend[attr] = this.getAttributeValue(attr, this.form.value[attr]);
       }
     }
     this.onSubmit.emit(modelToSend);

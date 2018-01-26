@@ -6,7 +6,10 @@
 <div *ngIf="editing" id="{{elementId}}-div" class="form-group" [formGroup]="form" [ngClass]="displayFieldCss()">
   <label for="{{elementId}}">{{field.label}}</label>
   <input id="{{elementId}}" class="form-control" [formControlName]="field.key"
-  ngui-auto-complete [source]="field.source" [list-formatter]="field.listFormatter"
-  [value-formatter]="field.valueFormatter" [accept-user-input]="false" />
+    ngui-auto-complete
+    [source]="field.source"
+    [list-formatter]="field.listFormatter"
+    [value-formatter]="field.valueFormatter"
+    [accept-user-input]="false" />
   <ng-xform-field-error-message [control]="control"></ng-xform-field-error-message>
 </div>
