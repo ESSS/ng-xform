@@ -554,8 +554,11 @@ export class AutocompleteFieldComponent extends BaseDynamicFieldComponent&lt;Aut
 &lt;div *ngIf&#x3D;&quot;editing&quot; id&#x3D;&quot;{{elementId}}-div&quot; class&#x3D;&quot;form-group&quot; [formGroup]&#x3D;&quot;form&quot; [ngClass]&#x3D;&quot;displayFieldCss()&quot;&gt;
   &lt;label for&#x3D;&quot;{{elementId}}&quot;&gt;{{field.label}}&lt;/label&gt;
   &lt;input id&#x3D;&quot;{{elementId}}&quot; class&#x3D;&quot;form-control&quot; [formControlName]&#x3D;&quot;field.key&quot;
-  ngui-auto-complete [source]&#x3D;&quot;field.source&quot; [list-formatter]&#x3D;&quot;field.listFormatter&quot;
-  [value-formatter]&#x3D;&quot;field.valueFormatter&quot; [accept-user-input]&#x3D;&quot;false&quot; /&gt;
+    ngui-auto-complete
+    [source]&#x3D;&quot;field.source&quot;
+    [list-formatter]&#x3D;&quot;field.listFormatter&quot;
+    [value-formatter]&#x3D;&quot;field.valueFormatter&quot;
+    [accept-user-input]&#x3D;&quot;false&quot; /&gt;
   &lt;ng-xform-field-error-message [control]&#x3D;&quot;control&quot;&gt;&lt;/ng-xform-field-error-message&gt;
 &lt;/div&gt;
 </code></pre>
@@ -584,7 +587,7 @@ export class AutocompleteFieldComponent extends BaseDynamicFieldComponent&lt;Aut
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div *ngIf="!editing" id="{{field.key}}-label">  <strong>{{ field.label }}</strong>  <p class="text-muted">{{ form?.controls[field.key]?.value | valueSuffix }}</p></div><div *ngIf="editing" id="{{elementId}}-div" class="form-group" [formGroup]="form" [ngClass]="displayFieldCss()">  <label for="{{elementId}}">{{field.label}}</label>  <input id="{{elementId}}" class="form-control" [formControlName]="field.key"  ngui-auto-complete [source]="field.source" [list-formatter]="field.listFormatter"  [value-formatter]="field.valueFormatter" [accept-user-input]="false" />  <ng-xform-field-error-message [control]="control"></ng-xform-field-error-message></div></div>'
+        var COMPONENT_TEMPLATE = '<div><div *ngIf="!editing" id="{{field.key}}-label">  <strong>{{ field.label }}</strong>  <p class="text-muted">{{ form?.controls[field.key]?.value | valueSuffix }}</p></div><div *ngIf="editing" id="{{elementId}}-div" class="form-group" [formGroup]="form" [ngClass]="displayFieldCss()">  <label for="{{elementId}}">{{field.label}}</label>  <input id="{{elementId}}" class="form-control" [formControlName]="field.key"    ngui-auto-complete    [source]="field.source"    [list-formatter]="field.listFormatter"    [value-formatter]="field.valueFormatter"    [accept-user-input]="false" />  <ng-xform-field-error-message [control]="control"></ng-xform-field-error-message></div></div>'
     var COMPONENTS = [{'name': 'AutocompleteFieldComponent', 'selector': 'ng-xform-autocomplete-field'},{'name': 'CheckboxFieldComponent', 'selector': 'ng-xform-checkbox-field'},{'name': 'EditableLabelComponent', 'selector': 'ng-xform-editable-label'},{'name': 'FieldErrorMessageComponent', 'selector': 'ng-xform-field-error-message'},{'name': 'MeasureFieldComponent', 'selector': 'ng-xform-measure-field'},{'name': 'MultilineFieldComponent', 'selector': 'ng-xform-multiline-field'},{'name': 'NgXformComponent', 'selector': 'ng-xform'},{'name': 'SelectFieldComponent', 'selector': 'ng-xform-select-field'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'AutocompleteFieldComponent'};
