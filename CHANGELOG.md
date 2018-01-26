@@ -1,5 +1,15 @@
+<a name="0.1.2"></a>
+## [0.1.2](https://github.com/ESSS/ng-xform/compare/v0.1.1...v0.1.2) (2018-01-26)
+
+
+### Features
+
+* **ng-xform:** object attribute mapping for autocomplete field ([5fe3961](https://github.com/ESSS/ng-xform/commit/5fe3961))
+
+
+
 <a name="0.1.1"></a>
-## 0.1.1 (2018-01-24)
+## [0.1.1](https://github.com/ESSS/ng-xform/compare/f559b33...v0.1.1) (2018-01-24)
 
 
 ### Features
