@@ -3,12 +3,13 @@
 
         <ng-template [ngSwitchCase]="'GROUP'">
             <hr *ngIf='field.label'>
-            <h3 *ngIf='field.label'>
+            <h4 *ngIf='field.label'>
                 {{field.label}}
-            </h3>
+            </h4>
             <div [formGroup]='form'>
                 <div [formGroupName]="field.key">
-                    <ng-xform-fields-group [fields]='field.fields' [form]='form.get(field.key)' [editing]='editing'></ng-xform-fields-group>
+                    <ng-xform-form-group [fields]='field.fields' [form]='form.get(field.key)' [editing]='editing'>
+                    </ng-xform-form-group>
                 </div>
             </div>
         </ng-template>

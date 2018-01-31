@@ -1,13 +1,13 @@
 import { DynamicField } from './dynamic-field';
 
-export class FieldGroup extends DynamicField {
+export class NestedObjectField extends DynamicField {
     public controlType ? = 'GROUP';
     public key: string;
     public label?: string;
     public fields: DynamicField[];
 
     constructor(
-        options: FieldGroup
+        options: NestedObjectField
     ) {
         super(options);
         this.key = options.key;

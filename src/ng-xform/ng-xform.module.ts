@@ -13,7 +13,7 @@ import { ErrorMessagePipe } from './field-error-message/error-message.pipe';
 import { PipesModule } from '../pipes/pipes.module';
 import { MultilineFieldComponent } from './multiline-field/multiline-field.component';
 import { AutocompleteFieldComponent } from './autocomplete-field/autocomplete-field.component';
-import { FieldsGroupComponent } from './fields-group/fields-group.component';
+import { FormGroupComponent } from './form-group/form-group.component';
 
 @NgModule({
   imports: [
@@ -24,7 +24,7 @@ import { FieldsGroupComponent } from './fields-group/fields-group.component';
   ],
   declarations: [
     NgXformComponent,
-    FieldsGroupComponent,
+    FormGroupComponent,
     EditableLabelComponent,
     CheckboxFieldComponent,
     MeasureFieldComponent,

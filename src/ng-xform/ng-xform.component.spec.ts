@@ -2,34 +2,20 @@ import {
   async,
   ComponentFixture,
   TestBed,
-  fakeAsync,
-  tick
 } from '@angular/core/testing';
-import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
-import { NguiAutoCompleteModule } from '@ngui/auto-complete';
 
-import { NgXformComponent } from './ng-xform.component';
-import { EditableLabelComponent } from './editable-label/editable-label.component';
-import { MeasureFieldComponent } from './measure-field/measure-field.component';
-import { SelectFieldComponent } from './select-field/select-field.component';
-import { AutocompleteFieldComponent } from './autocomplete-field/autocomplete-field.component';
-import { CheckboxFieldComponent } from './checkbox-field/checkbox-field.component';
-import { MultilineFieldComponent } from './multiline-field/multiline-field.component';
-import { FieldErrorMessageComponent } from './field-error-message/field-error-message.component';
-import { ErrorMessagePipe } from './field-error-message/error-message.pipe';
 import { OptionValue } from '../types';
-import { PipesModule } from '../pipes/pipes.module';
 import { MultilineField } from './fields/multiline-field';
-import { FieldsGroupComponent } from './fields-group/fields-group.component';
-import { FieldGroup } from './fields/field-group';
+import { NestedObjectField } from './fields/nested-object-field';
 import {
   AutocompleteField,
   TextField,
   MeasureField,
   SelectField
 } from './fields';
+import { NgXformModule } from './ng-xform.module';
+import { NgXformComponent } from './ng-xform.component';
 
 describe('DynamicFormComponent', () => {
   let component: NgXformComponent;
@@ -38,23 +24,8 @@ describe('DynamicFormComponent', () => {
   beforeEach(
     async(() => {
       TestBed.configureTestingModule({
-        declarations: [
-          NgXformComponent,
-          EditableLabelComponent,
-          FieldsGroupComponent,
-          AutocompleteFieldComponent,
-          CheckboxFieldComponent,
-          MeasureFieldComponent,
-          SelectFieldComponent,
-          FieldErrorMessageComponent,
-          ErrorMessagePipe,
-          MultilineFieldComponent
-        ],
         imports: [
-          CommonModule,
-          NguiAutoCompleteModule,
-          ReactiveFormsModule,
-          PipesModule
+          NgXformModule
         ]
       }).compileComponents();
     })
@@ -99,7 +70,7 @@ describe('DynamicFormComponent', () => {
         valueFormatter: 'name',
         listFormatter: 'name'
       }),
-      new FieldGroup({
+      new NestedObjectField({
         key: 'address', label: 'Address',
         fields: [
           new TextField({ key: 'street', label: 'Street' }),
