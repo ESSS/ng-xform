@@ -58,7 +58,7 @@ export class NgXformComponent implements OnInit, OnChanges {
 
   private getAttributeValue(attr: string, value: any): any {
     const field = this.fields.find(_field => _field.key === attr);
-    if (field && field['valueAttribute']) {
+    if (value instanceof Object && field && field['valueAttribute']) {
       return value[field['valueAttribute']] || null;
     }
     return value === '' ? null : value;
@@ -72,7 +72,6 @@ export class NgXformComponent implements OnInit, OnChanges {
 
     // copy object
     let modelToSend = { ...this.model };
-
     for (const attr in this.form.value) {
       if (this.form.value.hasOwnProperty(attr)) {
         modelToSend[attr] = this.getAttributeValue(attr, this.form.value[attr]);
