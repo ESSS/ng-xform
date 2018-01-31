@@ -1,3 +1,13 @@
+<a name="0.1.3"></a>
+## [0.1.3](https://github.com/ESSS/ng-xform/compare/v0.1.2...v0.1.3) (2018-01-31)
+
+
+### Bug Fixes
+
+* **ng-xform:** submit autocomplete with a null value ([#1](https://github.com/ESSS/ng-xform/issues/1)) ([3a51978](https://github.com/ESSS/ng-xform/commit/3a51978))
+
+
+
 <a name="0.1.2"></a>
 ## [0.1.2](https://github.com/ESSS/ng-xform/compare/v0.1.1...v0.1.2) (2018-01-26)
 
