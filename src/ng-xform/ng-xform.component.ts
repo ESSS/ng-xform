@@ -100,8 +100,6 @@ export class NgXformComponent implements OnInit, OnChanges {
     this.onCancel.emit();
   }
 
-  // TODO: add a ´clear´ method to clear the state of the form
-
   reset() {
     if (this.model) {
       this.form.patchValue(this.model);
