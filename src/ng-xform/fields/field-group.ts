@@ -3,7 +3,7 @@ import { DynamicField } from './dynamic-field';
 export class FieldGroup extends DynamicField {
     public controlType ? = 'GROUP';
     public key: string;
-    public label: string;
+    public label?: string;
     public fields: DynamicField[];
 
     constructor(

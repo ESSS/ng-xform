@@ -2,8 +2,8 @@
     <div [ngSwitch]="field.controlType">
 
         <ng-template [ngSwitchCase]="'GROUP'">
-            <hr>
-            <h3>
+            <hr *ngIf='field.label'>
+            <h3 *ngIf='field.label'>
                 {{field.label}}
             </h3>
             <div [formGroup]='form'>
