@@ -6,3 +6,4 @@ export * from './select-option';
 export * from './checkbox-field';
 export * from './multiline-field';
 export * from './autocomplete-field';
+export * from './field-group';

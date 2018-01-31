@@ -1,7 +1,8 @@
 import { Validators, FormGroup, FormControl } from '@angular/forms';
-import { Component, OnInit, Input, EventEmitter, Output, OnChanges } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output, OnChanges, SimpleChanges } from '@angular/core';
 
 import { DynamicField } from './fields/dynamic-field';
+import { FieldGroup } from './fields/field-group';
 
 /**
  * This component builds a form with input components from fields list.
@@ -37,7 +38,11 @@ export class NgXformComponent implements OnInit, OnChanges {
     this.reset();
   }
 
-  ngOnChanges() {
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes.fields) {
+      this.createForm();
+    }
+
     if (!this.form) {
       return;
     }
@@ -45,15 +50,23 @@ export class NgXformComponent implements OnInit, OnChanges {
   }
 
   createForm() {
+    this.form = this.createFormGroup(this.fields);
+  }
+
+  createFormGroup(fields: DynamicField[]): FormGroup {
     let group: any = {};
 
-    this.fields.forEach(field => {
-      group[field.key] = field.validators
-        ? new FormControl('', field.validators)
-        : new FormControl('');
+    fields.forEach(field => {
+      if (field instanceof FieldGroup) {
+        group[field.key] = this.createFormGroup(field.fields);
+      } else {
+        group[field.key] = field.validators
+          ? new FormControl('', field.validators)
+          : new FormControl('');
+      }
     });
 
-    this.form = new FormGroup(group);
+    return new FormGroup(group);
   }
 
   private getAttributeValue(attr: string, value: any): any {

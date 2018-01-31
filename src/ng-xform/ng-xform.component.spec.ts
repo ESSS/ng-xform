@@ -17,6 +17,8 @@ import { OptionValue } from '../types';
 import { PipesModule } from '../pipes/pipes.module';
 import { MultilineField } from './fields/multiline-field';
 import { TextField, MeasureField, SelectField } from './fields';
+import { FieldsGroupComponent } from './fields-group/fields-group.component';
+import { FieldGroup } from './fields/field-group';
 
 describe('DynamicFormComponent', () => {
   let component: NgXformComponent;
@@ -26,6 +28,7 @@ describe('DynamicFormComponent', () => {
     TestBed.configureTestingModule({
       declarations: [
         NgXformComponent,
+        FieldsGroupComponent,
         EditableLabelComponent,
         AutocompleteFieldComponent,
         CheckboxFieldComponent,
@@ -42,7 +45,7 @@ describe('DynamicFormComponent', () => {
         PipesModule,
       ],
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -53,7 +56,11 @@ describe('DynamicFormComponent', () => {
       text1: 'value1',
       measure1: 22,
       choice_id: 1,
-      comments: 'comments here...'
+      comments: 'comments here...',
+      address: {
+        street: 'St wall',
+        city: 'Ny'
+      }
     };
 
     const options = [
@@ -62,10 +69,17 @@ describe('DynamicFormComponent', () => {
     ];
 
     component.fields = [
-      new TextField({key: 'text1', label: 'Text 1'}),
-      new MeasureField({key: 'measure1', label: 'Measure 1', unit: 'C'}),
-      new SelectField({key: 'choice_id', label: 'Choice', options}),
-      new MultilineField({key: 'comments', label: 'Comments'}),
+      new TextField({ key: 'text1', label: 'Text 1' }),
+      new MeasureField({ key: 'measure1', label: 'Measure 1', unit: 'C' }),
+      new SelectField({ key: 'choice_id', label: 'Choice', options }),
+      new MultilineField({ key: 'comments', label: 'Comments' }),
+      new FieldGroup({
+        key: 'address', label: 'Address',
+        fields: [
+          new TextField({ key: 'street', label: 'Street' }),
+          new TextField({ key: 'city', label: 'City' }),
+        ]
+      })
     ];
 
     // fixture.detectChanges();
@@ -78,6 +92,7 @@ describe('DynamicFormComponent', () => {
     expectFormInput('measure1', 'Measure 1', 22, 15);
     expectFormSelect('choice_id', 'Choice', '1', '2');
     expectFormTextarea('comments', 'Comments', 'comments here...');
+    expectFormInput('city', 'City', 'Ny');
   });
 
   it('should be read mode', () => {
