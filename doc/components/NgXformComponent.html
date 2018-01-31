@@ -781,7 +781,7 @@ This component can display an error code if that is defined.</p>
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="85" class="link-to-prism">src/ng-xform/ng-xform.component.ts:85</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="84" class="link-to-prism">src/ng-xform/ng-xform.component.ts:84</a></div>
                                 </td>
                             </tr>
     
@@ -820,7 +820,7 @@ This component can display an error code if that is defined.</p>
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="101" class="link-to-prism">src/ng-xform/ng-xform.component.ts:101</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="100" class="link-to-prism">src/ng-xform/ng-xform.component.ts:100</a></div>
                                 </td>
                             </tr>
     
@@ -1045,7 +1045,7 @@ This component can display an error code if that is defined.</p>
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="93" class="link-to-prism">src/ng-xform/ng-xform.component.ts:93</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="92" class="link-to-prism">src/ng-xform/ng-xform.component.ts:92</a></div>
                                 </td>
                             </tr>
     
@@ -1082,7 +1082,7 @@ This component can display an error code if that is defined.</p>
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="105" class="link-to-prism">src/ng-xform/ng-xform.component.ts:105</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="104" class="link-to-prism">src/ng-xform/ng-xform.component.ts:104</a></div>
                                 </td>
                             </tr>
     
@@ -1270,7 +1270,7 @@ export class NgXformComponent implements OnInit, OnChanges {
 
   private getAttributeValue(attr: string, value: any): any {
     const field &#x3D; this.fields.find(_field &#x3D;&gt; _field.key &#x3D;&#x3D;&#x3D; attr);
-    if (field &amp;&amp; field[&#x27;valueAttribute&#x27;]) {
+    if (value instanceof Object &amp;&amp; field &amp;&amp; field[&#x27;valueAttribute&#x27;]) {
       return value[field[&#x27;valueAttribute&#x27;]] || null;
     }
     return value &#x3D;&#x3D;&#x3D; &#x27;&#x27; ? null : value;
@@ -1284,7 +1284,6 @@ export class NgXformComponent implements OnInit, OnChanges {
 
     // copy object
     let modelToSend &#x3D; { ...this.model };
-
     for (const attr in this.form.value) {
       if (this.form.value.hasOwnProperty(attr)) {
         modelToSend[attr] &#x3D; this.getAttributeValue(attr, this.form.value[attr]);
