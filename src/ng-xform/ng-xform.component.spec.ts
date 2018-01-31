@@ -1,4 +1,10 @@
-import { async, ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
+import {
+  async,
+  ComponentFixture,
+  TestBed,
+  fakeAsync,
+  tick
+} from '@angular/core/testing';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
@@ -16,37 +22,43 @@ import { ErrorMessagePipe } from './field-error-message/error-message.pipe';
 import { OptionValue } from '../types';
 import { PipesModule } from '../pipes/pipes.module';
 import { MultilineField } from './fields/multiline-field';
-import { TextField, MeasureField, SelectField } from './fields';
 import { FieldsGroupComponent } from './fields-group/fields-group.component';
 import { FieldGroup } from './fields/field-group';
+import {
+  AutocompleteField,
+  TextField,
+  MeasureField,
+  SelectField
+} from './fields';
 
 describe('DynamicFormComponent', () => {
   let component: NgXformComponent;
   let fixture: ComponentFixture<NgXformComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [
-        NgXformComponent,
-        FieldsGroupComponent,
-        EditableLabelComponent,
-        AutocompleteFieldComponent,
-        CheckboxFieldComponent,
-        MeasureFieldComponent,
-        SelectFieldComponent,
-        FieldErrorMessageComponent,
-        ErrorMessagePipe,
-        MultilineFieldComponent
-      ],
-      imports: [
-        CommonModule,
-        NguiAutoCompleteModule,
-        ReactiveFormsModule,
-        PipesModule,
-      ],
+  beforeEach(
+    async(() => {
+      TestBed.configureTestingModule({
+        declarations: [
+          NgXformComponent,
+          EditableLabelComponent,
+          FieldsGroupComponent,
+          AutocompleteFieldComponent,
+          CheckboxFieldComponent,
+          MeasureFieldComponent,
+          SelectFieldComponent,
+          FieldErrorMessageComponent,
+          ErrorMessagePipe,
+          MultilineFieldComponent
+        ],
+        imports: [
+          CommonModule,
+          NguiAutoCompleteModule,
+          ReactiveFormsModule,
+          PipesModule
+        ]
+      }).compileComponents();
     })
-      .compileComponents();
-  }));
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(NgXformComponent);
@@ -68,11 +80,25 @@ describe('DynamicFormComponent', () => {
       [2, 'Choice2'] as OptionValue
     ];
 
+    const colors: any[] = [
+      { id: 1, name: 'blue' },
+      { id: 2, name: 'yellow' },
+      { id: 3, name: 'white' }
+    ];
+
     component.fields = [
       new TextField({ key: 'text1', label: 'Text 1' }),
       new MeasureField({ key: 'measure1', label: 'Measure 1', unit: 'C' }),
       new SelectField({ key: 'choice_id', label: 'Choice', options }),
       new MultilineField({ key: 'comments', label: 'Comments' }),
+      new AutocompleteField({
+        key: 'color',
+        label: 'Color',
+        source: colors,
+        valueAttribute: 'id',
+        valueFormatter: 'name',
+        listFormatter: 'name'
+      }),
       new FieldGroup({
         key: 'address', label: 'Address',
         fields: [
@@ -93,6 +119,21 @@ describe('DynamicFormComponent', () => {
     expectFormSelect('choice_id', 'Choice', '1', '2');
     expectFormTextarea('comments', 'Comments', 'comments here...');
     expectFormInput('city', 'City', 'Ny');
+    expectFormInput('color', 'Color', '');
+  });
+
+  it('should emit form value on submit', () => {
+    fixture.detectChanges();
+    component.onSubmit.subscribe((value: Object) => {
+      expect(value['color']).toBeNull();
+      expect(value['text1']).toBe('Text 1');
+    });
+    component.model = { color: null, text1: 'Text 1' };
+    component.reset();
+    const buttonEl = fixture.debugElement.query(By.css(`#formSubmitBtn`));
+    fixture.detectChanges();
+    expect(buttonEl).toBeTruthy();
+    buttonEl.nativeElement.click();
   });
 
   it('should be read mode', () => {
@@ -111,7 +152,12 @@ describe('DynamicFormComponent', () => {
   }
 
   function expectFormField(
-    inputType: any, changeEvent: any, fieldId: string, caption: string, value: any, changeTo?: any
+    inputType: any,
+    changeEvent: any,
+    fieldId: string,
+    caption: string,
+    value: any,
+    changeTo?: any
   ) {
     const el = fixture.debugElement.query(By.css(`#${fieldId}-div`));
     expect(el).toBeTruthy();
