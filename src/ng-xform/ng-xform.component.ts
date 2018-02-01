@@ -2,7 +2,7 @@ import { Validators, FormGroup, FormControl } from '@angular/forms';
 import { Component, OnInit, Input, EventEmitter, Output, OnChanges, SimpleChanges } from '@angular/core';
 
 import { DynamicField } from './fields/dynamic-field';
-import { NestedObjectField } from './fields/nested-object-field';
+import { NestedFormGroup } from './fields/nested-form-group';
 
 /**
  * This component builds a form with input components from fields list.
@@ -57,7 +57,7 @@ export class NgXformComponent implements OnInit, OnChanges {
     let group: any = {};
 
     fields.forEach(field => {
-      if (field instanceof NestedObjectField) {
+      if (field instanceof NestedFormGroup) {
         group[field.key] = this.createFormGroup(field.fields);
       } else {
         group[field.key] = field.validators

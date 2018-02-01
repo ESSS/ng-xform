@@ -7,7 +7,7 @@ import { By } from '@angular/platform-browser';
 
 import { OptionValue } from '../types';
 import { MultilineField } from './fields/multiline-field';
-import { NestedObjectField } from './fields/nested-object-field';
+import { NestedFormGroup } from './fields/nested-form-group';
 import {
   AutocompleteField,
   TextField,
@@ -70,7 +70,7 @@ describe('DynamicFormComponent', () => {
         valueFormatter: 'name',
         listFormatter: 'name'
       }),
-      new NestedObjectField({
+      new NestedFormGroup({
         key: 'address', label: 'Address',
         fields: [
           new TextField({ key: 'street', label: 'Street' }),
