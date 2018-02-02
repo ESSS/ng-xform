@@ -43,7 +43,8 @@ describe('DynamicFormComponent', () => {
       address: {
         street: 'St wall',
         city: 'Ny'
-      }
+      },
+      nested2: null
     };
 
     const options = [
@@ -76,10 +77,43 @@ describe('DynamicFormComponent', () => {
           new TextField({ key: 'street', label: 'Street' }),
           new TextField({ key: 'city', label: 'City' }),
         ]
-      })
+      }),
+      new NestedFormGroup({
+        key: 'nested2',
+        fields: [
+          new TextField({ key: 'field1', label: 'Field1' }),
+        ]
+      }),
     ];
 
     // fixture.detectChanges();
+  });
+
+  it('should create form', () => {
+    component.createForm();
+    expect(component.form).toBeTruthy();
+  });
+
+  it('should patch value', () => {
+    component.createForm();
+    component.reset();
+    expect(component.errorCode).toBe(undefined);
+    expect(component.form.value.nested2).toBeTruthy();
+  });
+
+  it('should change nested attr value', () => {
+    fixture.detectChanges();
+    expectFormInput('field1', 'Field1', '')
+
+    const el = fixture.debugElement.query(By.css(`#field1-div`));
+    expect(el).toBeTruthy();
+    expect(el.children.length).toBe(3);
+
+    const input = el.query(By.css('input'));
+    input.nativeElement.value = 'some value';
+    input.nativeElement.dispatchEvent(new Event('input'));
+    expect(component.form.value['nested2']).toBeTruthy();
+    expect(component.form.value['nested2']['field1']).toBe('some value');
   });
 
   it('should create', () => {

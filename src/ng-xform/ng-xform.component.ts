@@ -100,9 +100,25 @@ export class NgXformComponent implements OnInit, OnChanges {
     this.onCancel.emit();
   }
 
+  private patchValue(form: FormGroup, obj: any) {
+    if (obj instanceof Object) {
+      Object.keys(form.controls).forEach(key => {
+        let control = form.get(key);
+        let value = obj[key];
+        if ( control instanceof FormGroup) {
+          this.patchValue(control, value)
+        } else {
+          control.setValue(value);
+        }
+      });
+    } else {
+      form.reset();
+    }
+  }
+
   reset() {
     if (this.model) {
-      this.form.patchValue(this.model);
+      this.patchValue(this.form, this.model);
     }
 
     this.errorCode = undefined;
