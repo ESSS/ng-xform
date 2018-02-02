@@ -109,6 +109,9 @@
                                     <a href="../components/FieldErrorMessageComponent.html" >FieldErrorMessageComponent</a>
                                 </li>
                                 <li class="link">
+                                    <a href="../components/FormGroupComponent.html" >FormGroupComponent</a>
+                                </li>
+                                <li class="link">
                                     <a href="../components/MeasureFieldComponent.html" >MeasureFieldComponent</a>
                                 </li>
                                 <li class="link">
@@ -152,6 +155,9 @@
                                 </li>
                                 <li class="link">
                                     <a href="../classes/MultilineField.html" >MultilineField</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../classes/NestedFormGroup.html" >NestedFormGroup</a>
                                 </li>
                                 <li class="link">
                                     <a href="../classes/SelectField.html" >SelectField</a>
@@ -313,6 +319,9 @@
                                            <a href="../components/FieldErrorMessageComponent.html" >FieldErrorMessageComponent</a>
                                        </li>
                                        <li class="link">
+                                           <a href="../components/FormGroupComponent.html" >FormGroupComponent</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../components/MeasureFieldComponent.html" >MeasureFieldComponent</a>
                                        </li>
                                        <li class="link">
@@ -356,6 +365,9 @@
                                        </li>
                                        <li class="link">
                                            <a href="../classes/MultilineField.html" >MultilineField</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../classes/NestedFormGroup.html" >NestedFormGroup</a>
                                        </li>
                                        <li class="link">
                                            <a href="../classes/SelectField.html" >SelectField</a>
@@ -826,7 +838,7 @@ export class SelectFieldComponent extends BaseDynamicFieldComponent&lt;SelectFie
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
         var COMPONENT_TEMPLATE = '<div><div *ngIf="!editing" id="{{field.key}}-label">    <strong>{{ field.label }}</strong>    <p class="text-muted">{{ getOptionLabel() }} </p></div><div *ngIf="editing" class="form-group" [formGroup]="form" [ngClass]="displayFieldCss()" id="{{field.key}}-div">    <label for="{{elementId}}">{{field.label}}</label>    <select class="form-control" id=\'{{elementId}}\' [formControlName]="elementId">        <option *ngFor="let optionValue of optionValues" value="{{ optionValue[0] }}">{{ optionValue[1] }}</option>    </select>    <ng-xform-field-error-message [control]="control"></ng-xform-field-error-message></div></div>'
-    var COMPONENTS = [{'name': 'AutocompleteFieldComponent', 'selector': 'ng-xform-autocomplete-field'},{'name': 'CheckboxFieldComponent', 'selector': 'ng-xform-checkbox-field'},{'name': 'EditableLabelComponent', 'selector': 'ng-xform-editable-label'},{'name': 'FieldErrorMessageComponent', 'selector': 'ng-xform-field-error-message'},{'name': 'MeasureFieldComponent', 'selector': 'ng-xform-measure-field'},{'name': 'MultilineFieldComponent', 'selector': 'ng-xform-multiline-field'},{'name': 'NgXformComponent', 'selector': 'ng-xform'},{'name': 'SelectFieldComponent', 'selector': 'ng-xform-select-field'}];
+    var COMPONENTS = [{'name': 'AutocompleteFieldComponent', 'selector': 'ng-xform-autocomplete-field'},{'name': 'CheckboxFieldComponent', 'selector': 'ng-xform-checkbox-field'},{'name': 'EditableLabelComponent', 'selector': 'ng-xform-editable-label'},{'name': 'FieldErrorMessageComponent', 'selector': 'ng-xform-field-error-message'},{'name': 'FormGroupComponent', 'selector': 'ng-xform-form-group'},{'name': 'MeasureFieldComponent', 'selector': 'ng-xform-measure-field'},{'name': 'MultilineFieldComponent', 'selector': 'ng-xform-multiline-field'},{'name': 'NgXformComponent', 'selector': 'ng-xform'},{'name': 'SelectFieldComponent', 'selector': 'ng-xform-select-field'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'SelectFieldComponent'};
 </script>
