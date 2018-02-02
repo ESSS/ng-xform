@@ -1,7 +1,8 @@
 import { Validators, FormGroup, FormControl } from '@angular/forms';
-import { Component, OnInit, Input, EventEmitter, Output, OnChanges } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output, OnChanges, SimpleChanges } from '@angular/core';
 
 import { DynamicField } from './fields/dynamic-field';
+import { NestedFormGroup } from './fields/nested-form-group';
 
 /**
  * This component builds a form with input components from fields list.
@@ -37,7 +38,11 @@ export class NgXformComponent implements OnInit, OnChanges {
     this.reset();
   }
 
-  ngOnChanges() {
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes.fields) {
+      this.createForm();
+    }
+
     if (!this.form) {
       return;
     }
@@ -45,18 +50,27 @@ export class NgXformComponent implements OnInit, OnChanges {
   }
 
   createForm() {
+    this.form = this.createFormGroup(this.fields);
+  }
+
+  createFormGroup(fields: DynamicField[]): FormGroup {
     let group: any = {};
 
-    this.fields.forEach(field => {
-      group[field.key] = field.validators
-        ? new FormControl('', field.validators)
-        : new FormControl('');
+    fields.forEach(field => {
+      if (field instanceof NestedFormGroup) {
+        group[field.key] = this.createFormGroup(field.fields);
+      } else {
+        group[field.key] = field.validators
+          ? new FormControl('', field.validators)
+          : new FormControl('');
+      }
     });
 
-    this.form = new FormGroup(group);
+    return new FormGroup(group);
   }
 
   private getAttributeValue(attr: string, value: any): any {
+    // TODO RFDAP-468: Each Field object should be responsible for patch the model value on itself
     const field = this.fields.find(_field => _field.key === attr);
     if (value instanceof Object && field && field['valueAttribute']) {
       return value[field['valueAttribute']] || null;
@@ -87,11 +101,26 @@ export class NgXformComponent implements OnInit, OnChanges {
     this.onCancel.emit();
   }
 
-  // TODO: add a ´clear´ method to clear the state of the form
+  private patchValue(form: FormGroup, obj: any) {
+    // TODO RFDAP-468: Each Field object should be responsible for patch the model value on itself
+    if (obj instanceof Object) {
+      Object.keys(form.controls).forEach(key => {
+        let control = form.get(key);
+        let value = obj[key];
+        if ( control instanceof FormGroup) {
+          this.patchValue(control, value)
+        } else {
+          control.setValue(value);
+        }
+      });
+    } else {
+      form.reset();
+    }
+  }
 
   reset() {
     if (this.model) {
-      this.form.patchValue(this.model);
+      this.patchValue(this.form, this.model);
     }
 
     this.errorCode = undefined;

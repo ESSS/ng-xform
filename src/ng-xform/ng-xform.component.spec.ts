@@ -2,32 +2,20 @@ import {
   async,
   ComponentFixture,
   TestBed,
-  fakeAsync,
-  tick
 } from '@angular/core/testing';
-import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
-import { NguiAutoCompleteModule } from '@ngui/auto-complete';
 
-import { NgXformComponent } from './ng-xform.component';
-import { EditableLabelComponent } from './editable-label/editable-label.component';
-import { MeasureFieldComponent } from './measure-field/measure-field.component';
-import { SelectFieldComponent } from './select-field/select-field.component';
-import { AutocompleteFieldComponent } from './autocomplete-field/autocomplete-field.component';
-import { CheckboxFieldComponent } from './checkbox-field/checkbox-field.component';
-import { MultilineFieldComponent } from './multiline-field/multiline-field.component';
-import { FieldErrorMessageComponent } from './field-error-message/field-error-message.component';
-import { ErrorMessagePipe } from './field-error-message/error-message.pipe';
 import { OptionValue } from '../types';
-import { PipesModule } from '../pipes/pipes.module';
 import { MultilineField } from './fields/multiline-field';
+import { NestedFormGroup } from './fields/nested-form-group';
 import {
   AutocompleteField,
   TextField,
   MeasureField,
   SelectField
 } from './fields';
+import { NgXformModule } from './ng-xform.module';
+import { NgXformComponent } from './ng-xform.component';
 
 describe('DynamicFormComponent', () => {
   let component: NgXformComponent;
@@ -36,22 +24,8 @@ describe('DynamicFormComponent', () => {
   beforeEach(
     async(() => {
       TestBed.configureTestingModule({
-        declarations: [
-          NgXformComponent,
-          EditableLabelComponent,
-          AutocompleteFieldComponent,
-          CheckboxFieldComponent,
-          MeasureFieldComponent,
-          SelectFieldComponent,
-          FieldErrorMessageComponent,
-          ErrorMessagePipe,
-          MultilineFieldComponent
-        ],
         imports: [
-          CommonModule,
-          NguiAutoCompleteModule,
-          ReactiveFormsModule,
-          PipesModule
+          NgXformModule
         ]
       }).compileComponents();
     })
@@ -65,7 +39,12 @@ describe('DynamicFormComponent', () => {
       text1: 'value1',
       measure1: 22,
       choice_id: 1,
-      comments: 'comments here...'
+      comments: 'comments here...',
+      address: {
+        street: 'St wall',
+        city: 'Ny'
+      },
+      nested2: null
     };
 
     const options = [
@@ -91,10 +70,50 @@ describe('DynamicFormComponent', () => {
         valueAttribute: 'id',
         valueFormatter: 'name',
         listFormatter: 'name'
-      })
+      }),
+      new NestedFormGroup({
+        key: 'address', label: 'Address',
+        fields: [
+          new TextField({ key: 'street', label: 'Street' }),
+          new TextField({ key: 'city', label: 'City' }),
+        ]
+      }),
+      new NestedFormGroup({
+        key: 'nested2',
+        fields: [
+          new TextField({ key: 'field1', label: 'Field1' }),
+        ]
+      }),
     ];
 
     // fixture.detectChanges();
+  });
+
+  it('should create form', () => {
+    component.createForm();
+    expect(component.form).toBeTruthy();
+  });
+
+  it('should patch value', () => {
+    component.createForm();
+    component.reset();
+    expect(component.errorCode).toBe(undefined);
+    expect(component.form.value.nested2).toBeTruthy();
+  });
+
+  it('should change nested attr value', () => {
+    fixture.detectChanges();
+    expectFormInput('field1', 'Field1', '')
+
+    const el = fixture.debugElement.query(By.css(`#field1-div`));
+    expect(el).toBeTruthy();
+    expect(el.children.length).toBe(3);
+
+    const input = el.query(By.css('input'));
+    input.nativeElement.value = 'some value';
+    input.nativeElement.dispatchEvent(new Event('input'));
+    expect(component.form.value['nested2']).toBeTruthy();
+    expect(component.form.value['nested2']['field1']).toBe('some value');
   });
 
   it('should create', () => {
@@ -104,6 +123,7 @@ describe('DynamicFormComponent', () => {
     expectFormInput('measure1', 'Measure 1', 22, 15);
     expectFormSelect('choice_id', 'Choice', '1', '2');
     expectFormTextarea('comments', 'Comments', 'comments here...');
+    expectFormInput('city', 'City', 'Ny');
     expectFormInput('color', 'Color', '');
   });
 
