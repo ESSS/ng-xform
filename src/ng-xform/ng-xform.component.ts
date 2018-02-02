@@ -70,6 +70,7 @@ export class NgXformComponent implements OnInit, OnChanges {
   }
 
   private getAttributeValue(attr: string, value: any): any {
+    // TODO RFDAP-468: Each Field object should be responsible for patch the model value on itself
     const field = this.fields.find(_field => _field.key === attr);
     if (value instanceof Object && field && field['valueAttribute']) {
       return value[field['valueAttribute']] || null;
@@ -101,6 +102,7 @@ export class NgXformComponent implements OnInit, OnChanges {
   }
 
   private patchValue(form: FormGroup, obj: any) {
+    // TODO RFDAP-468: Each Field object should be responsible for patch the model value on itself
     if (obj instanceof Object) {
       Object.keys(form.controls).forEach(key => {
         let control = form.get(key);
