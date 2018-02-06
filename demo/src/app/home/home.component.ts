@@ -54,6 +54,14 @@ export class HomeComponent implements OnInit {
         Validators.required
       ]
     }),
+    new SelectField({
+      key: 'type_object',
+      label: 'Type object',
+      options: [{id: 1, description: 'A'}, {id: 2, description: 'B'}, {id: 3, description: 'C'}],
+      labelAttribute: 'description',
+      valueAttribute: 'id',
+      multiple: true
+    }),
     new MeasureField({
       key: 'order',
       label: 'Order',
@@ -68,7 +76,7 @@ export class HomeComponent implements OnInit {
   }
 
   public onSubmit(values: object) {
-    this.editing = false;
+    this.editing = !this.editing;
     this.values = values;
   }
 

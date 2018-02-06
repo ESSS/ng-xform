@@ -4,8 +4,13 @@
 </div>
 <div *ngIf="editing" class="form-group" [formGroup]="form" [ngClass]="displayFieldCss()" id="{{field.key}}-div">
     <label for="{{elementId}}">{{field.label}}</label>
-    <select class="form-control" id='{{elementId}}' [formControlName]="elementId">
-        <option *ngFor="let optionValue of optionValues" value="{{ optionValue[0] }}">{{ optionValue[1] }}</option>
-    </select>
+    <ng-select id='{{elementId}}' [formControlName]="elementId"
+    [searchable]="field.searchable"
+    [items]="optionValues"
+    [multiple]="field.multiple"
+    [markFirst]="field.markFirst"
+    bindLabel="{{field.labelAttribute}}"
+    bindValue="{{field.valueAttribute}}">
+    </ng-select>
     <ng-xform-field-error-message [control]="control"></ng-xform-field-error-message>
 </div>

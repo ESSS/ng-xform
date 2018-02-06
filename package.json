@@ -31,8 +31,9 @@
     "@angular/compiler": "^5.2.0",
     "@angular/core": "^5.2.0",
     "@angular/forms": "^5.2.0",
-    "@angular/platform-browser": "^5.2.0",
     "@angular/http": "^5.2.0",
+    "@angular/platform-browser": "^5.2.0",
+    "@ng-select/ng-select": "^0.16.0",
     "@ngui/auto-complete": "^0.16.1",
     "rxjs": "^5.5.2"
   },

@@ -50,7 +50,7 @@ export class NgXformComponent implements OnInit, OnChanges {
     this.fields.forEach(field => {
       group[field.key] = field.validators
         ? new FormControl('', field.validators)
-        : new FormControl('');
+        : new FormControl();
     });
 
     this.form = new FormGroup(group);
@@ -58,7 +58,7 @@ export class NgXformComponent implements OnInit, OnChanges {
 
   private getAttributeValue(attr: string, value: any): any {
     const field = this.fields.find(_field => _field.key === attr);
-    if (value instanceof Object && field && field['valueAttribute']) {
+    if (!(value instanceof Object) && value instanceof Object && field && field['valueAttribute']) {
       return value[field['valueAttribute']] || null;
     }
     return value === '' ? null : value;

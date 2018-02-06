@@ -1,12 +1,9 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { ViewChild, Component, OnInit, Input } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
-import { OptionValue } from '../../types';
 import { SelectField } from '../fields';
 import { BaseDynamicFieldComponent } from '../field-components/base-dynamic-field.component';
 
-
-type OptionsObservable = Observable<OptionValue[]>;
 
 /**
  * Component to generate a bootstrap form field of general type
@@ -26,31 +23,39 @@ export class SelectFieldComponent extends BaseDynamicFieldComponent<SelectField>
 
   @Input() errorMessage: string;
 
-  optionValues: OptionValue[];
+  optionValues: any[] = [];
 
   ngOnInit() {
     super.ngOnInit();
-    let field = <SelectField>this.field;
-    let options = field.options;
+    let options = this.field.options;
 
     if (options instanceof Observable) {
-      (<OptionsObservable>options).subscribe(ret => this.optionValues = ret);
-    } else if (typeof options[0] === 'string') {
-      // options is a list of string. Convert a list of strings in a list of OptionValues.
-      this.optionValues = (<string[]>options).map((item, i) => <OptionValue>[i, item]);
+      (<Observable<any[]>>options).subscribe(ret => this.optionValues = ret);
     } else {
-      this.optionValues = <OptionValue[]>options;
+      this.optionValues = options;
     }
   }
 
   getOptionLabel(): string {
-    if (this.optionValues) {
-      let value = this.control.value;
-      let selectedOption = this.optionValues.find(optionValue => optionValue[0] === value);
-      if (selectedOption) {
-        return selectedOption[1];
-      }
+    let value = this.control.value;
+    if (!value) {
+      return '-';
     }
-    return '<undefined>';
+    if (this.field.multiple) {
+      if (this.field.valueAttribute) {
+        return value
+          .map((val: any) => this.optionValues
+            .find((opt: any) => opt[this.field.valueAttribute] === val))
+          .map((val: any) => {
+            if (val === undefined) {
+              return '-';
+            }
+            return val[this.field.labelAttribute];
+          })
+          .join(this.field.separator);
+      }
+      return value.join(this.field.separator);
+    }
+    return this.field.labelAttribute ? value[this.field.labelAttribute] : value;
   }
 }

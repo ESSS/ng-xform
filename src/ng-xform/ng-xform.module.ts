@@ -3,6 +3,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NguiAutoCompleteModule } from '@ngui/auto-complete';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 import { NgXformComponent } from './ng-xform.component';
 import { EditableLabelComponent } from './editable-label/editable-label.component';
@@ -20,6 +21,7 @@ import { AutocompleteFieldComponent } from './autocomplete-field/autocomplete-fi
     NguiAutoCompleteModule,
     ReactiveFormsModule,
     PipesModule,
+    NgSelectModule,
   ],
   declarations: [
     NgXformComponent,
