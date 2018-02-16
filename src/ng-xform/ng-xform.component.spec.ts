@@ -1,17 +1,16 @@
+import { ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 import {
   async,
   ComponentFixture,
   TestBed,
-  fakeAsync,
-  tick
 } from '@angular/core/testing';
-import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { NguiAutoCompleteModule } from '@ngui/auto-complete';
 import { NgSelectModule } from '@ng-select/ng-select';
 
 import { NgXformComponent } from './ng-xform.component';
+import { NgXformModule } from './ng-xform.module';
 import { EditableLabelComponent } from './editable-label/editable-label.component';
 import { MeasureFieldComponent } from './measure-field/measure-field.component';
 import { SelectFieldComponent } from './select-field/select-field.component';
@@ -22,6 +21,7 @@ import { FieldErrorMessageComponent } from './field-error-message/field-error-me
 import { ErrorMessagePipe } from './field-error-message/error-message.pipe';
 import { PipesModule } from '../pipes/pipes.module';
 import { MultilineField } from './fields/multiline-field';
+import { NestedFormGroup } from './fields/nested-form-group';
 import {
   AutocompleteField,
   TextField,
@@ -39,23 +39,13 @@ describe('DynamicFormComponent', () => {
   beforeEach(
     async(() => {
       TestBed.configureTestingModule({
-        declarations: [
-          NgXformComponent,
-          EditableLabelComponent,
-          AutocompleteFieldComponent,
-          CheckboxFieldComponent,
-          MeasureFieldComponent,
-          SelectFieldComponent,
-          FieldErrorMessageComponent,
-          ErrorMessagePipe,
-          MultilineFieldComponent
-        ],
         imports: [
           CommonModule,
           NgSelectModule,
           NguiAutoCompleteModule,
           ReactiveFormsModule,
-          PipesModule
+          PipesModule,
+          NgXformModule,
         ]
       }).compileComponents();
     })
@@ -69,7 +59,12 @@ describe('DynamicFormComponent', () => {
       text1: 'value1',
       measure1: 22,
       choice_id: 1,
-      comments: 'comments here...'
+      comments: 'comments here...',
+      address: {
+        street: 'St wall',
+        city: 'Ny'
+      },
+      nested2: null
     };
 
     component.model = model;
@@ -102,14 +97,55 @@ describe('DynamicFormComponent', () => {
         valueAttribute: 'id',
         valueFormatter: 'name',
         listFormatter: 'name'
-      })
+      }),
+      new NestedFormGroup({
+        key: 'address', label: 'Address',
+        fields: [
+          new TextField({ key: 'street', label: 'Street' }),
+          new TextField({ key: 'city', label: 'City' }),
+        ]
+      }),
+      new NestedFormGroup({
+        key: 'nested2',
+        fields: [
+          new TextField({ key: 'field1', label: 'Field1' }),
+        ]
+      }),
     ];
 
     fixture.detectChanges();
   });
 
+  it('should create form', () => {
+    component.createForm();
+    expect(component.form).toBeTruthy();
+  });
+
+  it('should patch value', () => {
+    component.createForm();
+    component.reset();
+    expect(component.errorCode).toBe(undefined);
+    expect(component.form.value.nested2).toBeTruthy();
+  });
+
+  it('should change nested attr value', () => {
+    fixture.detectChanges();
+    expectFormInput('field1', 'Field1', '')
+
+    const el = fixture.debugElement.query(By.css(`#field1-div`));
+    expect(el).toBeTruthy();
+    expect(el.children.length).toBe(3);
+
+    const input = el.query(By.css('input'));
+    input.nativeElement.value = 'some value';
+    input.nativeElement.dispatchEvent(new Event('input'));
+    expect(component.form.value['nested2']).toBeTruthy();
+    expect(component.form.value['nested2']['field1']).toBe('some value');
+  });
+
   it('should create', () => {
     expect(component).toBeTruthy();
+    expectFormInput('city', 'City', 'Ny');
   });
 
   it('should render TextField', () => {
@@ -152,7 +188,7 @@ describe('DynamicFormComponent', () => {
       expect(value.measure1).toBe(model.measure1);
       expect(value.comments).toBe(model.comments);
       expect(value.choice_id).toBe(model.choice_id);
-      expect(value.color).toBeNull();
+      expect(value.color).toBeUndefined();
     });
     const buttonEl = fixture.debugElement.query(By.css(`#formSubmitBtn`));
     fixture.detectChanges();

@@ -140,6 +140,10 @@ export class SampleComponent {
 }
 ```
 
+## Development
+
+View common development activities on https://github.com/tinesoft/generator-ngx-library#development
+
 ## License
 
 Copyright (c) 2018 Eder Soares. Licensed under the MIT License (MIT)

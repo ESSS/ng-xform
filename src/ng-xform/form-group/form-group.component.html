@@ -1,0 +1,37 @@
+<div *ngFor="let field of fields">
+    <div [ngSwitch]="field.controlType">
+
+        <ng-template [ngSwitchCase]="'GROUP'">
+            <hr *ngIf='field.label'>
+            <h4 *ngIf='field.label'>
+                {{field.label}}
+            </h4>
+            <div [formGroup]='form'>
+                <div [formGroupName]="field.key">
+                    <ng-xform-form-group [fields]='field.fields' [form]='form.get(field.key)' [editing]='editing'>
+                    </ng-xform-form-group>
+                </div>
+            </div>
+        </ng-template>
+
+        <ng-xform-measure-field *ngSwitchCase="'MEASURE'" [field]="field" [form]="form" [editing]="editing !== false">
+        </ng-xform-measure-field>
+
+        <ng-xform-editable-label *ngSwitchCase="'TEXT'" [field]="field" [form]="form" [editing]="editing !== false">
+        </ng-xform-editable-label>
+
+        <ng-xform-multiline-field *ngSwitchCase="'MULTILINE'" [field]="field" [form]="form" [editing]="editing !== false">
+        </ng-xform-multiline-field>
+
+        <ng-xform-select-field *ngSwitchCase="'SELECT'" [field]="field" [form]="form" [editing]="editing !== false">
+        </ng-xform-select-field>
+
+        <ng-xform-checkbox-field *ngSwitchCase="'CHECKBOX'" [field]="field" [form]="form" [editing]="editing !== false">
+        </ng-xform-checkbox-field>
+
+        <ng-xform-autocomplete-field *ngSwitchCase="'AUTOCOMPLETE'" [field]="field" [form]="form" [editing]="editing !== false">
+        </ng-xform-autocomplete-field>
+
+        <pre *ngSwitchDefault>{{ field | json}}</pre>
+    </div>
+</div>
