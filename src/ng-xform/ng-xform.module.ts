@@ -13,7 +13,6 @@ import { FieldErrorMessageComponent } from './field-error-message/field-error-me
 import { ErrorMessagePipe } from './field-error-message/error-message.pipe';
 import { PipesModule } from '../pipes/pipes.module';
 import { MultilineFieldComponent } from './multiline-field/multiline-field.component';
-import { AutocompleteFieldComponent } from './autocomplete-field/autocomplete-field.component';
 import { FormGroupComponent } from './form-group/form-group.component';
 
 @NgModule({
@@ -34,7 +33,6 @@ import { FormGroupComponent } from './form-group/form-group.component';
     FieldErrorMessageComponent,
     ErrorMessagePipe,
     MultilineFieldComponent,
-    AutocompleteFieldComponent,
   ],
   exports: [
     NgXformComponent,

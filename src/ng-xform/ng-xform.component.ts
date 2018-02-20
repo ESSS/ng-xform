@@ -1,4 +1,5 @@
-import { Validators, FormGroup, FormControl } from '@angular/forms';
+import { NgXformGroup } from './ng-xform-group';
+import { Validators, FormControl, FormGroup } from '@angular/forms';
 import { Component, OnInit, Input, EventEmitter, Output, OnChanges, SimpleChanges } from '@angular/core';
 
 import { DynamicField } from './fields/dynamic-field';
@@ -24,6 +25,7 @@ export class NgXformComponent implements OnInit, OnChanges {
   @Input() model: any;
   @Input() errorCode: string;
   @Input() editing: boolean;
+  @Output() editingChange = new EventEmitter();
 
   /** To listening submitSuccessful event */
   @Output() onSubmit = new EventEmitter();
@@ -61,21 +63,12 @@ export class NgXformComponent implements OnInit, OnChanges {
         group[field.key] = this.createFormGroup(field.fields);
       } else {
         group[field.key] = field.validators
-          ? new FormControl('', field.validators)
-          : new FormControl('');
+          ? new FormControl(undefined, field.validators)
+          : new FormControl();
       }
     });
 
-    return new FormGroup(group);
-  }
-
-  private getAttributeValue(attr: string, value: any): any {
-    // TODO RFDAP-468: Each Field object should be responsible for patch the model value on itself
-    const field = this.fields.find(_field => _field.key === attr);
-    if (!(value instanceof Object) && value instanceof Object && field && field['valueAttribute']) {
-      return value[field['valueAttribute']] || null;
-    }
-    return value === '' ? null : value;
+    return new NgXformGroup(group);
   }
 
   submit() {
@@ -88,7 +81,7 @@ export class NgXformComponent implements OnInit, OnChanges {
     let modelToSend = { ...this.model };
     for (const attr in this.form.value) {
       if (this.form.value.hasOwnProperty(attr)) {
-        modelToSend[attr] = this.getAttributeValue(attr, this.form.value[attr]);
+        modelToSend[attr] = this.form.value[attr] || null;
       }
     }
     this.onSubmit.emit(modelToSend);
@@ -101,26 +94,9 @@ export class NgXformComponent implements OnInit, OnChanges {
     this.onCancel.emit();
   }
 
-  private patchValue(form: FormGroup, obj: any) {
-    // TODO RFDAP-468: Each Field object should be responsible for patch the model value on itself
-    if (obj instanceof Object) {
-      Object.keys(form.controls).forEach(key => {
-        let control = form.get(key);
-        let value = obj[key];
-        if ( control instanceof FormGroup) {
-          this.patchValue(control, value)
-        } else {
-          control.setValue(value);
-        }
-      });
-    } else {
-      form.reset();
-    }
-  }
-
   reset() {
     if (this.model) {
-      this.patchValue(this.form, this.model);
+      this.form.patchValue(this.model, { onlySelf: true, emitEvent: false });
     }
 
     this.errorCode = undefined;
@@ -134,6 +110,6 @@ export class NgXformComponent implements OnInit, OnChanges {
     if (this.editing === undefined) {
       return;
     }
-    this.editing = state;
+    this.editingChange.emit(state);
   }
 }

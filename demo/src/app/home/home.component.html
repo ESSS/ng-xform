@@ -21,11 +21,11 @@
 
 <section class="home">
   <div class="container">
-    <!-- put your content here-->
     <div class="panel-body">
-      <ng-xform (onSubmit)="onSubmit($event)" [fields]="fields" [editing]="editing"></ng-xform>
+      <button *ngIf="editing" type="button" class="btn btn-info" (click)="populate()">Populate</button>
+      <ng-xform #xform (onSubmit)="onSubmit($event)" [model]="model" [fields]="fields" [(editing)]="editing"></ng-xform>
       <hr>
-      <pre *ngIf="values">{{ values | json }}</pre>
+      <pre>{{ xform.form.value | json }}</pre>
     </div>
   </div>
 </section>
