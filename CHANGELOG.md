@@ -1,15 +1,15 @@
+<a name="0.2.2"></a>
+## [0.2.2](https://github.com/ESSS/ng-xform/compare/v0.2.1...v0.2.2) (2018-02-02)
+
+
+### Features
+
+* **ng-xform:** Add nested form group support ([bb3dc2a](https://github.com/ESSS/ng-xform/commit/bb3dc2a))
+
+
+
 <a name="0.2.1"></a>
-## [0.2.1](https://github.com/ESSS/ng-xform/compare/v0.1.4...v0.2.1) (2018-01-31)
-
-
-
-<a name="0.1.4"></a>
-## [0.1.4](https://github.com/ESSS/ng-xform/compare/v0.1.3...v0.1.4) (2018-01-31)
-
-
-
-<a name="0.1.3"></a>
-## [0.1.3](https://github.com/ESSS/ng-xform/compare/v0.1.2...v0.1.3) (2018-01-31)
+## [0.2.1](https://github.com/ESSS/ng-xform/compare/v0.1.2...v0.2.1) (2018-01-31)
 
 
 ### Bug Fixes
