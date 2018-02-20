@@ -10,7 +10,6 @@ export class SelectField extends DynamicField {
   public noFilterUntil?: number;
   public valueAttribute?: string;
   public labelAttribute?: string;
-  public tagLabelAttribute?: string;
   public searchable?: boolean;
   public markFirst?: boolean;
   public separator?: string;
@@ -22,7 +21,6 @@ export class SelectField extends DynamicField {
     this.noFilterUntil = options.noFilterUntil || 0;
     this.valueAttribute = options.valueAttribute;
     this.labelAttribute = options.labelAttribute;
-    this.tagLabelAttribute = options.tagLabelAttribute;
     this.searchable = options.searchable === true;
     this.markFirst = options.markFirst === true;
     this.separator = options.separator || ', ';
