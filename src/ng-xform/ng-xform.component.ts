@@ -62,7 +62,7 @@ export class NgXformComponent implements OnInit, OnChanges {
       } else {
         group[field.key] = field.validators
           ? new FormControl('', field.validators)
-          : new FormControl('');
+          : new FormControl();
       }
     });
 
@@ -72,7 +72,7 @@ export class NgXformComponent implements OnInit, OnChanges {
   private getAttributeValue(attr: string, value: any): any {
     // TODO RFDAP-468: Each Field object should be responsible for patch the model value on itself
     const field = this.fields.find(_field => _field.key === attr);
-    if (value instanceof Object && field && field['valueAttribute']) {
+    if (!(value instanceof Object) && value instanceof Object && field && field['valueAttribute']) {
       return value[field['valueAttribute']] || null;
     }
     return value === '' ? null : value;

@@ -1,14 +1,28 @@
+import { Observable } from 'rxjs/Observable';
+
 import { SelectOption } from './select-option';
 import { DynamicField } from './dynamic-field';
-import { OptionValue } from '../../types';
-import { Observable } from 'rxjs/Observable';
 
 export class SelectField extends DynamicField {
   public controlType ? = 'SELECT';
-  public options: string[] | OptionValue[] | Observable<OptionValue[]>;
+  public options?: any[] | Observable<any[]>;
+  public multiple?: boolean;
+  public noFilterUntil?: number;
+  public valueAttribute?: string;
+  public labelAttribute?: string;
+  public searchable?: boolean;
+  public markFirst?: boolean;
+  public separator?: string;
 
-  constructor(options = {}) {
+  constructor(options: SelectField = {}) {
     super(options);
-    this.options = options['options'];
+    this.options = options.options;
+    this.multiple = options.multiple || false;
+    this.noFilterUntil = options.noFilterUntil || 0;
+    this.valueAttribute = options.valueAttribute;
+    this.labelAttribute = options.labelAttribute;
+    this.searchable = options.searchable === true;
+    this.markFirst = options.markFirst === true;
+    this.separator = options.separator || ', ';
   }
 }

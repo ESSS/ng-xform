@@ -4,8 +4,18 @@ import {
   TestBed,
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+import { NguiAutoCompleteModule } from '@ngui/auto-complete';
+import { NgSelectModule } from '@ng-select/ng-select';
 
-import { OptionValue } from '../types';
+import { EditableLabelComponent } from './editable-label/editable-label.component';
+import { MeasureFieldComponent } from './measure-field/measure-field.component';
+import { SelectFieldComponent } from './select-field/select-field.component';
+import { AutocompleteFieldComponent } from './autocomplete-field/autocomplete-field.component';
+import { CheckboxFieldComponent } from './checkbox-field/checkbox-field.component';
+import { MultilineFieldComponent } from './multiline-field/multiline-field.component';
+import { FieldErrorMessageComponent } from './field-error-message/field-error-message.component';
+import { ErrorMessagePipe } from './field-error-message/error-message.pipe';
+import { PipesModule } from '../pipes/pipes.module';
 import { MultilineField } from './fields/multiline-field';
 import { NestedFormGroup } from './fields/nested-form-group';
 import {
@@ -20,6 +30,9 @@ import { NgXformComponent } from './ng-xform.component';
 describe('DynamicFormComponent', () => {
   let component: NgXformComponent;
   let fixture: ComponentFixture<NgXformComponent>;
+  let optieditingons: any[];
+  let model: any;
+  let options: any[];
 
   beforeEach(
     async(() => {
@@ -35,7 +48,7 @@ describe('DynamicFormComponent', () => {
     fixture = TestBed.createComponent(NgXformComponent);
     component = fixture.componentInstance;
 
-    component.model = {
+    model = {
       text1: 'value1',
       measure1: 22,
       choice_id: 1,
@@ -47,11 +60,12 @@ describe('DynamicFormComponent', () => {
       nested2: null
     };
 
-    const options = [
-      [1, 'Choice1'] as OptionValue,
-      [2, 'Choice2'] as OptionValue
-    ];
+    component.model = model;
 
+    options = [
+      { id: 1, description: 'Choice1' },
+      { id: 2, description: 'Choice2' }
+    ];
     const colors: any[] = [
       { id: 1, name: 'blue' },
       { id: 2, name: 'yellow' },
@@ -61,7 +75,13 @@ describe('DynamicFormComponent', () => {
     component.fields = [
       new TextField({ key: 'text1', label: 'Text 1' }),
       new MeasureField({ key: 'measure1', label: 'Measure 1', unit: 'C' }),
-      new SelectField({ key: 'choice_id', label: 'Choice', options }),
+      new SelectField({
+        key: 'choice_id',
+        label: 'Choice',
+        valueAttribute: 'id',
+        labelAttribute: 'description',
+        options: options
+      }),
       new MultilineField({ key: 'comments', label: 'Comments' }),
       new AutocompleteField({
         key: 'color',
@@ -86,12 +106,13 @@ describe('DynamicFormComponent', () => {
       }),
     ];
 
-    // fixture.detectChanges();
+    fixture.detectChanges();
   });
 
   it('should create form', () => {
     component.createForm();
     expect(component.form).toBeTruthy();
+    expectFormInput('city', 'City', 'Ny');
   });
 
   it('should patch value', () => {
@@ -117,24 +138,51 @@ describe('DynamicFormComponent', () => {
   });
 
   it('should create', () => {
-    fixture.detectChanges();
     expect(component).toBeTruthy();
+  });
+
+  it('should render TextField', () => {
     expectFormInput('text1', 'Text 1', 'value1');
-    expectFormInput('measure1', 'Measure 1', 22, 15);
-    expectFormSelect('choice_id', 'Choice', '1', '2');
+  });
+
+  it('should render MultilineField', () => {
     expectFormTextarea('comments', 'Comments', 'comments here...');
-    expectFormInput('city', 'City', 'Ny');
-    expectFormInput('color', 'Color', '');
+  });
+
+  it('should render MeasureField', () => {
+    expectFormInput('measure1', 'Measure 1', 22, 15);
+  });
+
+  it('should render AutocompleteField', () => {
+    const el = fixture.debugElement.query(By.css(`#color-div`));
+    expect(el).toBeTruthy();
+    const label = el.query(By.css('label'));
+    expect(label).toBeTruthy();
+    expect(label.nativeElement.textContent).toBe('Color');
+    const input = el.query(By.css('input'));
+    expect(input).toBeTruthy();
+  });
+
+  it('should render SelectField', () => {
+    const el = fixture.debugElement.query(By.css(`#choice_id-div`));
+    expect(el).toBeTruthy();
+    const label = el.query(By.css('label'));
+    expect(label).toBeTruthy();
+    expect(label.nativeElement.textContent).toBe('Choice');
+    const selectComponet = el.query(By.css('ng-select'));
+    expect(selectComponet).toBeTruthy();
+    const optionsEl = el.queryAll(By.css('div.ng-option'));
+    expect(optionsEl.length).toBe(options.length);
   });
 
   it('should emit form value on submit', () => {
-    fixture.detectChanges();
-    component.onSubmit.subscribe((value: Object) => {
-      expect(value['color']).toBeNull();
-      expect(value['text1']).toBe('Text 1');
+    component.onSubmit.subscribe((value: any) => {
+      expect(value.text1).toBe(model.text1);
+      expect(value.measure1).toBe(model.measure1);
+      expect(value.comments).toBe(model.comments);
+      expect(value.choice_id).toBe(model.choice_id);
+      expect(value.color).toBeUndefined();
     });
-    component.model = { color: null, text1: 'Text 1' };
-    component.reset();
     const buttonEl = fixture.debugElement.query(By.css(`#formSubmitBtn`));
     fixture.detectChanges();
     expect(buttonEl).toBeTruthy();
@@ -182,5 +230,4 @@ describe('DynamicFormComponent', () => {
 
   const expectFormInput = expectFormField.bind(null, 'input', 'input');
   const expectFormTextarea = expectFormField.bind(null, 'textarea', 'input');
-  const expectFormSelect = expectFormField.bind(null, 'select', 'change');
 });
