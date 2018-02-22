@@ -2,7 +2,6 @@ import { CheckboxFieldComponent } from './checkbox-field/checkbox-field.componen
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NguiAutoCompleteModule } from '@ngui/auto-complete';
 import { NgSelectModule } from '@ng-select/ng-select';
 
 import { NgXformComponent } from './ng-xform.component';
@@ -18,7 +17,6 @@ import { FormGroupComponent } from './form-group/form-group.component';
 @NgModule({
   imports: [
     CommonModule,
-    NguiAutoCompleteModule,
     ReactiveFormsModule,
     PipesModule,
     NgSelectModule,

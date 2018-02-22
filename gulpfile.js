@@ -383,7 +383,6 @@ gulp.task('rollup-bundle', (cb) => {
       // ATTENTION:
       // Add any other dependency or peer dependency of your library here
       // This is required for UMD bundle users.
-      '@ngui/auto-complete': '@ngui/auto-complete'
     };
     const rollupBaseConfig = {
       name: _.camelCase(config.libraryName),

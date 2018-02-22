@@ -7,7 +7,6 @@ import {
   TestBed,
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { NguiAutoCompleteModule } from '@ngui/auto-complete';
 import { NgSelectModule } from '@ng-select/ng-select';
 
 import { NgXformComponent } from './ng-xform.component';
