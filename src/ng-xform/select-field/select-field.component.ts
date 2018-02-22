@@ -1,10 +1,8 @@
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { debounceTime } from 'rxjs/operators/debounceTime';
-import { distinctUntilChanged } from 'rxjs/operators/distinctUntilChanged';
 import { NgSelectComponent } from '@ng-select/ng-select';
 import { ViewChild, Component, OnInit, AfterViewInit, Input, EventEmitter } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor, FormControl } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/distinctUntilChanged';
@@ -17,12 +15,9 @@ import { SelectField } from '../fields';
 /**
  * Component to generate a bootstrap form field of general type
  *
- * :inputId: the id of the field in the FormGroup
- * :inputType: type of the input field
- * :caption: Title of the field
+ * :editing: Flag to control component state
  * :form: FormGroup containing the field
- * :validator: external function that validates the data in the field
- * :errorMessage: message to be shown when the validation fails
+ * :field: Intance of field configurations
  */
 @Component({
   selector: 'ng-xform-select-field',
@@ -45,24 +40,9 @@ export class SelectFieldComponent extends BaseDynamicFieldComponent<SelectField>
   _onChange: any = (value: any) => { };
   _onTouched: any = () => { };
 
-  writeValue(obj: any): void {
-    this.viewModel.next(obj);
-  }
-
-  registerOnChange(fn: any): void {
-    this._onChange = fn;
-  }
-  registerOnTouched(fn: any): void {
-    this._onTouched = fn;
-  }
-  setDisabledState?(isDisabled: boolean): void {
-    this.select.setDisabledState(isDisabled);
-  }
-
-  updateOptionLabel() {
-    setTimeout(() => {
-      this.optionLabel = this.select.selectedItems.map(item => item.label).join(this.field.separator);
-    }, 0);
+  ngOnInit() {
+    super.ngOnInit();
+    this.config();
   }
 
   ngAfterViewInit() {
@@ -85,9 +65,24 @@ export class SelectFieldComponent extends BaseDynamicFieldComponent<SelectField>
     })
   }
 
-  ngOnInit() {
-    super.ngOnInit();
-    this.config();
+  writeValue(obj: any): void {
+    this.viewModel.next(obj);
+  }
+
+  registerOnChange(fn: any): void {
+    this._onChange = fn;
+  }
+  registerOnTouched(fn: any): void {
+    this._onTouched = fn;
+  }
+  setDisabledState?(isDisabled: boolean): void {
+    this.select.setDisabledState(isDisabled);
+  }
+
+  updateOptionLabel() {
+    setTimeout(() => {
+      this.optionLabel = this.select.selectedItems.map(item => item.label).join(this.field.separator);
+    }, 0);
   }
 
   config() {
@@ -95,13 +90,16 @@ export class SelectFieldComponent extends BaseDynamicFieldComponent<SelectField>
       this.typeahead = new EventEmitter<string>();
       this.field.searchable = true;
       let searchHandler = this.typeahead.asObservable();
-      try {
+
+      if (searchHandler.distinctUntilChanged instanceof Function && searchHandler.distinctUntilChanged instanceof Function) {
+        // These two operators only work if the main application has the 'import "rxjs/Rx" ;
         searchHandler = searchHandler
           .distinctUntilChanged()
           .debounceTime(200);
-      } catch (e) {
-        console.warn('You need add \'import "rxjs/Rx";\' on your main.ts to use distinctUntilChanged and debounceTime operators');
+      } else {
+        console.warn('You need to add \'import "rxjs/Rx";\' on your main.ts to use distinctUntilChanged and debounceTime operators');
       }
+
       searchHandler
         .switchMap((term: string) => this.field.searchHandler(term))
         .subscribe((items: string[]) => {
