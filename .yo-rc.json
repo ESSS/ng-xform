@@ -23,6 +23,7 @@
       "platform-browser"
     ],
     "otherDependencies": [
+      "@ng-select/ng-select"
     ],
     "dependenciesRange": "^",
     "ngPrefix": "ng-xform",
