@@ -139,6 +139,9 @@ describe('DynamicFormComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should render NestedFormGroup', () => {
     expectFormInput('city', 'City', 'Ny');
   });
 
