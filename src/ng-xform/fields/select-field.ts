@@ -12,7 +12,6 @@ export class SelectField extends DynamicField {
   public searchHandler?: (value: string) => Observable<any[]>;
   public searchByValueAttributeHandler?: (value: string) => Observable<any>;
   public labelAttribute?: string;
-  public tagLabelAttribute?: string;
   public searchable?: boolean;
   public markFirst?: boolean;
   public separator?: string;
@@ -24,7 +23,6 @@ export class SelectField extends DynamicField {
     this.noFilterUntil = options.noFilterUntil || 2;
     this.valueAttribute = options.valueAttribute;
     this.labelAttribute = options.labelAttribute;
-    this.tagLabelAttribute = options.tagLabelAttribute;
     this.searchable = options.searchable === true;
     this.searchHandler = options.searchHandler;
     this.searchByValueAttributeHandler = options.searchByValueAttributeHandler;

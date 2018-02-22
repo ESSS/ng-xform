@@ -39,12 +39,7 @@ describe('DynamicFormComponent', () => {
     async(() => {
       TestBed.configureTestingModule({
         imports: [
-          CommonModule,
-          NgSelectModule,
-          NguiAutoCompleteModule,
-          ReactiveFormsModule,
-          PipesModule,
-          NgXformModule,
+          NgXformModule
         ]
       }).compileComponents();
     })
@@ -117,6 +112,7 @@ describe('DynamicFormComponent', () => {
   it('should create form', () => {
     component.createForm();
     expect(component.form).toBeTruthy();
+    expectFormInput('city', 'City', 'Ny');
   });
 
   it('should patch value', () => {
