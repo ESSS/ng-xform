@@ -5,7 +5,7 @@ import { CheckboxField } from '../fields';
 
 
 /**
- * Component to generate a bootstrap form field of general type
+ * Component to generate a form checkbox field
  *
  * :editing: Flag to control component state
  * :form: FormGroup containing the field

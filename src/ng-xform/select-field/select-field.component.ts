@@ -13,7 +13,7 @@ import { SelectField } from '../fields';
 
 
 /**
- * Component to generate a bootstrap form field of general type
+ * Component to generate a form select field that can be settable to single-selection, multi-selection, and typeahead(autocomplete)
  *
  * :editing: Flag to control component state
  * :form: FormGroup containing the field
@@ -66,6 +66,7 @@ export class SelectFieldComponent extends BaseDynamicFieldComponent<SelectField>
   }
 
   writeValue(obj: any): void {
+    // the form makes writeValue's call before the select attribute is initialized
     this.viewModel.next(obj);
   }
 
@@ -79,33 +80,36 @@ export class SelectFieldComponent extends BaseDynamicFieldComponent<SelectField>
     this.select.setDisabledState(isDisabled);
   }
 
-  updateOptionLabel() {
+  private updateOptionLabel() {
     setTimeout(() => {
       this.optionLabel = this.select.selectedItems.map(item => item.label).join(this.field.separator);
     }, 0);
   }
 
-  config() {
+  private getTypeaheadWithDistinctAndDebounce() {
+    let searchHandler = this.typeahead.asObservable();
+    if (searchHandler.distinctUntilChanged instanceof Function && searchHandler.distinctUntilChanged instanceof Function) {
+      // These two operators only work if the main application has the 'import "rxjs/Rx" ;
+      searchHandler = searchHandler
+        .distinctUntilChanged()
+        .debounceTime(200);
+    } else {
+      console.warn('You need to add \'import "rxjs/Rx";\' on your main.ts to use distinctUntilChanged and debounceTime operators');
+    }
+    return searchHandler;
+  }
+
+  private config() {
     if (this.field.searchHandler) {
       this.typeahead = new EventEmitter<string>();
       this.field.searchable = true;
-      let searchHandler = this.typeahead.asObservable();
 
-      if (searchHandler.distinctUntilChanged instanceof Function && searchHandler.distinctUntilChanged instanceof Function) {
-        // These two operators only work if the main application has the 'import "rxjs/Rx" ;
-        searchHandler = searchHandler
-          .distinctUntilChanged()
-          .debounceTime(200);
-      } else {
-        console.warn('You need to add \'import "rxjs/Rx";\' on your main.ts to use distinctUntilChanged and debounceTime operators');
-      }
-
-      searchHandler
+      this.getTypeaheadWithDistinctAndDebounce()
         .switchMap((term: string) => this.field.searchHandler(term))
         .subscribe((items: string[]) => {
           this.optionValues = items;
         }, (err: any) => {
-          console.log(err);
+          console.error(err);
           this.optionValues = [];
         });
     }
