@@ -97,9 +97,6 @@
                                 id="xs-components-links"
                             >
                                 <li class="link">
-                                    <a href="../components/AutocompleteFieldComponent.html" >AutocompleteFieldComponent</a>
-                                </li>
-                                <li class="link">
                                     <a href="../components/CheckboxFieldComponent.html" >CheckboxFieldComponent</a>
                                 </li>
                                 <li class="link">
@@ -139,9 +136,6 @@
                                 id="xs-classes-links"
                             >
                                 <li class="link">
-                                    <a href="../classes/AutocompleteField.html" >AutocompleteField</a>
-                                </li>
-                                <li class="link">
                                     <a href="../classes/BaseDynamicFieldComponent.html" >BaseDynamicFieldComponent</a>
                                 </li>
                                 <li class="link">
@@ -158,6 +152,9 @@
                                 </li>
                                 <li class="link">
                                     <a href="../classes/NestedFormGroup.html" >NestedFormGroup</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../classes/NgXformGroup.html" >NgXformGroup</a>
                                 </li>
                                 <li class="link">
                                     <a href="../classes/SelectField.html" >SelectField</a>
@@ -208,9 +205,6 @@
                         <ul class="links collapse in"
                                 id="xs-miscellaneous-links"
                             >
-                                <li class="link">
-                                  <a href="../miscellaneous/typealiases.html" data-type="entity-link" >Type aliases</a>
-                                </li>
                                 <li class="link">
                                   <a href="../miscellaneous/variables.html" data-type="entity-link" >Variables</a>
                                 </li>
@@ -307,9 +301,6 @@
                                        id="components-links"
                    >
                                        <li class="link">
-                                           <a href="../components/AutocompleteFieldComponent.html" >AutocompleteFieldComponent</a>
-                                       </li>
-                                       <li class="link">
                                            <a href="../components/CheckboxFieldComponent.html" >CheckboxFieldComponent</a>
                                        </li>
                                        <li class="link">
@@ -349,9 +340,6 @@
                                        id="classes-links"
                    >
                                        <li class="link">
-                                           <a href="../classes/AutocompleteField.html" >AutocompleteField</a>
-                                       </li>
-                                       <li class="link">
                                            <a href="../classes/BaseDynamicFieldComponent.html" >BaseDynamicFieldComponent</a>
                                        </li>
                                        <li class="link">
@@ -368,6 +356,9 @@
                                        </li>
                                        <li class="link">
                                            <a href="../classes/NestedFormGroup.html" >NestedFormGroup</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../classes/NgXformGroup.html" >NgXformGroup</a>
                                        </li>
                                        <li class="link">
                                            <a href="../classes/SelectField.html" >SelectField</a>
@@ -418,9 +409,6 @@
                                <ul class="links collapse in"
                                        id="miscellaneous-links"
                    >
-                                       <li class="link">
-                                         <a href="../miscellaneous/typealiases.html" data-type="entity-link" >Type aliases</a>
-                                       </li>
                                        <li class="link">
                                          <a href="../miscellaneous/variables.html" data-type="entity-link" >Variables</a>
                                        </li>
@@ -598,7 +586,7 @@ export class MeasureFieldComponent extends BaseDynamicFieldComponent&lt;MeasureF
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
         var COMPONENT_TEMPLATE = '<div><div *ngIf="!editing" id="{{elementId}}-label">  <strong *ngIf="!editing">{{ field.label }}</strong>  <p class="text-muted" *ngIf="!editing">{{ form?.controls[elementId]?.value | valueSuffix: field.unit }}</p></div><div *ngIf="editing" id="{{elementId}}-div" class="form-group" [formGroup]="form" [ngClass]="displayFieldCss()" >  <label for="{{elementId}}">{{field.label}}</label>  <div [class.input-group]="field.unit" [class.form-group]="!field.unit">    <input type="number" id="{{elementId}}" class="form-control" [formControlName]="elementId">    <div *ngIf="field.unit" class="input-group-addon">{{field.unit}}</div>  </div>  <ng-xform-field-error-message [control]="control"></ng-xform-field-error-message></div></div>'
-    var COMPONENTS = [{'name': 'AutocompleteFieldComponent', 'selector': 'ng-xform-autocomplete-field'},{'name': 'CheckboxFieldComponent', 'selector': 'ng-xform-checkbox-field'},{'name': 'EditableLabelComponent', 'selector': 'ng-xform-editable-label'},{'name': 'FieldErrorMessageComponent', 'selector': 'ng-xform-field-error-message'},{'name': 'FormGroupComponent', 'selector': 'ng-xform-form-group'},{'name': 'MeasureFieldComponent', 'selector': 'ng-xform-measure-field'},{'name': 'MultilineFieldComponent', 'selector': 'ng-xform-multiline-field'},{'name': 'NgXformComponent', 'selector': 'ng-xform'},{'name': 'SelectFieldComponent', 'selector': 'ng-xform-select-field'}];
+    var COMPONENTS = [{'name': 'CheckboxFieldComponent', 'selector': 'ng-xform-checkbox-field'},{'name': 'EditableLabelComponent', 'selector': 'ng-xform-editable-label'},{'name': 'FieldErrorMessageComponent', 'selector': 'ng-xform-field-error-message'},{'name': 'FormGroupComponent', 'selector': 'ng-xform-form-group'},{'name': 'MeasureFieldComponent', 'selector': 'ng-xform-measure-field'},{'name': 'MultilineFieldComponent', 'selector': 'ng-xform-multiline-field'},{'name': 'NgXformComponent', 'selector': 'ng-xform'},{'name': 'SelectFieldComponent', 'selector': 'ng-xform-select-field'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'MeasureFieldComponent'};
 </script>

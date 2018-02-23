@@ -97,9 +97,6 @@
                                 id="xs-components-links"
                             >
                                 <li class="link">
-                                    <a href="../components/AutocompleteFieldComponent.html" >AutocompleteFieldComponent</a>
-                                </li>
-                                <li class="link">
                                     <a href="../components/CheckboxFieldComponent.html" >CheckboxFieldComponent</a>
                                 </li>
                                 <li class="link">
@@ -139,9 +136,6 @@
                                 id="xs-classes-links"
                             >
                                 <li class="link">
-                                    <a href="../classes/AutocompleteField.html" >AutocompleteField</a>
-                                </li>
-                                <li class="link">
                                     <a href="../classes/BaseDynamicFieldComponent.html" >BaseDynamicFieldComponent</a>
                                 </li>
                                 <li class="link">
@@ -158,6 +152,9 @@
                                 </li>
                                 <li class="link">
                                     <a href="../classes/NestedFormGroup.html" >NestedFormGroup</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../classes/NgXformGroup.html"  data-type="entity-link" class="active" >NgXformGroup</a>
                                 </li>
                                 <li class="link">
                                     <a href="../classes/SelectField.html" >SelectField</a>
@@ -208,9 +205,6 @@
                         <ul class="links collapse in"
                                 id="xs-miscellaneous-links"
                             >
-                                <li class="link">
-                                  <a href="../miscellaneous/typealiases.html" data-type="entity-link"  class="active" >Type aliases</a>
-                                </li>
                                 <li class="link">
                                   <a href="../miscellaneous/variables.html" data-type="entity-link" >Variables</a>
                                 </li>
@@ -307,9 +301,6 @@
                                        id="components-links"
                    >
                                        <li class="link">
-                                           <a href="../components/AutocompleteFieldComponent.html" >AutocompleteFieldComponent</a>
-                                       </li>
-                                       <li class="link">
                                            <a href="../components/CheckboxFieldComponent.html" >CheckboxFieldComponent</a>
                                        </li>
                                        <li class="link">
@@ -349,9 +340,6 @@
                                        id="classes-links"
                    >
                                        <li class="link">
-                                           <a href="../classes/AutocompleteField.html" >AutocompleteField</a>
-                                       </li>
-                                       <li class="link">
                                            <a href="../classes/BaseDynamicFieldComponent.html" >BaseDynamicFieldComponent</a>
                                        </li>
                                        <li class="link">
@@ -368,6 +356,9 @@
                                        </li>
                                        <li class="link">
                                            <a href="../classes/NestedFormGroup.html" >NestedFormGroup</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../classes/NgXformGroup.html"  data-type="entity-link" class="active" >NgXformGroup</a>
                                        </li>
                                        <li class="link">
                                            <a href="../classes/SelectField.html" >SelectField</a>
@@ -419,9 +410,6 @@
                                        id="miscellaneous-links"
                    >
                                        <li class="link">
-                                         <a href="../miscellaneous/typealiases.html" data-type="entity-link"  class="active" >Type aliases</a>
-                                       </li>
-                                       <li class="link">
                                          <a href="../miscellaneous/variables.html" data-type="entity-link" >Variables</a>
                                        </li>
                                </ul>
@@ -434,7 +422,7 @@
                    
                    </nav>
                </div>
-               <div class="content miscellaneous-typealiases">
+               <div class="content class">
                    <div class="content-data">
 
 
@@ -445,71 +433,172 @@
 
 
 
-
-
-
 <ol class="breadcrumb">
-  <li>Miscellaneous - Type aliases</li>
+  <li>Classes</li>
+  <li>NgXformGroup</li>
 </ol>
 
-<section>
-    <h3 id="index">Index</h3>
-    <table class="table table-sm table-bordered index-table">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <ul class="index-list">
-                        <li>
-                            <a href="#OptionsObservable">OptionsObservable</a>
-                        </li>
-                        <li>
-                            <a href="#OptionValue">OptionValue</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</section>
+<ul class="nav nav-tabs" role="tablist">
+    <li class="active">
+        <a href="#info" id="info-tab" role="tab" data-toggle="tab" data-link="info">Info</a>
+    </li>
 
-    <h3>src/ng-xform/select-field/select-field.component.ts</h3>
-    <section>
-            <table class="table table-sm table-bordered">
-                <tbody>
-                    <tr>
-                        <td class="col-md-4">
-                            <a name="OptionsObservable"></a>
-                            <span class="name"><b>OptionsObservable</b><a href="#OptionsObservable"><span class="fa fa-link"></span></a></span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <code>OptionsObservable:     <code>Observable&lt;[]&gt;</code>
-    </code>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-    </section>
-    <h3>src/types.ts</h3>
-    <section>
-            <table class="table table-sm table-bordered">
-                <tbody>
-                    <tr>
-                        <td class="col-md-4">
-                            <a name="OptionValue"></a>
-                            <span class="name"><b>OptionValue</b><a href="#OptionValue"><span class="fa fa-link"></span></a></span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <code>OptionValue:     <code></code>
-    </code>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-    </section>
+
+    <li>
+        <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+    </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/ng-xform/ng-xform-group.ts</code>
+        </p>
+
+
+            <p class="comment">
+                <h3>Extends</h3>
+            </p>
+            <p class="comment">
+                    <code><a href="https://angular.io/api/forms/FormGroup" target="_blank" >FormGroup</a></code>
+            </p>
+
+
+
+            <section>
+                <h3 id="index">Index</h3>
+                <table class="table table-sm table-bordered index-table">
+                    <tbody>
+                        <tr>
+                            <td class="col-md-4">
+                                <h6><b>Methods</b></h6>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <ul class="index-list">
+                                    <li>
+                                        <a href="#patchValue">patchValue</a>
+                                    </li>
+                                </ul>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+
+            <section>
+                
+                    <h3 id="methods">
+                        Methods
+                    </h3>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-4">
+                                    <a name="patchValue"></a>
+                                    <span class="name">
+                                        <b>
+                                        patchValue
+                                        </b>
+                                        <a href="#patchValue"><span class="fa fa-link"></span></a>
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-4">
+            <code>patchValue(value: literal type, options?: literal type)</code>
+                                </td>
+                            </tr>
+            
+            
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <div class="io-line">Defined in <a href="" data-line="5" class="link-to-prism">src/ng-xform/ng-xform-group.ts:5</a></div>
+                                        </td>
+                                    </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+            
+                                        <div class="io-description">
+                                                <b>Parameters :</b>
+                                                <table class="params">
+                                                    <thead>
+                                                        <tr>
+                                                            <td>Name</td>
+                                                            <td>Type</td>
+                                                            <td>Optional</td>
+                                                            <td>Description</td>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                            <tr>
+                                                              <td>value</td>
+                                                              <td>
+                                                                      <code>literal type</code>
+                                                              </td>
+                                                              <td>
+                                                              </td>
+                                                              <td></td>
+                                                            </tr>
+                                                            <tr>
+                                                              <td>options</td>
+                                                              <td>
+                                                                      <code>literal type</code>
+                                                              </td>
+                                                              <td>
+                                                                  true
+                                                              </td>
+                                                              <td></td>
+                                                            </tr>
+                                                    </tbody>
+                                                </table>
+                                        </div>
+                                        <div>
+                                        </div>
+                                        <div class="io-description">
+                                            <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+            
+                                        </div>
+                                            <div class="io-description">
+                                                
+                                            </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+            </section>
+
+
+
+    </div>
+
+
+    <div class="tab-pane fade tab-source-code" id="c-source">
+        <pre class="line-numbers"><code class="language-typescript">import { FormGroup } from &#x27;@angular/forms&#x27;;
+
+export class NgXformGroup extends FormGroup {
+
+  patchValue(value: {
+    [key: string]: any;
+  }, options?: {
+    onlySelf?: boolean;
+    emitEvent?: boolean;
+  }): void {
+    super.patchValue(value || {}, options);
+  }
+}
+</code></pre>
+    </div>
+</div>
+
+
+
 
 
                    </div><div class="search-results">
