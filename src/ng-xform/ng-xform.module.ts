@@ -2,7 +2,6 @@ import { CheckboxFieldComponent } from './checkbox-field/checkbox-field.componen
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NguiAutoCompleteModule } from '@ngui/auto-complete';
 import { NgSelectModule } from '@ng-select/ng-select';
 
 import { NgXformComponent } from './ng-xform.component';
@@ -13,13 +12,11 @@ import { FieldErrorMessageComponent } from './field-error-message/field-error-me
 import { ErrorMessagePipe } from './field-error-message/error-message.pipe';
 import { PipesModule } from '../pipes/pipes.module';
 import { MultilineFieldComponent } from './multiline-field/multiline-field.component';
-import { AutocompleteFieldComponent } from './autocomplete-field/autocomplete-field.component';
 import { FormGroupComponent } from './form-group/form-group.component';
 
 @NgModule({
   imports: [
     CommonModule,
-    NguiAutoCompleteModule,
     ReactiveFormsModule,
     PipesModule,
     NgSelectModule,
@@ -34,7 +31,6 @@ import { FormGroupComponent } from './form-group/form-group.component';
     FieldErrorMessageComponent,
     ErrorMessagePipe,
     MultilineFieldComponent,
-    AutocompleteFieldComponent,
   ],
   exports: [
     NgXformComponent,

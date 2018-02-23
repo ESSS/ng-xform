@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { async } from '@angular/core/testing';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Validators, FormGroup, FormControl } from '@angular/forms';
-import { TextField, SelectField, MeasureField, AutocompleteField } from '@esss/ng-xform';
+import { TextField, SelectField, MeasureField, NgXformComponent, CheckboxField } from '@esss/ng-xform';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
+import 'rxjs/add/operator/delay';
 import 'rxjs/add/operator/map';
 import { Title } from '@angular/platform-browser';
 import { HttpClient } from '@angular/common/http';
@@ -14,8 +16,17 @@ import { HttpClient } from '@angular/common/http';
 })
 export class HomeComponent implements OnInit {
 
-  public values: object;
   public editing = true;
+  public model: any = {};
+  private colors: any[] = [
+    { id: 1, name: 'blue' },
+    { id: 2, name: 'yellow' },
+    { id: 3, name: 'white' },
+    { id: 4, name: 'black' },
+    { id: 5, name: 'orange' },
+    { id: 6, name: 'purple' }
+  ];
+
   public fields = [
     new TextField({
       key: 'name',
@@ -25,25 +36,31 @@ export class HomeComponent implements OnInit {
         Validators.minLength(3)
       ]
     }),
-    new AutocompleteField({
-      key: 'color',
-      label: 'Color',
-      source: [{id: 1, name: 'Green'}, {id: 2, name: 'Blue'}, { id: 3, name: 'Yellow'}],
-      listFormatter: 'id - name',
-      valueFormatter: 'name'
-    }),
-    new AutocompleteField({
-      key: 'address',
-      label: 'Address',
-      source: this.observableSource.bind(this),
-      listFormatter: 'formatted_address',
-    }),
     new TextField({
       key: 'email',
       label: 'E-mail',
       validators: [
         Validators.required,
         Validators.email
+      ]
+    }),
+    new SelectField({
+      key: 'color',
+      label: 'Color',
+      searchable: true,
+      options: this.colors,
+      labelAttribute: 'name',
+    }),
+    new SelectField({
+      key: 'address',
+      label: 'Address',
+      searchHandler: this.observableSource.bind(this),
+      searchByValueAttributeHandler: this.observableSourceByPlaceId.bind(this),
+      searchable: true,
+      labelAttribute: 'formatted_address',
+      valueAttribute: 'place_id',
+      validators: [
+        Validators.required
       ]
     }),
     new SelectField({
@@ -55,8 +72,8 @@ export class HomeComponent implements OnInit {
       ]
     }),
     new SelectField({
-      key: 'type_object',
-      label: 'Type object',
+      key: 'type_tags',
+      label: 'Type tags',
       options: [{id: 1, description: 'A'}, {id: 2, description: 'B'}, {id: 3, description: 'C'}],
       labelAttribute: 'description',
       valueAttribute: 'id',
@@ -65,7 +82,11 @@ export class HomeComponent implements OnInit {
     new MeasureField({
       key: 'order',
       label: 'Order',
-      // unit: 'º'
+      unit: 'º'
+    }),
+    new CheckboxField({
+      key: 'news',
+      label: 'News'
     })
   ];
 
@@ -77,7 +98,21 @@ export class HomeComponent implements OnInit {
 
   public onSubmit(values: object) {
     this.editing = !this.editing;
-    this.values = values;
+    this.model = values;
+    console.log(values);
+  }
+
+  populate() {
+    this.model = {
+      name: 'Customer',
+      email: 'customer@mail.com',
+      type_tags: [2],
+      type: 'b',
+      color: { id: 3, name: 'white' },
+      address: 'ChIJn7h-4b9JJ5URGCq6n0zj1tM',
+      order: 2,
+      news: true
+    };
   }
 
   public observableSource(keyword: any): Observable<any[]> {
@@ -88,5 +123,12 @@ export class HomeComponent implements OnInit {
     } else {
       return Observable.of([]);
     }
+  }
+
+  public observableSourceByPlaceId(place_id: any): Observable<any> {
+    return Observable.of({
+      'place_id': 'ChIJn7h-4b9JJ5URGCq6n0zj1tM',
+      'formatted_address': 'Florianópolis - State of Santa Catarina, Brazil'
+    }).delay(500);
   }
 }

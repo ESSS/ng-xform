@@ -1,16 +1,19 @@
+import { Observable } from 'rxjs/Rx';
+import { ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 import {
   async,
   ComponentFixture,
   TestBed,
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { NguiAutoCompleteModule } from '@ngui/auto-complete';
 import { NgSelectModule } from '@ng-select/ng-select';
 
+import { NgXformComponent } from './ng-xform.component';
+import { NgXformModule } from './ng-xform.module';
 import { EditableLabelComponent } from './editable-label/editable-label.component';
 import { MeasureFieldComponent } from './measure-field/measure-field.component';
 import { SelectFieldComponent } from './select-field/select-field.component';
-import { AutocompleteFieldComponent } from './autocomplete-field/autocomplete-field.component';
 import { CheckboxFieldComponent } from './checkbox-field/checkbox-field.component';
 import { MultilineFieldComponent } from './multiline-field/multiline-field.component';
 import { FieldErrorMessageComponent } from './field-error-message/field-error-message.component';
@@ -19,13 +22,10 @@ import { PipesModule } from '../pipes/pipes.module';
 import { MultilineField } from './fields/multiline-field';
 import { NestedFormGroup } from './fields/nested-form-group';
 import {
-  AutocompleteField,
   TextField,
   MeasureField,
   SelectField
 } from './fields';
-import { NgXformModule } from './ng-xform.module';
-import { NgXformComponent } from './ng-xform.component';
 
 describe('DynamicFormComponent', () => {
   let component: NgXformComponent;
@@ -83,13 +83,12 @@ describe('DynamicFormComponent', () => {
         options: options
       }),
       new MultilineField({ key: 'comments', label: 'Comments' }),
-      new AutocompleteField({
+      new SelectField({
         key: 'color',
         label: 'Color',
-        source: colors,
+        searchHandler: (keyword: string) => Observable.of(colors.filter(el => el.name === keyword)),
         valueAttribute: 'id',
-        valueFormatter: 'name',
-        listFormatter: 'name'
+        labelAttribute: 'name',
       }),
       new NestedFormGroup({
         key: 'address', label: 'Address',
@@ -118,7 +117,7 @@ describe('DynamicFormComponent', () => {
   it('should patch value', () => {
     component.createForm();
     component.reset();
-    expect(component.errorCode).toBe(undefined);
+    expect(component.errorCode).toBeUndefined();
     expect(component.form.value.nested2).toBeTruthy();
   });
 
@@ -139,6 +138,10 @@ describe('DynamicFormComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should render NestedFormGroup', () => {
+    expectFormInput('city', 'City', 'Ny');
   });
 
   it('should render TextField', () => {
@@ -181,7 +184,7 @@ describe('DynamicFormComponent', () => {
       expect(value.measure1).toBe(model.measure1);
       expect(value.comments).toBe(model.comments);
       expect(value.choice_id).toBe(model.choice_id);
-      expect(value.color).toBeUndefined();
+      expect(value.color).toBeNull();
     });
     const buttonEl = fixture.debugElement.query(By.css(`#formSubmitBtn`));
     fixture.detectChanges();

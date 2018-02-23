@@ -7,7 +7,7 @@
     "types": [],
     "paths": {
       "@angular/*": ["../node_modules/@angular/*"],
-      "@ngui/auto-complete": ["../node_modules/@ngui/auto-complete"]
+      "@ng-select/*": ["../node_modules/@ng-select/*"]
     }
   },
   "exclude": [

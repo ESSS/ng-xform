@@ -1,11 +1,12 @@
-<div *ngIf="!editing" id="{{field.key}}-label">
+<div [hidden]="editing" id="{{field.key}}-label">
     <strong>{{ field.label }}</strong>
-    <p class="text-muted">{{ getOptionLabel() }} </p>
+    <p class="text-muted">{{ optionLabel }} </p>
 </div>
-<div *ngIf="editing" class="form-group" [formGroup]="form" [ngClass]="displayFieldCss()" id="{{field.key}}-div">
+<div [hidden]="!editing" class="form-group" [ngClass]="displayFieldCss()" id="{{field.key}}-div">
     <label for="{{elementId}}">{{field.label}}</label>
-    <ng-select id='{{elementId}}' [formControlName]="elementId"
+    <ng-select id='{{elementId}}'
     [searchable]="field.searchable"
+    [typeahead]="typeahead"
     [items]="optionValues"
     [multiple]="field.multiple"
     [markFirst]="field.markFirst"
