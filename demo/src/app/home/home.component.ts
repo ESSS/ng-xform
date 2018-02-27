@@ -45,6 +45,14 @@ export class HomeComponent implements OnInit {
       ]
     }),
     new SelectField({
+      key: 'color_ro',
+      label: 'Color read-only',
+      readOnly: true,
+      searchable: true,
+      options: this.colors,
+      labelAttribute: 'name',
+    }),
+    new SelectField({
       key: 'color',
       label: 'Color',
       searchable: true,
@@ -109,6 +117,7 @@ export class HomeComponent implements OnInit {
       type_tags: [2],
       type: 'b',
       color: { id: 3, name: 'white' },
+      color_ro: { id: 3, name: 'white' },
       address: 'ChIJn7h-4b9JJ5URGCq6n0zj1tM',
       order: 2,
       news: true

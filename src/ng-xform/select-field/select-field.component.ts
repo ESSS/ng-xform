@@ -53,6 +53,10 @@ export class SelectFieldComponent extends BaseDynamicFieldComponent<SelectField>
     this.select.registerOnTouched(this._onTouched);
     this.viewModel.subscribe((value: any) => {
       if (this.field.searchByValueAttributeHandler) {
+        if (value === undefined || value === null) {
+          this.updateOptionLabel();
+          return;
+        }
         this.field.searchByValueAttributeHandler(value).subscribe((val: any) => {
           this.optionValues = [val];
           this.select.writeValue(value);
@@ -82,7 +86,7 @@ export class SelectFieldComponent extends BaseDynamicFieldComponent<SelectField>
 
   private updateOptionLabel() {
     setTimeout(() => {
-      this.optionLabel = this.select.selectedItems.map(item => item.label).join(this.field.separator);
+      this.optionLabel = this.select.selectedItems.map(item => item.label).join(this.field.separator) || '-';
     }, 0);
   }
 
