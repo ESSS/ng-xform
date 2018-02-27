@@ -1,5 +1,5 @@
 import { Input, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { DynamicField } from '../fields';
 
 /**
@@ -21,6 +21,11 @@ export class BaseDynamicFieldComponent<T extends DynamicField> implements OnInit
    */
   get elementId(): string {
     return this.field.key;
+  }
+
+  get isOptional(): boolean {
+    return this.editing && !this.field.readOnly &&
+      (!this.field.validators || !this.field.validators.find(el => el === Validators.required));
   }
 
   get isEditing(): boolean {

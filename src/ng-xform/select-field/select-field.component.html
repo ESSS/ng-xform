@@ -1,9 +1,9 @@
 <div [hidden]="isEditing" id="{{field.key}}-label">
-    <strong>{{ field.label }}</strong>
+    <strong>{{ field.label }}</strong> <small *ngIf="isOptional"  style="color: gray">(optional)</small>
     <p class="text-muted">{{ optionLabel }} </p>
 </div>
 <div [hidden]="!isEditing" class="form-group" [ngClass]="displayFieldCss()" id="{{field.key}}-div">
-    <label for="{{elementId}}">{{field.label}}</label>
+    <label for="{{elementId}}">{{field.label}}</label> <small *ngIf="isOptional"  style="color: gray">(optional)</small>
     <ng-select id='{{elementId}}'
     [searchable]="field.searchable"
     [typeahead]="typeahead"

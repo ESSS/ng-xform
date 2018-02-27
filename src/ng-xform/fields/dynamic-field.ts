@@ -16,5 +16,4 @@ export abstract class DynamicField {
     this.validators = options.validators;
     this.readOnly = options.readOnly;
   }
-
 }

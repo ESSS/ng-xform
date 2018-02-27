@@ -127,7 +127,6 @@ describe('DynamicFormComponent', () => {
 
     const el = fixture.debugElement.query(By.css(`#field1-div`));
     expect(el).toBeTruthy();
-    expect(el.children.length).toBe(3);
 
     const input = el.query(By.css('input'));
     input.nativeElement.value = 'some value';
@@ -217,9 +216,9 @@ describe('DynamicFormComponent', () => {
   ) {
     const el = fixture.debugElement.query(By.css(`#${fieldId}-div`));
     expect(el).toBeTruthy();
-    expect(el.children.length).toBe(3);
-    const label = el.children[0].nativeElement;
-    expect(label.textContent).toBe(caption);
+    const label = el.query(By.css('label'));
+    expect(label).toBeTruthy();
+    expect(label.nativeElement.textContent).toBe(caption);
     // Test if the initial element value
     const input = el.query(By.css(inputType));
     expect(input.properties['value']).toBe(value);

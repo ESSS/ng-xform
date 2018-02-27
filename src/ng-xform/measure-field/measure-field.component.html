@@ -1,10 +1,10 @@
 <div *ngIf="!isEditing" id="{{elementId}}-label">
-  <strong>{{ field.label }}</strong>
+  <strong>{{ field.label }}</strong> <small *ngIf="isOptional"  style="color: gray">(optional)</small>
   <p class="text-muted" >{{ form?.controls[elementId]?.value | valueSuffix: field.unit }}</p>
 </div>
 
 <div *ngIf="isEditing" id="{{elementId}}-div" class="form-group" [formGroup]="form" [ngClass]="displayFieldCss()" >
-  <label for="{{elementId}}">{{field.label}}</label>
+  <label for="{{elementId}}">{{field.label}}</label> <small *ngIf="isOptional"  style="color: gray">(optional)</small>
   <div [class.input-group]="field.unit" [class.form-group]="!field.unit">
     <input type="number" id="{{elementId}}" class="form-control" [formControlName]="elementId">
     <div *ngIf="field.unit" class="input-group-addon">{{field.unit}}</div>
