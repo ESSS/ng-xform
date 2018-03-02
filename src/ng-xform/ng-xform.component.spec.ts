@@ -1,4 +1,4 @@
-import { DatepickerField } from './fields/datepicker-field';
+import { DateField } from './fields';
 import { Observable } from 'rxjs/Rx';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule, DatePipe } from '@angular/common';
@@ -108,7 +108,7 @@ describe('DynamicFormComponent', () => {
           new TextField({ key: 'field1', label: 'Field1' }),
         ]
       }),
-      new DatepickerField({ key: 'date', label: 'Date' }),
+      new DateField({ key: 'date', label: 'Date' }),
     ];
 
     fixture.detectChanges();
@@ -143,7 +143,7 @@ describe('DynamicFormComponent', () => {
     expectFormInput('city', 'City', 'Ny');
   });
 
-  it('should render DatepickerField', () => {
+  it('should render DateField', () => {
     let fieldId = 'date';
     const el = fixture.debugElement.query(By.css(`#${fieldId}-div`));
     expect(el).toBeTruthy();

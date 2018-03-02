@@ -227,9 +227,19 @@ To use a different locale, you have to import it from ngx-bootstrap/chronos firs
 Example: 
 
 ```ts
-import { defineLocale } from 'ngx-bootstrap/chronos';
-import { deLocale } from 'ngx-bootstrap/locale';
-defineLocale('de', deLocale); 
+import { defineLocale, LocaleData } from 'ngx-bootstrap/chronos';
+import { ptBrLocale } from 'ngx-bootstrap/locale';
+defineLocale(ptBrLocale.abbr, ptBrLocale);
+
+...
+
+export class AppModule {
+
+  constructor(bsLocaleService: BsLocaleService) {
+    // aplly locale
+    bsLocaleService.use(ptBrLocale.abbr);
+  }
+}
 ```
 
 [Demo source code](https://github.com/ESSS/ng-xform/blob/master/demo/src/app/app.module.ts) load locales.

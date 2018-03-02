@@ -1,4 +1,4 @@
-import { DatepickerFieldComponent } from './datepicker-field/datepicker-field.component';
+import { DateFieldComponent } from './date-field/date-field.component';
 import { CheckboxFieldComponent } from './checkbox-field/checkbox-field.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
@@ -34,7 +34,7 @@ import { FormGroupComponent } from './form-group/form-group.component';
     FieldErrorMessageComponent,
     ErrorMessagePipe,
     MultilineFieldComponent,
-    DatepickerFieldComponent,
+    DateFieldComponent,
   ],
   exports: [
     NgXformComponent,

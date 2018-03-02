@@ -1,28 +1,28 @@
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { Component, AfterContentInit, ViewChild, ElementRef, Renderer, AfterViewInit } from '@angular/core';
-import { BsDatepickerConfig, BsLocaleService } from 'ngx-bootstrap/datepicker';
+import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 
 import { BaseDynamicFieldComponent } from '../field-components/base-dynamic-field.component';
-import { DatepickerField } from '../fields';
+import { DateField } from '../fields';
 
 /**
- * Component to generate a bootstrap form field of general type
+ * Component to generate a bootstrap form field of Date type
  *
  * :editing: Flag to control component state
  * :form: FormGroup containing the field
  * :field: Intance of field configurations
  */
 @Component({
-  selector: 'ng-xform-datepicker-field',
-  templateUrl: './datepicker-field.component.html',
+  selector: 'ng-xform-date-field',
+  templateUrl: './date-field.component.html',
   providers: [{
     provide: NG_VALUE_ACCESSOR,
-    useExisting: DatepickerFieldComponent,
+    useExisting: DateFieldComponent,
     multi: true
   }],
 })
-export class DatepickerFieldComponent extends BaseDynamicFieldComponent<DatepickerField> implements AfterViewInit, AfterContentInit,
+export class DateFieldComponent extends BaseDynamicFieldComponent<DateField> implements AfterViewInit, AfterContentInit,
   ControlValueAccessor {
   config: Partial<BsDatepickerConfig>;
   componentControl = new FormControl();
@@ -31,9 +31,11 @@ export class DatepickerFieldComponent extends BaseDynamicFieldComponent<Datepick
   _onChange = (value: any) => { };
   _onTouched = () => { };
 
-  constructor(private _localeService: BsLocaleService, private elementRef: ElementRef, private renderer: Renderer) {
+  // the elementRef will be used to get the input element after the view is initialized.
+  constructor(private elementRef: ElementRef) {
     super();
     this.componentControl.valueChanges.subscribe((val: any) => {
+      // replay changes from view to the form value
       this._onChange(val);
     });
   }
@@ -43,9 +45,6 @@ export class DatepickerFieldComponent extends BaseDynamicFieldComponent<Datepick
     this.config = Object.assign({}, {
       containerClass: `theme-${this.field.theme}`,
     });
-    if (this.field.locale) {
-      this._localeService.use(this.field.locale)
-    }
   }
 
   ngAfterViewInit() {

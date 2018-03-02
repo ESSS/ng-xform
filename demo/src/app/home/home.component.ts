@@ -1,10 +1,7 @@
 import { async } from '@angular/core/testing';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Validators, FormGroup, FormControl } from '@angular/forms';
-import {
-  TextField, SelectField, MeasureField, NgXformComponent,
-  CheckboxField, DatepickerField, DynamicField
-} from '@esss/ng-xform';
+import { TextField, SelectField, MeasureField, CheckboxField, DateField, DynamicField } from '@esss/ng-xform';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/delay';
@@ -100,13 +97,12 @@ export class HomeComponent implements OnInit {
         key: 'news',
         label: 'News'
       }),
-      new DatepickerField({
+      new DateField({
         key: 'birth',
         label: 'Date of birth',
         theme: 'blue',
         minDate: minDate,
-        maxDate: maxDate,
-        locale: 'pt-br',
+        maxDate: maxDate
       }),
     ];
   }
