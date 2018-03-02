@@ -27,6 +27,7 @@
     "check-travis": " travis-status --repo=ESSS/ng-xform --branch=master --fail-pending || echo 'Not yet passing'"
   },
   "dependencies": {
+    "@angular/cli": "^1.7.2",
     "@angular/common": "^5.2.0",
     "@angular/compiler": "^5.2.0",
     "@angular/core": "^5.2.0",

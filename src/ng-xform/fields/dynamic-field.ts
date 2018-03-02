@@ -3,9 +3,9 @@ import { ValidatorFn } from '@angular/forms';
 export abstract class DynamicField {
   public key?: string;
   public label?: string;
-  public required?: boolean;
   public controlType?: string;
   public validators?: Array<ValidatorFn | null | undefined>;
+  public readOnly?: boolean;
 
   constructor(
     options: DynamicField = {}
@@ -14,6 +14,6 @@ export abstract class DynamicField {
     this.label = options.label || '';
     this.controlType = options.controlType || 'text';
     this.validators = options.validators;
+    this.readOnly = options.readOnly;
   }
-
 }

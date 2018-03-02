@@ -1,3 +1,4 @@
+import { OptionalTagComponent } from './field-components/optional-tag.component';
 import { DateFieldComponent } from './date-field/date-field.component';
 import { CheckboxFieldComponent } from './checkbox-field/checkbox-field.component';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -34,6 +35,7 @@ import { FormGroupComponent } from './form-group/form-group.component';
     FieldErrorMessageComponent,
     ErrorMessagePipe,
     MultilineFieldComponent,
+    OptionalTagComponent,
     DateFieldComponent,
   ],
   exports: [

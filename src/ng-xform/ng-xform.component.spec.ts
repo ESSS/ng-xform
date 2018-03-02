@@ -1,6 +1,6 @@
 import { DateField } from './fields';
 import { Observable } from 'rxjs/Rx';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule, DatePipe } from '@angular/common';
 import {
   async,
@@ -79,6 +79,7 @@ describe('DynamicFormComponent', () => {
 
     component.fields = [
       new TextField({ key: 'text1', label: 'Text 1' }),
+      new TextField({ key: 'required', label: 'Required 1', validators: [ Validators.required ] }),
       new MeasureField({ key: 'measure1', label: 'Measure 1', unit: 'C' }),
       new SelectField({
         key: 'choice_id',
@@ -111,12 +112,35 @@ describe('DynamicFormComponent', () => {
       new DateField({ key: 'date', label: 'Date' }),
     ];
 
+    component.ngOnInit();
     fixture.detectChanges();
   });
 
   it('should create form', () => {
     component.createForm();
     expect(component.form).toBeTruthy();
+    expectFormInput('city', 'City', 'Ny');
+  });
+
+  it('should patch value', () => {
+    component.createForm();
+    component.reset();
+    expect(component.errorCode).toBeUndefined();
+    expect(component.form.value.nested2).toBeTruthy();
+  });
+
+  it('should change nested attr value', () => {
+    fixture.detectChanges();
+    expectFormInput('field1', 'Field1', '')
+
+    const el = fixture.debugElement.query(By.css(`#field1-div`));
+    expect(el).toBeTruthy();
+
+    const input = el.query(By.css('input'));
+    input.nativeElement.value = 'some value';
+    input.nativeElement.dispatchEvent(new Event('input'));
+    expect(component.form.value['nested2']).toBeTruthy();
+    expect(component.form.value['nested2']['field1']).toBe('some value');
   });
 
   it('should create', () => {
@@ -228,6 +252,24 @@ describe('DynamicFormComponent', () => {
     expectFormLabel('date', 'Date', datePipe.transform(dateTest, 'mediumDate', 'en'));
   });
 
+  it('should display (optional) for required field', () => {
+    const fieldId = 'required';
+    const el = fixture.debugElement.query(By.css(`#${fieldId}-div`));
+    const fieldComponent = el.componentInstance;
+    const optional = el.query(By.css('ng-xform-optional-tag'));
+
+    expect(fieldComponent.field.validators).toContain(Validators.required);
+    expect(fieldComponent.isOptional).toBeFalsy();
+    expect(optional.componentInstance.show).toBeFalsy();
+
+    fieldComponent.field.validators = undefined;
+    fixture.detectChanges();
+
+    expect(fieldComponent.field.validators).toBeFalsy();
+    expect(fieldComponent.isOptional).toBeTruthy();
+    expect(optional.componentInstance.show).toBeTruthy();
+  });
+
   function expectFormLabel(fieldId: string, caption: string, value: any) {
     const el = fixture.debugElement.query(By.css(`#${fieldId}-label`));
     expect(el).toBeTruthy();
@@ -248,9 +290,9 @@ describe('DynamicFormComponent', () => {
   ) {
     const el = fixture.debugElement.query(By.css(`#${fieldId}-div`));
     expect(el).toBeTruthy();
-    expect(el.children.length).toBe(3);
-    const label = el.children[0].nativeElement;
-    expect(label.textContent).toBe(caption);
+    const label = el.query(By.css('label'));
+    expect(label).toBeTruthy();
+    expect(label.nativeElement.textContent).toBe(caption);
     // Test if the initial element value
     const input = el.query(By.css(inputType));
     expect(input.properties['value']).toBe(value);

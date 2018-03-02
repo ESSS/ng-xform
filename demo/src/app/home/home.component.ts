@@ -1,7 +1,10 @@
 import { async } from '@angular/core/testing';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Validators, FormGroup, FormControl } from '@angular/forms';
-import { TextField, SelectField, MeasureField, CheckboxField, DateField, DynamicField } from '@esss/ng-xform';
+import {
+  TextField, SelectField, MeasureField, NgXformComponent, CheckboxField,
+  MultilineField, DateField, DynamicField
+} from '@esss/ng-xform';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/delay';
@@ -41,7 +44,6 @@ export class HomeComponent implements OnInit {
         key: 'name',
         label: 'Name',
         validators: [
-          Validators.required,
           Validators.minLength(3)
         ]
       }),
@@ -52,6 +54,14 @@ export class HomeComponent implements OnInit {
           Validators.required,
           Validators.email
         ]
+      }),
+      new SelectField({
+        key: 'color_ro',
+        label: 'Color read-only',
+        readOnly: true,
+        searchable: true,
+        options: this.colors,
+        labelAttribute: 'name',
       }),
       new SelectField({
         key: 'color',
@@ -97,6 +107,11 @@ export class HomeComponent implements OnInit {
         key: 'news',
         label: 'News'
       }),
+      new MultilineField({
+        key: 'comment',
+        label: 'Comment',
+        rows: 4
+      }),
       new DateField({
         key: 'birth',
         label: 'Date of birth',
@@ -124,9 +139,15 @@ export class HomeComponent implements OnInit {
       type_tags: [2],
       type: 'b',
       color: { id: 3, name: 'white' },
+      color_ro: { id: 3, name: 'white' },
       address: 'ChIJn7h-4b9JJ5URGCq6n0zj1tM',
       order: 2,
       news: true,
+      comment: `Mussum Ipsum, cacilds vidis litro abertis. Mauris nec dolor in eros commodo tempor. Aenean aliquam molestie leo, vitae
+      iaculis nisl. Quem num gosta di mé, boa gentis num é. Tá deprimidis, eu conheço uma cachacis que pode alegrar sua vidis. Em pé sem
+      cair, deitado sem dormir, sentado sem cochilar e fazendo pose.
+      Leite de capivaris, leite de mula manquis sem cabeça. Praesent vel viverra nisi. Mauris aliquet nunc non turpis scelerisque, eget.
+      Casamentiss faiz malandris se pirulitá. Sapien in monti palavris qui num significa nadis i pareci latim.`,
       birth: new Date()
     };
   }

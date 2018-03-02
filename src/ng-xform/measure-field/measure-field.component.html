@@ -1,10 +1,10 @@
-<div *ngIf="!editing" id="{{elementId}}-label">
-  <strong *ngIf="!editing">{{ field.label }}</strong>
-  <p class="text-muted" *ngIf="!editing">{{ form?.controls[elementId]?.value | valueSuffix: field.unit }}</p>
+<div *ngIf="!isEditing" id="{{elementId}}-label">
+  <strong>{{ field.label }}</strong>
+  <p class="text-muted" >{{ form?.controls[elementId]?.value | valueSuffix: field.unit }}</p>
 </div>
 
-<div *ngIf="editing" id="{{elementId}}-div" class="form-group" [formGroup]="form" [ngClass]="displayFieldCss()" >
-  <label for="{{elementId}}">{{field.label}}</label>
+<div *ngIf="isEditing" id="{{elementId}}-div" class="form-group" [formGroup]="form" [ngClass]="displayFieldCss()" >
+  <label for="{{elementId}}">{{field.label}}</label>  <ng-xform-optional-tag [show]="isOptional"></ng-xform-optional-tag>
   <div [class.input-group]="field.unit" [class.form-group]="!field.unit">
     <input type="number" id="{{elementId}}" class="form-control" [formControlName]="elementId">
     <div *ngIf="field.unit" class="input-group-addon">{{field.unit}}</div>

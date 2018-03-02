@@ -1,9 +1,9 @@
-<div *ngIf="!editing" id="{{elementId}}-label">
+<div *ngIf="!isEditing" id="{{elementId}}-label">
   <strong>{{ field.label }}</strong>
   <p class="text-muted">{{ form?.controls[elementId]?.value ? 'True' : 'False' }}</p>
 </div>
 
-<div *ngIf="editing" id="{{elementId}}-div" class="form-group" [formGroup]="form" [ngClass]="displayFieldCss()">
+<div *ngIf="isEditing" id="{{elementId}}-div" class="form-group" [formGroup]="form" [ngClass]="displayFieldCss()">
   <div class="checkbox">
     <label>
       <input type="checkbox" [formControlName]="elementId" id="{{elementId}}" /> {{field.label}}
