@@ -1,7 +1,10 @@
 import { async } from '@angular/core/testing';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Validators, FormGroup, FormControl } from '@angular/forms';
-import { TextField, SelectField, MeasureField, NgXformComponent, CheckboxField, MultilineField } from '@esss/ng-xform';
+import {
+  TextField, SelectField, MeasureField, NgXformComponent, CheckboxField,
+  MultilineField, DateField, DynamicField
+} from '@esss/ng-xform';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/delay';
@@ -27,82 +30,97 @@ export class HomeComponent implements OnInit {
     { id: 6, name: 'purple' }
   ];
 
-  public fields = [
-    new TextField({
-      key: 'name',
-      label: 'Name',
-      validators: [
-        Validators.minLength(3)
-      ]
-    }),
-    new TextField({
-      key: 'email',
-      label: 'E-mail',
-      validators: [
-        Validators.required,
-        Validators.email
-      ]
-    }),
-    new SelectField({
-      key: 'color_ro',
-      label: 'Color read-only',
-      readOnly: true,
-      searchable: true,
-      options: this.colors,
-      labelAttribute: 'name',
-    }),
-    new SelectField({
-      key: 'color',
-      label: 'Color',
-      searchable: true,
-      options: this.colors,
-      labelAttribute: 'name',
-    }),
-    new SelectField({
-      key: 'address',
-      label: 'Address',
-      searchHandler: this.observableSource.bind(this),
-      searchByValueAttributeHandler: this.observableSourceByPlaceId.bind(this),
-      searchable: true,
-      labelAttribute: 'formatted_address',
-      valueAttribute: 'place_id',
-      validators: [
-        Validators.required
-      ]
-    }),
-    new SelectField({
-      key: 'type',
-      label: 'Type',
-      options: ['a', 'b'],
-      validators: [
-        Validators.required
-      ]
-    }),
-    new SelectField({
-      key: 'type_tags',
-      label: 'Type tags',
-      options: [{id: 1, description: 'A'}, {id: 2, description: 'B'}, {id: 3, description: 'C'}],
-      labelAttribute: 'description',
-      valueAttribute: 'id',
-      multiple: true
-    }),
-    new MeasureField({
-      key: 'order',
-      label: 'Order',
-      unit: 'º'
-    }),
-    new CheckboxField({
-      key: 'news',
-      label: 'News'
-    }),
-    new MultilineField({
-      key: 'comment',
-      label: 'Comment',
-      rows: 4
-    })
-  ];
+  public fields: DynamicField[];
 
-  constructor(private titleService: Title, private http: HttpClient) {}
+  constructor(private titleService: Title, private http: HttpClient) {
+    const minDate = new Date();
+    const maxDate = new Date();
+
+    minDate.setDate(minDate.getDate() - 3);
+    maxDate.setDate(maxDate.getDate() + 3);
+
+    this.fields = [
+      new TextField({
+        key: 'name',
+        label: 'Name',
+        validators: [
+          Validators.minLength(3)
+        ]
+      }),
+      new TextField({
+        key: 'email',
+        label: 'E-mail',
+        validators: [
+          Validators.required,
+          Validators.email
+        ]
+      }),
+      new SelectField({
+        key: 'color_ro',
+        label: 'Color read-only',
+        readOnly: true,
+        searchable: true,
+        options: this.colors,
+        labelAttribute: 'name',
+      }),
+      new SelectField({
+        key: 'color',
+        label: 'Color',
+        searchable: true,
+        options: this.colors,
+        labelAttribute: 'name',
+      }),
+      new SelectField({
+        key: 'address',
+        label: 'Address',
+        searchHandler: this.observableSource.bind(this),
+        searchByValueAttributeHandler: this.observableSourceByPlaceId.bind(this),
+        searchable: true,
+        labelAttribute: 'formatted_address',
+        valueAttribute: 'place_id',
+        validators: [
+          Validators.required
+        ]
+      }),
+      new SelectField({
+        key: 'type',
+        label: 'Type',
+        options: ['a', 'b'],
+        validators: [
+          Validators.required
+        ]
+      }),
+      new SelectField({
+        key: 'type_tags',
+        label: 'Type tags',
+        options: [{id: 1, description: 'A'}, {id: 2, description: 'B'}, {id: 3, description: 'C'}],
+        labelAttribute: 'description',
+        valueAttribute: 'id',
+        multiple: true
+      }),
+      new MeasureField({
+        key: 'order',
+        label: 'Order',
+        unit: 'º'
+      }),
+      new CheckboxField({
+        key: 'news',
+        label: 'News'
+      }),
+      new MultilineField({
+        key: 'comment',
+        label: 'Comment',
+        rows: 4
+      }),
+      new DateField({
+        key: 'birth',
+        label: 'Date of birth',
+        theme: 'blue',
+        minDate: minDate,
+        maxDate: maxDate
+      }),
+    ];
+  }
 
   ngOnInit() {
     this.titleService.setTitle('Home | @esss/ng-xform');
@@ -125,8 +143,12 @@ export class HomeComponent implements OnInit {
       address: 'ChIJn7h-4b9JJ5URGCq6n0zj1tM',
       order: 2,
       news: true,
-      comment: `Mussum Ipsum, cacilds vidis litro abertis. Mauris nec dolor in eros commodo tempor. Aenean aliquam molestie leo, vitae iaculis nisl. Quem num gosta di mé, boa gentis num é. Tá deprimidis, eu conheço uma cachacis que pode alegrar sua vidis. Em pé sem cair, deitado sem dormir, sentado sem cochilar e fazendo pose.
-Leite de capivaris, leite de mula manquis sem cabeça. Praesent vel viverra nisi. Mauris aliquet nunc non turpis scelerisque, eget. Casamentiss faiz malandris se pirulitá. Sapien in monti palavris qui num significa nadis i pareci latim.`
+      comment: `Mussum Ipsum, cacilds vidis litro abertis. Mauris nec dolor in eros commodo tempor. Aenean aliquam molestie leo, vitae
+      iaculis nisl. Quem num gosta di mé, boa gentis num é. Tá deprimidis, eu conheço uma cachacis que pode alegrar sua vidis. Em pé sem
+      cair, deitado sem dormir, sentado sem cochilar e fazendo pose.
+      Leite de capivaris, leite de mula manquis sem cabeça. Praesent vel viverra nisi. Mauris aliquet nunc non turpis scelerisque, eget.
+      Casamentiss faiz malandris se pirulitá. Sapien in monti palavris qui num significa nadis i pareci latim.`,
+      birth: new Date()
     };
   }
 

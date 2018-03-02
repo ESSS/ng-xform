@@ -384,6 +384,7 @@ gulp.task('rollup-bundle', (cb) => {
       // Add any other dependency or peer dependency of your library here
       // This is required for UMD bundle users.
     '@ng-select/ng-select': '@ng-select/ng-select',
+    'ngx-bootstrap': 'ngx-bootstrap',
     };
     const rollupBaseConfig = {
       name: _.camelCase(config.libraryName),

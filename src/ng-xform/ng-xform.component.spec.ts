@@ -1,6 +1,7 @@
+import { DateField } from './fields';
 import { Observable } from 'rxjs/Rx';
 import { ReactiveFormsModule, Validators } from '@angular/forms';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import {
   async,
   ComponentFixture,
@@ -33,6 +34,8 @@ describe('DynamicFormComponent', () => {
   let optieditingons: any[];
   let model: any;
   let options: any[];
+  let dateTest: Date;
+  let datePipe: DatePipe;
 
   beforeEach(
     async(() => {
@@ -47,7 +50,8 @@ describe('DynamicFormComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(NgXformComponent);
     component = fixture.componentInstance;
-
+    dateTest = new Date();
+    datePipe = new DatePipe('en');
     model = {
       text1: 'value1',
       measure1: 22,
@@ -57,7 +61,8 @@ describe('DynamicFormComponent', () => {
         street: 'St wall',
         city: 'Ny'
       },
-      nested2: null
+      nested2: null,
+      date: dateTest
     };
 
     component.model = model;
@@ -104,6 +109,7 @@ describe('DynamicFormComponent', () => {
           new TextField({ key: 'field1', label: 'Field1' }),
         ]
       }),
+      new DateField({ key: 'date', label: 'Date' }),
     ];
 
     component.ngOnInit();
@@ -157,6 +163,26 @@ describe('DynamicFormComponent', () => {
     expectFormInput('measure1', 'Measure 1', 22, 15);
   });
 
+  it('should render nested field', () => {
+    expectFormInput('city', 'City', 'Ny');
+  });
+
+  it('should render DateField', () => {
+    let fieldId = 'date';
+    const el = fixture.debugElement.query(By.css(`#${fieldId}-div`));
+    expect(el).toBeTruthy();
+    const label = el.query(By.css('label'));
+    expect(label).toBeTruthy();
+    expect(label.nativeElement.textContent).toBe('Date');
+    const input = el.query(By.css('input'));
+    expect(input).toBeTruthy();
+
+    input.nativeElement.value = '02/28/2018';
+    const changeTo = new Date(2018, 1, 28, 0, 0, 0);
+    input.nativeElement.dispatchEvent(new Event('change'));
+    expect(component.form.value[fieldId].toISOString()).toBe(changeTo.toISOString());
+  });
+
   it('should render AutocompleteField', () => {
     const el = fixture.debugElement.query(By.css(`#color-div`));
     expect(el).toBeTruthy();
@@ -179,12 +205,32 @@ describe('DynamicFormComponent', () => {
     expect(optionsEl.length).toBe(options.length);
   });
 
+  it('should patch value', () => {
+    component.createForm();
+    component.reset();
+    expect(component.errorCode).toBeUndefined();
+    expect(component.form.value.nested2).toBeTruthy();
+  });
+
+  it('should change nested attr value', () => {
+    fixture.detectChanges();
+
+    const el = fixture.debugElement.query(By.css(`#field1-div`));
+    expect(el).toBeTruthy();
+    const input = el.query(By.css('input'));
+    input.nativeElement.value = 'some value';
+    input.nativeElement.dispatchEvent(new Event('input'));
+    expect(component.form.value['nested2']).toBeTruthy();
+    expect(component.form.value['nested2']['field1']).toBe('some value');
+  });
+
   it('should emit form value on submit', () => {
     component.onSubmit.subscribe((value: any) => {
       expect(value.text1).toBe(model.text1);
       expect(value.measure1).toBe(model.measure1);
       expect(value.comments).toBe(model.comments);
       expect(value.choice_id).toBe(model.choice_id);
+      expect(value.date).toBe(dateTest);
       expect(value.color).toBeNull();
     });
     const buttonEl = fixture.debugElement.query(By.css(`#formSubmitBtn`));
@@ -196,7 +242,14 @@ describe('DynamicFormComponent', () => {
   it('should be read mode', () => {
     component.editing = false;
     fixture.detectChanges();
-    expectFormLabel('text1', 'Text 1', 'value1');
+    expectFormLabel('text1', 'Text 1', model.text1);
+    expectFormLabel('measure1', 'Measure 1', `${model.measure1} C`);
+    expectFormLabel('comments', 'Comments', model.comments);
+    // implement tes of value
+    expectFormLabel('choice_id', 'Choice', '-');
+    expectFormLabel('street', 'Street', model.address.street);
+    expectFormLabel('city', 'City', model.address.city);
+    expectFormLabel('date', 'Date', datePipe.transform(dateTest, 'mediumDate', 'en'));
   });
 
   it('should display (optional) for required field', () => {
@@ -220,6 +273,7 @@ describe('DynamicFormComponent', () => {
   function expectFormLabel(fieldId: string, caption: string, value: any) {
     const el = fixture.debugElement.query(By.css(`#${fieldId}-label`));
     expect(el).toBeTruthy();
+    expect(el.nativeElement.hidden).toBeFalsy();
     const label = el.query(By.css('strong'));
     expect(label.nativeElement.textContent).toBe(caption);
     const labelValue = el.query(By.css('p'));

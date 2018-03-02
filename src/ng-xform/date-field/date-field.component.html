@@ -1,0 +1,15 @@
+<div *ngIf="!editing" id="{{field.key}}-label">
+  <strong>{{ field.label }}</strong>
+  <p class="text-muted">{{ form?.controls[field.key]?.value | date:'mediumDate':field.locale }}</p>
+</div>
+
+<div *ngIf="editing" id="{{elementId}}-div" class="form-group" [formGroup]="form" [ngClass]="displayFieldCss()">
+  <label for="{{elementId}}">{{field.label}}</label> <ng-xform-optional-tag [show]="isOptional"></ng-xform-optional-tag>
+  <input bsDatepicker type="text" class="form-control" [formControl]="componentControl" id="{{elementId}}"
+   [bsConfig]="config"
+   [bsValue]="field.initialValue"
+   [placement]="field.placement"
+   [maxDate]="field.maxDate"
+   [minDate]="field.minDate" />
+  <ng-xform-field-error-message [control]="control"></ng-xform-field-error-message>
+</div>

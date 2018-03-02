@@ -35,7 +35,7 @@
     "@angular/http": "^5.2.0",
     "@angular/platform-browser": "^5.2.0",
     "@ng-select/ng-select": "^0.16.0",
-    "jshint": "^2.9.5",
+    "ngx-bootstrap": "2.0.2",
     "rxjs": "^5.5.2"
   },
   "devDependencies": {
