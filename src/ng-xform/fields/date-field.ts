@@ -1,7 +1,7 @@
 import { DynamicField } from './dynamic-field';
 
 export class DateField extends DynamicField {
-  public controlType?= 'DATE';
+  public controlType? = 'DATE';
   public theme?: 'default' | 'green' | 'blue' | 'dark-blue' | 'red' | 'orange';
   public placement?: 'top' | 'bottom' | 'left' | 'right';
   public initialValue?: Date;
