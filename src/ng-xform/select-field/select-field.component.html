@@ -3,7 +3,7 @@
     <p class="text-muted">{{ optionLabel }} </p>
 </div>
 <div [hidden]="!isEditing" class="form-group" [ngClass]="displayFieldCss()" id="{{field.key}}-div">
-    <label for="{{elementId}}">{{field.label}}</label> <small *ngIf="isOptional"  style="color: gray">(optional)</small>
+    <label for="{{elementId}}">{{field.label}}</label> <ng-xform-optional-tag [show]="isOptional"></ng-xform-optional-tag>
     <ng-select id='{{elementId}}'
     [searchable]="field.searchable"
     [typeahead]="typeahead"

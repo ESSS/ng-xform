@@ -24,8 +24,7 @@ export class BaseDynamicFieldComponent<T extends DynamicField> implements OnInit
   }
 
   get isOptional(): boolean {
-    return !this.field.readOnly &&
-      (!this.field.validators || !this.field.validators.find(el => el === Validators.required));
+    return !this.field.validators || !this.field.validators.find(el => el === Validators.required);
   }
 
   get isEditing(): boolean {

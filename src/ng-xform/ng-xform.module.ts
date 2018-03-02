@@ -1,3 +1,4 @@
+import { OptionalTagComponent } from './field-components/optional-tag.component';
 import { CheckboxFieldComponent } from './checkbox-field/checkbox-field.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
@@ -31,6 +32,7 @@ import { FormGroupComponent } from './form-group/form-group.component';
     FieldErrorMessageComponent,
     ErrorMessagePipe,
     MultilineFieldComponent,
+    OptionalTagComponent,
   ],
   exports: [
     NgXformComponent,

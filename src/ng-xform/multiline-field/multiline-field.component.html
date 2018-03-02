@@ -4,7 +4,7 @@
 </div>
 
 <div *ngIf="isEditing" id="{{elementId}}-div" class="form-group" [formGroup]="form" [ngClass]="displayFieldCss()">
-  <label for="{{elementId}}">{{field.label}}</label> <small *ngIf="isOptional"  style="color: gray">(optional)</small>
+  <label for="{{elementId}}">{{field.label}}</label>  <ng-xform-optional-tag [show]="isOptional"></ng-xform-optional-tag>
   <textarea [attr.rows]="field.rows" id="{{elementId}}" class="form-control" [formControlName]="elementId"></textarea>
   <ng-xform-field-error-message [control]="control"></ng-xform-field-error-message>
 </div>

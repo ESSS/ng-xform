@@ -4,7 +4,7 @@
 </div>
 
 <div *ngIf="isEditing" id="{{elementId}}-div" class="form-group" [formGroup]="form" [ngClass]="displayFieldCss()" >
-  <label for="{{elementId}}">{{field.label}}</label> <small *ngIf="isOptional"  style="color: gray">(optional)</small>
+  <label for="{{elementId}}">{{field.label}}</label>  <ng-xform-optional-tag [show]="isOptional"></ng-xform-optional-tag>
   <div [class.input-group]="field.unit" [class.form-group]="!field.unit">
     <input type="number" id="{{elementId}}" class="form-control" [formControlName]="elementId">
     <div *ngIf="field.unit" class="input-group-addon">{{field.unit}}</div>

@@ -1,5 +1,5 @@
 import { Observable } from 'rxjs/Rx';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import {
   async,
@@ -74,6 +74,7 @@ describe('DynamicFormComponent', () => {
 
     component.fields = [
       new TextField({ key: 'text1', label: 'Text 1' }),
+      new TextField({ key: 'required', label: 'Required 1', validators: [ Validators.required ] }),
       new MeasureField({ key: 'measure1', label: 'Measure 1', unit: 'C' }),
       new SelectField({
         key: 'choice_id',
@@ -105,6 +106,7 @@ describe('DynamicFormComponent', () => {
       }),
     ];
 
+    component.ngOnInit();
     fixture.detectChanges();
   });
 
@@ -195,6 +197,24 @@ describe('DynamicFormComponent', () => {
     component.editing = false;
     fixture.detectChanges();
     expectFormLabel('text1', 'Text 1', 'value1');
+  });
+
+  it('should display (optional) for required field', () => {
+    const fieldId = 'required';
+    const el = fixture.debugElement.query(By.css(`#${fieldId}-div`));
+    const fieldComponent = el.componentInstance;
+    const optional = el.query(By.css('ng-xform-optional-tag'));
+
+    expect(fieldComponent.field.validators).toContain(Validators.required);
+    expect(fieldComponent.isOptional).toBeFalsy();
+    expect(optional.componentInstance.show).toBeFalsy();
+
+    fieldComponent.field.validators = undefined;
+    fixture.detectChanges();
+
+    expect(fieldComponent.field.validators).toBeFalsy();
+    expect(fieldComponent.isOptional).toBeTruthy();
+    expect(optional.componentInstance.show).toBeTruthy();
   });
 
   function expectFormLabel(fieldId: string, caption: string, value: any) {
