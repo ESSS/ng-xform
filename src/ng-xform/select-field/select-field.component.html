@@ -1,5 +1,5 @@
 <div [hidden]="isEditing" id="{{field.key}}-label">
-    <strong>{{ field.label }}</strong> <small *ngIf="isOptional"  style="color: gray">(optional)</small>
+    <strong>{{ field.label }}</strong>
     <p class="text-muted">{{ optionLabel }} </p>
 </div>
 <div [hidden]="!isEditing" class="form-group" [ngClass]="displayFieldCss()" id="{{field.key}}-div">
