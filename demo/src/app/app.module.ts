@@ -8,6 +8,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppSharedModule } from './shared/shared.module';
 import { HomeModule } from './home/home.module';
 import { AppComponent } from './app.component';
+import { loadLocales } from './load-locales';
+
+loadLocales();
 
 @NgModule({
     declarations: [

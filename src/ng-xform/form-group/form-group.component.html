@@ -28,6 +28,9 @@
       <ng-xform-select-field *ngSwitchCase="'SELECT'" [field]="field" [form]="form" [formControlName]="field.key" [editing]="editing !== false">
       </ng-xform-select-field>
 
+      <ng-xform-datepicker-field *ngSwitchCase="'DATEPICKER'" [field]="field" [form]="form" [formControlName]="field.key" [editing]="editing !== false">
+      </ng-xform-datepicker-field>
+
       <pre *ngSwitchDefault>{{ field | json}}</pre>
     </div>
   </div>

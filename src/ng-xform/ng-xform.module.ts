@@ -1,8 +1,10 @@
+import { DatepickerFieldComponent } from './datepicker-field/datepicker-field.component';
 import { CheckboxFieldComponent } from './checkbox-field/checkbox-field.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 import { NgXformComponent } from './ng-xform.component';
 import { EditableLabelComponent } from './editable-label/editable-label.component';
@@ -20,6 +22,7 @@ import { FormGroupComponent } from './form-group/form-group.component';
     ReactiveFormsModule,
     PipesModule,
     NgSelectModule,
+    BsDatepickerModule.forRoot(),
   ],
   declarations: [
     NgXformComponent,
@@ -31,6 +34,7 @@ import { FormGroupComponent } from './form-group/form-group.component';
     FieldErrorMessageComponent,
     ErrorMessagePipe,
     MultilineFieldComponent,
+    DatepickerFieldComponent,
   ],
   exports: [
     NgXformComponent,
