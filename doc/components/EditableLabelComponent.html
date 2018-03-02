@@ -100,6 +100,9 @@
                                     <a href="../components/CheckboxFieldComponent.html" >CheckboxFieldComponent</a>
                                 </li>
                                 <li class="link">
+                                    <a href="../components/DateFieldComponent.html" >DateFieldComponent</a>
+                                </li>
+                                <li class="link">
                                     <a href="../components/EditableLabelComponent.html"  data-type="entity-link" class="active" >EditableLabelComponent</a>
                                 </li>
                                 <li class="link">
@@ -116,6 +119,9 @@
                                 </li>
                                 <li class="link">
                                     <a href="../components/NgXformComponent.html" >NgXformComponent</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/OptionalTagComponent.html" >OptionalTagComponent</a>
                                 </li>
                                 <li class="link">
                                     <a href="../components/SelectFieldComponent.html" >SelectFieldComponent</a>
@@ -140,6 +146,9 @@
                                 </li>
                                 <li class="link">
                                     <a href="../classes/CheckboxField.html" >CheckboxField</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../classes/DateField.html" >DateField</a>
                                 </li>
                                 <li class="link">
                                     <a href="../classes/DynamicField.html" >DynamicField</a>
@@ -304,6 +313,9 @@
                                            <a href="../components/CheckboxFieldComponent.html" >CheckboxFieldComponent</a>
                                        </li>
                                        <li class="link">
+                                           <a href="../components/DateFieldComponent.html" >DateFieldComponent</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../components/EditableLabelComponent.html"  data-type="entity-link" class="active" >EditableLabelComponent</a>
                                        </li>
                                        <li class="link">
@@ -320,6 +332,9 @@
                                        </li>
                                        <li class="link">
                                            <a href="../components/NgXformComponent.html" >NgXformComponent</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/OptionalTagComponent.html" >OptionalTagComponent</a>
                                        </li>
                                        <li class="link">
                                            <a href="../components/SelectFieldComponent.html" >SelectFieldComponent</a>
@@ -344,6 +359,9 @@
                                        </li>
                                        <li class="link">
                                            <a href="../classes/CheckboxField.html" >CheckboxField</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../classes/DateField.html" >DateField</a>
                                        </li>
                                        <li class="link">
                                            <a href="../classes/DynamicField.html" >DynamicField</a>
@@ -546,13 +564,13 @@ export class EditableLabelComponent extends BaseDynamicFieldComponent&lt;TextFie
     </div>
 
     <div class="tab-pane fade" id="c-templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;div *ngIf&#x3D;&quot;!editing&quot; id&#x3D;&quot;{{field.key}}-label&quot;&gt;
+        <pre class="line-numbers"><code class="language-html">&lt;div *ngIf&#x3D;&quot;!isEditing&quot; id&#x3D;&quot;{{field.key}}-label&quot;&gt;
   &lt;strong&gt;{{ field.label }}&lt;/strong&gt;
   &lt;p class&#x3D;&quot;text-muted&quot;&gt;{{ form?.controls[field.key]?.value | valueSuffix }}&lt;/p&gt;
 &lt;/div&gt;
 
-&lt;div *ngIf&#x3D;&quot;editing&quot; id&#x3D;&quot;{{elementId}}-div&quot; class&#x3D;&quot;form-group&quot; [formGroup]&#x3D;&quot;form&quot; [ngClass]&#x3D;&quot;displayFieldCss()&quot;&gt;
-  &lt;label for&#x3D;&quot;{{elementId}}&quot;&gt;{{field.label}}&lt;/label&gt;
+&lt;div *ngIf&#x3D;&quot;isEditing&quot; id&#x3D;&quot;{{elementId}}-div&quot; class&#x3D;&quot;form-group&quot; [formGroup]&#x3D;&quot;form&quot; [ngClass]&#x3D;&quot;displayFieldCss()&quot;&gt;
+  &lt;label for&#x3D;&quot;{{elementId}}&quot;&gt;{{field.label}}&lt;/label&gt; &lt;ng-xform-optional-tag [show]&#x3D;&quot;isOptional&quot;&gt;&lt;/ng-xform-optional-tag&gt;
   &lt;input type&#x3D;&quot;{{field.type}}&quot; id&#x3D;&quot;{{elementId}}&quot; class&#x3D;&quot;form-control&quot; [formControlName]&#x3D;&quot;elementId&quot;&gt;
   &lt;ng-xform-field-error-message [control]&#x3D;&quot;control&quot;&gt;&lt;/ng-xform-field-error-message&gt;
 &lt;/div&gt;
@@ -582,8 +600,8 @@ export class EditableLabelComponent extends BaseDynamicFieldComponent&lt;TextFie
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div *ngIf="!editing" id="{{field.key}}-label">  <strong>{{ field.label }}</strong>  <p class="text-muted">{{ form?.controls[field.key]?.value | valueSuffix }}</p></div><div *ngIf="editing" id="{{elementId}}-div" class="form-group" [formGroup]="form" [ngClass]="displayFieldCss()">  <label for="{{elementId}}">{{field.label}}</label>  <input type="{{field.type}}" id="{{elementId}}" class="form-control" [formControlName]="elementId">  <ng-xform-field-error-message [control]="control"></ng-xform-field-error-message></div></div>'
-    var COMPONENTS = [{'name': 'CheckboxFieldComponent', 'selector': 'ng-xform-checkbox-field'},{'name': 'EditableLabelComponent', 'selector': 'ng-xform-editable-label'},{'name': 'FieldErrorMessageComponent', 'selector': 'ng-xform-field-error-message'},{'name': 'FormGroupComponent', 'selector': 'ng-xform-form-group'},{'name': 'MeasureFieldComponent', 'selector': 'ng-xform-measure-field'},{'name': 'MultilineFieldComponent', 'selector': 'ng-xform-multiline-field'},{'name': 'NgXformComponent', 'selector': 'ng-xform'},{'name': 'SelectFieldComponent', 'selector': 'ng-xform-select-field'}];
+        var COMPONENT_TEMPLATE = '<div><div *ngIf="!isEditing" id="{{field.key}}-label">  <strong>{{ field.label }}</strong>  <p class="text-muted">{{ form?.controls[field.key]?.value | valueSuffix }}</p></div><div *ngIf="isEditing" id="{{elementId}}-div" class="form-group" [formGroup]="form" [ngClass]="displayFieldCss()">  <label for="{{elementId}}">{{field.label}}</label> <ng-xform-optional-tag [show]="isOptional"></ng-xform-optional-tag>  <input type="{{field.type}}" id="{{elementId}}" class="form-control" [formControlName]="elementId">  <ng-xform-field-error-message [control]="control"></ng-xform-field-error-message></div></div>'
+    var COMPONENTS = [{'name': 'CheckboxFieldComponent', 'selector': 'ng-xform-checkbox-field'},{'name': 'DateFieldComponent', 'selector': 'ng-xform-date-field'},{'name': 'EditableLabelComponent', 'selector': 'ng-xform-editable-label'},{'name': 'FieldErrorMessageComponent', 'selector': 'ng-xform-field-error-message'},{'name': 'FormGroupComponent', 'selector': 'ng-xform-form-group'},{'name': 'MeasureFieldComponent', 'selector': 'ng-xform-measure-field'},{'name': 'MultilineFieldComponent', 'selector': 'ng-xform-multiline-field'},{'name': 'NgXformComponent', 'selector': 'ng-xform'},{'name': 'OptionalTagComponent', 'selector': 'ng-xform-optional-tag'},{'name': 'SelectFieldComponent', 'selector': 'ng-xform-select-field'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'EditableLabelComponent'};
 </script>

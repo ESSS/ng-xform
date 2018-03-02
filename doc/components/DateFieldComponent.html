@@ -100,7 +100,7 @@
                                     <a href="../components/CheckboxFieldComponent.html" >CheckboxFieldComponent</a>
                                 </li>
                                 <li class="link">
-                                    <a href="../components/DateFieldComponent.html" >DateFieldComponent</a>
+                                    <a href="../components/DateFieldComponent.html"  data-type="entity-link" class="active" >DateFieldComponent</a>
                                 </li>
                                 <li class="link">
                                     <a href="../components/EditableLabelComponent.html" >EditableLabelComponent</a>
@@ -118,7 +118,7 @@
                                     <a href="../components/MultilineFieldComponent.html" >MultilineFieldComponent</a>
                                 </li>
                                 <li class="link">
-                                    <a href="../components/NgXformComponent.html"  data-type="entity-link" class="active" >NgXformComponent</a>
+                                    <a href="../components/NgXformComponent.html" >NgXformComponent</a>
                                 </li>
                                 <li class="link">
                                     <a href="../components/OptionalTagComponent.html" >OptionalTagComponent</a>
@@ -313,7 +313,7 @@
                                            <a href="../components/CheckboxFieldComponent.html" >CheckboxFieldComponent</a>
                                        </li>
                                        <li class="link">
-                                           <a href="../components/DateFieldComponent.html" >DateFieldComponent</a>
+                                           <a href="../components/DateFieldComponent.html"  data-type="entity-link" class="active" >DateFieldComponent</a>
                                        </li>
                                        <li class="link">
                                            <a href="../components/EditableLabelComponent.html" >EditableLabelComponent</a>
@@ -331,7 +331,7 @@
                                            <a href="../components/MultilineFieldComponent.html" >MultilineFieldComponent</a>
                                        </li>
                                        <li class="link">
-                                           <a href="../components/NgXformComponent.html"  data-type="entity-link" class="active" >NgXformComponent</a>
+                                           <a href="../components/NgXformComponent.html" >NgXformComponent</a>
                                        </li>
                                        <li class="link">
                                            <a href="../components/OptionalTagComponent.html" >OptionalTagComponent</a>
@@ -448,7 +448,7 @@
 
 <ol class="breadcrumb">
   <li>Components</li>
-  <li>NgXformComponent</li>
+  <li>DateFieldComponent</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -473,30 +473,34 @@
     <h3>File</h3>
 </p>
 <p class="comment">
-    <code>src/ng-xform/ng-xform.component.ts</code>
+    <code>src/ng-xform/date-field/date-field.component.ts</code>
 </p>
 
     <p class="comment">
         <h3>Description</h3>
     </p>
     <p class="comment">
-        <p>This component builds a form with input components from fields list.
-If any instance is defined in the model, yours attribute values will be applied to the corresponding field.
-This component can display an error code if that is defined.</p>
-<p>:fields: List of configurations to build fields.
-:model: Model instance to edit [optional].
-:errorCode: This can display an error if is defined.
-:editing: Flag to control components state</p>
+        <p>Component to generate a bootstrap form field of Date type</p>
+<p>:editing: Flag to control component state
+:form: FormGroup containing the field
+:field: Intance of field configurations</p>
 
     </p>
 
+    <p class="comment">
+        <h3>Extends</h3>
+    </p>
+    <p class="comment">
+            <code><a href="../classes/DynamicField.html" target="_self" >BaseDynamicFieldComponent</a></code>
+    </p>
 
     <p class="comment">
         <h3>Implements</h3>
     </p>
     <p class="comment">
-                <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
-                <code><a href="https://angular.io/api/core/OnChanges" target="_blank" >OnChanges</a></code>
+                <code><a href="https://angular.io/api/core/AfterViewInit" target="_blank" >AfterViewInit</a></code>
+                <code><a href="https://angular.io/api/core/AfterContentInit" target="_blank" >AfterContentInit</a></code>
+                <code><a href="https://angular.io/api/forms/ControlValueAccessor" target="_blank" >ControlValueAccessor</a></code>
     </p>
 
 
@@ -514,11 +518,21 @@ This component can display an error code if that is defined.</p>
 
 
 
+            <tr>
+                <td class="col-md-3">providers</td>
+                <td class="col-md-9">
+                    <code>
+                        {
+    : , : , : true
+}
+                    </code>
+                </td>
+            </tr>
 
 
             <tr>
                 <td class="col-md-3">selector</td>
-                <td class="col-md-9"><code>ng-xform</code></td>
+                <td class="col-md-9"><code>ng-xform-date-field</code></td>
             </tr>
 
 
@@ -526,7 +540,7 @@ This component can display an error code if that is defined.</p>
 
             <tr>
                 <td class="col-md-3">templateUrl</td>
-                <td class="col-md-9"><code>./ng-xform.component.html</code></td>
+                <td class="col-md-9"><code>./date-field.component.html</code></td>
             </tr>
 
 
@@ -547,7 +561,20 @@ This component can display an error code if that is defined.</p>
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#form">form</a>
+                                <a href="#_onChange">_onChange</a>
+                            </li>
+                            <li>
+                                <a href="#_onTouched">_onTouched</a>
+                            </li>
+                            <li>
+                                <a href="#componentControl">componentControl</a>
+                            </li>
+                            <li>
+                                <a href="#config">config</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#input">input</a>
                             </li>
                         </ul>
                     </td>
@@ -561,74 +588,22 @@ This component can display an error code if that is defined.</p>
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#cancel">cancel</a>
+                                <a href="#ngAfterContentInit">ngAfterContentInit</a>
                             </li>
                             <li>
-                                <a href="#clear">clear</a>
+                                <a href="#ngAfterViewInit">ngAfterViewInit</a>
                             </li>
                             <li>
-                                <a href="#createForm">createForm</a>
+                                <a href="#registerOnChange">registerOnChange</a>
                             </li>
                             <li>
-                                <a href="#createFormGroup">createFormGroup</a>
+                                <a href="#registerOnTouched">registerOnTouched</a>
                             </li>
                             <li>
-                                <a href="#ngOnChanges">ngOnChanges</a>
+                                <a href="#setDisabledState">setDisabledState</a>
                             </li>
                             <li>
-                                <a href="#ngOnInit">ngOnInit</a>
-                            </li>
-                            <li>
-                                <a href="#reset">reset</a>
-                            </li>
-                            <li>
-                                <a href="#setEditing">setEditing</a>
-                            </li>
-                            <li>
-                                <a href="#submit">submit</a>
-                            </li>
-                        </ul>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <h6><b>Inputs</b></h6>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <ul class="index-list">
-                            <li>
-                                <a href="#editing">editing</a>
-                            </li>
-                            <li>
-                                <a href="#errorCode">errorCode</a>
-                            </li>
-                            <li>
-                                <a href="#fields">fields</a>
-                            </li>
-                            <li>
-                                <a href="#model">model</a>
-                            </li>
-                        </ul>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <h6><b>Outputs</b></h6>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <ul class="index-list">
-                            <li>
-                                <a href="#editingChange">editingChange</a>
-                            </li>
-                            <li>
-                                <a href="#onCancel">onCancel</a>
-                            </li>
-                            <li>
-                                <a href="#onSubmit">onSubmit</a>
+                                <a href="#writeValue">writeValue</a>
                             </li>
                         </ul>
                     </td>
@@ -637,159 +612,54 @@ This component can display an error code if that is defined.</p>
         </table>
     </section>
 
-
     <section>
-        <h3 id="inputs">Inputs</h3>
+        <h3 id="constructor">Constructor</h3>
             <table class="table table-sm table-bordered">
                 <tbody>
                     <tr>
-                        <td class="col-md-2">
-                            <a name="editing"></a>
-                            <code>editing</code>
-                        </td>
-                        <td class="col-md-10">
-                              <p>
-                                <em>Type:</em>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
-
-                              </p>
+                        <td class="col-md-4">
+                            <code>constructor(elementRef: <a href="https://angular.io/api/core/ElementRef" target="_blank">ElementRef</a>)</code>
                         </td>
                     </tr>
                             <tr>
-                                <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/ng-xform/ng-xform.component.ts:27</a></div>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/ng-xform/date-field/date-field.component.ts:32</a></div>
                                 </td>
                             </tr>
-                </tbody>
-            </table>
-            <table class="table table-sm table-bordered">
-                <tbody>
+    
                     <tr>
-                        <td class="col-md-2">
-                            <a name="errorCode"></a>
-                            <code>errorCode</code>
-                        </td>
-                        <td class="col-md-10">
-                              <p>
-                                <em>Type:</em>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
-                              </p>
-                        </td>
-                    </tr>
-                            <tr>
-                                <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/ng-xform/ng-xform.component.ts:26</a></div>
-                                </td>
-                            </tr>
-                </tbody>
-            </table>
-            <table class="table table-sm table-bordered">
-                <tbody>
-                    <tr>
-                        <td class="col-md-2">
-                            <a name="fields"></a>
-                            <code>fields</code>
-                        </td>
-                        <td class="col-md-10">
-                              <p>
-                                <em>Type:</em>    <code><a href="../classes/DynamicField.html" target="_self" >DynamicField[]</a></code>
-
-                              </p>
+                        <td class="col-md-4">
+                                <div>
+                                        <b>Parameters :</b>
+                                        <table class="params">
+                                            <thead>
+                                                <tr>
+                                                    <td>Name</td>
+                                                    <td>Type</td>
+                                                    <td>Optional</td>
+                                                    <td>Description</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                    <tr>
+                                                      <td>elementRef</td>
+                                                      <td>
+                                                                <code><a href="https://angular.io/api/core/ElementRef" target="_blank" >ElementRef</a></code>
+                                                      </td>
+                                                      <td>
+                                                      </td>
+                                                      <td></td>
+                                                    </tr>
+                                            </tbody>
+                                        </table>
+                                </div>
                         </td>
                     </tr>
-                            <tr>
-                                <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/ng-xform/ng-xform.component.ts:24</a></div>
-                                </td>
-                            </tr>
-                </tbody>
-            </table>
-            <table class="table table-sm table-bordered">
-                <tbody>
-                    <tr>
-                        <td class="col-md-2">
-                            <a name="model"></a>
-                            <code>model</code>
-                        </td>
-                        <td class="col-md-10">
-                              <p>
-                                <em>Type:</em>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
-
-                              </p>
-                        </td>
-                    </tr>
-                            <tr>
-                                <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/ng-xform/ng-xform.component.ts:25</a></div>
-                                </td>
-                            </tr>
                 </tbody>
             </table>
     </section>
 
-    <section>
-        <h3 id="outputs">Outputs</h3>
-            <table class="table table-sm table-bordered">
-                <tbody>
-                    <tr>
-                        <td class="col-md-2">
-                            <a name="editingChange"></a>
-                            <code>editingChange</code>
-                        </td>
-                        <td class="col-md-10">
-                            <em><code>$event</code> type:</em>    <code><a href="https://angular.io/api/core/EventEmitter" target="_blank" >EventEmitter</a></code>
 
-                        </td>
-                    </tr>
-                            <tr>
-                                <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/ng-xform/ng-xform.component.ts:28</a></div>
-                                </td>
-                            </tr>
-                </tbody>
-            </table>
-            <table class="table table-sm table-bordered">
-                <tbody>
-                    <tr>
-                        <td class="col-md-2">
-                            <a name="onCancel"></a>
-                            <code>onCancel</code>
-                        </td>
-                        <td class="col-md-10">
-                            <div><p>To listening submitSuccessful event </p>
-</div>
-                            <em><code>$event</code> type:</em>    <code><a href="https://angular.io/api/core/EventEmitter" target="_blank" >EventEmitter</a></code>
-
-                        </td>
-                    </tr>
-                            <tr>
-                                <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/ng-xform/ng-xform.component.ts:34</a></div>
-                                </td>
-                            </tr>
-                </tbody>
-            </table>
-            <table class="table table-sm table-bordered">
-                <tbody>
-                    <tr>
-                        <td class="col-md-2">
-                            <a name="onSubmit"></a>
-                            <code>onSubmit</code>
-                        </td>
-                        <td class="col-md-10">
-                            <div><p>To listening submitSuccessful event </p>
-</div>
-                            <em><code>$event</code> type:</em>    <code><a href="https://angular.io/api/core/EventEmitter" target="_blank" >EventEmitter</a></code>
-
-                        </td>
-                    </tr>
-                            <tr>
-                                <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/ng-xform/ng-xform.component.ts:31</a></div>
-                                </td>
-                            </tr>
-                </tbody>
-            </table>
-    </section>
 
 
 
@@ -802,64 +672,25 @@ This component can display an error code if that is defined.</p>
                 <tbody>
                     <tr>
                         <td class="col-md-4">
-                            <a name="cancel"></a>
+                            <a name="ngAfterContentInit"></a>
                             <span class="name">
                                 <b>
-                                cancel
+                                ngAfterContentInit
                                 </b>
-                                <a href="#cancel"><span class="fa fa-link"></span></a>
+                                <a href="#ngAfterContentInit"><span class="fa fa-link"></span></a>
                             </span>
                         </td>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-    <code>cancel()</code>
+    <code>ngAfterContentInit()</code>
                         </td>
                     </tr>
     
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="91" class="link-to-prism">src/ng-xform/ng-xform.component.ts:91</a></div>
-                                </td>
-                            </tr>
-    
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-description"><p>It is called by cancel button </p>
-    </div>
-    
-                                <div class="io-description">
-                                    <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-    
-                                </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <table class="table table-sm table-bordered">
-                <tbody>
-                    <tr>
-                        <td class="col-md-4">
-                            <a name="clear"></a>
-                            <span class="name">
-                                <b>
-                                clear
-                                </b>
-                                <a href="#clear"><span class="fa fa-link"></span></a>
-                            </span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-    <code>clear()</code>
-                        </td>
-                    </tr>
-    
-    
-                            <tr>
-                                <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="105" class="link-to-prism">src/ng-xform/ng-xform.component.ts:105</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/ng-xform/date-field/date-field.component.ts:43</a></div>
                                 </td>
                             </tr>
     
@@ -878,25 +709,25 @@ This component can display an error code if that is defined.</p>
                 <tbody>
                     <tr>
                         <td class="col-md-4">
-                            <a name="createForm"></a>
+                            <a name="ngAfterViewInit"></a>
                             <span class="name">
                                 <b>
-                                createForm
+                                ngAfterViewInit
                                 </b>
-                                <a href="#createForm"><span class="fa fa-link"></span></a>
+                                <a href="#ngAfterViewInit"><span class="fa fa-link"></span></a>
                             </span>
                         </td>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-    <code>createForm()</code>
+    <code>ngAfterViewInit()</code>
                         </td>
                     </tr>
     
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/ng-xform/ng-xform.component.ts:54</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/ng-xform/date-field/date-field.component.ts:50</a></div>
                                 </td>
                             </tr>
     
@@ -915,25 +746,25 @@ This component can display an error code if that is defined.</p>
                 <tbody>
                     <tr>
                         <td class="col-md-4">
-                            <a name="createFormGroup"></a>
+                            <a name="registerOnChange"></a>
                             <span class="name">
                                 <b>
-                                createFormGroup
+                                registerOnChange
                                 </b>
-                                <a href="#createFormGroup"><span class="fa fa-link"></span></a>
+                                <a href="#registerOnChange"><span class="fa fa-link"></span></a>
                             </span>
                         </td>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-    <code>createFormGroup(fields: <a href="../classes/DynamicField.html">DynamicField[]</a>)</code>
+    <code>registerOnChange(fn: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
                         </td>
                     </tr>
     
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">src/ng-xform/ng-xform.component.ts:58</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">src/ng-xform/date-field/date-field.component.ts:64</a></div>
                                 </td>
                             </tr>
     
@@ -953,75 +784,9 @@ This component can display an error code if that is defined.</p>
                                             </thead>
                                             <tbody>
                                                     <tr>
-                                                      <td>fields</td>
+                                                      <td>fn</td>
                                                       <td>
-                                                              <code><a href="../classes/DynamicField.html" target="_self" >DynamicField[]</a></code>
-                                                      </td>
-                                                      <td>
-                                                      </td>
-                                                      <td></td>
-                                                    </tr>
-                                            </tbody>
-                                        </table>
-                                </div>
-                                <div>
-                                </div>
-                                <div class="io-description">
-                                    <b>Returns : </b>    <code><a href="https://angular.io/api/forms/FormGroup" target="_blank" >FormGroup</a></code>
-    
-                                </div>
-                                    <div class="io-description">
-                                        
-                                    </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <table class="table table-sm table-bordered">
-                <tbody>
-                    <tr>
-                        <td class="col-md-4">
-                            <a name="ngOnChanges"></a>
-                            <span class="name">
-                                <b>
-                                ngOnChanges
-                                </b>
-                                <a href="#ngOnChanges"><span class="fa fa-link"></span></a>
-                            </span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-    <code>ngOnChanges(changes: <a href="https://angular.io/api/core/SimpleChanges" target="_blank">SimpleChanges</a>)</code>
-                        </td>
-                    </tr>
-    
-    
-                            <tr>
-                                <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/ng-xform/ng-xform.component.ts:43</a></div>
-                                </td>
-                            </tr>
-    
-                    <tr>
-                        <td class="col-md-4">
-    
-                                <div class="io-description">
-                                        <b>Parameters :</b>
-                                        <table class="params">
-                                            <thead>
-                                                <tr>
-                                                    <td>Name</td>
-                                                    <td>Type</td>
-                                                    <td>Optional</td>
-                                                    <td>Description</td>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                    <tr>
-                                                      <td>changes</td>
-                                                      <td>
-                                                              <code><a href="https://angular.io/api/core/SimpleChanges" target="_blank" >SimpleChanges</a></code>
+                                                              <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
                                                       </td>
                                                       <td>
                                                       </td>
@@ -1047,99 +812,25 @@ This component can display an error code if that is defined.</p>
                 <tbody>
                     <tr>
                         <td class="col-md-4">
-                            <a name="ngOnInit"></a>
+                            <a name="registerOnTouched"></a>
                             <span class="name">
                                 <b>
-                                ngOnInit
+                                registerOnTouched
                                 </b>
-                                <a href="#ngOnInit"><span class="fa fa-link"></span></a>
+                                <a href="#registerOnTouched"><span class="fa fa-link"></span></a>
                             </span>
                         </td>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-    <code>ngOnInit()</code>
+    <code>registerOnTouched(fn: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
                         </td>
                     </tr>
     
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/ng-xform/ng-xform.component.ts:38</a></div>
-                                </td>
-                            </tr>
-    
-                    <tr>
-                        <td class="col-md-4">
-    
-                                <div class="io-description">
-                                    <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-    
-                                </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <table class="table table-sm table-bordered">
-                <tbody>
-                    <tr>
-                        <td class="col-md-4">
-                            <a name="reset"></a>
-                            <span class="name">
-                                <b>
-                                reset
-                                </b>
-                                <a href="#reset"><span class="fa fa-link"></span></a>
-                            </span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-    <code>reset()</code>
-                        </td>
-                    </tr>
-    
-    
-                            <tr>
-                                <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="97" class="link-to-prism">src/ng-xform/ng-xform.component.ts:97</a></div>
-                                </td>
-                            </tr>
-    
-                    <tr>
-                        <td class="col-md-4">
-    
-                                <div class="io-description">
-                                    <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-    
-                                </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <table class="table table-sm table-bordered">
-                <tbody>
-                    <tr>
-                        <td class="col-md-4">
-                            <a name="setEditing"></a>
-                            <span class="name">
-                                <b>
-                                setEditing
-                                </b>
-                                <a href="#setEditing"><span class="fa fa-link"></span></a>
-                            </span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-    <code>setEditing(state: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>)</code>
-                        </td>
-                    </tr>
-    
-    
-                            <tr>
-                                <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="109" class="link-to-prism">src/ng-xform/ng-xform.component.ts:109</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="67" class="link-to-prism">src/ng-xform/date-field/date-field.component.ts:67</a></div>
                                 </td>
                             </tr>
     
@@ -1159,7 +850,73 @@ This component can display an error code if that is defined.</p>
                                             </thead>
                                             <tbody>
                                                     <tr>
-                                                      <td>state</td>
+                                                      <td>fn</td>
+                                                      <td>
+                                                              <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                                      </td>
+                                                      <td>
+                                                      </td>
+                                                      <td></td>
+                                                    </tr>
+                                            </tbody>
+                                        </table>
+                                </div>
+                                <div>
+                                </div>
+                                <div class="io-description">
+                                    <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+    
+                                </div>
+                                    <div class="io-description">
+                                        
+                                    </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <a name="setDisabledState"></a>
+                            <span class="name">
+                                <b>
+                                setDisabledState
+                                </b>
+                                <a href="#setDisabledState"><span class="fa fa-link"></span></a>
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+    <code>setDisabledState(isDisabled: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>)</code>
+                        </td>
+                    </tr>
+    
+    
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="70" class="link-to-prism">src/ng-xform/date-field/date-field.component.ts:70</a></div>
+                                </td>
+                            </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+    
+                                <div class="io-description">
+                                        <b>Parameters :</b>
+                                        <table class="params">
+                                            <thead>
+                                                <tr>
+                                                    <td>Name</td>
+                                                    <td>Type</td>
+                                                    <td>Optional</td>
+                                                    <td>Description</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                    <tr>
+                                                      <td>isDisabled</td>
                                                       <td>
                                                               <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
                                                       </td>
@@ -1187,25 +944,25 @@ This component can display an error code if that is defined.</p>
                 <tbody>
                     <tr>
                         <td class="col-md-4">
-                            <a name="submit"></a>
+                            <a name="writeValue"></a>
                             <span class="name">
                                 <b>
-                                submit
+                                writeValue
                                 </b>
-                                <a href="#submit"><span class="fa fa-link"></span></a>
+                                <a href="#writeValue"><span class="fa fa-link"></span></a>
                             </span>
                         </td>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-    <code>submit()</code>
+    <code>writeValue(obj: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
                         </td>
                     </tr>
     
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="74" class="link-to-prism">src/ng-xform/ng-xform.component.ts:74</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/ng-xform/date-field/date-field.component.ts:57</a></div>
                                 </td>
                             </tr>
     
@@ -1213,9 +970,38 @@ This component can display an error code if that is defined.</p>
                         <td class="col-md-4">
     
                                 <div class="io-description">
+                                        <b>Parameters :</b>
+                                        <table class="params">
+                                            <thead>
+                                                <tr>
+                                                    <td>Name</td>
+                                                    <td>Type</td>
+                                                    <td>Optional</td>
+                                                    <td>Description</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                    <tr>
+                                                      <td>obj</td>
+                                                      <td>
+                                                              <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                                      </td>
+                                                      <td>
+                                                      </td>
+                                                      <td></td>
+                                                    </tr>
+                                            </tbody>
+                                        </table>
+                                </div>
+                                <div>
+                                </div>
+                                <div class="io-description">
                                     <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
     
                                 </div>
+                                    <div class="io-description">
+                                        
+                                    </div>
                         </td>
                     </tr>
                 </tbody>
@@ -1231,30 +1017,164 @@ This component can display an error code if that is defined.</p>
                 <tbody>
                     <tr>
                         <td class="col-md-4">
-                            <a name="form"></a>
+                            <a name="_onChange"></a>
                             <span class="name">
                                 <b>
-                                form
+                                _onChange
                                 </b>
-                                <a href="#form"><span class="fa fa-link"></span></a>
+                                <a href="#_onChange"><span class="fa fa-link"></span></a>
                             </span>
                         </td>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                            <code>form:     <code><a href="https://angular.io/api/forms/FormGroup" target="_blank" >FormGroup</a></code>
+                            <code>_onChange:     <code></code>
     </code>
                         </td>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                <i>Type : </i>    <code><a href="https://angular.io/api/forms/FormGroup" target="_blank" >FormGroup</a></code>
+                                <i>Default value : </i><code>(value: any) &#x3D;&gt; { }</code>
+                            </td>
+                        </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/ng-xform/date-field/date-field.component.ts:31</a></div>
+                                </td>
+                            </tr>
+    
+    
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <a name="_onTouched"></a>
+                            <span class="name">
+                                <b>
+                                _onTouched
+                                </b>
+                                <a href="#_onTouched"><span class="fa fa-link"></span></a>
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <code>_onTouched:     <code></code>
+    </code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Default value : </i><code>() &#x3D;&gt; { }</code>
+                            </td>
+                        </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/ng-xform/date-field/date-field.component.ts:32</a></div>
+                                </td>
+                            </tr>
+    
+    
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <a name="componentControl"></a>
+                            <span class="name">
+                                <b>
+                                componentControl
+                                </b>
+                                <a href="#componentControl"><span class="fa fa-link"></span></a>
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <code>componentControl:     <code></code>
+    </code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Default value : </i><code>new FormControl()</code>
+                            </td>
+                        </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/ng-xform/date-field/date-field.component.ts:28</a></div>
+                                </td>
+                            </tr>
+    
+    
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <a name="config"></a>
+                            <span class="name">
+                                <b>
+                                config
+                                </b>
+                                <a href="#config"><span class="fa fa-link"></span></a>
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <code>config:     <code>Partial&lt;BsDatepickerConfig&gt;</code>
+    </code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Type : </i>    <code>Partial&lt;BsDatepickerConfig&gt;</code>
     
                             </td>
                         </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/ng-xform/ng-xform.component.ts:36</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/ng-xform/date-field/date-field.component.ts:27</a></div>
+                                </td>
+                            </tr>
+    
+    
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <a name="input"></a>
+                            <span class="name">
+                                <b>
+                                    <span class="modifier">Private</span>
+                                input
+                                </b>
+                                <a href="#input"><span class="fa fa-link"></span></a>
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <span class="modifier-icon fa fa-reset"></span><code>input:     <code>HTMLInputElement</code>
+    </code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Type : </i>    <code>HTMLInputElement</code>
+    
+                            </td>
+                        </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/ng-xform/date-field/date-field.component.ts:29</a></div>
                                 </td>
                             </tr>
     
@@ -1267,147 +1187,99 @@ This component can display an error code if that is defined.</p>
 
 
     <div class="tab-pane fade tab-source-code" id="c-source">
-        <pre class="line-numbers"><code class="language-typescript">import { NgXformGroup } from &#x27;./ng-xform-group&#x27;;
-import { Validators, FormControl, FormGroup } from &#x27;@angular/forms&#x27;;
-import { Component, OnInit, Input, EventEmitter, Output, OnChanges, SimpleChanges } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers"><code class="language-typescript">import { BehaviorSubject } from &#x27;rxjs/BehaviorSubject&#x27;;
+import { ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR } from &#x27;@angular/forms&#x27;;
+import { Component, AfterContentInit, ViewChild, ElementRef, Renderer, AfterViewInit } from &#x27;@angular/core&#x27;;
+import { BsDatepickerConfig } from &#x27;ngx-bootstrap/datepicker&#x27;;
 
-import { DynamicField } from &#x27;./fields/dynamic-field&#x27;;
-import { NestedFormGroup } from &#x27;./fields/nested-form-group&#x27;;
+import { BaseDynamicFieldComponent } from &#x27;../field-components/base-dynamic-field.component&#x27;;
+import { DateField } from &#x27;../fields&#x27;;
 
 /**
- * This component builds a form with input components from fields list.
- * If any instance is defined in the model, yours attribute values will be applied to the corresponding field.
- * This component can display an error code if that is defined.
+ * Component to generate a bootstrap form field of Date type
  *
- * :fields: List of configurations to build fields.
- * :model: Model instance to edit [optional].
- * :errorCode: This can display an error if is defined.
- * :editing: Flag to control components state
+ * :editing: Flag to control component state
+ * :form: FormGroup containing the field
+ * :field: Intance of field configurations
  */
 @Component({
-  selector: &#x27;ng-xform&#x27;,
-  templateUrl: &#x27;./ng-xform.component.html&#x27;,
-  styles: []
+  selector: &#x27;ng-xform-date-field&#x27;,
+  templateUrl: &#x27;./date-field.component.html&#x27;,
+  providers: [{
+    provide: NG_VALUE_ACCESSOR,
+    useExisting: DateFieldComponent,
+    multi: true
+  }],
 })
-export class NgXformComponent implements OnInit, OnChanges {
-  @Input() fields: DynamicField[];
-  @Input() model: any;
-  @Input() errorCode: string;
-  @Input() editing: boolean;
-  @Output() editingChange &#x3D; new EventEmitter();
+export class DateFieldComponent extends BaseDynamicFieldComponent&lt;DateField&gt; implements AfterViewInit, AfterContentInit,
+  ControlValueAccessor {
+  config: Partial&lt;BsDatepickerConfig&gt;;
+  componentControl &#x3D; new FormControl();
+  private input: HTMLInputElement;
 
-  /** To listening submitSuccessful event */
-  @Output() onSubmit &#x3D; new EventEmitter();
+  _onChange &#x3D; (value: any) &#x3D;&gt; { };
+  _onTouched &#x3D; () &#x3D;&gt; { };
 
-  /** To listening submitSuccessful event */
-  @Output() onCancel &#x3D; new EventEmitter();
-
-  form: FormGroup;
-
-  ngOnInit() {
-    this.createForm();
-    this.reset();
-  }
-
-  ngOnChanges(changes: SimpleChanges) {
-    if (changes.fields) {
-      this.createForm();
-    }
-
-    if (!this.form) {
-      return;
-    }
-    this.reset();
-  }
-
-  createForm() {
-    this.form &#x3D; this.createFormGroup(this.fields);
-  }
-
-  createFormGroup(fields: DynamicField[]): FormGroup {
-    let group: any &#x3D; {};
-
-    fields.forEach(field &#x3D;&gt; {
-      if (field instanceof NestedFormGroup) {
-        group[field.key] &#x3D; this.createFormGroup(field.fields);
-      } else {
-        group[field.key] &#x3D; field.validators
-          ? new FormControl(undefined, field.validators)
-          : new FormControl();
-      }
+  // the elementRef will be used to get the input element after the view is initialized.
+  constructor(private elementRef: ElementRef) {
+    super();
+    this.componentControl.valueChanges.subscribe((val: any) &#x3D;&gt; {
+      // replay changes from view to the form value
+      this._onChange(val);
     });
-
-    return new NgXformGroup(group);
   }
 
-  submit() {
-    if (this.form.invalid) {
-      return;
+  ngAfterContentInit() {
+    this.componentControl.setValidators(this.field.validators);
+    this.config &#x3D; Object.assign({}, {
+      containerClass: &#x60;theme-${this.field.theme}&#x60;,
+    });
+  }
+
+  ngAfterViewInit() {
+    this.input &#x3D; this.elementRef.nativeElement.querySelector(&#x27;input&#x27;);
+    if (this.input) {
+      this.input.onblur &#x3D; this._onTouched
     }
-    this.errorCode &#x3D; undefined;
+  }
 
-    // copy object
-    let modelToSend &#x3D; { ...this.model };
-    for (const attr in this.form.value) {
-      if (this.form.value.hasOwnProperty(attr)) {
-        modelToSend[attr] &#x3D; this.form.value[attr] || null;
-      }
+  writeValue(obj: any): void {
+    if (obj instanceof Date) {
+      this.componentControl.setValue(obj);
+    } else if (obj) {
+      this.componentControl.setValue(new Date(obj));
     }
-    this.onSubmit.emit(modelToSend);
+  }
+  registerOnChange(fn: any): void {
+    this._onChange &#x3D; fn;
+  }
+  registerOnTouched(fn: any): void {
+    this._onTouched &#x3D; fn;
+  }
+  setDisabledState?(isDisabled: boolean): void {
+    this.input.disabled &#x3D; isDisabled;
   }
 
-  /** It is called by cancel button */
-  cancel() {
-    this.setEditing(false);
-    this.reset();
-    this.onCancel.emit();
-  }
 
-  reset() {
-    if (this.model) {
-      this.form.patchValue(this.model, { onlySelf: true, emitEvent: false });
-    }
-
-    this.errorCode &#x3D; undefined;
-  }
-
-  clear() {
-    this.form.reset();
-  }
-
-  setEditing(state: boolean) {
-    if (this.editing &#x3D;&#x3D;&#x3D; undefined) {
-      return;
-    }
-    this.editingChange.emit(state);
-  }
 }
 </code></pre>
     </div>
 
     <div class="tab-pane fade" id="c-templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;div&gt;
-  &lt;form [formGroup]&#x3D;&quot;form&quot;&gt;
-    &lt;ng-xform-form-group [fields]&#x3D;&#x27;fields&#x27; [form]&#x3D;form [editing]&#x3D;&#x27;editing&#x27;&gt;&lt;/ng-xform-form-group&gt;
-  &lt;/form&gt;
+        <pre class="line-numbers"><code class="language-html">&lt;div *ngIf&#x3D;&quot;!editing&quot; id&#x3D;&quot;{{field.key}}-label&quot;&gt;
+  &lt;strong&gt;{{ field.label }}&lt;/strong&gt;
+  &lt;p class&#x3D;&quot;text-muted&quot;&gt;{{ form?.controls[field.key]?.value | date:&#x27;mediumDate&#x27;:field.locale }}&lt;/p&gt;
 &lt;/div&gt;
-&lt;div class&#x3D;&quot;row&quot;&gt;
-  &lt;div class&#x3D;&quot;col-md-8&quot;&gt;
-    &lt;div class&#x3D;&quot;alert alert-warning alert-dismissible&quot; *ngIf&#x3D;&quot;errorCode&quot; role&#x3D;&quot;alert&quot;&gt;
-      &lt;strong&gt;Oops!&lt;/strong&gt; Something went wrong with the server. Error code: {{ errorCode }}
-    &lt;/div&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-&lt;div class&#x3D;&quot;row&quot;&gt;
-  &lt;div class&#x3D;&quot; col-sm-12 text-right&quot;&gt;
-    &lt;button type&#x3D;&quot;submit&quot; class&#x3D;&quot;btn btn-primary&quot; (click)&#x3D;&quot;setEditing(true)&quot; *ngIf&#x3D;&quot;editing &#x3D;&#x3D;&#x3D; false&quot;&gt;
-      &lt;span class&#x3D;&quot;fa fa-pencil&quot;&gt;&lt;/span&gt; Edit
-    &lt;/button&gt;
-    &lt;ng-template [ngIf]&#x3D;&quot;editing !&#x3D;&#x3D; false&quot;&gt;
-      &lt;button [disabled]&#x3D;&quot;form.invalid&quot; type&#x3D;&quot;submit&quot; id&#x3D;&quot;formSubmitBtn&quot; class&#x3D;&quot;btn btn-primary&quot; (click)&#x3D;&quot;submit()&quot;&gt;Save&lt;/button&gt;
-      &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;btn btn-default&quot; (click)&#x3D;&quot;cancel()&quot;&gt;Cancel&lt;/button&gt;
-    &lt;/ng-template&gt;
-  &lt;/div&gt;
+
+&lt;div *ngIf&#x3D;&quot;editing&quot; id&#x3D;&quot;{{elementId}}-div&quot; class&#x3D;&quot;form-group&quot; [formGroup]&#x3D;&quot;form&quot; [ngClass]&#x3D;&quot;displayFieldCss()&quot;&gt;
+  &lt;label for&#x3D;&quot;{{elementId}}&quot;&gt;{{field.label}}&lt;/label&gt; &lt;ng-xform-optional-tag [show]&#x3D;&quot;isOptional&quot;&gt;&lt;/ng-xform-optional-tag&gt;
+  &lt;input bsDatepicker type&#x3D;&quot;text&quot; class&#x3D;&quot;form-control&quot; [formControl]&#x3D;&quot;componentControl&quot; id&#x3D;&quot;{{elementId}}&quot;
+   [bsConfig]&#x3D;&quot;config&quot;
+   [bsValue]&#x3D;&quot;field.initialValue&quot;
+   [placement]&#x3D;&quot;field.placement&quot;
+   [maxDate]&#x3D;&quot;field.maxDate&quot;
+   [minDate]&#x3D;&quot;field.minDate&quot; /&gt;
+  &lt;ng-xform-field-error-message [control]&#x3D;&quot;control&quot;&gt;&lt;/ng-xform-field-error-message&gt;
 &lt;/div&gt;
 </code></pre>
     </div>
@@ -1435,10 +1307,10 @@ export class NgXformComponent implements OnInit, OnChanges {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div>  <form [formGroup]="form">    <ng-xform-form-group [fields]=\'fields\' [form]=form [editing]=\'editing\'></ng-xform-form-group>  </form></div><div class="row">  <div class="col-md-8">    <div class="alert alert-warning alert-dismissible" *ngIf="errorCode" role="alert">      <strong>Oops!</strong> Something went wrong with the server. Error code: {{ errorCode }}    </div>  </div></div><div class="row">  <div class=" col-sm-12 text-right">    <button type="submit" class="btn btn-primary" (click)="setEditing(true)" *ngIf="editing === false">      <span class="fa fa-pencil"></span> Edit    </button>    <ng-template [ngIf]="editing !== false">      <button [disabled]="form.invalid" type="submit" id="formSubmitBtn" class="btn btn-primary" (click)="submit()">Save</button>      <button type="button" class="btn btn-default" (click)="cancel()">Cancel</button>    </ng-template>  </div></div></div>'
+        var COMPONENT_TEMPLATE = '<div><div *ngIf="!editing" id="{{field.key}}-label">  <strong>{{ field.label }}</strong>  <p class="text-muted">{{ form?.controls[field.key]?.value | date:\'mediumDate\':field.locale }}</p></div><div *ngIf="editing" id="{{elementId}}-div" class="form-group" [formGroup]="form" [ngClass]="displayFieldCss()">  <label for="{{elementId}}">{{field.label}}</label> <ng-xform-optional-tag [show]="isOptional"></ng-xform-optional-tag>  <input bsDatepicker type="text" class="form-control" [formControl]="componentControl" id="{{elementId}}"   [bsConfig]="config"   [bsValue]="field.initialValue"   [placement]="field.placement"   [maxDate]="field.maxDate"   [minDate]="field.minDate" />  <ng-xform-field-error-message [control]="control"></ng-xform-field-error-message></div></div>'
     var COMPONENTS = [{'name': 'CheckboxFieldComponent', 'selector': 'ng-xform-checkbox-field'},{'name': 'DateFieldComponent', 'selector': 'ng-xform-date-field'},{'name': 'EditableLabelComponent', 'selector': 'ng-xform-editable-label'},{'name': 'FieldErrorMessageComponent', 'selector': 'ng-xform-field-error-message'},{'name': 'FormGroupComponent', 'selector': 'ng-xform-form-group'},{'name': 'MeasureFieldComponent', 'selector': 'ng-xform-measure-field'},{'name': 'MultilineFieldComponent', 'selector': 'ng-xform-multiline-field'},{'name': 'NgXformComponent', 'selector': 'ng-xform'},{'name': 'OptionalTagComponent', 'selector': 'ng-xform-optional-tag'},{'name': 'SelectFieldComponent', 'selector': 'ng-xform-select-field'}];
     var DIRECTIVES = [];
-    var ACTUAL_COMPONENT = {'name': 'NgXformComponent'};
+    var ACTUAL_COMPONENT = {'name': 'DateFieldComponent'};
 </script>
 <script src="../js/tree.js"></script>
 

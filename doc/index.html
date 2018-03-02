@@ -100,6 +100,9 @@
                                     <a href="./components/CheckboxFieldComponent.html" >CheckboxFieldComponent</a>
                                 </li>
                                 <li class="link">
+                                    <a href="./components/DateFieldComponent.html" >DateFieldComponent</a>
+                                </li>
+                                <li class="link">
                                     <a href="./components/EditableLabelComponent.html" >EditableLabelComponent</a>
                                 </li>
                                 <li class="link">
@@ -116,6 +119,9 @@
                                 </li>
                                 <li class="link">
                                     <a href="./components/NgXformComponent.html" >NgXformComponent</a>
+                                </li>
+                                <li class="link">
+                                    <a href="./components/OptionalTagComponent.html" >OptionalTagComponent</a>
                                 </li>
                                 <li class="link">
                                     <a href="./components/SelectFieldComponent.html" >SelectFieldComponent</a>
@@ -140,6 +146,9 @@
                                 </li>
                                 <li class="link">
                                     <a href="./classes/CheckboxField.html" >CheckboxField</a>
+                                </li>
+                                <li class="link">
+                                    <a href="./classes/DateField.html" >DateField</a>
                                 </li>
                                 <li class="link">
                                     <a href="./classes/DynamicField.html" >DynamicField</a>
@@ -304,6 +313,9 @@
                                            <a href="./components/CheckboxFieldComponent.html" >CheckboxFieldComponent</a>
                                        </li>
                                        <li class="link">
+                                           <a href="./components/DateFieldComponent.html" >DateFieldComponent</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="./components/EditableLabelComponent.html" >EditableLabelComponent</a>
                                        </li>
                                        <li class="link">
@@ -320,6 +332,9 @@
                                        </li>
                                        <li class="link">
                                            <a href="./components/NgXformComponent.html" >NgXformComponent</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="./components/OptionalTagComponent.html" >OptionalTagComponent</a>
                                        </li>
                                        <li class="link">
                                            <a href="./components/SelectFieldComponent.html" >SelectFieldComponent</a>
@@ -344,6 +359,9 @@
                                        </li>
                                        <li class="link">
                                            <a href="./classes/CheckboxField.html" >CheckboxField</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="./classes/DateField.html" >DateField</a>
                                        </li>
                                        <li class="link">
                                            <a href="./classes/DynamicField.html" >DynamicField</a>
@@ -432,15 +450,18 @@
 <a href="https://david-dm.org/esss/ng-xform"><img src="https://david-dm.org/esss/ng-xform/status.svg" alt="dependencies Status" class="img-responsive"></a>
 <a href="https://david-dm.org/esss/ng-xform?type=dev"><img src="https://david-dm.org/esss/ng-xform/dev-status.svg" alt="devDependencies Status" class="img-responsive"></a></p>
 <h2 id="demo">Demo</h2>
-<p>View all the directives in action at <a href="https://esss.github.io/ng-xform">https://esss.github.io/ng-xform</a></p>
+<p>View all the directives in action at <a href="https://esss.github.io/ng-xform">Demo</a> and <a href="https://github.com/ESSS/ng-xform/blob/master/demo/src/app/home/home.component.ts">Demo source code</a></p>
 <h2 id="dependencies">Dependencies</h2>
 <ul>
 <li><a href="https://angular.io">Angular</a> (<em>requires</em> Angular 4 or higher, tested with 5.2.0)</li>
 </ul>
 <h2 id="installation">Installation</h2>
 <p>Install above dependencies via <em>npm</em>. </p>
-<pre class="line-numbers"><code class="language-shell">npm i --save &#64;&#64;ng-select/ng-select&#64;0.16.0</code></pre><p>Now install <code>@esss/ng-xform</code> via:</p>
-<pre class="line-numbers"><code class="language-shell">npm i --save &#64;esss/ng-xform</code></pre><hr>
+<pre class="line-numbers"><code class="language-shell">npm i --save &#64;ng-select/ng-select&#64;0.16.0
+npm i --save ngx-bootstrap&#64;2.0.2</code></pre><p>Now install <code>@esss/ng-xform</code> via:</p>
+<pre class="line-numbers"><code class="language-shell">npm i --save &#64;esss/ng-xform</code></pre><p>You will need to import styles. Example: &#39;src/styles.scss&#39;</p>
+<pre class="line-numbers"><code class="language-css">&#64;import &#39;../node_modules/bootstrap/dist/css/bootstrap.min.css&#39;;
+&#64;import &#39;../node_modules/ngx-bootstrap/datepicker/bs-datepicker.css&#39;;</code></pre><hr>
 <h5 id="systemjs">SystemJS</h5>
 <blockquote>
 <p><strong>Note</strong>:If you are using <code>SystemJS</code>, you should adjust your configuration to point to the UMD bundle.
@@ -470,60 +491,123 @@ export class AppModule {
 export class OtherModule {
 }</code></pre><h2 id="usage">Usage</h2>
 <p>Template:</p>
-<pre class="line-numbers"><code class="language-html"> &lt;ng-xform (onSubmit)=&quot;onSubmit($event)&quot; [fields]=&quot;fields&quot; [editing]=&quot;editing&quot;&gt;&lt;/ng-xform&gt;</code></pre><p>Component:</p>
-<pre class="line-numbers"><code class="language-ts">export class SampleComponent {
+<pre class="line-numbers"><code class="language-html"> &lt;ng-xform #xform (onSubmit)=&quot;onSubmit($event)&quot; [model]=&quot;model&quot; [fields]=&quot;fields&quot; [(editing)]=&quot;editing&quot;&gt;&lt;/ng-xform&gt;</code></pre><p>Component:</p>
+<pre class="line-numbers"><code class="language-ts">export class HomeComponent implements OnInit {
 
   public editing = true;
-  public fields = [
-    new TextField({
-      key: &#39;name&#39;,
-      label: &#39;Name&#39;,
-      validators: [
-        Validators.required,
-        Validators.minLength(3)
-      ]
-    }),
-    new AutocompleteField({
-      key: &#39;color&#39;,
-      label: &#39;Color&#39;,
-      source: [{id: 1, name: &#39;Green&#39;}, {id: 2, name: &#39;Blue&#39;}, { id: 3, name: &#39;Yellow&#39;}],
-      listFormatter: &#39;id - name&#39;,
-      valueFormatter: &#39;name&#39;
-    }),
-    new AutocompleteField({
-      key: &#39;address&#39;,
-      label: &#39;Address&#39;,
-      source: this.observableSource.bind(this),
-      listFormatter: &#39;formatted_address&#39;,
-    }),
-    new TextField({
-      key: &#39;email&#39;,
-      label: &#39;E-mail&#39;,
-      validators: [
-        Validators.required,
-        Validators.email
-      ]
-    }),
-    new SelectField({
-      key: &#39;type&#39;,
-      label: &#39;Type&#39;,
-      options: [&#39;a&#39;, &#39;b&#39;],
-      validators: [
-        Validators.required
-      ]
-    }),
-    new MeasureField({
-      key: &#39;order&#39;,
-      label: &#39;Order&#39;,
-      // unit: &#39;º&#39;, // Do you can define a symbol here.
-    })
+  public model: any = {};
+  private colors: any[] = [
+    { id: 1, name: &#39;blue&#39; },
+    { id: 2, name: &#39;yellow&#39; },
+    { id: 3, name: &#39;white&#39; },
+    { id: 4, name: &#39;black&#39; },
+    { id: 5, name: &#39;orange&#39; },
+    { id: 6, name: &#39;purple&#39; }
   ];
 
-  constructor(private http: HttpClient) {}
+  public fields: DynamicField[];
+
+  constructor(private titleService: Title, private http: HttpClient) {
+    const minDate = new Date();
+    const maxDate = new Date();
+
+    minDate.setDate(minDate.getDate() - 3);
+    maxDate.setDate(maxDate.getDate() + 3);
+
+    this.fields = [
+      new TextField({
+        key: &#39;name&#39;,
+        label: &#39;Name&#39;,
+        validators: [
+          Validators.required,
+          Validators.minLength(3)
+        ]
+      }),
+      new TextField({
+        key: &#39;email&#39;,
+        label: &#39;E-mail&#39;,
+        validators: [
+          Validators.required,
+          Validators.email
+        ]
+      }),
+      new SelectField({
+        key: &#39;color&#39;,
+        label: &#39;Color&#39;,
+        searchable: true,
+        options: this.colors,
+        labelAttribute: &#39;name&#39;,
+      }),
+      new SelectField({
+        key: &#39;address&#39;,
+        label: &#39;Address&#39;,
+        searchHandler: this.observableSource.bind(this),
+        searchByValueAttributeHandler: this.observableSourceByPlaceId.bind(this),
+        searchable: true,
+        labelAttribute: &#39;formatted_address&#39;,
+        valueAttribute: &#39;place_id&#39;,
+        validators: [
+          Validators.required
+        ]
+      }),
+      new SelectField({
+        key: &#39;type&#39;,
+        label: &#39;Type&#39;,
+        options: [&#39;a&#39;, &#39;b&#39;],
+        validators: [
+          Validators.required
+        ]
+      }),
+      new SelectField({
+        key: &#39;type_tags&#39;,
+        label: &#39;Type tags&#39;,
+        options: [{id: 1, description: &#39;A&#39;}, {id: 2, description: &#39;B&#39;}, {id: 3, description: &#39;C&#39;}],
+        labelAttribute: &#39;description&#39;,
+        valueAttribute: &#39;id&#39;,
+        multiple: true
+      }),
+      new MeasureField({
+        key: &#39;order&#39;,
+        label: &#39;Order&#39;,
+        unit: &#39;º&#39;
+      }),
+      new CheckboxField({
+        key: &#39;news&#39;,
+        label: &#39;News&#39;
+      }),
+      new DatepickerField({
+        key: &#39;birth&#39;,
+        label: &#39;Date of birth&#39;,
+        theme: &#39;blue&#39;,
+        minDate: minDate,
+        maxDate: maxDate,
+        locale: &#39;pt-br&#39;,
+      }),
+    ];
+  }
+
+  ngOnInit() {
+    this.titleService.setTitle(&#39;Home | &#64;esss/ng-xform&#39;);
+  }
 
   public onSubmit(values: object) {
-    this.editing = false;
-    this.values = values;
+    this.editing = !this.editing;
+    this.model = values;
+    console.log(values);
+  }
+
+  populate() {
+    this.model = {
+      name: &#39;Customer&#39;,
+      email: &#39;customer&#64;mail.com&#39;,
+      type_tags: [2],
+      type: &#39;b&#39;,
+      color: { id: 3, name: &#39;white&#39; },
+      address: &#39;ChIJn7h-4b9JJ5URGCq6n0zj1tM&#39;,
+      order: 2,
+      news: true,
+      birth: new Date()
+    };
   }
 
   public observableSource(keyword: any): Observable&lt;any[]&gt; {
@@ -535,7 +619,32 @@ export class OtherModule {
       return Observable.of([]);
     }
   }
-}</code></pre><h2 id="development">Development</h2>
+
+  public observableSourceByPlaceId(place_id: any): Observable&lt;any&gt; {
+    return Observable.of({
+      &#39;place_id&#39;: &#39;ChIJn7h-4b9JJ5URGCq6n0zj1tM&#39;,
+      &#39;formatted_address&#39;: &#39;Florianópolis - State of Santa Catarina, Brazil&#39;
+    }).delay(500);
+  }
+}</code></pre><h3 id="locales">Locales</h3>
+<p>DatepickerField can use different locales. </p>
+<p>It&#39;s possible to change a locale by calling use method of BsLocaleService, list of available locales is in dropdown below.</p>
+<p>To use a different locale, you have to import it from ngx-bootstrap/chronos first, then define it in your @NgModule using function defineLocale</p>
+<p>Example: </p>
+<pre class="line-numbers"><code class="language-ts">import { defineLocale, LocaleData } from &#39;ngx-bootstrap/chronos&#39;;
+import { ptBrLocale } from &#39;ngx-bootstrap/locale&#39;;
+defineLocale(ptBrLocale.abbr, ptBrLocale);
+
+...
+
+export class AppModule {
+
+  constructor(bsLocaleService: BsLocaleService) {
+    // aplly locale
+    bsLocaleService.use(ptBrLocale.abbr);
+  }
+}</code></pre><p><a href="https://github.com/ESSS/ng-xform/blob/master/demo/src/app/app.module.ts">Demo source code</a> load locales.</p>
+<h2 id="development">Development</h2>
 <p>View common development activities on <a href="https://github.com/tinesoft/generator-ngx-library#development">https://github.com/tinesoft/generator-ngx-library#development</a></p>
 <h2 id="license">License</h2>
 <p>Copyright (c) 2018 Eder Soares. Licensed under the MIT License (MIT)</p>

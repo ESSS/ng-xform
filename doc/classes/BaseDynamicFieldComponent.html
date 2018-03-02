@@ -100,6 +100,9 @@
                                     <a href="../components/CheckboxFieldComponent.html" >CheckboxFieldComponent</a>
                                 </li>
                                 <li class="link">
+                                    <a href="../components/DateFieldComponent.html" >DateFieldComponent</a>
+                                </li>
+                                <li class="link">
                                     <a href="../components/EditableLabelComponent.html" >EditableLabelComponent</a>
                                 </li>
                                 <li class="link">
@@ -116,6 +119,9 @@
                                 </li>
                                 <li class="link">
                                     <a href="../components/NgXformComponent.html" >NgXformComponent</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/OptionalTagComponent.html" >OptionalTagComponent</a>
                                 </li>
                                 <li class="link">
                                     <a href="../components/SelectFieldComponent.html" >SelectFieldComponent</a>
@@ -140,6 +146,9 @@
                                 </li>
                                 <li class="link">
                                     <a href="../classes/CheckboxField.html" >CheckboxField</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../classes/DateField.html" >DateField</a>
                                 </li>
                                 <li class="link">
                                     <a href="../classes/DynamicField.html" >DynamicField</a>
@@ -304,6 +313,9 @@
                                            <a href="../components/CheckboxFieldComponent.html" >CheckboxFieldComponent</a>
                                        </li>
                                        <li class="link">
+                                           <a href="../components/DateFieldComponent.html" >DateFieldComponent</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../components/EditableLabelComponent.html" >EditableLabelComponent</a>
                                        </li>
                                        <li class="link">
@@ -320,6 +332,9 @@
                                        </li>
                                        <li class="link">
                                            <a href="../components/NgXformComponent.html" >NgXformComponent</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/OptionalTagComponent.html" >OptionalTagComponent</a>
                                        </li>
                                        <li class="link">
                                            <a href="../components/SelectFieldComponent.html" >SelectFieldComponent</a>
@@ -344,6 +359,9 @@
                                        </li>
                                        <li class="link">
                                            <a href="../classes/CheckboxField.html" >CheckboxField</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../classes/DateField.html" >DateField</a>
                                        </li>
                                        <li class="link">
                                            <a href="../classes/DynamicField.html" >DynamicField</a>
@@ -521,6 +539,12 @@
                                     <li>
                                         <a href="#elementId">elementId</a>
                                     </li>
+                                    <li>
+                                        <a href="#isOptional">isOptional</a>
+                                    </li>
+                                    <li>
+                                        <a href="#isEditing">isEditing</a>
+                                    </li>
                                 </ul>
                             </td>
                         </tr>
@@ -556,7 +580,7 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/ng-xform/field-components/base-dynamic-field.component.ts:28</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/ng-xform/field-components/base-dynamic-field.component.ts:34</a></div>
                                         </td>
                                     </tr>
             
@@ -672,7 +696,7 @@
                             </tr>
                                         <tr>
                                             <td class="col-md-4">
-                                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/ng-xform/field-components/base-dynamic-field.component.ts:23</a></div>
+                                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/ng-xform/field-components/base-dynamic-field.component.ts:22</a></div>
                                             </td>
                                         </tr>
                                 <tr>
@@ -689,46 +713,96 @@
             
                         </tbody>
                     </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-4">
+                                    <a name="isOptional"></a>
+                                    <span class="name"><b>isOptional</b><a href="#isOptional"><span class="fa fa-link"></span></a></span>
+                                </td>
+                            </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+                                    <span class="accessor"><b>get</b><code>isOptional()</code></span>
+                                </td>
+                            </tr>
+                                        <tr>
+                                            <td class="col-md-4">
+                                                <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/ng-xform/field-components/base-dynamic-field.component.ts:26</a></div>
+                                            </td>
+                                        </tr>
+            
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-4">
+                                    <a name="isEditing"></a>
+                                    <span class="name"><b>isEditing</b><a href="#isEditing"><span class="fa fa-link"></span></a></span>
+                                </td>
+                            </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+                                    <span class="accessor"><b>get</b><code>isEditing()</code></span>
+                                </td>
+                            </tr>
+                                        <tr>
+                                            <td class="col-md-4">
+                                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/ng-xform/field-components/base-dynamic-field.component.ts:30</a></div>
+                                            </td>
+                                        </tr>
+            
+                        </tbody>
+                    </table>
             </section>
     </div>
 
 
     <div class="tab-pane fade tab-source-code" id="c-source">
         <pre class="line-numbers"><code class="language-typescript">import { Input, OnInit } from &#x27;@angular/core&#x27;;
-import { FormGroup, FormControl } from &#x27;@angular/forms&#x27;;
+import { FormGroup, FormControl, Validators } from &#x27;@angular/forms&#x27;;
 import { DynamicField } from &#x27;../fields&#x27;;
 
 /**
  * Base class for Dynamic for Fields
  */
 export class BaseDynamicFieldComponent&lt;T extends DynamicField&gt; implements OnInit {
-    @Input() field: T;
-    @Input() form: FormGroup;
-    @Input() editing &#x3D; true;
+  @Input() field: T;
+  @Input() form: FormGroup;
+  @Input() editing &#x3D; true;
 
-    control: FormControl;
+  control: FormControl;
 
-    ngOnInit() {
-      this.control &#x3D; &lt;FormControl&gt; this.form.controls[this.field.key];
-    }
-
-
-    /**
-     * Property to be used as the Form Element ID
-     */
-    get elementId(): string {
-      return this.field.key;
-    }
-
-
-    displayFieldCss() {
-      return {
-        &#x27;has-error&#x27;: this.control.touched &amp;&amp; this.control.invalid,
-        &#x27;has-feedback&#x27;: this.control.touched &amp;&amp; this.control.invalid
-      };
-    }
-
+  ngOnInit() {
+    this.control &#x3D; &lt;FormControl&gt;this.form.controls[this.field.key];
   }
+
+  /**
+   * Property to be used as the Form Element ID
+   */
+  get elementId(): string {
+    return this.field.key;
+  }
+
+  get isOptional(): boolean {
+    return !this.field.validators || !this.field.validators.find(el &#x3D;&gt; el &#x3D;&#x3D;&#x3D; Validators.required);
+  }
+
+  get isEditing(): boolean {
+    return this.editing &amp;&amp; !this.field.readOnly;
+  }
+
+  displayFieldCss() {
+    return {
+      &#x27;has-error&#x27;: this.control.touched &amp;&amp; this.control.invalid,
+      &#x27;has-feedback&#x27;: this.control.touched &amp;&amp; this.control.invalid
+    };
+  }
+
+}
 </code></pre>
     </div>
 </div>
