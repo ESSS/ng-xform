@@ -1,3 +1,13 @@
+<a name="0.3.0"></a>
+# [0.3.0](https://github.com/ESSS/ng-xform/compare/v0.2.3...v0.3.0) (2018-03-02)
+
+
+### Features
+
+* **datepicker:** add datepicker field ([#6](https://github.com/ESSS/ng-xform/issues/6)) ([eada3e4](https://github.com/ESSS/ng-xform/commit/eada3e4))
+
+
+
 <a name="0.2.3"></a>
 ## [0.2.3](https://github.com/ESSS/ng-xform/compare/v0.2.2...v0.2.3) (2018-02-23)
 
