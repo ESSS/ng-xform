@@ -1,15 +1,15 @@
-import { DateField } from './fields';
 import { Observable } from 'rxjs/Rx';
-import { ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule, DatePipe } from '@angular/common';
 import {
   async,
   ComponentFixture,
   TestBed,
 } from '@angular/core/testing';
+import { Validators } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { NgSelectModule } from '@ng-select/ng-select';
 
+import { DateField } from './fields';
 import { NgXformComponent } from './ng-xform.component';
 import { NgXformModule } from './ng-xform.module';
 import { EditableLabelComponent } from './editable-label/editable-label.component';

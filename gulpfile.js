@@ -383,14 +383,22 @@ gulp.task('rollup-bundle', (cb) => {
       // ATTENTION:
       // Add any other dependency or peer dependency of your library here
       // This is required for UMD bundle users.
-    '@ng-select/ng-select': '@ng-select/ng-select',
-    'ngx-bootstrap': 'ngx-bootstrap',
+    '@ng-select/ng-select': 'NgSelectModule',
+    'ngx-bootstrap/datepicker': 'BsDatepickerModule',
     };
     const rollupBaseConfig = {
       name: _.camelCase(config.libraryName),
       sourcemap: true,
       globals: globals,
       external: Object.keys(globals),
+      onwarn: function (warning) {
+        // Suppress this error message... there are hundreds of them. Angular team says to ignore it.
+        // https://github.com/rollup/rollup/wiki/Troubleshooting#this-is-undefined
+        if (/The 'this' keyword is equivalent to 'undefined' at the top level of an ES module, and has been rewritten/.test(warning.message)) {
+          return;
+        }
+        console.error(warning.message, warning.loc ? `${warning.loc.file}:${warning.loc.line}:${warning.loc.column}`: '');
+      },
       plugins: [
         rollupCommonjs({
           include: ['node_modules/rxjs/**']
@@ -499,7 +507,9 @@ gulp.task('test:demo', () => {
 });
 
 gulp.task('serve:demo', () => {
-  return execDemoCmd('serve --preserve-symlinks --aot --proxy-config proxy.conf.json', { cwd: `${config.demoDir}` });
+  // ng serve with --aot does not reload template changes
+  // https://github.com/angular/angular-cli/issues/6347
+  return execDemoCmd('serve --preserve-symlinks --proxy-config proxy.conf.json', { cwd: `${config.demoDir}` });
 });
 
 gulp.task('serve:demo-hmr', () => {
