@@ -163,7 +163,7 @@ export class HomeComponent implements OnInit {
         key: 'news',
         label: 'News'
       }),
-      new DatepickerField({
+      new DateField({
         key: 'birth',
         label: 'Date of birth',
         theme: 'blue',
@@ -246,7 +246,9 @@ export class AppModule {
 
 ## Development
 
-View common development activities on https://github.com/tinesoft/generator-ngx-library#development
+After cloning of this repository will be necessary run once ```npm run setup```, so will be able to run ```npm run demo``` to start the demo locally
+
+For more information view common development activities on https://github.com/tinesoft/generator-ngx-library#development
 
 ## License
 
