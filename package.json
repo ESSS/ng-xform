@@ -21,9 +21,13 @@
     "url": "https://github.com/ESSS/ng-xform/issues"
   },
   "scripts": {
-    "start": "gulp build",
-    "test": " gulp test",
-    "demo": " gulp build:demo",
+    "setup": "npm i && gulp build && gulp link && cd demo && npm i",
+    "test": "gulp test",
+    "build": "gulp build",
+    "watch": "gulp build:watch",
+    "watch-fast": "gulp build:watch-fast",
+    "demo": "gulp serve:demo",
+    "build-demo": "gulp build:demo",
     "check-travis": " travis-status --repo=ESSS/ng-xform --branch=master --fail-pending || echo 'Not yet passing'"
   },
   "dependencies": {
