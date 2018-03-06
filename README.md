@@ -163,7 +163,7 @@ export class HomeComponent implements OnInit {
         key: 'news',
         label: 'News'
       }),
-      new DatepickerField({
+      new DateField({
         key: 'birth',
         label: 'Date of birth',
         theme: 'blue',
