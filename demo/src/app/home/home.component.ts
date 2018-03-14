@@ -61,23 +61,23 @@ export class HomeComponent implements OnInit {
         readOnly: true,
         searchable: true,
         options: this.colors,
-        labelAttribute: 'name',
+        optionLabelKey: 'name',
       }),
       new SelectField({
         key: 'color',
         label: 'Color',
         searchable: true,
         options: this.colors,
-        labelAttribute: 'name',
+        optionLabelKey: 'name',
       }),
       new SelectField({
         key: 'address',
         label: 'Address',
         searchHandler: this.observableSource.bind(this),
-        searchByValueAttributeHandler: this.observableSourceByPlaceId.bind(this),
+        searchByValueKeyHandler: this.observableSourceByPlaceId.bind(this),
         searchable: true,
-        labelAttribute: 'formatted_address',
-        valueAttribute: 'place_id',
+        optionLabelKey: 'formatted_address',
+        optionValueKey: 'place_id',
         validators: [
           Validators.required
         ]
@@ -94,8 +94,8 @@ export class HomeComponent implements OnInit {
         key: 'type_tags',
         label: 'Type tags',
         options: [{id: 1, description: 'A'}, {id: 2, description: 'B'}, {id: 3, description: 'C'}],
-        labelAttribute: 'description',
-        valueAttribute: 'id',
+        optionLabelKey: 'description',
+        optionValueKey: 'id',
         multiple: true
       }),
       new MeasureField({
