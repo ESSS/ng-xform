@@ -1417,12 +1417,12 @@ export class SelectFieldComponent extends BaseDynamicFieldComponent&lt;SelectFie
     });
     this.select.registerOnTouched(this._onTouched);
     this.viewModel.subscribe((value: any) &#x3D;&gt; {
-      if (this.field.searchByValueAttributeHandler) {
+      if (this.field.searchByValueKeyHandler) {
         if (value &#x3D;&#x3D;&#x3D; undefined || value &#x3D;&#x3D;&#x3D; null) {
           this.updateOptionLabel();
           return;
         }
-        this.field.searchByValueAttributeHandler(value).subscribe((val: any) &#x3D;&gt; {
+        this.field.searchByValueKeyHandler(value).subscribe((val: any) &#x3D;&gt; {
           this.optionValues &#x3D; [val];
           this.select.writeValue(value);
           this.updateOptionLabel();
@@ -1507,8 +1507,8 @@ export class SelectFieldComponent extends BaseDynamicFieldComponent&lt;SelectFie
     [items]&#x3D;&quot;optionValues&quot;
     [multiple]&#x3D;&quot;field.multiple&quot;
     [markFirst]&#x3D;&quot;field.markFirst&quot;
-    bindLabel&#x3D;&quot;{{field.labelAttribute}}&quot;
-    bindValue&#x3D;&quot;{{field.valueAttribute}}&quot;&gt;
+    bindLabel&#x3D;&quot;{{field.optionLabelKey}}&quot;
+    bindValue&#x3D;&quot;{{field.optionValueKey}}&quot;&gt;
     &lt;/ng-select&gt;
     &lt;ng-xform-field-error-message [control]&#x3D;&quot;control&quot;&gt;&lt;/ng-xform-field-error-message&gt;
 &lt;/div&gt;
@@ -1538,7 +1538,7 @@ export class SelectFieldComponent extends BaseDynamicFieldComponent&lt;SelectFie
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div [hidden]="isEditing" id="{{field.key}}-label">    <strong>{{ field.label }}</strong>    <p class="text-muted">{{ optionLabel }} </p></div><div [hidden]="!isEditing" class="form-group" [ngClass]="displayFieldCss()" id="{{field.key}}-div">    <label for="{{elementId}}">{{field.label}}</label> <ng-xform-optional-tag [show]="isOptional"></ng-xform-optional-tag>    <ng-select id=\'{{elementId}}\'    [searchable]="field.searchable"    [typeahead]="typeahead"    [items]="optionValues"    [multiple]="field.multiple"    [markFirst]="field.markFirst"    bindLabel="{{field.labelAttribute}}"    bindValue="{{field.valueAttribute}}">    </ng-select>    <ng-xform-field-error-message [control]="control"></ng-xform-field-error-message></div></div>'
+        var COMPONENT_TEMPLATE = '<div><div [hidden]="isEditing" id="{{field.key}}-label">    <strong>{{ field.label }}</strong>    <p class="text-muted">{{ optionLabel }} </p></div><div [hidden]="!isEditing" class="form-group" [ngClass]="displayFieldCss()" id="{{field.key}}-div">    <label for="{{elementId}}">{{field.label}}</label> <ng-xform-optional-tag [show]="isOptional"></ng-xform-optional-tag>    <ng-select id=\'{{elementId}}\'    [searchable]="field.searchable"    [typeahead]="typeahead"    [items]="optionValues"    [multiple]="field.multiple"    [markFirst]="field.markFirst"    bindLabel="{{field.optionLabelKey}}"    bindValue="{{field.optionValueKey}}">    </ng-select>    <ng-xform-field-error-message [control]="control"></ng-xform-field-error-message></div></div>'
     var COMPONENTS = [{'name': 'CheckboxFieldComponent', 'selector': 'ng-xform-checkbox-field'},{'name': 'DateFieldComponent', 'selector': 'ng-xform-date-field'},{'name': 'EditableLabelComponent', 'selector': 'ng-xform-editable-label'},{'name': 'FieldErrorMessageComponent', 'selector': 'ng-xform-field-error-message'},{'name': 'FormGroupComponent', 'selector': 'ng-xform-form-group'},{'name': 'MeasureFieldComponent', 'selector': 'ng-xform-measure-field'},{'name': 'MultilineFieldComponent', 'selector': 'ng-xform-multiline-field'},{'name': 'NgXformComponent', 'selector': 'ng-xform'},{'name': 'OptionalTagComponent', 'selector': 'ng-xform-optional-tag'},{'name': 'SelectFieldComponent', 'selector': 'ng-xform-select-field'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'SelectFieldComponent'};

@@ -536,16 +536,16 @@ export class OtherModule {
         label: &#39;Color&#39;,
         searchable: true,
         options: this.colors,
-        labelAttribute: &#39;name&#39;,
+        optionLabelKey: &#39;name&#39;,
       }),
       new SelectField({
         key: &#39;address&#39;,
         label: &#39;Address&#39;,
         searchHandler: this.observableSource.bind(this),
-        searchByValueAttributeHandler: this.observableSourceByPlaceId.bind(this),
+        searchByValueKeyHandler: this.observableSourceByPlaceId.bind(this),
         searchable: true,
-        labelAttribute: &#39;formatted_address&#39;,
-        valueAttribute: &#39;place_id&#39;,
+        optionLabelKey: &#39;formatted_address&#39;,
+        optionValueKey: &#39;place_id&#39;,
         validators: [
           Validators.required
         ]
@@ -562,8 +562,8 @@ export class OtherModule {
         key: &#39;type_tags&#39;,
         label: &#39;Type tags&#39;,
         options: [{id: 1, description: &#39;A&#39;}, {id: 2, description: &#39;B&#39;}, {id: 3, description: &#39;C&#39;}],
-        labelAttribute: &#39;description&#39;,
-        valueAttribute: &#39;id&#39;,
+        optionLabelKey: &#39;description&#39;,
+        optionValueKey: &#39;id&#39;,
         multiple: true
       }),
       new MeasureField({
@@ -575,7 +575,7 @@ export class OtherModule {
         key: &#39;news&#39;,
         label: &#39;News&#39;
       }),
-      new DatepickerField({
+      new DateField({
         key: &#39;birth&#39;,
         label: &#39;Date of birth&#39;,
         theme: &#39;blue&#39;,
@@ -645,7 +645,8 @@ export class AppModule {
   }
 }</code></pre><p><a href="https://github.com/ESSS/ng-xform/blob/master/demo/src/app/app.module.ts">Demo source code</a> load locales.</p>
 <h2 id="development">Development</h2>
-<p>View common development activities on <a href="https://github.com/tinesoft/generator-ngx-library#development">https://github.com/tinesoft/generator-ngx-library#development</a></p>
+<p>After cloning of this repository will be necessary run once <code>npm run setup</code>, so will be able to run <code>npm run demo</code> to start the demo locally</p>
+<p>For more information view common development activities on <a href="https://github.com/tinesoft/generator-ngx-library#development">https://github.com/tinesoft/generator-ngx-library#development</a></p>
 <h2 id="license">License</h2>
 <p>Copyright (c) 2018 Eder Soares. Licensed under the MIT License (MIT)</p>
 
