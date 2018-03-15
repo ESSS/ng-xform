@@ -10,8 +10,8 @@
     [items]="optionValues"
     [multiple]="field.multiple"
     [markFirst]="field.markFirst"
-    bindLabel="{{field.labelAttribute}}"
-    bindValue="{{field.valueAttribute}}">
+    bindLabel="{{field.optionLabelKey}}"
+    bindValue="{{field.optionValueKey}}">
     </ng-select>
     <ng-xform-field-error-message [control]="control"></ng-xform-field-error-message>
 </div>

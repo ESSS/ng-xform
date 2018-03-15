@@ -84,8 +84,8 @@ describe('DynamicFormComponent', () => {
       new SelectField({
         key: 'choice_id',
         label: 'Choice',
-        valueAttribute: 'id',
-        labelAttribute: 'description',
+        optionValueKey: 'id',
+        optionLabelKey: 'description',
         options: options
       }),
       new MultilineField({ key: 'comments', label: 'Comments' }),
@@ -93,8 +93,8 @@ describe('DynamicFormComponent', () => {
         key: 'color',
         label: 'Color',
         searchHandler: (keyword: string) => Observable.of(colors.filter(el => el.name === keyword)),
-        valueAttribute: 'id',
-        labelAttribute: 'name',
+        optionValueKey: 'id',
+        optionLabelKey: 'name',
       }),
       new NestedFormGroup({
         key: 'address', label: 'Address',

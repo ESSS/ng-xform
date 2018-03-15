@@ -52,12 +52,12 @@ export class SelectFieldComponent extends BaseDynamicFieldComponent<SelectField>
     });
     this.select.registerOnTouched(this._onTouched);
     this.viewModel.subscribe((value: any) => {
-      if (this.field.searchByValueAttributeHandler) {
+      if (this.field.searchByValueKeyHandler) {
         if (value === undefined || value === null) {
           this.updateOptionLabel();
           return;
         }
-        this.field.searchByValueAttributeHandler(value).subscribe((val: any) => {
+        this.field.searchByValueKeyHandler(value).subscribe((val: any) => {
           this.optionValues = [val];
           this.select.writeValue(value);
           this.updateOptionLabel();

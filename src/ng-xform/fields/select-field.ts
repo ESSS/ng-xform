@@ -8,10 +8,10 @@ export class SelectField extends DynamicField {
   public options?: any[] | Observable<any[]>;
   public multiple?: boolean;
   public noFilterUntil?: number;
-  public valueAttribute?: string;
+  public optionValueKey?: string;
+  public optionLabelKey?: string;
   public searchHandler?: (value: string) => Observable<any[]>;
-  public searchByValueAttributeHandler?: (value: string) => Observable<any>;
-  public labelAttribute?: string;
+  public searchByValueKeyHandler?: (value: string) => Observable<any>;
   public searchable?: boolean;
   public markFirst?: boolean;
   public separator?: string;
@@ -21,11 +21,11 @@ export class SelectField extends DynamicField {
     this.options = options.options;
     this.multiple = options.multiple || false;
     this.noFilterUntil = options.noFilterUntil || 2;
-    this.valueAttribute = options.valueAttribute;
-    this.labelAttribute = options.labelAttribute;
+    this.optionValueKey = options.optionValueKey;
+    this.optionLabelKey = options.optionLabelKey;
     this.searchable = options.searchable === true;
     this.searchHandler = options.searchHandler;
-    this.searchByValueAttributeHandler = options.searchByValueAttributeHandler;
+    this.searchByValueKeyHandler = options.searchByValueKeyHandler;
     this.markFirst = options.markFirst === true;
     this.separator = options.separator || ', ';
   }
