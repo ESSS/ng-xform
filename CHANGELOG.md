@@ -1,3 +1,8 @@
+<a name="0.4.0"></a>
+# [0.4.0](https://github.com/ESSS/ng-xform/compare/v0.3.0...v0.4.0) (2018-03-15)
+
+
+
 <a name="0.3.0"></a>
 # [0.3.0](https://github.com/ESSS/ng-xform/compare/v0.2.3...v0.3.0) (2018-03-02)
 
