@@ -26,13 +26,15 @@ export class BaseDynamicFieldComponent<T extends DynamicField> implements OnInit
           this.control.setValue(null, { emitEvent: false });
         }
       });
-      this.visible = false;
+      this.visible = this.field.visibilityFn(this.form.value);
     }
 
   }
 
   ngOnDestroy() {
-    this.valueChangeSubscription.unsubscribe();
+    if (this.valueChangeSubscription) {
+      this.valueChangeSubscription.unsubscribe();
+    }
   }
 
   /**

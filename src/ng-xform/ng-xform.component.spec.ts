@@ -65,8 +65,6 @@ describe('DynamicFormComponent', () => {
       date: dateTest
     };
 
-    component.model = model;
-
     options = [
       { id: 1, description: 'Choice1' },
       { id: 2, description: 'Choice2' }
@@ -115,6 +113,7 @@ describe('DynamicFormComponent', () => {
     ];
 
     component.ngOnInit();
+    component.setValue(model);
     fixture.detectChanges();
   });
 
@@ -212,12 +211,12 @@ describe('DynamicFormComponent', () => {
     let el = fixture.debugElement.query(elQuery);
     expect(el).toBeFalsy();
 
-    component.form.controls.color.patchValue(1);
+    component.setValue({color: 1});
     fixture.detectChanges();
     el = fixture.debugElement.query(elQuery);
     expect(el).toBeTruthy();
 
-    component.form.controls.color.patchValue(null);
+    component.setValue({color: null});
     fixture.detectChanges();
     el = fixture.debugElement.query(elQuery);
     expect(el).toBeFalsy();
