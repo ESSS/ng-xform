@@ -6,6 +6,7 @@ export abstract class DynamicField {
   public controlType?: string;
   public validators?: Array<ValidatorFn | null | undefined>;
   public readOnly?: boolean;
+  public visibilityFn?: (val: any) => boolean ;
 
   constructor(
     options: DynamicField = {}
@@ -15,5 +16,6 @@ export abstract class DynamicField {
     this.controlType = options.controlType || 'text';
     this.validators = options.validators;
     this.readOnly = options.readOnly;
+    this.visibilityFn = options.visibilityFn;
   }
 }

@@ -1,5 +1,5 @@
 import { Input, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
 import { DynamicField } from '../fields';
 
 /**
@@ -11,9 +11,19 @@ export class BaseDynamicFieldComponent<T extends DynamicField> implements OnInit
   @Input() editing = true;
 
   control: FormControl;
+  visible = true;
 
   ngOnInit() {
     this.control = <FormControl>this.form.controls[this.field.key];
+    if (this.field.visibilityFn) {
+      this.form.valueChanges.subscribe(val => {
+        this.visible = this.field.visibilityFn(val);
+        if (!this.visible) {
+          this.control.setValue(null, { emitEvent: false });
+        }
+      });
+      this.visible = false;
+    }
   }
 
   /**
