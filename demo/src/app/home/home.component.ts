@@ -22,6 +22,7 @@ export class HomeComponent implements OnInit {
   public editing = true;
   public model: any = {};
   private colors: any[] = [
+    { id: 0, name: 'other' },
     { id: 1, name: 'blue' },
     { id: 2, name: 'yellow' },
     { id: 3, name: 'white' },
@@ -69,6 +70,11 @@ export class HomeComponent implements OnInit {
         searchable: true,
         options: this.colors,
         optionLabelKey: 'name',
+      }),
+      new TextField({
+        key: 'other',
+        label: 'Other color',
+        visibilityFn: (value: any) => value.color.id === 0
       }),
       new SelectField({
         key: 'address',

@@ -65,8 +65,6 @@ describe('DynamicFormComponent', () => {
       date: dateTest
     };
 
-    component.model = model;
-
     options = [
       { id: 1, description: 'Choice1' },
       { id: 2, description: 'Choice2' }
@@ -79,7 +77,7 @@ describe('DynamicFormComponent', () => {
 
     component.fields = [
       new TextField({ key: 'text1', label: 'Text 1' }),
-      new TextField({ key: 'required', label: 'Required 1', validators: [ Validators.required ] }),
+      new TextField({ key: 'required', label: 'Required 1', validators: [Validators.required] }),
       new MeasureField({ key: 'measure1', label: 'Measure 1', unit: 'C' }),
       new SelectField({
         key: 'choice_id',
@@ -93,9 +91,11 @@ describe('DynamicFormComponent', () => {
         key: 'color',
         label: 'Color',
         searchHandler: (keyword: string) => Observable.of(colors.filter(el => el.name === keyword)),
+        options: colors,
         optionValueKey: 'id',
         optionLabelKey: 'name',
       }),
+      new TextField({ key: 'other_color', label: 'Other Color', visibilityFn: (formVal: any) => formVal.color === 1 }),
       new NestedFormGroup({
         key: 'address', label: 'Address',
         fields: [
@@ -113,6 +113,7 @@ describe('DynamicFormComponent', () => {
     ];
 
     component.ngOnInit();
+    component.setValue(model);
     fixture.detectChanges();
   });
 
@@ -203,6 +204,22 @@ describe('DynamicFormComponent', () => {
     expect(selectComponet).toBeTruthy();
     const optionsEl = el.queryAll(By.css('div.ng-option'));
     expect(optionsEl.length).toBe(options.length);
+  });
+
+  it('should hidden/show other_color on change color', () => {
+    const elQuery = By.css(`#other_color-div`);
+    let el = fixture.debugElement.query(elQuery);
+    expect(el).toBeFalsy();
+
+    component.setValue({color: 1});
+    fixture.detectChanges();
+    el = fixture.debugElement.query(elQuery);
+    expect(el).toBeTruthy();
+
+    component.setValue({color: null});
+    fixture.detectChanges();
+    el = fixture.debugElement.query(elQuery);
+    expect(el).toBeFalsy();
   });
 
   it('should patch value', () => {

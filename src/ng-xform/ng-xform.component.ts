@@ -22,7 +22,6 @@ import { NestedFormGroup } from './fields/nested-form-group';
 })
 export class NgXformComponent implements OnInit, OnChanges {
   @Input() fields: DynamicField[];
-  @Input() model: any;
   @Input() errorCode: string;
   @Input() editing: boolean;
   @Output() editingChange = new EventEmitter();
@@ -33,6 +32,7 @@ export class NgXformComponent implements OnInit, OnChanges {
   /** To listening submitSuccessful event */
   @Output() onCancel = new EventEmitter();
 
+  model: any;
   form: FormGroup;
 
   ngOnInit() {
@@ -96,7 +96,7 @@ export class NgXformComponent implements OnInit, OnChanges {
 
   reset() {
     if (this.model) {
-      this.form.patchValue(this.model, { onlySelf: true, emitEvent: false });
+      this.form.patchValue(this.model, { onlySelf: true });
     }
 
     this.errorCode = undefined;
@@ -111,5 +111,10 @@ export class NgXformComponent implements OnInit, OnChanges {
       return;
     }
     this.editingChange.emit(state);
+  }
+
+  setValue(value: any) {
+    this.model = value;
+    this.form.patchValue(value);
   }
 }
