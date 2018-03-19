@@ -22,6 +22,7 @@ import { ErrorMessagePipe } from './field-error-message/error-message.pipe';
 import { PipesModule } from '../pipes/pipes.module';
 import { MultilineField } from './fields/multiline-field';
 import { NestedFormGroup } from './fields/nested-form-group';
+import { CheckboxField } from './fields/checkbox-field';
 import {
   TextField,
   MeasureField,
@@ -54,6 +55,7 @@ describe('DynamicFormComponent', () => {
     datePipe = new DatePipe('en');
     model = {
       text1: 'value1',
+      required: 'value2',
       measure1: 22,
       choice_id: 1,
       comments: 'comments here...',
@@ -62,7 +64,7 @@ describe('DynamicFormComponent', () => {
         city: 'Ny'
       },
       nested2: null,
-      date: dateTest
+      date: dateTest,
     };
 
     options = [
@@ -110,6 +112,7 @@ describe('DynamicFormComponent', () => {
         ]
       }),
       new DateField({ key: 'date', label: 'Date' }),
+      new CheckboxField({key: 'isChecked', label: 'Is Checked'}),
     ];
 
     component.ngOnInit();
@@ -241,18 +244,22 @@ describe('DynamicFormComponent', () => {
     expect(component.form.value['nested2']['field1']).toBe('some value');
   });
 
-  it('should emit form value on submit', () => {
+  it('should emit form value on submit', (done: any) => {
     component.onSubmit.subscribe((value: any) => {
       expect(value.text1).toBe(model.text1);
       expect(value.measure1).toBe(model.measure1);
       expect(value.comments).toBe(model.comments);
       expect(value.choice_id).toBe(model.choice_id);
       expect(value.date).toBe(dateTest);
+      expect(value.isChecked).not.toBeNull();
+      expect(value.isChecked).toBeFalsy();
       expect(value.color).toBeNull();
+      done();
     });
     const buttonEl = fixture.debugElement.query(By.css(`#formSubmitBtn`));
     fixture.detectChanges();
     expect(buttonEl).toBeTruthy();
+    expect(component.form.valid).toBeTruthy();
     buttonEl.nativeElement.click();
   });
 

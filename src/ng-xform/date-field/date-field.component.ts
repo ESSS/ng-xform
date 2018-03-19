@@ -1,6 +1,6 @@
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { Component, AfterContentInit, ViewChild, ElementRef, Renderer, AfterViewInit } from '@angular/core';
+import { Component, AfterContentInit, ElementRef, AfterViewInit } from '@angular/core';
 import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 
 import { BaseDynamicFieldComponent } from '../field-components/base-dynamic-field.component';
