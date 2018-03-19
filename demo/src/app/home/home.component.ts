@@ -1,6 +1,8 @@
 import { async } from '@angular/core/testing';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Validators, FormGroup, FormControl } from '@angular/forms';
+import { Title } from '@angular/platform-browser';
+import { HttpClient } from '@angular/common/http';
 import {
   TextField, SelectField, MeasureField, NgXformComponent, CheckboxField,
   MultilineField, DateField, DynamicField
@@ -9,8 +11,6 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/delay';
 import 'rxjs/add/operator/map';
-import { Title } from '@angular/platform-browser';
-import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-home',
@@ -19,6 +19,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class HomeComponent implements OnInit {
 
+  @ViewChild('xform') xform: NgXformComponent;
   public editing = true;
   public model: any = {};
   private colors: any[] = [
@@ -139,7 +140,7 @@ export class HomeComponent implements OnInit {
   }
 
   populate() {
-    this.model = {
+    this.xform.form.patchValue({
       name: 'Customer',
       email: 'customer@mail.com',
       type_tags: [2],
@@ -155,7 +156,7 @@ export class HomeComponent implements OnInit {
       Leite de capivaris, leite de mula manquis sem cabeça. Praesent vel viverra nisi. Mauris aliquet nunc non turpis scelerisque, eget.
       Casamentiss faiz malandris se pirulitá. Sapien in monti palavris qui num significa nadis i pareci latim.`,
       birth: new Date()
-    };
+    });
   }
 
   public observableSource(keyword: any): Observable<any[]> {
