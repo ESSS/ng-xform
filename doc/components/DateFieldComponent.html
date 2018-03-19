@@ -1266,12 +1266,12 @@ export class DateFieldComponent extends BaseDynamicFieldComponent&lt;DateField&g
     </div>
 
     <div class="tab-pane fade" id="c-templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;div *ngIf&#x3D;&quot;!editing&quot; id&#x3D;&quot;{{field.key}}-label&quot;&gt;
+        <pre class="line-numbers"><code class="language-html">&lt;div *ngIf&#x3D;&quot;!editing &amp;&amp; visible&quot; id&#x3D;&quot;{{field.key}}-label&quot;&gt;
   &lt;strong&gt;{{ field.label }}&lt;/strong&gt;
   &lt;p class&#x3D;&quot;text-muted&quot;&gt;{{ form?.controls[field.key]?.value | date:&#x27;mediumDate&#x27;:field.locale }}&lt;/p&gt;
 &lt;/div&gt;
 
-&lt;div *ngIf&#x3D;&quot;editing&quot; id&#x3D;&quot;{{elementId}}-div&quot; class&#x3D;&quot;form-group&quot; [formGroup]&#x3D;&quot;form&quot; [ngClass]&#x3D;&quot;displayFieldCss()&quot;&gt;
+&lt;div *ngIf&#x3D;&quot;editing &amp;&amp; visible&quot; id&#x3D;&quot;{{elementId}}-div&quot; class&#x3D;&quot;form-group&quot; [formGroup]&#x3D;&quot;form&quot; [ngClass]&#x3D;&quot;displayFieldCss()&quot;&gt;
   &lt;label for&#x3D;&quot;{{elementId}}&quot;&gt;{{field.label}}&lt;/label&gt; &lt;ng-xform-optional-tag [show]&#x3D;&quot;isOptional&quot;&gt;&lt;/ng-xform-optional-tag&gt;
   &lt;input bsDatepicker type&#x3D;&quot;text&quot; class&#x3D;&quot;form-control&quot; [formControl]&#x3D;&quot;componentControl&quot; id&#x3D;&quot;{{elementId}}&quot;
    [bsConfig]&#x3D;&quot;config&quot;
@@ -1307,7 +1307,7 @@ export class DateFieldComponent extends BaseDynamicFieldComponent&lt;DateField&g
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div *ngIf="!editing" id="{{field.key}}-label">  <strong>{{ field.label }}</strong>  <p class="text-muted">{{ form?.controls[field.key]?.value | date:\'mediumDate\':field.locale }}</p></div><div *ngIf="editing" id="{{elementId}}-div" class="form-group" [formGroup]="form" [ngClass]="displayFieldCss()">  <label for="{{elementId}}">{{field.label}}</label> <ng-xform-optional-tag [show]="isOptional"></ng-xform-optional-tag>  <input bsDatepicker type="text" class="form-control" [formControl]="componentControl" id="{{elementId}}"   [bsConfig]="config"   [bsValue]="field.initialValue"   [placement]="field.placement"   [maxDate]="field.maxDate"   [minDate]="field.minDate" />  <ng-xform-field-error-message [control]="control"></ng-xform-field-error-message></div></div>'
+        var COMPONENT_TEMPLATE = '<div><div *ngIf="!editing && visible" id="{{field.key}}-label">  <strong>{{ field.label }}</strong>  <p class="text-muted">{{ form?.controls[field.key]?.value | date:\'mediumDate\':field.locale }}</p></div><div *ngIf="editing && visible" id="{{elementId}}-div" class="form-group" [formGroup]="form" [ngClass]="displayFieldCss()">  <label for="{{elementId}}">{{field.label}}</label> <ng-xform-optional-tag [show]="isOptional"></ng-xform-optional-tag>  <input bsDatepicker type="text" class="form-control" [formControl]="componentControl" id="{{elementId}}"   [bsConfig]="config"   [bsValue]="field.initialValue"   [placement]="field.placement"   [maxDate]="field.maxDate"   [minDate]="field.minDate" />  <ng-xform-field-error-message [control]="control"></ng-xform-field-error-message></div></div>'
     var COMPONENTS = [{'name': 'CheckboxFieldComponent', 'selector': 'ng-xform-checkbox-field'},{'name': 'DateFieldComponent', 'selector': 'ng-xform-date-field'},{'name': 'EditableLabelComponent', 'selector': 'ng-xform-editable-label'},{'name': 'FieldErrorMessageComponent', 'selector': 'ng-xform-field-error-message'},{'name': 'FormGroupComponent', 'selector': 'ng-xform-form-group'},{'name': 'MeasureFieldComponent', 'selector': 'ng-xform-measure-field'},{'name': 'MultilineFieldComponent', 'selector': 'ng-xform-multiline-field'},{'name': 'NgXformComponent', 'selector': 'ng-xform'},{'name': 'OptionalTagComponent', 'selector': 'ng-xform-optional-tag'},{'name': 'SelectFieldComponent', 'selector': 'ng-xform-select-field'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'DateFieldComponent'};

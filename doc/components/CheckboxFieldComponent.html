@@ -564,12 +564,12 @@ export class CheckboxFieldComponent extends BaseDynamicFieldComponent&lt;Checkbo
     </div>
 
     <div class="tab-pane fade" id="c-templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;div *ngIf&#x3D;&quot;!isEditing&quot; id&#x3D;&quot;{{elementId}}-label&quot;&gt;
+        <pre class="line-numbers"><code class="language-html">&lt;div *ngIf&#x3D;&quot;!isEditing &amp;&amp; visible&quot; id&#x3D;&quot;{{elementId}}-label&quot;&gt;
   &lt;strong&gt;{{ field.label }}&lt;/strong&gt;
   &lt;p class&#x3D;&quot;text-muted&quot;&gt;{{ form?.controls[elementId]?.value ? &#x27;True&#x27; : &#x27;False&#x27; }}&lt;/p&gt;
 &lt;/div&gt;
 
-&lt;div *ngIf&#x3D;&quot;isEditing&quot; id&#x3D;&quot;{{elementId}}-div&quot; class&#x3D;&quot;form-group&quot; [formGroup]&#x3D;&quot;form&quot; [ngClass]&#x3D;&quot;displayFieldCss()&quot;&gt;
+&lt;div *ngIf&#x3D;&quot;isEditing &amp;&amp; visible&quot; id&#x3D;&quot;{{elementId}}-div&quot; class&#x3D;&quot;form-group&quot; [formGroup]&#x3D;&quot;form&quot; [ngClass]&#x3D;&quot;displayFieldCss()&quot;&gt;
   &lt;div class&#x3D;&quot;checkbox&quot;&gt;
     &lt;label&gt;
       &lt;input type&#x3D;&quot;checkbox&quot; [formControlName]&#x3D;&quot;elementId&quot; id&#x3D;&quot;{{elementId}}&quot; /&gt; {{field.label}}
@@ -603,7 +603,7 @@ export class CheckboxFieldComponent extends BaseDynamicFieldComponent&lt;Checkbo
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div *ngIf="!isEditing" id="{{elementId}}-label">  <strong>{{ field.label }}</strong>  <p class="text-muted">{{ form?.controls[elementId]?.value ? \'True\' : \'False\' }}</p></div><div *ngIf="isEditing" id="{{elementId}}-div" class="form-group" [formGroup]="form" [ngClass]="displayFieldCss()">  <div class="checkbox">    <label>      <input type="checkbox" [formControlName]="elementId" id="{{elementId}}" /> {{field.label}}    </label>  </div>  <ng-xform-field-error-message [control]="control"></ng-xform-field-error-message></div></div>'
+        var COMPONENT_TEMPLATE = '<div><div *ngIf="!isEditing && visible" id="{{elementId}}-label">  <strong>{{ field.label }}</strong>  <p class="text-muted">{{ form?.controls[elementId]?.value ? \'True\' : \'False\' }}</p></div><div *ngIf="isEditing && visible" id="{{elementId}}-div" class="form-group" [formGroup]="form" [ngClass]="displayFieldCss()">  <div class="checkbox">    <label>      <input type="checkbox" [formControlName]="elementId" id="{{elementId}}" /> {{field.label}}    </label>  </div>  <ng-xform-field-error-message [control]="control"></ng-xform-field-error-message></div></div>'
     var COMPONENTS = [{'name': 'CheckboxFieldComponent', 'selector': 'ng-xform-checkbox-field'},{'name': 'DateFieldComponent', 'selector': 'ng-xform-date-field'},{'name': 'EditableLabelComponent', 'selector': 'ng-xform-editable-label'},{'name': 'FieldErrorMessageComponent', 'selector': 'ng-xform-field-error-message'},{'name': 'FormGroupComponent', 'selector': 'ng-xform-form-group'},{'name': 'MeasureFieldComponent', 'selector': 'ng-xform-measure-field'},{'name': 'MultilineFieldComponent', 'selector': 'ng-xform-multiline-field'},{'name': 'NgXformComponent', 'selector': 'ng-xform'},{'name': 'OptionalTagComponent', 'selector': 'ng-xform-optional-tag'},{'name': 'SelectFieldComponent', 'selector': 'ng-xform-select-field'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'CheckboxFieldComponent'};

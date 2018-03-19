@@ -47,7 +47,7 @@ MIT
 MIT
 MIT
 
-@esss/ng-xform@0.4.0
+@esss/ng-xform@0.5.0
 MIT
 The MIT License (MIT)
 
