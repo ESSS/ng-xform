@@ -1,3 +1,14 @@
+<a name="0.5.1"></a>
+## [0.5.1](https://github.com/ESSS/ng-xform/compare/v0.5.0...v0.5.1) (2018-03-20)
+
+
+### Bug Fixes
+
+* **demo:** fix demo application ([d2b2194](https://github.com/ESSS/ng-xform/commit/d2b2194))
+* **ng-xform:** fix checkbox component to send false instead of null ([#10](https://github.com/ESSS/ng-xform/issues/10)) ([adabf82](https://github.com/ESSS/ng-xform/commit/adabf82))
+
+
+
 <a name="0.5.0"></a>
 # [0.5.0](https://github.com/ESSS/ng-xform/compare/v0.4.0...v0.5.0) (2018-03-19)
 
