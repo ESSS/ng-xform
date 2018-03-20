@@ -1,6 +1,5 @@
 import { Observable } from 'rxjs/Observable';
 
-import { SelectOption } from './select-option';
 import { DynamicField } from './dynamic-field';
 
 export class SelectField extends DynamicField {

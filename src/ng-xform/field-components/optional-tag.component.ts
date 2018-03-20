@@ -1,7 +1,4 @@
-import { Component, Input, ViewEncapsulation } from '@angular/core';
-
-import { BaseDynamicFieldComponent } from '../field-components/base-dynamic-field.component';
-import { TextField } from '../fields';
+import { Component, Input } from '@angular/core';
 
 
 /**
