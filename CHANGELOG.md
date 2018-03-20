@@ -1,3 +1,13 @@
+<a name="0.4.1"></a>
+## [0.4.1](https://github.com/ESSS/ng-xform/compare/v0.4.0...v0.4.1) (2018-03-20)
+
+
+### Features
+
+* **ng-xform:** add visibilityFn ([#9](https://github.com/ESSS/ng-xform/issues/9)) ([997e4f7](https://github.com/ESSS/ng-xform/commit/997e4f7))
+
+
+
 <a name="0.4.0"></a>
 # [0.4.0](https://github.com/ESSS/ng-xform/compare/v0.3.0...v0.4.0) (2018-03-15)
 
