@@ -1,5 +1,5 @@
 import { NgXformGroup } from './ng-xform-group';
-import { Validators, FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 import { Component, OnInit, Input, EventEmitter, Output, OnChanges, SimpleChanges } from '@angular/core';
 
 import { DynamicField } from './fields/dynamic-field';
@@ -81,7 +81,7 @@ export class NgXformComponent implements OnInit, OnChanges {
     let modelToSend = { ...this.model };
     for (const attr in this.form.value) {
       if (this.form.value.hasOwnProperty(attr)) {
-        modelToSend[attr] = this.form.value[attr] || null;
+        modelToSend[attr] = this.form.value[attr];
       }
     }
     this.onSubmit.emit(modelToSend);

@@ -1,5 +1,5 @@
 import { Input, OnInit, OnDestroy } from '@angular/core';
-import { FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { DynamicField } from '../fields';
 import { Subscription } from 'rxjs/Rx';
 

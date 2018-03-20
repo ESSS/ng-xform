@@ -1,5 +1,5 @@
-<a name="0.4.1"></a>
-## [0.4.1](https://github.com/ESSS/ng-xform/compare/v0.4.0...v0.4.1) (2018-03-20)
+<a name="0.5.0"></a>
+# [0.5.0](https://github.com/ESSS/ng-xform/compare/v0.4.0...v0.5.0) (2018-03-19)
 
 
 ### Features

@@ -1,5 +1,4 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { FormGroup } from '@angular/forms/src/model';
 
 @Pipe({
   name: 'valueSuffix'
