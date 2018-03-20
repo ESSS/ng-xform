@@ -1350,7 +1350,7 @@ This component can display an error code if that is defined.</p>
 
     <div class="tab-pane fade tab-source-code" id="c-source">
         <pre class="line-numbers"><code class="language-typescript">import { NgXformGroup } from &#x27;./ng-xform-group&#x27;;
-import { Validators, FormControl, FormGroup } from &#x27;@angular/forms&#x27;;
+import { FormControl, FormGroup } from &#x27;@angular/forms&#x27;;
 import { Component, OnInit, Input, EventEmitter, Output, OnChanges, SimpleChanges } from &#x27;@angular/core&#x27;;
 
 import { DynamicField } from &#x27;./fields/dynamic-field&#x27;;
@@ -1432,7 +1432,7 @@ export class NgXformComponent implements OnInit, OnChanges {
     let modelToSend &#x3D; { ...this.model };
     for (const attr in this.form.value) {
       if (this.form.value.hasOwnProperty(attr)) {
-        modelToSend[attr] &#x3D; this.form.value[attr] || null;
+        modelToSend[attr] &#x3D; this.form.value[attr];
       }
     }
     this.onSubmit.emit(modelToSend);

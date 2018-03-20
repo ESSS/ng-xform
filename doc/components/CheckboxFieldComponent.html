@@ -494,6 +494,12 @@
             <code><a href="../classes/DynamicField.html" target="_self" >BaseDynamicFieldComponent</a></code>
     </p>
 
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                <code><a href="https://angular.io/api/core/AfterContentInit" target="_blank" >AfterContentInit</a></code>
+    </p>
 
 
 <section>
@@ -530,19 +536,83 @@
     </table>
 </section>
 
+    <section>
+        <h3 id="index">Index</h3>
+        <table class="table table-sm table-bordered index-table">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#ngAfterContentInit">ngAfterContentInit</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
 
 
 
 
 
 
+    <section>
+        
+            <h3 id="methods">
+                Methods
+            </h3>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <a name="ngAfterContentInit"></a>
+                            <span class="name">
+                                <b>
+                                ngAfterContentInit
+                                </b>
+                                <a href="#ngAfterContentInit"><span class="fa fa-link"></span></a>
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+    <code>ngAfterContentInit()</code>
+                        </td>
+                    </tr>
+    
+    
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/ng-xform/checkbox-field/checkbox-field.component.ts:20</a></div>
+                                </td>
+                            </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+    
+                                <div class="io-description">
+                                    <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+    
+                                </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+    </section>
 
 
 </div>
 
 
     <div class="tab-pane fade tab-source-code" id="c-source">
-        <pre class="line-numbers"><code class="language-typescript">import { Component } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers"><code class="language-typescript">import { Component, AfterContentInit } from &#x27;@angular/core&#x27;;
 
 import { BaseDynamicFieldComponent } from &#x27;../field-components/base-dynamic-field.component&#x27;;
 import { CheckboxField } from &#x27;../fields&#x27;;
@@ -559,7 +629,15 @@ import { CheckboxField } from &#x27;../fields&#x27;;
   selector: &#x27;ng-xform-checkbox-field&#x27;,
   templateUrl: &#x27;./checkbox-field.component.html&#x27;,
 })
-export class CheckboxFieldComponent extends BaseDynamicFieldComponent&lt;CheckboxField&gt; {}
+export class CheckboxFieldComponent extends BaseDynamicFieldComponent&lt;CheckboxField&gt; implements AfterContentInit {
+
+  ngAfterContentInit() {
+    if (this.control.value &#x3D;&#x3D;&#x3D; null) {
+      this.control.setValue(false);
+    }
+  }
+
+}
 </code></pre>
     </div>
 
