@@ -71,6 +71,21 @@ export class NgXformComponent implements OnInit, OnChanges {
     return new NgXformGroup(group);
   }
 
+  unpatchValue(form: FormGroup, model: any) {
+    let modelToSend = { ...model };
+    for (const attr in form.controls) {
+      if (form.controls.hasOwnProperty(attr)) {
+        if (form.controls[attr] instanceof FormGroup) {
+          let modelAttr = model ? model[attr] : null;
+          modelToSend[attr] = this.unpatchValue(<FormGroup>form.controls[attr], modelAttr);
+        } else {
+          modelToSend[attr] = form.controls[attr].value;
+        }
+      }
+    }
+    return modelToSend;
+  }
+
   submit() {
     if (this.form.invalid) {
       return;
@@ -78,12 +93,7 @@ export class NgXformComponent implements OnInit, OnChanges {
     this.errorCode = undefined;
 
     // copy object
-    let modelToSend = { ...this.model };
-    for (const attr in this.form.value) {
-      if (this.form.value.hasOwnProperty(attr)) {
-        modelToSend[attr] = this.form.value[attr];
-      }
-    }
+    let modelToSend = this.unpatchValue(this.form, this.model);
     this.onSubmit.emit(modelToSend);
   }
 
