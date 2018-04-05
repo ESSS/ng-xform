@@ -60,7 +60,8 @@ describe('DynamicFormComponent', () => {
       comments: 'comments here...',
       address: {
         street: 'St wall',
-        city: 'Ny'
+        city: 'Ny',
+        extra_field: 'Extra',
       },
       nested2: null,
       date: dateTest,
@@ -131,7 +132,8 @@ describe('DynamicFormComponent', () => {
     expect(component.form.value.nested2).toBeTruthy();
   });
 
-  it('should change nested attr value', () => {
+  it('should change nested attr value and patch on null model', (done: any) => {
+    component.setValue(null);
     fixture.detectChanges();
     expectFormInput('field1', 'Field1', '')
 
@@ -143,6 +145,16 @@ describe('DynamicFormComponent', () => {
     input.nativeElement.dispatchEvent(new Event('input'));
     expect(component.form.value['nested2']).toBeTruthy();
     expect(component.form.value['nested2']['field1']).toBe('some value');
+
+    component.onSubmit.subscribe((value: any) => {
+      expect(value.nested2.field1).toBe('some value');
+      done();
+    });
+    const buttonEl = fixture.debugElement.query(By.css(`#formSubmitBtn`));
+    fixture.detectChanges();
+    expect(buttonEl).toBeTruthy();
+    expect(component.form.valid).toBeTruthy();
+    buttonEl.nativeElement.click();
   });
 
   it('should create', () => {
@@ -230,7 +242,7 @@ describe('DynamicFormComponent', () => {
     expect(component.form.value.nested2).toBeTruthy();
   });
 
-  it('should change nested attr value', () => {
+  it('should change nested attr value', (done: any) => {
     fixture.detectChanges();
 
     const el = fixture.debugElement.query(By.css(`#field1-div`));
@@ -240,6 +252,18 @@ describe('DynamicFormComponent', () => {
     input.nativeElement.dispatchEvent(new Event('input'));
     expect(component.form.value['nested2']).toBeTruthy();
     expect(component.form.value['nested2']['field1']).toBe('some value');
+
+    component.onSubmit.subscribe((value: any) => {
+      expect(value.nested2.field1).toBe('some value');
+      expect(value.address.extra_field).toBe(model.address.extra_field);
+      done();
+    });
+    const buttonEl = fixture.debugElement.query(By.css(`#formSubmitBtn`));
+    fixture.detectChanges();
+    expect(buttonEl).toBeTruthy();
+    expect(component.form.valid).toBeTruthy();
+    buttonEl.nativeElement.click();
+
   });
 
   it('should emit form value on submit', (done: any) => {
