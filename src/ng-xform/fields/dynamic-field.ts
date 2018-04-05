@@ -8,9 +8,7 @@ export abstract class DynamicField {
   public readOnly?: boolean;
   public visibilityFn?: (val: any) => boolean ;
 
-  constructor(
-    options: DynamicField = {}
-  ) {
+  constructor(options: DynamicField) {
     this.key = options.key || '';
     this.label = options.label || '';
     this.controlType = options.controlType || 'text';

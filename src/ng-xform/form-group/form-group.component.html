@@ -13,7 +13,7 @@
         </div>
       </ng-template>
 
-      <ng-xform-measure-field *ngSwitchCase="'MEASURE'" [field]="field" [form]="form" [editing]="editing !== false">
+      <ng-xform-measure-field *ngSwitchCase="'MEASURE'" [field]="field" [form]="form" [formControlName]="field.key" [editing]="editing !== false">
       </ng-xform-measure-field>
 
       <ng-xform-editable-label *ngSwitchCase="'TEXT'" [field]="field" [form]="form" [editing]="editing !== false">
