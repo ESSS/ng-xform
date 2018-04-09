@@ -33,7 +33,8 @@ module.exports = function (config) {
       }
     },
     files: [
-      { pattern: './config/karma-test-shim.js', watched: false }
+      'node_modules/js-quantities/build/quantities.js',
+      { pattern: './config/karma-test-shim.js', watched: false },
     ],
 
     preprocessors: {

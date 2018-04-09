@@ -1,13 +1,24 @@
 <div *ngIf="!isEditing && visible" id="{{elementId}}-label">
   <strong>{{ field.label }}</strong>
-  <p class="text-muted" >{{ form?.controls[elementId]?.value | valueSuffix: field.unit }}</p>
+  <p class="text-muted">{{ quantity?.format(viewUnit) }}</p>
 </div>
 
-<div *ngIf="isEditing && visible" id="{{elementId}}-div" class="form-group" [formGroup]="form" [ngClass]="displayFieldCss()" >
-  <label for="{{elementId}}">{{field.label}}</label>  <ng-xform-optional-tag [show]="isOptional"></ng-xform-optional-tag>
-  <div [class.input-group]="field.unit" [class.form-group]="!field.unit">
-    <input type="number" id="{{elementId}}" class="form-control" [formControlName]="elementId">
-    <div *ngIf="field.unit" class="input-group-addon">{{field.unit}}</div>
+<div [hidden]="!isEditing || !visible" id="{{elementId}}-div" class="form-group" [formGroup]="form" [ngClass]="displayFieldCss()">
+  <label for="{{elementId}}">{{field.label}}</label>
+  <ng-xform-optional-tag [show]="isOptional"></ng-xform-optional-tag>
+  <div [class.input-group]="viewUnit" [class.form-group]="!viewUnit">
+    <input type="number" id="{{elementId}}" class="form-control" />
+    <div *ngIf="viewUnit" class="input-group-addon" dropdown>
+      <span style="cursor: pointer;" dropdownToggle>
+        {{viewUnit}}
+        <span class="caret"></span>
+      </span>
+      <ul class="dropdown-menu dropdown-menu-right" role="menu" *dropdownMenu>
+          <li  *ngFor="let item of availableUnits">
+            <a href="javascript:void(0);" (click)="changeUnit(item)">{{ item }}</a>
+          </li>
+        </ul>
+    </div>
   </div>
   <ng-xform-field-error-message [control]="control"></ng-xform-field-error-message>
 </div>

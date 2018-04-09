@@ -6,6 +6,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
 import { NgXformComponent } from './ng-xform.component';
 import { EditableLabelComponent } from './editable-label/editable-label.component';
@@ -24,6 +25,7 @@ import { FormGroupComponent } from './form-group/form-group.component';
     PipesModule,
     NgSelectModule,
     BsDatepickerModule.forRoot(),
+    BsDropdownModule.forRoot(),
   ],
   declarations: [
     NgXformComponent,

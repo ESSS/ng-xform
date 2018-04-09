@@ -15,7 +15,7 @@ export class SelectField extends DynamicField {
   public markFirst?: boolean;
   public separator?: string;
 
-  constructor(options: SelectField = {}) {
+  constructor(options: SelectField) {
     super(options);
     this.options = options.options;
     this.multiple = options.multiple || false;

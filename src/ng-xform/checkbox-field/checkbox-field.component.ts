@@ -19,7 +19,9 @@ export class CheckboxFieldComponent extends BaseDynamicFieldComponent<CheckboxFi
 
   ngAfterContentInit() {
     if (this.control.value === null) {
-      this.control.setValue(false);
+      // this setTimeout is to avoid ERROR TypeError
+      // TODO: Remove after RFDAP-593
+      setTimeout(() => this.control.setValue(false));
     }
   }
 

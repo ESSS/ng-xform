@@ -23,9 +23,9 @@
   <div class="container">
     <div class="panel-body">
       <button *ngIf="editing" type="button" class="btn btn-info" (click)="populate()">Populate</button>
-      <ng-xform #xform (onSubmit)="onSubmit($event)" [fields]="fields" [(editing)]="editing"></ng-xform>
+      <ng-xform (onSubmit)="onSubmit($event)" [fields]="fields" [(editing)]="editing"></ng-xform>
       <hr>
-      <pre>{{ xform.form.value | json }}</pre>
+      <pre>{{ xformComponent.form.value | json }}</pre>
     </div>
   </div>
 </section>

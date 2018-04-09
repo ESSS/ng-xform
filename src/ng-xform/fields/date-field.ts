@@ -8,7 +8,7 @@ export class DateField extends DynamicField {
   public maxDate?: Date;
   public minDate?: Date;
 
-  constructor(options: DateField = {}) {
+  constructor(options: DateField) {
     super(options);
     this.theme = options.theme || 'dark-blue';
     this.placement = options.placement || 'bottom';
