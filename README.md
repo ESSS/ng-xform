@@ -16,8 +16,7 @@ View all the directives in action at [Demo](https://esss.github.io/ng-xform) and
 ## Installation
 Install above dependencies via *npm*. 
 ```shell
-npm i --save @ng-select/ng-select@0.16.0
-npm i --save ngx-bootstrap@2.0.2
+npm i --save @ng-select/ng-select@0.16.0 ngx-bootstrap@2.0.2 js-quantities@1.7.1
 ```
 
 Now install `@esss/ng-xform` via:
@@ -29,6 +28,13 @@ You will need to import styles. Example: 'src/styles.scss'
 ```css
 @import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 @import '../node_modules/ngx-bootstrap/datepicker/bs-datepicker.css';
+```
+
+Setup the MeasureComponent adding the js file on .angular-cli.json 
+```json
+"scripts": [
+  "../node_modules/js-quantities/build/quantities.js"
+]
 ```
 
 ---
