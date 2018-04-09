@@ -154,6 +154,9 @@
                                     <a href="./classes/DynamicField.html" >DynamicField</a>
                                 </li>
                                 <li class="link">
+                                    <a href="./classes/Measure.html" >Measure</a>
+                                </li>
+                                <li class="link">
                                     <a href="./classes/MeasureField.html" >MeasureField</a>
                                 </li>
                                 <li class="link">
@@ -367,6 +370,9 @@
                                            <a href="./classes/DynamicField.html" >DynamicField</a>
                                        </li>
                                        <li class="link">
+                                           <a href="./classes/Measure.html" >Measure</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="./classes/MeasureField.html" >MeasureField</a>
                                        </li>
                                        <li class="link">
@@ -457,11 +463,13 @@
 </ul>
 <h2 id="installation">Installation</h2>
 <p>Install above dependencies via <em>npm</em>. </p>
-<pre class="line-numbers"><code class="language-shell">npm i --save &#64;ng-select/ng-select&#64;0.16.0
-npm i --save ngx-bootstrap&#64;2.0.2</code></pre><p>Now install <code>@esss/ng-xform</code> via:</p>
+<pre class="line-numbers"><code class="language-shell">npm i --save &#64;ng-select/ng-select&#64;0.16.0 ngx-bootstrap&#64;2.0.2 js-quantities&#64;1.7.1</code></pre><p>Now install <code>@esss/ng-xform</code> via:</p>
 <pre class="line-numbers"><code class="language-shell">npm i --save &#64;esss/ng-xform</code></pre><p>You will need to import styles. Example: &#39;src/styles.scss&#39;</p>
 <pre class="line-numbers"><code class="language-css">&#64;import &#39;../node_modules/bootstrap/dist/css/bootstrap.min.css&#39;;
-&#64;import &#39;../node_modules/ngx-bootstrap/datepicker/bs-datepicker.css&#39;;</code></pre><hr>
+&#64;import &#39;../node_modules/ngx-bootstrap/datepicker/bs-datepicker.css&#39;;</code></pre><p>Setup the MeasureComponent adding the js file on .angular-cli.json </p>
+<pre class="line-numbers"><code class="language-json">&quot;scripts&quot;: [
+  &quot;../node_modules/js-quantities/build/quantities.js&quot;
+]</code></pre><hr>
 <h5 id="systemjs">SystemJS</h5>
 <blockquote>
 <p><strong>Note</strong>:If you are using <code>SystemJS</code>, you should adjust your configuration to point to the UMD bundle.

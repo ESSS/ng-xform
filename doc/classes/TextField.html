@@ -154,6 +154,9 @@
                                     <a href="../classes/DynamicField.html" >DynamicField</a>
                                 </li>
                                 <li class="link">
+                                    <a href="../classes/Measure.html" >Measure</a>
+                                </li>
+                                <li class="link">
                                     <a href="../classes/MeasureField.html" >MeasureField</a>
                                 </li>
                                 <li class="link">
@@ -365,6 +368,9 @@
                                        </li>
                                        <li class="link">
                                            <a href="../classes/DynamicField.html" >DynamicField</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../classes/Measure.html" >Measure</a>
                                        </li>
                                        <li class="link">
                                            <a href="../classes/MeasureField.html" >MeasureField</a>
@@ -648,7 +654,7 @@ export class TextField extends DynamicField {
   public controlType ? &#x3D; &#x27;TEXT&#x27;;
   public type?: string;
 
-  constructor(options: TextField &#x3D; {}) {
+  constructor(options: TextField) {
     super(options);
     this.type &#x3D; options.type || &#x27;text&#x27;;
   }

@@ -154,6 +154,9 @@
                                     <a href="../classes/DynamicField.html" >DynamicField</a>
                                 </li>
                                 <li class="link">
+                                    <a href="../classes/Measure.html" >Measure</a>
+                                </li>
+                                <li class="link">
                                     <a href="../classes/MeasureField.html" >MeasureField</a>
                                 </li>
                                 <li class="link">
@@ -365,6 +368,9 @@
                                        </li>
                                        <li class="link">
                                            <a href="../classes/DynamicField.html" >DynamicField</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../classes/Measure.html" >Measure</a>
                                        </li>
                                        <li class="link">
                                            <a href="../classes/MeasureField.html" >MeasureField</a>
@@ -669,7 +675,7 @@ export class FormGroupComponent {
         &lt;/div&gt;
       &lt;/ng-template&gt;
 
-      &lt;ng-xform-measure-field *ngSwitchCase&#x3D;&quot;&#x27;MEASURE&#x27;&quot; [field]&#x3D;&quot;field&quot; [form]&#x3D;&quot;form&quot; [editing]&#x3D;&quot;editing !&#x3D;&#x3D; false&quot;&gt;
+      &lt;ng-xform-measure-field *ngSwitchCase&#x3D;&quot;&#x27;MEASURE&#x27;&quot; [field]&#x3D;&quot;field&quot; [form]&#x3D;&quot;form&quot; [formControlName]&#x3D;&quot;field.key&quot; [editing]&#x3D;&quot;editing !&#x3D;&#x3D; false&quot;&gt;
       &lt;/ng-xform-measure-field&gt;
 
       &lt;ng-xform-editable-label *ngSwitchCase&#x3D;&quot;&#x27;TEXT&#x27;&quot; [field]&#x3D;&quot;field&quot; [form]&#x3D;&quot;form&quot; [editing]&#x3D;&quot;editing !&#x3D;&#x3D; false&quot;&gt;
@@ -717,7 +723,7 @@ export class FormGroupComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div [formGroup]=\'form\'>  <div *ngFor="let field of fields">    <div [ngSwitch]="field.controlType">      <ng-template [ngSwitchCase]="\'GROUP\'">        <hr *ngIf=\'field.label\'>        <h4 *ngIf=\'field.label\'>          {{field.label}}        </h4>        <div [formGroupName]="field.key">          <ng-xform-form-group [fields]=\'field.fields\' [form]=\'form.get(field.key)\' [editing]=\'editing\'>          </ng-xform-form-group>        </div>      </ng-template>      <ng-xform-measure-field *ngSwitchCase="\'MEASURE\'" [field]="field" [form]="form" [editing]="editing !== false">      </ng-xform-measure-field>      <ng-xform-editable-label *ngSwitchCase="\'TEXT\'" [field]="field" [form]="form" [editing]="editing !== false">      </ng-xform-editable-label>      <ng-xform-multiline-field *ngSwitchCase="\'MULTILINE\'" [field]="field" [form]="form" [editing]="editing !== false">      </ng-xform-multiline-field>      <ng-xform-checkbox-field *ngSwitchCase="\'CHECKBOX\'" [field]="field" [form]="form" [editing]="editing !== false">      </ng-xform-checkbox-field>      <ng-xform-select-field *ngSwitchCase="\'SELECT\'" [field]="field" [form]="form" [formControlName]="field.key" [editing]="editing !== false">      </ng-xform-select-field>      <ng-xform-date-field *ngSwitchCase="\'DATE\'" [field]="field" [form]="form" [formControlName]="field.key" [editing]="editing !== false">      </ng-xform-date-field>      <pre *ngSwitchDefault>{{ field | json}}</pre>    </div>  </div></div></div>'
+        var COMPONENT_TEMPLATE = '<div><div [formGroup]=\'form\'>  <div *ngFor="let field of fields">    <div [ngSwitch]="field.controlType">      <ng-template [ngSwitchCase]="\'GROUP\'">        <hr *ngIf=\'field.label\'>        <h4 *ngIf=\'field.label\'>          {{field.label}}        </h4>        <div [formGroupName]="field.key">          <ng-xform-form-group [fields]=\'field.fields\' [form]=\'form.get(field.key)\' [editing]=\'editing\'>          </ng-xform-form-group>        </div>      </ng-template>      <ng-xform-measure-field *ngSwitchCase="\'MEASURE\'" [field]="field" [form]="form" [formControlName]="field.key" [editing]="editing !== false">      </ng-xform-measure-field>      <ng-xform-editable-label *ngSwitchCase="\'TEXT\'" [field]="field" [form]="form" [editing]="editing !== false">      </ng-xform-editable-label>      <ng-xform-multiline-field *ngSwitchCase="\'MULTILINE\'" [field]="field" [form]="form" [editing]="editing !== false">      </ng-xform-multiline-field>      <ng-xform-checkbox-field *ngSwitchCase="\'CHECKBOX\'" [field]="field" [form]="form" [editing]="editing !== false">      </ng-xform-checkbox-field>      <ng-xform-select-field *ngSwitchCase="\'SELECT\'" [field]="field" [form]="form" [formControlName]="field.key" [editing]="editing !== false">      </ng-xform-select-field>      <ng-xform-date-field *ngSwitchCase="\'DATE\'" [field]="field" [form]="form" [formControlName]="field.key" [editing]="editing !== false">      </ng-xform-date-field>      <pre *ngSwitchDefault>{{ field | json}}</pre>    </div>  </div></div></div>'
     var COMPONENTS = [{'name': 'CheckboxFieldComponent', 'selector': 'ng-xform-checkbox-field'},{'name': 'DateFieldComponent', 'selector': 'ng-xform-date-field'},{'name': 'EditableLabelComponent', 'selector': 'ng-xform-editable-label'},{'name': 'FieldErrorMessageComponent', 'selector': 'ng-xform-field-error-message'},{'name': 'FormGroupComponent', 'selector': 'ng-xform-form-group'},{'name': 'MeasureFieldComponent', 'selector': 'ng-xform-measure-field'},{'name': 'MultilineFieldComponent', 'selector': 'ng-xform-multiline-field'},{'name': 'NgXformComponent', 'selector': 'ng-xform'},{'name': 'OptionalTagComponent', 'selector': 'ng-xform-optional-tag'},{'name': 'SelectFieldComponent', 'selector': 'ng-xform-select-field'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'FormGroupComponent'};

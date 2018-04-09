@@ -154,6 +154,9 @@
                                     <a href="../classes/DynamicField.html" >DynamicField</a>
                                 </li>
                                 <li class="link">
+                                    <a href="../classes/Measure.html" >Measure</a>
+                                </li>
+                                <li class="link">
                                     <a href="../classes/MeasureField.html"  data-type="entity-link" class="active" >MeasureField</a>
                                 </li>
                                 <li class="link">
@@ -367,6 +370,9 @@
                                            <a href="../classes/DynamicField.html" >DynamicField</a>
                                        </li>
                                        <li class="link">
+                                           <a href="../classes/Measure.html" >Measure</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../classes/MeasureField.html"  data-type="entity-link" class="active" >MeasureField</a>
                                        </li>
                                        <li class="link">
@@ -500,11 +506,27 @@
                                 <ul class="index-list">
                                     <li>
                                             <span class="modifier">Public</span>
+                                        <a href="#availableUnits">availableUnits</a>
+                                    </li>
+                                    <li>
+                                            <span class="modifier">Public</span>
+                                        <a href="#changedUnitHandler">changedUnitHandler</a>
+                                    </li>
+                                    <li>
+                                            <span class="modifier">Public</span>
                                         <a href="#controlType">controlType</a>
                                     </li>
                                     <li>
                                             <span class="modifier">Public</span>
-                                        <a href="#unit">unit</a>
+                                        <a href="#modelUnit">modelUnit</a>
+                                    </li>
+                                    <li>
+                                            <span class="modifier">Public</span>
+                                        <a href="#precision">precision</a>
+                                    </li>
+                                    <li>
+                                            <span class="modifier">Public</span>
+                                        <a href="#viewUnit">viewUnit</a>
                                     </li>
                                 </ul>
                             </td>
@@ -524,7 +546,7 @@
                             </tr>
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="5" class="link-to-prism">src/ng-xform/fields/measure-field.ts:5</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/ng-xform/fields/measure-field.ts:10</a></div>
                                         </td>
                                     </tr>
             
@@ -571,6 +593,76 @@
                         <tbody>
                             <tr>
                                 <td class="col-md-4">
+                                    <a name="availableUnits"></a>
+                                    <span class="name">
+                                        <b>
+                                            <span class="modifier">Public</span>
+                                        availableUnits
+                                        </b>
+                                        <a href="#availableUnits"><span class="fa fa-link"></span></a>
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <span class="modifier-icon fa fa-reset"></span><code>availableUnits:     <code>[] | Observable</code>
+            </code>
+                                </td>
+                            </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <i>Type : </i>    <code>[] | Observable</code>
+            
+                                    </td>
+                                </tr>
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">src/ng-xform/fields/measure-field.ts:8</a></div>
+                                        </td>
+                                    </tr>
+            
+            
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-4">
+                                    <a name="changedUnitHandler"></a>
+                                    <span class="name">
+                                        <b>
+                                            <span class="modifier">Public</span>
+                                        changedUnitHandler
+                                        </b>
+                                        <a href="#changedUnitHandler"><span class="fa fa-link"></span></a>
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <span class="modifier-icon fa fa-reset"></span><code>changedUnitHandler:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/function" target="_blank" >function</a></code>
+            </code>
+                                </td>
+                            </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/function" target="_blank" >function</a></code>
+            
+                                    </td>
+                                </tr>
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/ng-xform/fields/measure-field.ts:10</a></div>
+                                        </td>
+                                    </tr>
+            
+            
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-4">
                                     <a name="controlType"></a>
                                     <span class="name">
                                         <b>
@@ -594,7 +686,7 @@
                                 </tr>
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="4" class="link-to-prism">src/ng-xform/fields/measure-field.ts:4</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="5" class="link-to-prism">src/ng-xform/fields/measure-field.ts:5</a></div>
                                         </td>
                                     </tr>
             
@@ -605,19 +697,19 @@
                         <tbody>
                             <tr>
                                 <td class="col-md-4">
-                                    <a name="unit"></a>
+                                    <a name="modelUnit"></a>
                                     <span class="name">
                                         <b>
                                             <span class="modifier">Public</span>
-                                        unit
+                                        modelUnit
                                         </b>
-                                        <a href="#unit"><span class="fa fa-link"></span></a>
+                                        <a href="#modelUnit"><span class="fa fa-link"></span></a>
                                     </span>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <span class="modifier-icon fa fa-reset"></span><code>unit:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    <span class="modifier-icon fa fa-reset"></span><code>modelUnit:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
             </code>
                                 </td>
                             </tr>
@@ -629,7 +721,77 @@
                                 </tr>
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="5" class="link-to-prism">src/ng-xform/fields/measure-field.ts:5</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="6" class="link-to-prism">src/ng-xform/fields/measure-field.ts:6</a></div>
+                                        </td>
+                                    </tr>
+            
+            
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-4">
+                                    <a name="precision"></a>
+                                    <span class="name">
+                                        <b>
+                                            <span class="modifier">Public</span>
+                                        precision
+                                        </b>
+                                        <a href="#precision"><span class="fa fa-link"></span></a>
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <span class="modifier-icon fa fa-reset"></span><code>precision:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+            </code>
+                                </td>
+                            </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+            
+                                    </td>
+                                </tr>
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">src/ng-xform/fields/measure-field.ts:9</a></div>
+                                        </td>
+                                    </tr>
+            
+            
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-4">
+                                    <a name="viewUnit"></a>
+                                    <span class="name">
+                                        <b>
+                                            <span class="modifier">Public</span>
+                                        viewUnit
+                                        </b>
+                                        <a href="#viewUnit"><span class="fa fa-link"></span></a>
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <span class="modifier-icon fa fa-reset"></span><code>viewUnit:     <code>string | Observable</code>
+            </code>
+                                </td>
+                            </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <i>Type : </i>    <code>string | Observable</code>
+            
+                                    </td>
+                                </tr>
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <div class="io-line">Defined in <a href="" data-line="7" class="link-to-prism">src/ng-xform/fields/measure-field.ts:7</a></div>
                                         </td>
                                     </tr>
             
@@ -642,15 +804,24 @@
 
 
     <div class="tab-pane fade tab-source-code" id="c-source">
-        <pre class="line-numbers"><code class="language-typescript">import { DynamicField } from &#x27;./dynamic-field&#x27;;
+        <pre class="line-numbers"><code class="language-typescript">import { Observable } from &#x27;rxjs/Rx&#x27;;
+import { DynamicField } from &#x27;./dynamic-field&#x27;;
 
 export class MeasureField extends DynamicField {
   public controlType ? &#x3D; &#x27;MEASURE&#x27;;
-  public unit?: string;
+  public modelUnit?: string;
+  public viewUnit?: string | Observable&lt;string&gt;;
+  public availableUnits?: string[] | Observable&lt;string[]&gt;;
+  public precision?: number;
+  public changedUnitHandler?: (unit: string) &#x3D;&gt; {};
 
-  constructor(options: MeasureField &#x3D; {}) {
+  constructor(options: MeasureField) {
     super(options);
-    this.unit &#x3D; options.unit;
+    this.modelUnit &#x3D; options.modelUnit;
+    this.viewUnit &#x3D; options.viewUnit;
+    this.availableUnits &#x3D; options.availableUnits;
+    this.precision &#x3D; options.precision || 8;
+    this.changedUnitHandler &#x3D; options.changedUnitHandler;
   }
 }
 </code></pre>

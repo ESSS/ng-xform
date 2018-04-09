@@ -154,6 +154,9 @@
                                     <a href="../classes/DynamicField.html" >DynamicField</a>
                                 </li>
                                 <li class="link">
+                                    <a href="../classes/Measure.html" >Measure</a>
+                                </li>
+                                <li class="link">
                                     <a href="../classes/MeasureField.html" >MeasureField</a>
                                 </li>
                                 <li class="link">
@@ -365,6 +368,9 @@
                                        </li>
                                        <li class="link">
                                            <a href="../classes/DynamicField.html" >DynamicField</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../classes/Measure.html" >Measure</a>
                                        </li>
                                        <li class="link">
                                            <a href="../classes/MeasureField.html" >MeasureField</a>
@@ -633,7 +639,9 @@ export class CheckboxFieldComponent extends BaseDynamicFieldComponent&lt;Checkbo
 
   ngAfterContentInit() {
     if (this.control.value &#x3D;&#x3D;&#x3D; null) {
-      this.control.setValue(false);
+      // this setTimeout is to avoid ERROR TypeError
+      // TODO: Remove after RFDAP-593
+      setTimeout(() &#x3D;&gt; this.control.setValue(false));
     }
   }
 
