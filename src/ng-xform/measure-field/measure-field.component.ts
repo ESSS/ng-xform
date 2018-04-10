@@ -98,7 +98,9 @@ export class MeasureFieldComponent extends BaseDynamicFieldComponent<MeasureFiel
 
   private updateInputValue() {
     const value = this.quantity.to(this.viewUnit).scalar
-    this.input.value = Number(value.toFixed(this.field.precision)).toString();
+    if (this.input) {
+      this.input.value = Number(value.toFixed(this.field.precision)).toString();
+    }
   }
 
   private setViewUnits() {
