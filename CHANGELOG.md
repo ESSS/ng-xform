@@ -1,3 +1,13 @@
+<a name="0.6.2"></a>
+## [0.6.2](https://github.com/ESSS/ng-xform/compare/v0.6.1...v0.6.2) (2018-04-10)
+
+
+### Bug Fixes
+
+* **MeasureCompinent:** display '-' when null ([816a249](https://github.com/ESSS/ng-xform/commit/816a249))
+
+
+
 <a name="0.6.1"></a>
 ## [0.6.1](https://github.com/ESSS/ng-xform/compare/v0.6.0...v0.6.1) (2018-04-10)
 
