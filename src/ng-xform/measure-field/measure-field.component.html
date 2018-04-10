@@ -1,6 +1,6 @@
 <div *ngIf="!isEditing && visible" id="{{elementId}}-label">
   <strong>{{ field.label }}</strong>
-  <p class="text-muted">{{ quantity?.format(viewUnit) }}</p>
+  <p class="text-muted">{{ quantity ? quantity.format(viewUnit) : '-' }}</p>
 </div>
 
 <div [hidden]="!isEditing || !visible" id="{{elementId}}-div" class="form-group" [formGroup]="form" [ngClass]="displayFieldCss()">
