@@ -1058,7 +1058,7 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="120" class="link-to-prism">src/ng-xform/measure-field/measure-field.component.ts:120</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="122" class="link-to-prism">src/ng-xform/measure-field/measure-field.component.ts:122</a></div>
                                 </td>
                             </tr>
     
@@ -1097,7 +1097,7 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="104" class="link-to-prism">src/ng-xform/measure-field/measure-field.component.ts:104</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="106" class="link-to-prism">src/ng-xform/measure-field/measure-field.component.ts:106</a></div>
                                 </td>
                             </tr>
     
@@ -1573,7 +1573,9 @@ export class MeasureFieldComponent extends BaseDynamicFieldComponent&lt;MeasureF
 
   private updateInputValue() {
     const value &#x3D; this.quantity.to(this.viewUnit).scalar
-    this.input.value &#x3D; Number(value.toFixed(this.field.precision)).toString();
+    if (this.input) {
+      this.input.value &#x3D; Number(value.toFixed(this.field.precision)).toString();
+    }
   }
 
   private setViewUnits() {
