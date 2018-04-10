@@ -1,3 +1,13 @@
+<a name="0.6.1"></a>
+## [0.6.1](https://github.com/ESSS/ng-xform/compare/v0.6.0...v0.6.1) (2018-04-10)
+
+
+### Bug Fixes
+
+* **MeasureComponent:** fixing the undefined input element error when … ([#13](https://github.com/ESSS/ng-xform/issues/13)) ([a6c25a6](https://github.com/ESSS/ng-xform/commit/a6c25a6))
+
+
+
 <a name="0.6.0"></a>
 # [0.6.0](https://github.com/ESSS/ng-xform/compare/v0.5.1...v0.6.0) (2018-04-09)
 
