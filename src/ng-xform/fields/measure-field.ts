@@ -7,7 +7,7 @@ export class MeasureField extends DynamicField {
   public viewUnit?: string | Observable<string>;
   public availableUnits?: string[] | Observable<string[]>;
   public precision?: number;
-  public changedUnitHandler?: (unit: string) => {};
+  public changedUnitHandler?: (unit: string) => void;
 
   constructor(options: MeasureField) {
     super(options);
