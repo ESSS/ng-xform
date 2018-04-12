@@ -1,6 +1,6 @@
 import { Observable } from 'rxjs/Observable';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
-import { Component, AfterViewInit, ElementRef, OnInit, EventEmitter, ViewChild } from '@angular/core';
+import { Component, AfterViewInit, ElementRef, OnInit, ViewChild } from '@angular/core';
 
 import { Measure } from './../models/measure';
 import { BaseDynamicFieldComponent } from '../field-components/base-dynamic-field.component';
@@ -86,12 +86,16 @@ export class MeasureFieldComponent extends BaseDynamicFieldComponent<MeasureFiel
     this.input.disabled = isDisabled;
   }
 
-  changeUnit(unit: string) {
+  changeUnit(unit: string, emitEvent = true) {
+    if (!unit) {
+      this.viewUnit = this.field.modelUnit;
+      return;
+    }
     this.viewUnit = unit;
     if (this.quantity) {
       this.updateInputValue();
     }
-    if (this.field.changedUnitHandler) {
+    if (this.field.changedUnitHandler && emitEvent) {
       this.field.changedUnitHandler(unit);
     }
   }
@@ -126,8 +130,7 @@ export class MeasureFieldComponent extends BaseDynamicFieldComponent<MeasureFiel
     }
 
     if (this.field.viewUnit instanceof Observable) {
-      this.field.viewUnit.subscribe(unit => this.changeUnit(unit));
-      this.viewUnit = this.field.modelUnit;
+      this.field.viewUnit.subscribe(unit => this.changeUnit(unit, false));
     } else {
       this.viewUnit = this.field.viewUnit;
     }
