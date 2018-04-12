@@ -86,12 +86,16 @@ export class MeasureFieldComponent extends BaseDynamicFieldComponent<MeasureFiel
     this.input.disabled = isDisabled;
   }
 
-  changeUnit(unit: string) {
+  changeUnit(unit: string, emitEvent = true) {
+    if (!unit) {
+      this.viewUnit = this.field.modelUnit;
+      return;
+    }
     this.viewUnit = unit;
     if (this.quantity) {
       this.updateInputValue();
     }
-    if (this.field.changedUnitHandler) {
+    if (this.field.changedUnitHandler && emitEvent) {
       this.field.changedUnitHandler(unit);
     }
   }
@@ -126,8 +130,7 @@ export class MeasureFieldComponent extends BaseDynamicFieldComponent<MeasureFiel
     }
 
     if (this.field.viewUnit instanceof Observable) {
-      this.field.viewUnit.subscribe(unit => this.changeUnit(unit));
-      this.viewUnit = this.field.modelUnit;
+      this.field.viewUnit.subscribe(unit => this.changeUnit(unit, false));
     } else {
       this.viewUnit = this.field.viewUnit;
     }

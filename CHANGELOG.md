@@ -1,3 +1,13 @@
+<a name="0.6.3"></a>
+## [0.6.3](https://github.com/ESSS/ng-xform/compare/v0.6.2...v0.6.3) (2018-04-12)
+
+
+### Bug Fixes
+
+* **MeasureComponent:** fixing change unit ([#14](https://github.com/ESSS/ng-xform/issues/14)) ([914d283](https://github.com/ESSS/ng-xform/commit/914d283))
+
+
+
 <a name="0.6.2"></a>
 ## [0.6.2](https://github.com/ESSS/ng-xform/compare/v0.6.1...v0.6.2) (2018-04-10)
 
