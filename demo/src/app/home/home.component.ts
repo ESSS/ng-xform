@@ -30,6 +30,8 @@ export class HomeComponent implements OnInit {
   ];
 
   public fields: DynamicField[];
+  horizontal = false;
+  labelWidth = 2;
 
   constructor(private titleService: Title, private http: HttpClient) {
     const minDate = new Date();

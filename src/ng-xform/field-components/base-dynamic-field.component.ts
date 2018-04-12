@@ -11,6 +11,8 @@ export class BaseDynamicFieldComponent<T extends DynamicField> implements OnInit
   @Input() field: T;
   @Input() form: FormGroup;
   @Input() editing = true;
+  @Input() isHorizontal: boolean;
+  @Input() labelWidth: number;
 
   control: FormControl;
   visible = true;

@@ -1,0 +1,16 @@
+<div *ngIf="!isEditing" id="{{elementId}}-label">
+  <strong [ngClass]="labelCssClass">{{ label }}</strong>
+  <div [ngClass]="fieldCssClass" [class.horizontal-readonly]="isHorizontal"
+  [class.readonly]="!isHorizontal" class="text-muted">
+    {{ formattedValue }}
+  </div>
+</div>
+<div [hidden]="!isEditing" id="{{elementId}}-div" class="form-group" [formGroup]="form" [ngClass]="styleClasses" >
+  <label *ngIf="!isCheckbox" for="{{elementId}}" [ngClass]="labelCssClass">{{ label }}
+    <ng-xform-optional-tag [show]="isOptional"></ng-xform-optional-tag>
+  </label>
+  <div [ngClass]="fieldCssClassCheckbox">
+    <ng-content></ng-content>
+    <ng-xform-field-error-message [control]="control"></ng-xform-field-error-message>
+  </div>
+</div>

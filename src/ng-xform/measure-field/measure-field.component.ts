@@ -1,6 +1,6 @@
 import { Observable } from 'rxjs/Observable';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
-import { Component, AfterViewInit, ElementRef, OnInit, EventEmitter, ViewChild } from '@angular/core';
+import { Component, AfterViewInit, ElementRef, OnInit, ViewChild } from '@angular/core';
 
 import { Measure } from './../models/measure';
 import { BaseDynamicFieldComponent } from '../field-components/base-dynamic-field.component';

@@ -1,13 +1,18 @@
-<div *ngIf="!isEditing && visible" id="{{elementId}}-label">
-  <strong>{{ field.label }}</strong>
-  <p class="text-muted">{{ form?.controls[elementId]?.value ? 'True' : 'False' }}</p>
-</div>
-
-<div *ngIf="isEditing && visible" id="{{elementId}}-div" class="form-group" [formGroup]="form" [ngClass]="displayFieldCss()">
-  <div class="checkbox">
+<ng-xform-form-layout
+[elementId]="elementId"
+[label]="field.label"
+[formattedValue]="form?.controls[elementId]?.value ? 'True' : 'False'"
+[form]="form"
+[control]="control"
+[styleClasses]="displayFieldCss()"
+[isCheckbox]="true"
+[labelWidth]="labelWidth"
+[isHorizontal]="isHorizontal"
+[isOptional]="isOptional"
+[isEditing]="isEditing && visible">
+<div class="checkbox">
     <label>
-      <input type="checkbox" [formControlName]="elementId" id="{{elementId}}" /> {{field.label}}
+      <input type="checkbox" [formControl]="control" id="{{elementId}}" /> {{field.label}}
     </label>
   </div>
-  <ng-xform-field-error-message [control]="control"></ng-xform-field-error-message>
-</div>
+</ng-xform-form-layout>

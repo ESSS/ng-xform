@@ -24,6 +24,8 @@ export class NgXformComponent implements OnInit, OnChanges {
   @Input() fields: DynamicField[];
   @Input() errorCode: string;
   @Input() editing: boolean;
+  @Input() horizontalForm = false;
+  @Input() labelWidth: number;
   @Output() editingChange = new EventEmitter();
 
   /** To listening submitSuccessful event */

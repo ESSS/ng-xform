@@ -1,10 +1,13 @@
-<div *ngIf="!isEditing && visible" id="{{field.key}}-label">
-  <strong>{{ field.label }}</strong>
-  <p class="text-muted">{{ form?.controls[field.key]?.value | valueSuffix }}</p>
-</div>
-
-<div *ngIf="isEditing && visible" id="{{elementId}}-div" class="form-group" [formGroup]="form" [ngClass]="displayFieldCss()">
-  <label for="{{elementId}}">{{field.label}}</label> <ng-xform-optional-tag [show]="isOptional"></ng-xform-optional-tag>
-  <input type="{{field.type}}" id="{{elementId}}" class="form-control" [formControlName]="elementId">
-  <ng-xform-field-error-message [control]="control"></ng-xform-field-error-message>
-</div>
+<ng-xform-form-layout
+[elementId]="elementId"
+[label]="field.label"
+[formattedValue]="form?.controls[field.key]?.value | valueSuffix"
+[form]="form"
+[control]="control"
+[styleClasses]="displayFieldCss()"
+[labelWidth]="labelWidth"
+[isHorizontal]="isHorizontal"
+[isOptional]="isOptional"
+[isEditing]="isEditing && visible">
+  <input type="{{field.type}}" id="{{elementId}}" class="form-control" [formControl]="control">
+</ng-xform-form-layout>
