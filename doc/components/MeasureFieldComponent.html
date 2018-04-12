@@ -711,7 +711,7 @@
                     </tr>
                     <tr>
                         <td class="col-md-4">
-    <code>changeUnit(unit: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+    <code>changeUnit(unit: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, emitEvent: )</code>
                         </td>
                     </tr>
     
@@ -741,6 +741,14 @@
                                                       <td>unit</td>
                                                       <td>
                                                               <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                      </td>
+                                                      <td>
+                                                      </td>
+                                                      <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                      <td>emitEvent</td>
+                                                      <td>
                                                       </td>
                                                       <td>
                                                       </td>
@@ -1058,7 +1066,7 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="122" class="link-to-prism">src/ng-xform/measure-field/measure-field.component.ts:122</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="126" class="link-to-prism">src/ng-xform/measure-field/measure-field.component.ts:126</a></div>
                                 </td>
                             </tr>
     
@@ -1097,7 +1105,7 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="106" class="link-to-prism">src/ng-xform/measure-field/measure-field.component.ts:106</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="110" class="link-to-prism">src/ng-xform/measure-field/measure-field.component.ts:110</a></div>
                                 </td>
                             </tr>
     
@@ -1136,7 +1144,7 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="99" class="link-to-prism">src/ng-xform/measure-field/measure-field.component.ts:99</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="103" class="link-to-prism">src/ng-xform/measure-field/measure-field.component.ts:103</a></div>
                                 </td>
                             </tr>
     
@@ -1475,7 +1483,7 @@
     <div class="tab-pane fade tab-source-code" id="c-source">
         <pre class="line-numbers"><code class="language-typescript">import { Observable } from &#x27;rxjs/Observable&#x27;;
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from &#x27;@angular/forms&#x27;;
-import { Component, AfterViewInit, ElementRef, OnInit, EventEmitter, ViewChild } from &#x27;@angular/core&#x27;;
+import { Component, AfterViewInit, ElementRef, OnInit, ViewChild } from &#x27;@angular/core&#x27;;
 
 import { Measure } from &#x27;./../models/measure&#x27;;
 import { BaseDynamicFieldComponent } from &#x27;../field-components/base-dynamic-field.component&#x27;;
@@ -1561,12 +1569,16 @@ export class MeasureFieldComponent extends BaseDynamicFieldComponent&lt;MeasureF
     this.input.disabled &#x3D; isDisabled;
   }
 
-  changeUnit(unit: string) {
+  changeUnit(unit: string, emitEvent &#x3D; true) {
+    if (!unit) {
+      this.viewUnit &#x3D; this.field.modelUnit;
+      return;
+    }
     this.viewUnit &#x3D; unit;
     if (this.quantity) {
       this.updateInputValue();
     }
-    if (this.field.changedUnitHandler) {
+    if (this.field.changedUnitHandler &amp;&amp; emitEvent) {
       this.field.changedUnitHandler(unit);
     }
   }
@@ -1601,8 +1613,7 @@ export class MeasureFieldComponent extends BaseDynamicFieldComponent&lt;MeasureF
     }
 
     if (this.field.viewUnit instanceof Observable) {
-      this.field.viewUnit.subscribe(unit &#x3D;&gt; this.changeUnit(unit));
-      this.viewUnit &#x3D; this.field.modelUnit;
+      this.field.viewUnit.subscribe(unit &#x3D;&gt; this.changeUnit(unit, false));
     } else {
       this.viewUnit &#x3D; this.field.viewUnit;
     }
