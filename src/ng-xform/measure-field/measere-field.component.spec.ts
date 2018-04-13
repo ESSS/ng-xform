@@ -57,7 +57,7 @@ describe('DynamicFormComponent', () => {
     expect(el).toBeTruthy();
     const label = el.query(By.css('label'));
     expect(label).toBeTruthy();
-    expect(label.nativeElement.textContent).toBe(labelText);
+    expect(label.nativeElement.textContent).toContain(labelText);
   });
 
   it('should render form value', () => {

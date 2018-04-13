@@ -7,9 +7,14 @@ import { Component, Input } from '@angular/core';
 /**
  * Component to generate a bootstrap form field of numeric type
  *
- * :editing: Flag to control component state
- * :form: FormGroup containing the field
- * :field: Intance of field configurations
+ * :isEditing: Flag to control component state
+ * :isCheckbox: Flag to inform if it is a layout for a checkbox
+ * :isHorizontal: Flag to inform if it is a horizontal layout
+ * :isOptionl: Flag to append '(optional)' on the label
+ * :labelWidth: Number of columns of the bootstrap system grids to apply on the label element
+ * :label: Label of the field
+ * :formattedValue: Value to display when the field been on reading state
+ * :styleClasses: css classes to apply on the html element
  */
 @Component({
   selector: 'ng-xform-form-layout',
@@ -22,11 +27,11 @@ export class FormLayoutComponent {
   @Input() isHorizontal = false;
   @Input() isEditing = false;
   @Input() isCheckbox = false;
+  @Input() isOptional: string;
   @Input() elementId: string;
   @Input() labelWidth = 2;
   @Input() label: string;
   @Input() formattedValue: string;
-  @Input() isOptional: string;
   @Input() control: FormControl;
   @Input() form: FormGroup;
   @Input() styleClasses: string;

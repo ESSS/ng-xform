@@ -8,6 +8,7 @@
 [labelWidth]="labelWidth"
 [isHorizontal]="isHorizontal"
 [isOptional]="isOptional"
-[isEditing]="isEditing && visible">
+[hidden]="!visible"
+[isEditing]="isEditing">
 <textarea [attr.rows]="field.rows" id="{{elementId}}" class="form-control" [formControl]="control"></textarea>
 </ng-xform-form-layout>

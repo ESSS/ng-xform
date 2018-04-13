@@ -1,4 +1,5 @@
 import { Observable } from 'rxjs/Rx';
+import { DebugElement } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
 import {
   async,
@@ -187,7 +188,7 @@ describe('DynamicFormComponent', () => {
     expect(el).toBeTruthy();
     const label = el.query(By.css('label'));
     expect(label).toBeTruthy();
-    expect(label.nativeElement.textContent).toBe('Date');
+    expect(label.nativeElement.textContent).toContain('Date');
     const input = el.query(By.css('input'));
     expect(input).toBeTruthy();
 
@@ -202,7 +203,7 @@ describe('DynamicFormComponent', () => {
     expect(el).toBeTruthy();
     const label = el.query(By.css('label'));
     expect(label).toBeTruthy();
-    expect(label.nativeElement.textContent).toBe('Color');
+    expect(label.nativeElement.textContent).toContain('Color');
     const input = el.query(By.css('input'));
     expect(input).toBeTruthy();
   });
@@ -212,7 +213,7 @@ describe('DynamicFormComponent', () => {
     expect(el).toBeTruthy();
     const label = el.query(By.css('label'));
     expect(label).toBeTruthy();
-    expect(label.nativeElement.textContent).toBe('Choice');
+    expect(label.nativeElement.textContent).toContain('Choice');
     const selectComponet = el.query(By.css('ng-select'));
     expect(selectComponet).toBeTruthy();
     const optionsEl = el.queryAll(By.css('div.ng-option'));
@@ -220,19 +221,19 @@ describe('DynamicFormComponent', () => {
   });
 
   it('should hidden/show other_color on change color', () => {
-    const elQuery = By.css(`#other_color-div`);
-    let el = fixture.debugElement.query(elQuery);
-    expect(el).toBeFalsy();
+    const fieldId = 'other_color';
+    const el = fixture.debugElement.queryAll(By.css('ng-xform-editable-label'))
+      .find(e => e.componentInstance.elementId === fieldId);
+    const elComponent = el.componentInstance;
+
+    expect(elComponent.visible).toBeFalsy();
 
     component.setValue({ color: 1 });
-    fixture.detectChanges();
-    el = fixture.debugElement.query(elQuery);
-    expect(el).toBeTruthy();
+    expect(elComponent.visible).toBeTruthy();
 
     component.setValue({ color: null });
-    fixture.detectChanges();
-    el = fixture.debugElement.query(elQuery);
-    expect(el).toBeFalsy();
+    expect(elComponent.visible).toBeFalsy();
+
   });
 
   it('should patch value', () => {
@@ -301,12 +302,11 @@ describe('DynamicFormComponent', () => {
 
   it('should display (optional) for required field', () => {
     const fieldId = 'required';
-    const el = fixture.debugElement.query(By.css(`#${fieldId}-div`));
-    const fieldComponent = el.componentInstance;
+    const el = fixture.debugElement.queryAll(By.css('ng-xform-editable-label'))
+      .find(e => e.componentInstance.elementId === fieldId);
     const optional = el.query(By.css('ng-xform-optional-tag'));
-
-    expect(fieldComponent.field.validators).toContain(Validators.required);
-    expect(fieldComponent.isOptional).toBeFalsy();
+    const fieldComponent = el.componentInstance;
+    expect(el).toBeTruthy();
     expect(optional.componentInstance.show).toBeFalsy();
 
     fieldComponent.field.validators = undefined;
@@ -318,12 +318,15 @@ describe('DynamicFormComponent', () => {
   });
 
   function expectFormLabel(fieldId: string, caption: string, value: any) {
+
     const el = fixture.debugElement.query(By.css(`#${fieldId}-label`));
     expect(el).toBeTruthy();
+    expect(el.nativeElement).toBeTruthy();
     expect(el.nativeElement.hidden).toBeFalsy();
     const label = el.query(By.css('strong'));
     expect(label.nativeElement.textContent).toBe(caption);
-    const labelValue = el.query(By.css('p'));
+    const labelValue = el.query(By.css('div'));
+    expect(labelValue).toBeTruthy();
     expect(labelValue.nativeElement.textContent.trim()).toBe(value);
   }
 
@@ -339,7 +342,7 @@ describe('DynamicFormComponent', () => {
     expect(el).toBeTruthy();
     const label = el.query(By.css('label'));
     expect(label).toBeTruthy();
-    expect(label.nativeElement.textContent).toBe(caption);
+    expect(label.nativeElement.textContent).toContain(caption);
     // Test if the initial element value
     const input = el.query(By.css(inputType));
     expect(input.properties['value']).toBe(value);

@@ -8,7 +8,8 @@
   [form]="form"
   [styleClasses]="displayFieldCss()"
   [labelWidth]="labelWidth"
-  [isEditing]="isEditing || !visible">
+  [hidden]="!visible"
+  [isEditing]="isEditing">
   <div [class.input-group]="viewUnit" [class.form-group]="!viewUnit">
     <input type="number" id="{{elementId}}" class="form-control" />
     <div *ngIf="viewUnit" class="input-group-addon" dropdown>

@@ -8,7 +8,8 @@
 [labelWidth]="labelWidth"
 [isHorizontal]="isHorizontal"
 [isOptional]="isOptional"
-[isEditing]="isEditing && visible">
+[hidden]="!visible"
+[isEditing]="isEditing">
 <input bsDatepicker type="text" class="form-control" [formControl]="componentControl" id="{{elementId}}"
    [bsConfig]="config"
    [bsValue]="field.initialValue"
