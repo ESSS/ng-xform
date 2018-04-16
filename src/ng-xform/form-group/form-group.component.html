@@ -1,5 +1,7 @@
 <div [formGroup]='form'>
   <div *ngFor="let field of fields">
+
+
     <div [ngSwitch]="field.controlType">
 
       <ng-template [ngSwitchCase]="'GROUP'">
@@ -8,7 +10,7 @@
           {{field.label}}
         </h4>
         <div [formGroupName]="field.key">
-          <ng-xform-form-group [fields]='field.fields' [form]='form.get(field.key)' [editing]='editing'>
+          <ng-xform-form-group [fields]='field.fields' [labelWidth]="labelWidth" [isHorizontal]="isHorizontal" [form]='form.get(field.key)' [editing]='editing'>
           </ng-xform-form-group>
         </div>
       </ng-template>

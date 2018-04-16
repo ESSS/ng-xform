@@ -1,15 +1,4 @@
-<ng-xform-form-layout
-  [isHorizontal]="isHorizontal"
-  [elementId]="elementId"
-  [label]="field.label"
-  [formattedValue]="quantity ? quantity.format(viewUnit) : '-'"
-  [isOptional]="isOptional"
-  [control]="control"
-  [form]="form"
-  [styleClasses]="displayFieldCss()"
-  [labelWidth]="labelWidth"
-  [hidden]="!visible"
-  [isEditing]="isEditing">
+<ng-xform-form-control-layout [fieldComponent]="instance">
   <div [class.input-group]="viewUnit" [class.form-group]="!viewUnit">
     <input type="number" id="{{elementId}}" class="form-control" />
     <div *ngIf="viewUnit" class="input-group-addon" dropdown>
@@ -24,4 +13,4 @@
       </ul>
     </div>
   </div>
-</ng-xform-form-layout>
+</ng-xform-form-control-layout>

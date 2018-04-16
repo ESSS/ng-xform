@@ -1,4 +1,4 @@
-import { Component, AfterContentInit } from '@angular/core';
+import { Component, AfterContentInit, OnInit } from '@angular/core';
 
 import { BaseDynamicFieldComponent } from '../field-components/base-dynamic-field.component';
 import { CheckboxField } from '../fields';
@@ -15,7 +15,8 @@ import { CheckboxField } from '../fields';
   selector: 'ng-xform-checkbox-field',
   templateUrl: './checkbox-field.component.html',
 })
-export class CheckboxFieldComponent extends BaseDynamicFieldComponent<CheckboxField> implements AfterContentInit {
+export class CheckboxFieldComponent extends BaseDynamicFieldComponent<CheckboxField> implements AfterContentInit, OnInit {
+  hideLabelOnEdit = true;
 
   ngAfterContentInit() {
     if (this.control.value === null) {
@@ -23,6 +24,10 @@ export class CheckboxFieldComponent extends BaseDynamicFieldComponent<CheckboxFi
       // TODO: Remove after RFDAP-593
       setTimeout(() => this.control.setValue(false));
     }
+  }
+
+  get formattedValue(): string {
+    return this.form.controls[this.elementId].value ? 'True' : 'False';
   }
 
 }

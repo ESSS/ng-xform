@@ -1,15 +1,4 @@
-<ng-xform-form-layout
-[elementId]="elementId"
-[label]="field.label"
-[formattedValue]="optionLabel"
-[form]="form"
-[control]="control"
-[styleClasses]="displayFieldCss()"
-[labelWidth]="labelWidth"
-[isHorizontal]="isHorizontal"
-[isOptional]="isOptional"
-[hidden]="!visible"
-[isEditing]="isEditing">
+<ng-xform-form-control-layout [fieldComponent]="instance">
   <ng-select id='{{elementId}}'
   [searchable]="field.searchable"
   [typeahead]="typeahead"
@@ -19,4 +8,4 @@
   bindLabel="{{field.optionLabelKey}}"
   bindValue="{{field.optionValueKey}}">
   </ng-select>
-</ng-xform-form-layout>
+</ng-xform-form-control-layout>

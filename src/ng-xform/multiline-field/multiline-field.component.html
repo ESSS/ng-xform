@@ -1,14 +1,3 @@
-<ng-xform-form-layout
-[elementId]="elementId"
-[label]="field.label"
-[formattedValue]="form?.controls[field.key]?.value"
-[form]="form"
-[control]="control"
-[styleClasses]="displayFieldCss()"
-[labelWidth]="labelWidth"
-[isHorizontal]="isHorizontal"
-[isOptional]="isOptional"
-[hidden]="!visible"
-[isEditing]="isEditing">
+<ng-xform-form-control-layout [fieldComponent]="instance">
 <textarea [attr.rows]="field.rows" id="{{elementId}}" class="form-control" [formControl]="control"></textarea>
-</ng-xform-form-layout>
+</ng-xform-form-control-layout>

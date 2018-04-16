@@ -1,19 +1,8 @@
-<ng-xform-form-layout
-[elementId]="elementId"
-[label]="field.label"
-[formattedValue]="form?.controls[field.key]?.value | date:'mediumDate':field.locale"
-[form]="form"
-[control]="control"
-[styleClasses]="displayFieldCss()"
-[labelWidth]="labelWidth"
-[isHorizontal]="isHorizontal"
-[isOptional]="isOptional"
-[hidden]="!visible"
-[isEditing]="isEditing">
+<ng-xform-form-control-layout [fieldComponent]="instance">
 <input bsDatepicker type="text" class="form-control" [formControl]="componentControl" id="{{elementId}}"
    [bsConfig]="config"
    [bsValue]="field.initialValue"
    [placement]="field.placement"
    [maxDate]="field.maxDate"
    [minDate]="field.minDate" />
-</ng-xform-form-layout>
+</ng-xform-form-control-layout>

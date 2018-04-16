@@ -1,19 +1,7 @@
-<ng-xform-form-layout
-[elementId]="elementId"
-[label]="field.label"
-[formattedValue]="form?.controls[elementId]?.value ? 'True' : 'False'"
-[form]="form"
-[control]="control"
-[styleClasses]="displayFieldCss()"
-[isCheckbox]="true"
-[labelWidth]="labelWidth"
-[isHorizontal]="isHorizontal"
-[isOptional]="isOptional"
-[hidden]="!visible"
-[isEditing]="isEditing">
+<ng-xform-form-control-layout [fieldComponent]="instance">
 <div class="checkbox">
     <label>
       <input type="checkbox" [formControl]="control" id="{{elementId}}" /> {{field.label}}
     </label>
   </div>
-</ng-xform-form-layout>
+</ng-xform-form-control-layout>

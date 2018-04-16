@@ -16,6 +16,7 @@ export class BaseDynamicFieldComponent<T extends DynamicField> implements OnInit
 
   control: FormControl;
   visible = true;
+  public hideLabelOnEdit = false;
 
   private valueChangeSubscription: Subscription;
 
@@ -46,6 +47,10 @@ export class BaseDynamicFieldComponent<T extends DynamicField> implements OnInit
     return this.field.key;
   }
 
+  get instance(): BaseDynamicFieldComponent<T> {
+    return this;
+  }
+
   get isOptional(): boolean {
     return !this.field.validators || !this.field.validators.find(el => el === Validators.required);
   }
@@ -54,7 +59,11 @@ export class BaseDynamicFieldComponent<T extends DynamicField> implements OnInit
     return this.editing && !this.field.readOnly;
   }
 
-  displayFieldCss() {
+  get formattedValue(): string {
+    return this.form.controls[this.elementId].value || '-';
+  }
+
+  displayFieldCss(): { [k: string]: boolean } {
     return {
       'has-error': this.control.touched && this.control.invalid,
       'has-feedback': this.control.touched && this.control.invalid

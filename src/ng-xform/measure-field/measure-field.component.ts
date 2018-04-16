@@ -41,6 +41,10 @@ export class MeasureFieldComponent extends BaseDynamicFieldComponent<MeasureFiel
     super();
   }
 
+  get formattedValue() {
+    return this.quantity ? this.quantity.format(this.viewUnit) : '-'
+  }
+
   ngOnInit() {
     super.ngOnInit();
     this.setViewUnits();

@@ -82,15 +82,15 @@ export class OtherModule {
 ## Usage
 Template:
 ```html
- <ng-xform #xform (onSubmit)="onSubmit($event)" [model]="model" [fields]="fields" [(editing)]="editing"></ng-xform>
+ <ng-xform [horizontalForm]="horizontal" [labelWidth]="labelWidth" (onSubmit)="onSubmit($event)" [fields]="fields" [(editing)]="editing"></ng-xform>
 ```
 Component:
 ```ts
 export class HomeComponent implements OnInit {
 
-  public editing = true;
-  public model: any = {};
+  @ViewChild(NgXformComponent) xformComponent: NgXformComponent;
   private colors: any[] = [
+    { id: 0, name: 'other' },
     { id: 1, name: 'blue' },
     { id: 2, name: 'yellow' },
     { id: 3, name: 'white' },
@@ -100,6 +100,9 @@ export class HomeComponent implements OnInit {
   ];
 
   public fields: DynamicField[];
+  public editing = true;
+  public horizontal = false;
+  public labelWidth = 2;
 
   constructor(private titleService: Title, private http: HttpClient) {
     const minDate = new Date();
@@ -113,7 +116,6 @@ export class HomeComponent implements OnInit {
         key: 'name',
         label: 'Name',
         validators: [
-          Validators.required,
           Validators.minLength(3)
         ]
       }),
@@ -126,22 +128,40 @@ export class HomeComponent implements OnInit {
         ]
       }),
       new SelectField({
+        key: 'color_ro',
+        label: 'Color read-only',
+        readOnly: true,
+        searchable: true,
+        options: this.colors,
+        optionLabelKey: 'name',
+      }),
+      new SelectField({
         key: 'color',
         label: 'Color',
         searchable: true,
         options: this.colors,
         optionLabelKey: 'name',
       }),
-      new SelectField({
+      new TextField({
+        key: 'other',
+        label: 'Other color',
+        visibilityFn: (value: any) => value.color && value.color.id === 0
+      }),
+      new NestedFormGroup({
         key: 'address',
-        label: 'Address',
-        searchHandler: this.observableSource.bind(this),
-        searchByValueKeyHandler: this.observableSourceByPlaceId.bind(this),
-        searchable: true,
-        optionLabelKey: 'formatted_address',
-        optionValueKey: 'place_id',
-        validators: [
-          Validators.required
+        fields: [
+          new SelectField({
+            key: 'street',
+            label: 'Street',
+            searchHandler: this.observableSource.bind(this),
+            searchByValueKeyHandler: this.observableSourceByPlaceId.bind(this),
+            searchable: true,
+            optionLabelKey: 'formatted_address',
+            optionValueKey: 'place_id',
+            validators: [
+              Validators.required
+            ]
+          })
         ]
       }),
       new SelectField({
@@ -161,21 +181,27 @@ export class HomeComponent implements OnInit {
         multiple: true
       }),
       new MeasureField({
-        key: 'order',
-        label: 'Order',
-        unit: 'º'
+        key: 'length',
+        label: 'Length',
+        modelUnit: 'm',
+        viewUnit: Observable.of('cm').delay(200),
+        availableUnits: Observable.of(['m', 'cm', 'mm', 'ft']).delay(200)
       }),
       new CheckboxField({
         key: 'news',
         label: 'News'
+      }),
+      new MultilineField({
+        key: 'comment',
+        label: 'Comment',
+        rows: 4
       }),
       new DateField({
         key: 'birth',
         label: 'Date of birth',
         theme: 'blue',
         minDate: minDate,
-        maxDate: maxDate,
-        locale: 'pt-br',
+        maxDate: maxDate
       }),
     ];
   }
@@ -186,22 +212,29 @@ export class HomeComponent implements OnInit {
 
   public onSubmit(values: object) {
     this.editing = !this.editing;
-    this.model = values;
     console.log(values);
   }
 
   populate() {
-    this.model = {
+    this.xformComponent.form.patchValue({
       name: 'Customer',
       email: 'customer@mail.com',
       type_tags: [2],
       type: 'b',
       color: { id: 3, name: 'white' },
-      address: 'ChIJn7h-4b9JJ5URGCq6n0zj1tM',
-      order: 2,
+      color_ro: { id: 3, name: 'white' },
+      address: {
+        street: 'ChIJn7h-4b9JJ5URGCq6n0zj1tM'
+      },
+      length: { value: 2, unit: 'm'},
       news: true,
+      comment: 'Mussum Ipsum, cacilds vidis litro abertis. Mauris nec dolor in eros commodo tempor. Aenean aliquam molestie leo, vitae ' +
+      'iaculis nisl. Quem num gosta di mé, boa gentis num é. Tá deprimidis, eu conheço uma cachacis que pode alegrar sua vidis. Em pé ' +
+      'sem cair, deitado sem dormir, sentado sem cochilar e fazendo pose. Leite de capivaris, leite de mula manquis sem cabeça. Praesent ' +
+      'vel viverra nisi. Mauris aliquet nunc non turpis scelerisque, eget. Casamentiss faiz malandris se pirulitá. Sapien in monti ' +
+      'palavris qui num significa nadis i pareci latim.',
       birth: new Date()
-    };
+    });
   }
 
   public observableSource(keyword: any): Observable<any[]> {
@@ -218,7 +251,7 @@ export class HomeComponent implements OnInit {
     return Observable.of({
       'place_id': 'ChIJn7h-4b9JJ5URGCq6n0zj1tM',
       'formatted_address': 'Florianópolis - State of Santa Catarina, Brazil'
-    }).delay(500);
+    }).delay(300);
   }
 }
 ```
