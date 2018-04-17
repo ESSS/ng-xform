@@ -109,6 +109,9 @@
                                     <a href="./components/FieldErrorMessageComponent.html" >FieldErrorMessageComponent</a>
                                 </li>
                                 <li class="link">
+                                    <a href="./components/FormControlLayoutComponent.html" >FormControlLayoutComponent</a>
+                                </li>
+                                <li class="link">
                                     <a href="./components/FormGroupComponent.html" >FormGroupComponent</a>
                                 </li>
                                 <li class="link">
@@ -325,6 +328,9 @@
                                            <a href="./components/FieldErrorMessageComponent.html" >FieldErrorMessageComponent</a>
                                        </li>
                                        <li class="link">
+                                           <a href="./components/FormControlLayoutComponent.html" >FormControlLayoutComponent</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="./components/FormGroupComponent.html" >FormGroupComponent</a>
                                        </li>
                                        <li class="link">
@@ -499,12 +505,12 @@ export class AppModule {
 export class OtherModule {
 }</code></pre><h2 id="usage">Usage</h2>
 <p>Template:</p>
-<pre class="line-numbers"><code class="language-html"> &lt;ng-xform #xform (onSubmit)=&quot;onSubmit($event)&quot; [model]=&quot;model&quot; [fields]=&quot;fields&quot; [(editing)]=&quot;editing&quot;&gt;&lt;/ng-xform&gt;</code></pre><p>Component:</p>
+<pre class="line-numbers"><code class="language-html"> &lt;ng-xform [horizontalForm]=&quot;horizontal&quot; [labelWidth]=&quot;labelWidth&quot; (onSubmit)=&quot;onSubmit($event)&quot; [fields]=&quot;fields&quot; [(editing)]=&quot;editing&quot;&gt;&lt;/ng-xform&gt;</code></pre><p>Component:</p>
 <pre class="line-numbers"><code class="language-ts">export class HomeComponent implements OnInit {
 
-  public editing = true;
-  public model: any = {};
+  &#64;ViewChild(NgXformComponent) xformComponent: NgXformComponent;
   private colors: any[] = [
+    { id: 0, name: &#39;other&#39; },
     { id: 1, name: &#39;blue&#39; },
     { id: 2, name: &#39;yellow&#39; },
     { id: 3, name: &#39;white&#39; },
@@ -514,6 +520,9 @@ export class OtherModule {
   ];
 
   public fields: DynamicField[];
+  public editing = true;
+  public horizontal = false;
+  public labelWidth = 2;
 
   constructor(private titleService: Title, private http: HttpClient) {
     const minDate = new Date();
@@ -527,7 +536,6 @@ export class OtherModule {
         key: &#39;name&#39;,
         label: &#39;Name&#39;,
         validators: [
-          Validators.required,
           Validators.minLength(3)
         ]
       }),
@@ -540,22 +548,40 @@ export class OtherModule {
         ]
       }),
       new SelectField({
+        key: &#39;color_ro&#39;,
+        label: &#39;Color read-only&#39;,
+        readOnly: true,
+        searchable: true,
+        options: this.colors,
+        optionLabelKey: &#39;name&#39;,
+      }),
+      new SelectField({
         key: &#39;color&#39;,
         label: &#39;Color&#39;,
         searchable: true,
         options: this.colors,
         optionLabelKey: &#39;name&#39;,
       }),
-      new SelectField({
+      new TextField({
+        key: &#39;other&#39;,
+        label: &#39;Other color&#39;,
+        visibilityFn: (value: any) =&gt; value.color &amp;&amp; value.color.id === 0
+      }),
+      new NestedFormGroup({
         key: &#39;address&#39;,
-        label: &#39;Address&#39;,
-        searchHandler: this.observableSource.bind(this),
-        searchByValueKeyHandler: this.observableSourceByPlaceId.bind(this),
-        searchable: true,
-        optionLabelKey: &#39;formatted_address&#39;,
-        optionValueKey: &#39;place_id&#39;,
-        validators: [
-          Validators.required
+        fields: [
+          new SelectField({
+            key: &#39;street&#39;,
+            label: &#39;Street&#39;,
+            searchHandler: this.observableSource.bind(this),
+            searchByValueKeyHandler: this.observableSourceByPlaceId.bind(this),
+            searchable: true,
+            optionLabelKey: &#39;formatted_address&#39;,
+            optionValueKey: &#39;place_id&#39;,
+            validators: [
+              Validators.required
+            ]
+          })
         ]
       }),
       new SelectField({
@@ -575,21 +601,27 @@ export class OtherModule {
         multiple: true
       }),
       new MeasureField({
-        key: &#39;order&#39;,
-        label: &#39;Order&#39;,
-        unit: &#39;º&#39;
+        key: &#39;length&#39;,
+        label: &#39;Length&#39;,
+        modelUnit: &#39;m&#39;,
+        viewUnit: Observable.of(&#39;cm&#39;).delay(200),
+        availableUnits: Observable.of([&#39;m&#39;, &#39;cm&#39;, &#39;mm&#39;, &#39;ft&#39;]).delay(200)
       }),
       new CheckboxField({
         key: &#39;news&#39;,
         label: &#39;News&#39;
+      }),
+      new MultilineField({
+        key: &#39;comment&#39;,
+        label: &#39;Comment&#39;,
+        rows: 4
       }),
       new DateField({
         key: &#39;birth&#39;,
         label: &#39;Date of birth&#39;,
         theme: &#39;blue&#39;,
         minDate: minDate,
-        maxDate: maxDate,
-        locale: &#39;pt-br&#39;,
+        maxDate: maxDate
       }),
     ];
   }
@@ -600,22 +632,29 @@ export class OtherModule {
 
   public onSubmit(values: object) {
     this.editing = !this.editing;
-    this.model = values;
     console.log(values);
   }
 
   populate() {
-    this.model = {
+    this.xformComponent.form.patchValue({
       name: &#39;Customer&#39;,
       email: &#39;customer&#64;mail.com&#39;,
       type_tags: [2],
       type: &#39;b&#39;,
       color: { id: 3, name: &#39;white&#39; },
-      address: &#39;ChIJn7h-4b9JJ5URGCq6n0zj1tM&#39;,
-      order: 2,
+      color_ro: { id: 3, name: &#39;white&#39; },
+      address: {
+        street: &#39;ChIJn7h-4b9JJ5URGCq6n0zj1tM&#39;
+      },
+      length: { value: 2, unit: &#39;m&#39;},
       news: true,
+      comment: &#39;Mussum Ipsum, cacilds vidis litro abertis. Mauris nec dolor in eros commodo tempor. Aenean aliquam molestie leo, vitae &#39; +
+      &#39;iaculis nisl. Quem num gosta di mé, boa gentis num é. Tá deprimidis, eu conheço uma cachacis que pode alegrar sua vidis. Em pé &#39; +
+      &#39;sem cair, deitado sem dormir, sentado sem cochilar e fazendo pose. Leite de capivaris, leite de mula manquis sem cabeça. Praesent &#39; +
+      &#39;vel viverra nisi. Mauris aliquet nunc non turpis scelerisque, eget. Casamentiss faiz malandris se pirulitá. Sapien in monti &#39; +
+      &#39;palavris qui num significa nadis i pareci latim.&#39;,
       birth: new Date()
-    };
+    });
   }
 
   public observableSource(keyword: any): Observable&lt;any[]&gt; {
@@ -632,7 +671,7 @@ export class OtherModule {
     return Observable.of({
       &#39;place_id&#39;: &#39;ChIJn7h-4b9JJ5URGCq6n0zj1tM&#39;,
       &#39;formatted_address&#39;: &#39;Florianópolis - State of Santa Catarina, Brazil&#39;
-    }).delay(500);
+    }).delay(300);
   }
 }</code></pre><h3 id="locales">Locales</h3>
 <p>DatepickerField can use different locales. </p>

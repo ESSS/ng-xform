@@ -109,6 +109,9 @@
                                     <a href="../components/FieldErrorMessageComponent.html" >FieldErrorMessageComponent</a>
                                 </li>
                                 <li class="link">
+                                    <a href="../components/FormControlLayoutComponent.html" >FormControlLayoutComponent</a>
+                                </li>
+                                <li class="link">
                                     <a href="../components/FormGroupComponent.html" >FormGroupComponent</a>
                                 </li>
                                 <li class="link">
@@ -325,6 +328,9 @@
                                            <a href="../components/FieldErrorMessageComponent.html" >FieldErrorMessageComponent</a>
                                        </li>
                                        <li class="link">
+                                           <a href="../components/FormControlLayoutComponent.html" >FormControlLayoutComponent</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../components/FormGroupComponent.html" >FormGroupComponent</a>
                                        </li>
                                        <li class="link">
@@ -505,6 +511,7 @@
     </p>
     <p class="comment">
                 <code><a href="https://angular.io/api/core/AfterContentInit" target="_blank" >AfterContentInit</a></code>
+                <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
     </p>
 
 
@@ -548,6 +555,20 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#hideLabelOnEdit">hideLabelOnEdit</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
                         <h6><b>Methods</b></h6>
                     </td>
                 </tr>
@@ -556,6 +577,20 @@
                         <ul class="index-list">
                             <li>
                                 <a href="#ngAfterContentInit">ngAfterContentInit</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Accessors</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#formattedValue">formattedValue</a>
                             </li>
                         </ul>
                     </td>
@@ -596,7 +631,7 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/ng-xform/checkbox-field/checkbox-field.component.ts:20</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">src/ng-xform/checkbox-field/checkbox-field.component.ts:21</a></div>
                                 </td>
                             </tr>
     
@@ -613,12 +648,78 @@
             </table>
     </section>
 
+    <section>
+        
+            <h3 id="inputs">
+                Properties
+            </h3>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <a name="hideLabelOnEdit"></a>
+                            <span class="name">
+                                <b>
+                                hideLabelOnEdit
+                                </b>
+                                <a href="#hideLabelOnEdit"><span class="fa fa-link"></span></a>
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <code>hideLabelOnEdit:     <code></code>
+    </code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Default value : </i><code>true</code>
+                            </td>
+                        </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/ng-xform/checkbox-field/checkbox-field.component.ts:19</a></div>
+                                </td>
+                            </tr>
+    
+    
+                </tbody>
+            </table>
+    </section>
 
+    <section>
+        <h3 id="accessors">
+            Accessors
+        </h3>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <a name="formattedValue"></a>
+                            <span class="name"><b>formattedValue</b><a href="#formattedValue"><span class="fa fa-link"></span></a></span>
+                        </td>
+                    </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+                            <span class="accessor"><b>get</b><code>formattedValue()</code></span>
+                        </td>
+                    </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/ng-xform/checkbox-field/checkbox-field.component.ts:29</a></div>
+                                    </td>
+                                </tr>
+    
+                </tbody>
+            </table>
+    </section>
 </div>
 
 
     <div class="tab-pane fade tab-source-code" id="c-source">
-        <pre class="line-numbers"><code class="language-typescript">import { Component, AfterContentInit } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers"><code class="language-typescript">import { Component, AfterContentInit, OnInit } from &#x27;@angular/core&#x27;;
 
 import { BaseDynamicFieldComponent } from &#x27;../field-components/base-dynamic-field.component&#x27;;
 import { CheckboxField } from &#x27;../fields&#x27;;
@@ -635,7 +736,8 @@ import { CheckboxField } from &#x27;../fields&#x27;;
   selector: &#x27;ng-xform-checkbox-field&#x27;,
   templateUrl: &#x27;./checkbox-field.component.html&#x27;,
 })
-export class CheckboxFieldComponent extends BaseDynamicFieldComponent&lt;CheckboxField&gt; implements AfterContentInit {
+export class CheckboxFieldComponent extends BaseDynamicFieldComponent&lt;CheckboxField&gt; implements AfterContentInit, OnInit {
+  hideLabelOnEdit &#x3D; true;
 
   ngAfterContentInit() {
     if (this.control.value &#x3D;&#x3D;&#x3D; null) {
@@ -645,24 +747,22 @@ export class CheckboxFieldComponent extends BaseDynamicFieldComponent&lt;Checkbo
     }
   }
 
+  get formattedValue(): string {
+    return this.form.controls[this.elementId].value ? &#x27;True&#x27; : &#x27;False&#x27;;
+  }
+
 }
 </code></pre>
     </div>
 
     <div class="tab-pane fade" id="c-templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;div *ngIf&#x3D;&quot;!isEditing &amp;&amp; visible&quot; id&#x3D;&quot;{{elementId}}-label&quot;&gt;
-  &lt;strong&gt;{{ field.label }}&lt;/strong&gt;
-  &lt;p class&#x3D;&quot;text-muted&quot;&gt;{{ form?.controls[elementId]?.value ? &#x27;True&#x27; : &#x27;False&#x27; }}&lt;/p&gt;
-&lt;/div&gt;
-
-&lt;div *ngIf&#x3D;&quot;isEditing &amp;&amp; visible&quot; id&#x3D;&quot;{{elementId}}-div&quot; class&#x3D;&quot;form-group&quot; [formGroup]&#x3D;&quot;form&quot; [ngClass]&#x3D;&quot;displayFieldCss()&quot;&gt;
-  &lt;div class&#x3D;&quot;checkbox&quot;&gt;
+        <pre class="line-numbers"><code class="language-html">&lt;ng-xform-form-control-layout [fieldComponent]&#x3D;&quot;instance&quot;&gt;
+&lt;div class&#x3D;&quot;checkbox&quot;&gt;
     &lt;label&gt;
-      &lt;input type&#x3D;&quot;checkbox&quot; [formControlName]&#x3D;&quot;elementId&quot; id&#x3D;&quot;{{elementId}}&quot; /&gt; {{field.label}}
+      &lt;input type&#x3D;&quot;checkbox&quot; [formControl]&#x3D;&quot;control&quot; id&#x3D;&quot;{{elementId}}&quot; /&gt; {{field.label}}
     &lt;/label&gt;
   &lt;/div&gt;
-  &lt;ng-xform-field-error-message [control]&#x3D;&quot;control&quot;&gt;&lt;/ng-xform-field-error-message&gt;
-&lt;/div&gt;
+&lt;/ng-xform-form-control-layout&gt;
 </code></pre>
     </div>
 
@@ -689,8 +789,8 @@ export class CheckboxFieldComponent extends BaseDynamicFieldComponent&lt;Checkbo
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div *ngIf="!isEditing && visible" id="{{elementId}}-label">  <strong>{{ field.label }}</strong>  <p class="text-muted">{{ form?.controls[elementId]?.value ? \'True\' : \'False\' }}</p></div><div *ngIf="isEditing && visible" id="{{elementId}}-div" class="form-group" [formGroup]="form" [ngClass]="displayFieldCss()">  <div class="checkbox">    <label>      <input type="checkbox" [formControlName]="elementId" id="{{elementId}}" /> {{field.label}}    </label>  </div>  <ng-xform-field-error-message [control]="control"></ng-xform-field-error-message></div></div>'
-    var COMPONENTS = [{'name': 'CheckboxFieldComponent', 'selector': 'ng-xform-checkbox-field'},{'name': 'DateFieldComponent', 'selector': 'ng-xform-date-field'},{'name': 'EditableLabelComponent', 'selector': 'ng-xform-editable-label'},{'name': 'FieldErrorMessageComponent', 'selector': 'ng-xform-field-error-message'},{'name': 'FormGroupComponent', 'selector': 'ng-xform-form-group'},{'name': 'MeasureFieldComponent', 'selector': 'ng-xform-measure-field'},{'name': 'MultilineFieldComponent', 'selector': 'ng-xform-multiline-field'},{'name': 'NgXformComponent', 'selector': 'ng-xform'},{'name': 'OptionalTagComponent', 'selector': 'ng-xform-optional-tag'},{'name': 'SelectFieldComponent', 'selector': 'ng-xform-select-field'}];
+        var COMPONENT_TEMPLATE = '<div><ng-xform-form-control-layout [fieldComponent]="instance"><div class="checkbox">    <label>      <input type="checkbox" [formControl]="control" id="{{elementId}}" /> {{field.label}}    </label>  </div></ng-xform-form-control-layout></div>'
+    var COMPONENTS = [{'name': 'CheckboxFieldComponent', 'selector': 'ng-xform-checkbox-field'},{'name': 'DateFieldComponent', 'selector': 'ng-xform-date-field'},{'name': 'EditableLabelComponent', 'selector': 'ng-xform-editable-label'},{'name': 'FieldErrorMessageComponent', 'selector': 'ng-xform-field-error-message'},{'name': 'FormControlLayoutComponent', 'selector': 'ng-xform-form-control-layout'},{'name': 'FormGroupComponent', 'selector': 'ng-xform-form-group'},{'name': 'MeasureFieldComponent', 'selector': 'ng-xform-measure-field'},{'name': 'MultilineFieldComponent', 'selector': 'ng-xform-multiline-field'},{'name': 'NgXformComponent', 'selector': 'ng-xform'},{'name': 'OptionalTagComponent', 'selector': 'ng-xform-optional-tag'},{'name': 'SelectFieldComponent', 'selector': 'ng-xform-select-field'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'CheckboxFieldComponent'};
 </script>

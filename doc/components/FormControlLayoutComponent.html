@@ -109,7 +109,7 @@
                                     <a href="../components/FieldErrorMessageComponent.html" >FieldErrorMessageComponent</a>
                                 </li>
                                 <li class="link">
-                                    <a href="../components/FormControlLayoutComponent.html" >FormControlLayoutComponent</a>
+                                    <a href="../components/FormControlLayoutComponent.html"  data-type="entity-link" class="active" >FormControlLayoutComponent</a>
                                 </li>
                                 <li class="link">
                                     <a href="../components/FormGroupComponent.html" >FormGroupComponent</a>
@@ -204,7 +204,7 @@
                                     <a href="../pipes/ForceUtcPipe.html" >ForceUtcPipe</a>
                                 </li>
                                 <li class="link">
-                                    <a href="../pipes/ValueSuffixPipe.html"  data-type="entity-link" class="active" >ValueSuffixPipe</a>
+                                    <a href="../pipes/ValueSuffixPipe.html" >ValueSuffixPipe</a>
                                 </li>
                         </ul>
                     </li>
@@ -328,7 +328,7 @@
                                            <a href="../components/FieldErrorMessageComponent.html" >FieldErrorMessageComponent</a>
                                        </li>
                                        <li class="link">
-                                           <a href="../components/FormControlLayoutComponent.html" >FormControlLayoutComponent</a>
+                                           <a href="../components/FormControlLayoutComponent.html"  data-type="entity-link" class="active" >FormControlLayoutComponent</a>
                                        </li>
                                        <li class="link">
                                            <a href="../components/FormGroupComponent.html" >FormGroupComponent</a>
@@ -423,7 +423,7 @@
                                            <a href="../pipes/ForceUtcPipe.html" >ForceUtcPipe</a>
                                        </li>
                                        <li class="link">
-                                           <a href="../pipes/ValueSuffixPipe.html"  data-type="entity-link" class="active" >ValueSuffixPipe</a>
+                                           <a href="../pipes/ValueSuffixPipe.html" >ValueSuffixPipe</a>
                                        </li>
                                </ul>
                            </li>
@@ -452,19 +452,15 @@
                    
                    </nav>
                </div>
-               <div class="content pipe">
+               <div class="content component">
                    <div class="content-data">
 
 
 
 
-
-
-
-
 <ol class="breadcrumb">
-  <li>Pipes</li>
-  <li>ValueSuffixPipe</li>
+  <li>Components</li>
+  <li>FormControlLayoutComponent</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -472,143 +468,326 @@
         <a href="#info" id="info-tab" role="tab" data-toggle="tab" data-link="info">Info</a>
     </li>
 
-
     <li>
         <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
     </li>
 
+    <li>
+        <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+    </li>
+    <li>
+        <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+    </li>
 </ul>
 
 <div class="tab-content">
-    <div class="tab-pane fade active in" id="c-info">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/ng-xform/form-control-layout/form-control-layout.component.ts</code>
+</p>
 
-        <p class="comment">
-            <h3>File</h3>
-        </p>
-        <p class="comment">
-            <code>src/pipes/value-suffix.pipe.ts</code>
-        </p>
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>Component to generate a Bootstrap form field and set up the component layout according to the form configuration.</p>
+
+    </p>
 
 
 
-        <section>
-            <h3>Metadata</h3>
-            <table class="table table-sm table-hover">
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>ng-xform-form-control-layout</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>form-control-layout.component.css</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./form-control-layout.component.html</code></td>
+            </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+        <h3 id="index">Index</h3>
+        <table class="table table-sm table-bordered index-table">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Inputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#fieldComponent">fieldComponent</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Accessors</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#labelStyleClass">labelStyleClass</a>
+                            </li>
+                            <li>
+                                <a href="#fieldStyleClassCheckbox">fieldStyleClassCheckbox</a>
+                            </li>
+                            <li>
+                                <a href="#fieldStyleClass">fieldStyleClass</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+
+    <section>
+        <h3 id="inputs">Inputs</h3>
+            <table class="table table-sm table-bordered">
                 <tbody>
                     <tr>
-                        <td class="col-md-3">name</td>
-                        <td class="col-md-9">valueSuffix</td>
+                        <td class="col-md-2">
+                            <a name="fieldComponent"></a>
+                            <code>fieldComponent</code>
+                        </td>
+                        <td class="col-md-10">
+                              <p>
+                                <em>Type:</em>    <code><a href="../classes/DynamicField.html" target="_self" >BaseDynamicFieldComponent&lt;DynamicField&gt;</a></code>
+
+                              </p>
+                        </td>
                     </tr>
+                            <tr>
+                                <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/ng-xform/form-control-layout/form-control-layout.component.ts:20</a></div>
+                                </td>
+                            </tr>
                 </tbody>
             </table>
-        </section>
-
-            <section>
-                
-                    <h3 id="methods">
-                        Methods
-                    </h3>
-                    <table class="table table-sm table-bordered">
-                        <tbody>
-                            <tr>
-                                <td class="col-md-4">
-                                    <a name="transform"></a>
-                                    <span class="name">
-                                        <b>
-                                        transform
-                                        </b>
-                                        <a href="#transform"><span class="fa fa-link"></span></a>
-                                    </span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="col-md-4">
-            <code>transform(value: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, suffix: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
-                                </td>
-                            </tr>
-            
-            
-                                    <tr>
-                                        <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">src/pipes/value-suffix.pipe.ts:8</a></div>
-                                        </td>
-                                    </tr>
-            
-                            <tr>
-                                <td class="col-md-4">
-            
-                                        <div class="io-description">
-                                                <b>Parameters :</b>
-                                                <table class="params">
-                                                    <thead>
-                                                        <tr>
-                                                            <td>Name</td>
-                                                            <td>Type</td>
-                                                            <td>Optional</td>
-                                                            <td>Description</td>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                            <tr>
-                                                              <td>value</td>
-                                                              <td>
-                                                                      <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
-                                                              </td>
-                                                              <td>
-                                                              </td>
-                                                              <td></td>
-                                                            </tr>
-                                                            <tr>
-                                                              <td>suffix</td>
-                                                              <td>
-                                                                      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                                              </td>
-                                                              <td>
-                                                              </td>
-                                                              <td></td>
-                                                            </tr>
-                                                    </tbody>
-                                                </table>
-                                        </div>
-                                        <div>
-                                        </div>
-                                        <div class="io-description">
-                                            <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
-            
-                                        </div>
-                                            <div class="io-description">
-                                                
-                                            </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-            </section>
+    </section>
 
 
-    </div>
+
+
+
+
+    <section>
+        <h3 id="accessors">
+            Accessors
+        </h3>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <a name="labelStyleClass"></a>
+                            <span class="name"><b>labelStyleClass</b><a href="#labelStyleClass"><span class="fa fa-link"></span></a></span>
+                        </td>
+                    </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+                            <span class="accessor"><b>get</b><code>labelStyleClass()</code></span>
+                        </td>
+                    </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/ng-xform/form-control-layout/form-control-layout.component.ts:22</a></div>
+                                    </td>
+                                </tr>
+    
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <a name="fieldStyleClassCheckbox"></a>
+                            <span class="name"><b>fieldStyleClassCheckbox</b><a href="#fieldStyleClassCheckbox"><span class="fa fa-link"></span></a></span>
+                        </td>
+                    </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+                            <span class="accessor"><b>get</b><code>fieldStyleClassCheckbox()</code></span>
+                        </td>
+                    </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/ng-xform/form-control-layout/form-control-layout.component.ts:29</a></div>
+                                    </td>
+                                </tr>
+    
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <a name="fieldStyleClass"></a>
+                            <span class="name"><b>fieldStyleClass</b><a href="#fieldStyleClass"><span class="fa fa-link"></span></a></span>
+                        </td>
+                    </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+                            <span class="accessor"><b>get</b><code>fieldStyleClass()</code></span>
+                        </td>
+                    </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/ng-xform/form-control-layout/form-control-layout.component.ts:39</a></div>
+                                    </td>
+                                </tr>
+    
+                </tbody>
+            </table>
+    </section>
+</div>
 
 
     <div class="tab-pane fade tab-source-code" id="c-source">
-        <pre class="line-numbers"><code class="language-typescript">import { Pipe, PipeTransform } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers"><code class="language-typescript">import { Observable } from &#x27;rxjs/Observable&#x27;;
+import { Component, Input } from &#x27;@angular/core&#x27;;
 
-@Pipe({
-  name: &#x27;valueSuffix&#x27;
+import { BaseDynamicFieldComponent } from &#x27;../../ng-xform/field-components/base-dynamic-field.component&#x27;;
+import { DynamicField } from &#x27;../..&#x27;;
+
+
+
+/**
+ * Component to generate a Bootstrap form field and set up the component layout according to the form configuration.
+ */
+@Component({
+  selector: &#x27;ng-xform-form-control-layout&#x27;,
+  templateUrl: &#x27;./form-control-layout.component.html&#x27;,
+  styleUrls: [
+    &#x27;form-control-layout.component.css&#x27;
+  ]
 })
-export class ValueSuffixPipe implements PipeTransform {
+export class FormControlLayoutComponent {
+  @Input() fieldComponent: BaseDynamicFieldComponent&lt;DynamicField&gt;;
 
-  transform(value: any, suffix: string &#x3D; &#x27;&#x27;): any {
-    if (!value) {
-      return &#x27;-&#x27;;
+  get labelStyleClass(): string {
+    if (!this.fieldComponent.isHorizontal) {
+      return &#x27;&#x27;;
     }
-    return &#x60;${value} ${suffix}&#x60;;
+    return &#x60;col-sm-${this.fieldComponent.labelWidth} control-label&#x60;;
   }
 
+  get fieldStyleClassCheckbox(): string {
+    if (!this.fieldComponent.isHorizontal) {
+      return &#x27;&#x27;;
+    }
+    if (this.fieldComponent.isHorizontal &amp;&amp; this.fieldComponent.hideLabelOnEdit) {
+      return &#x60;${this.fieldStyleClass} col-sm-offset-${this.fieldComponent.labelWidth}&#x60;;
+    }
+    return this.fieldStyleClass;
+  }
+
+  get fieldStyleClass(): string {
+    if (!this.fieldComponent.isHorizontal) {
+      return &#x27;&#x27;;
+    }
+    return &#x60;col-sm-${12 - this.fieldComponent.labelWidth}&#x60;;
+  }
 }
 </code></pre>
     </div>
 
+    <div class="tab-pane fade" id="c-templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div *ngIf&#x3D;&quot;!fieldComponent.isEditing &amp;&amp; fieldComponent.visible&quot; id&#x3D;&quot;{{fieldComponent.elementId}}-label&quot;&gt;
+  &lt;strong [ngClass]&#x3D;&quot;labelStyleClass&quot;&gt;{{ fieldComponent.field.label }}&lt;/strong&gt;
+  &lt;div [ngClass]&#x3D;&quot;fieldStyleClass&quot; [class.horizontal-readonly]&#x3D;&quot;fieldComponent.isHorizontal&quot;
+  [class.readonly]&#x3D;&quot;!fieldComponent.isHorizontal&quot; class&#x3D;&quot;text-muted&quot;&gt;
+    {{ fieldComponent.formattedValue }}
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;div [hidden]&#x3D;&quot;!fieldComponent.isEditing || !fieldComponent.visible&quot; id&#x3D;&quot;{{fieldComponent.elementId}}-div&quot; class&#x3D;&quot;form-group&quot;
+[formGroup]&#x3D;&quot;fieldComponent.form&quot; [ngClass]&#x3D;&quot;fieldStyleClass&quot;&gt;
+  &lt;label *ngIf&#x3D;&quot;!fieldComponent.hideLabelOnEdit&quot; for&#x3D;&quot;{{fieldComponent.elementId}}&quot; [ngClass]&#x3D;&quot;labelStyleClass&quot;&gt;
+    {{ fieldComponent.field.label }}
+    &lt;ng-xform-optional-tag [show]&#x3D;&quot;fieldComponent.isOptional&quot;&gt;&lt;/ng-xform-optional-tag&gt;
+  &lt;/label&gt;
+  &lt;div [ngClass]&#x3D;&quot;fieldStyleClassCheckbox&quot;&gt;
+    &lt;ng-content&gt;&lt;/ng-content&gt;
+    &lt;ng-xform-field-error-message [control]&#x3D;&quot;fieldComponent.control&quot;&gt;&lt;/ng-xform-field-error-message&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade" id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
 </div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div *ngIf="!fieldComponent.isEditing && fieldComponent.visible" id="{{fieldComponent.elementId}}-label">  <strong [ngClass]="labelStyleClass">{{ fieldComponent.field.label }}</strong>  <div [ngClass]="fieldStyleClass" [class.horizontal-readonly]="fieldComponent.isHorizontal"  [class.readonly]="!fieldComponent.isHorizontal" class="text-muted">    {{ fieldComponent.formattedValue }}  </div></div><div [hidden]="!fieldComponent.isEditing || !fieldComponent.visible" id="{{fieldComponent.elementId}}-div" class="form-group"[formGroup]="fieldComponent.form" [ngClass]="fieldStyleClass">  <label *ngIf="!fieldComponent.hideLabelOnEdit" for="{{fieldComponent.elementId}}" [ngClass]="labelStyleClass">    {{ fieldComponent.field.label }}    <ng-xform-optional-tag [show]="fieldComponent.isOptional"></ng-xform-optional-tag>  </label>  <div [ngClass]="fieldStyleClassCheckbox">    <ng-content></ng-content>    <ng-xform-field-error-message [control]="fieldComponent.control"></ng-xform-field-error-message>  </div></div></div>'
+    var COMPONENTS = [{'name': 'CheckboxFieldComponent', 'selector': 'ng-xform-checkbox-field'},{'name': 'DateFieldComponent', 'selector': 'ng-xform-date-field'},{'name': 'EditableLabelComponent', 'selector': 'ng-xform-editable-label'},{'name': 'FieldErrorMessageComponent', 'selector': 'ng-xform-field-error-message'},{'name': 'FormControlLayoutComponent', 'selector': 'ng-xform-form-control-layout'},{'name': 'FormGroupComponent', 'selector': 'ng-xform-form-group'},{'name': 'MeasureFieldComponent', 'selector': 'ng-xform-measure-field'},{'name': 'MultilineFieldComponent', 'selector': 'ng-xform-multiline-field'},{'name': 'NgXformComponent', 'selector': 'ng-xform'},{'name': 'OptionalTagComponent', 'selector': 'ng-xform-optional-tag'},{'name': 'SelectFieldComponent', 'selector': 'ng-xform-select-field'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'FormControlLayoutComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
 
 
 

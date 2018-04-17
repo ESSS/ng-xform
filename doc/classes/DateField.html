@@ -109,6 +109,9 @@
                                     <a href="../components/FieldErrorMessageComponent.html" >FieldErrorMessageComponent</a>
                                 </li>
                                 <li class="link">
+                                    <a href="../components/FormControlLayoutComponent.html" >FormControlLayoutComponent</a>
+                                </li>
+                                <li class="link">
                                     <a href="../components/FormGroupComponent.html" >FormGroupComponent</a>
                                 </li>
                                 <li class="link">
@@ -325,6 +328,9 @@
                                            <a href="../components/FieldErrorMessageComponent.html" >FieldErrorMessageComponent</a>
                                        </li>
                                        <li class="link">
+                                           <a href="../components/FormControlLayoutComponent.html" >FormControlLayoutComponent</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../components/FormGroupComponent.html" >FormGroupComponent</a>
                                        </li>
                                        <li class="link">
@@ -514,6 +520,10 @@
                                     </li>
                                     <li>
                                             <span class="modifier">Public</span>
+                                        <a href="#locale">locale</a>
+                                    </li>
+                                    <li>
+                                            <span class="modifier">Public</span>
                                         <a href="#maxDate">maxDate</a>
                                     </li>
                                     <li>
@@ -546,7 +556,7 @@
                             </tr>
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">src/ng-xform/fields/date-field.ts:9</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/ng-xform/fields/date-field.ts:10</a></div>
                                         </td>
                                     </tr>
             
@@ -662,6 +672,41 @@
                         <tbody>
                             <tr>
                                 <td class="col-md-4">
+                                    <a name="locale"></a>
+                                    <span class="name">
+                                        <b>
+                                            <span class="modifier">Public</span>
+                                        locale
+                                        </b>
+                                        <a href="#locale"><span class="fa fa-link"></span></a>
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <span class="modifier-icon fa fa-reset"></span><code>locale:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+            </code>
+                                </td>
+                            </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+            
+                                    </td>
+                                </tr>
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">src/ng-xform/fields/date-field.ts:8</a></div>
+                                        </td>
+                                    </tr>
+            
+            
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-4">
                                     <a name="maxDate"></a>
                                     <span class="name">
                                         <b>
@@ -686,7 +731,7 @@
                                 </tr>
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">src/ng-xform/fields/date-field.ts:8</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">src/ng-xform/fields/date-field.ts:9</a></div>
                                         </td>
                                     </tr>
             
@@ -721,7 +766,7 @@
                                 </tr>
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">src/ng-xform/fields/date-field.ts:9</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/ng-xform/fields/date-field.ts:10</a></div>
                                         </td>
                                     </tr>
             
@@ -811,6 +856,7 @@ export class DateField extends DynamicField {
   public theme?: &#x27;default&#x27; | &#x27;green&#x27; | &#x27;blue&#x27; | &#x27;dark-blue&#x27; | &#x27;red&#x27; | &#x27;orange&#x27;;
   public placement?: &#x27;top&#x27; | &#x27;bottom&#x27; | &#x27;left&#x27; | &#x27;right&#x27;;
   public initialValue?: Date;
+  public locale?: string;
   public maxDate?: Date;
   public minDate?: Date;
 
@@ -820,6 +866,7 @@ export class DateField extends DynamicField {
     this.placement &#x3D; options.placement || &#x27;bottom&#x27;;
     this.maxDate &#x3D; options.maxDate;
     this.minDate &#x3D; options.minDate;
+    this.locale &#x3D; options.locale || &#x27;en&#x27;;
   }
 }
 </code></pre>
