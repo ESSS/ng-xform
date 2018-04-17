@@ -7,9 +7,7 @@ import { DynamicField } from '../..';
 
 
 /**
- * Component to generate a bootstrap form field of numeric type
- *
- * :formControlLayoutConfig: To set up the component layout
+ * Component to generate a Bootstrap form field and set up the component layout according to the form configuration.
  */
 @Component({
   selector: 'ng-xform-form-control-layout',
