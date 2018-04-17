@@ -24,7 +24,7 @@ const pump = require('pump');
 const gulpCoveralls = require('gulp-coveralls');
 
 /** To order tasks */
-const runSequence = require('run-sequence');
+const runSequence = require('run-sequence').use(gulp);
 
 /** To compile & bundle the library with Angular & Rollup */
 const ngc = (args) => new Promise((resolve, reject)=>{// Promisify version of the ngc compiler

@@ -84,6 +84,10 @@ export class SelectFieldComponent extends BaseDynamicFieldComponent<SelectField>
     this.select.setDisabledState(isDisabled);
   }
 
+  get formattedValue() {
+    return this.optionLabel;
+  }
+
   private updateOptionLabel() {
     setTimeout(() => {
       this.optionLabel = this.select.selectedItems.map(item => item.label).join(this.field.separator) || '-';

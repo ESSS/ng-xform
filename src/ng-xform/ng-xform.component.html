@@ -1,6 +1,6 @@
 <div>
-  <form [formGroup]="form">
-    <ng-xform-form-group [fields]='fields' [form]=form [editing]='editing'></ng-xform-form-group>
+  <form [formGroup]="form" [class.form-horizontal]="horizontalForm">
+    <ng-xform-form-group [isHorizontal]="horizontalForm" [labelWidth]="labelWidth" [fields]='fields' [form]=form [editing]='editing'></ng-xform-form-group>
   </form>
 </div>
 <div class="row">

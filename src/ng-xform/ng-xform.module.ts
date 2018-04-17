@@ -17,6 +17,7 @@ import { ErrorMessagePipe } from './field-error-message/error-message.pipe';
 import { PipesModule } from '../pipes/pipes.module';
 import { MultilineFieldComponent } from './multiline-field/multiline-field.component';
 import { FormGroupComponent } from './form-group/form-group.component';
+import { FormControlLayoutComponent } from './form-control-layout/form-control-layout.component';
 
 @NgModule({
   imports: [
@@ -39,6 +40,7 @@ import { FormGroupComponent } from './form-group/form-group.component';
     MultilineFieldComponent,
     OptionalTagComponent,
     DateFieldComponent,
+    FormControlLayoutComponent,
   ],
   exports: [
     NgXformComponent,

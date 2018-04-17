@@ -4,7 +4,7 @@ import { Title } from '@angular/platform-browser';
 import { HttpClient } from '@angular/common/http';
 import {
   TextField, SelectField, MeasureField, NgXformComponent, CheckboxField,
-  MultilineField, DateField, DynamicField
+  MultilineField, DateField, DynamicField, NestedFormGroup
 } from '@esss/ng-xform';
 import { Observable } from 'rxjs/Observable';
 import { delay } from 'rxjs/operators';
@@ -17,8 +17,6 @@ import { delay } from 'rxjs/operators';
 export class HomeComponent implements OnInit {
 
   @ViewChild(NgXformComponent) xformComponent: NgXformComponent;
-  public editing = true;
-  public model: any = {};
   private colors: any[] = [
     { id: 0, name: 'other' },
     { id: 1, name: 'blue' },
@@ -30,6 +28,9 @@ export class HomeComponent implements OnInit {
   ];
 
   public fields: DynamicField[];
+  public editing = true;
+  public horizontal = false;
+  public labelWidth = 2;
 
   constructor(private titleService: Title, private http: HttpClient) {
     const minDate = new Date();
@@ -74,16 +75,21 @@ export class HomeComponent implements OnInit {
         label: 'Other color',
         visibilityFn: (value: any) => value.color && value.color.id === 0
       }),
-      new SelectField({
+      new NestedFormGroup({
         key: 'address',
-        label: 'Address',
-        searchHandler: this.observableSource.bind(this),
-        searchByValueKeyHandler: this.observableSourceByPlaceId.bind(this),
-        searchable: true,
-        optionLabelKey: 'formatted_address',
-        optionValueKey: 'place_id',
-        validators: [
-          Validators.required
+        fields: [
+          new SelectField({
+            key: 'street',
+            label: 'Street',
+            searchHandler: this.observableSource.bind(this),
+            searchByValueKeyHandler: this.observableSourceByPlaceId.bind(this),
+            searchable: true,
+            optionLabelKey: 'formatted_address',
+            optionValueKey: 'place_id',
+            validators: [
+              Validators.required
+            ]
+          })
         ]
       }),
       new SelectField({
@@ -103,8 +109,8 @@ export class HomeComponent implements OnInit {
         multiple: true
       }),
       new MeasureField({
-        key: 'order',
-        label: 'Order',
+        key: 'length',
+        label: 'Length',
         modelUnit: 'm',
         viewUnit: Observable.of('cm').delay(200),
         availableUnits: Observable.of(['m', 'cm', 'mm', 'ft']).delay(200)
@@ -134,7 +140,6 @@ export class HomeComponent implements OnInit {
 
   public onSubmit(values: object) {
     this.editing = !this.editing;
-    this.model = values;
     console.log(values);
   }
 
@@ -146,8 +151,10 @@ export class HomeComponent implements OnInit {
       type: 'b',
       color: { id: 3, name: 'white' },
       color_ro: { id: 3, name: 'white' },
-      address: 'ChIJn7h-4b9JJ5URGCq6n0zj1tM',
-      order: { value: 2, unit: 'm'},
+      address: {
+        street: 'ChIJn7h-4b9JJ5URGCq6n0zj1tM'
+      },
+      length: { value: 2, unit: 'm'},
       news: true,
       comment: 'Mussum Ipsum, cacilds vidis litro abertis. Mauris nec dolor in eros commodo tempor. Aenean aliquam molestie leo, vitae ' +
       'iaculis nisl. Quem num gosta di mé, boa gentis num é. Tá deprimidis, eu conheço uma cachacis que pode alegrar sua vidis. Em pé ' +

@@ -1,5 +1,7 @@
 <div [formGroup]='form'>
   <div *ngFor="let field of fields">
+
+
     <div [ngSwitch]="field.controlType">
 
       <ng-template [ngSwitchCase]="'GROUP'">
@@ -8,27 +10,27 @@
           {{field.label}}
         </h4>
         <div [formGroupName]="field.key">
-          <ng-xform-form-group [fields]='field.fields' [form]='form.get(field.key)' [editing]='editing'>
+          <ng-xform-form-group [fields]='field.fields' [labelWidth]="labelWidth" [isHorizontal]="isHorizontal" [form]='form.get(field.key)' [editing]='editing'>
           </ng-xform-form-group>
         </div>
       </ng-template>
 
-      <ng-xform-measure-field *ngSwitchCase="'MEASURE'" [field]="field" [form]="form" [formControlName]="field.key" [editing]="editing !== false">
+      <ng-xform-measure-field  *ngSwitchCase="'MEASURE'" [labelWidth]="labelWidth" [isHorizontal]="isHorizontal" [field]="field" [form]="form" [formControlName]="field.key" [editing]="editing !== false">
       </ng-xform-measure-field>
 
-      <ng-xform-editable-label *ngSwitchCase="'TEXT'" [field]="field" [form]="form" [editing]="editing !== false">
+      <ng-xform-editable-label *ngSwitchCase="'TEXT'" [labelWidth]="labelWidth" [isHorizontal]="isHorizontal" [field]="field" [form]="form" [editing]="editing !== false">
       </ng-xform-editable-label>
 
-      <ng-xform-multiline-field *ngSwitchCase="'MULTILINE'" [field]="field" [form]="form" [editing]="editing !== false">
+      <ng-xform-multiline-field *ngSwitchCase="'MULTILINE'" [labelWidth]="labelWidth" [isHorizontal]="isHorizontal" [field]="field" [form]="form" [editing]="editing !== false">
       </ng-xform-multiline-field>
 
-      <ng-xform-checkbox-field *ngSwitchCase="'CHECKBOX'" [field]="field" [form]="form" [editing]="editing !== false">
+      <ng-xform-checkbox-field *ngSwitchCase="'CHECKBOX'" [labelWidth]="labelWidth" [isHorizontal]="isHorizontal" [field]="field" [form]="form" [editing]="editing !== false">
       </ng-xform-checkbox-field>
 
-      <ng-xform-select-field *ngSwitchCase="'SELECT'" [field]="field" [form]="form" [formControlName]="field.key" [editing]="editing !== false">
+      <ng-xform-select-field *ngSwitchCase="'SELECT'" [labelWidth]="labelWidth" [isHorizontal]="isHorizontal" [field]="field" [form]="form" [formControlName]="field.key" [editing]="editing !== false">
       </ng-xform-select-field>
 
-      <ng-xform-date-field *ngSwitchCase="'DATE'" [field]="field" [form]="form" [formControlName]="field.key" [editing]="editing !== false">
+      <ng-xform-date-field *ngSwitchCase="'DATE'" [labelWidth]="labelWidth" [isHorizontal]="isHorizontal" [field]="field" [form]="form" [formControlName]="field.key" [editing]="editing !== false">
       </ng-xform-date-field>
 
       <pre *ngSwitchDefault>{{ field | json}}</pre>

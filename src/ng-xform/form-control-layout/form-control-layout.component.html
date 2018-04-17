@@ -1,0 +1,18 @@
+<div *ngIf="!fieldComponent.isEditing && fieldComponent.visible" id="{{fieldComponent.elementId}}-label">
+  <strong [ngClass]="labelStyleClass">{{ fieldComponent.field.label }}</strong>
+  <div [ngClass]="fieldStyleClass" [class.horizontal-readonly]="fieldComponent.isHorizontal"
+  [class.readonly]="!fieldComponent.isHorizontal" class="text-muted">
+    {{ fieldComponent.formattedValue }}
+  </div>
+</div>
+<div [hidden]="!fieldComponent.isEditing || !fieldComponent.visible" id="{{fieldComponent.elementId}}-div" class="form-group"
+[formGroup]="fieldComponent.form" [ngClass]="fieldComponent.styleClasses">
+  <label *ngIf="!fieldComponent.hideLabelOnEdit" for="{{fieldComponent.elementId}}" [ngClass]="labelStyleClass">
+    {{ fieldComponent.field.label }}
+    <ng-xform-optional-tag [show]="fieldComponent.isOptional"></ng-xform-optional-tag>
+  </label>
+  <div [ngClass]="fieldStyleClassCheckbox">
+    <ng-content></ng-content>
+    <ng-xform-field-error-message [control]="fieldComponent.control"></ng-xform-field-error-message>
+  </div>
+</div>

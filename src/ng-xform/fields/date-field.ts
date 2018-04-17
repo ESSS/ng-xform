@@ -5,6 +5,7 @@ export class DateField extends DynamicField {
   public theme?: 'default' | 'green' | 'blue' | 'dark-blue' | 'red' | 'orange';
   public placement?: 'top' | 'bottom' | 'left' | 'right';
   public initialValue?: Date;
+  public locale?: string;
   public maxDate?: Date;
   public minDate?: Date;
 
@@ -14,5 +15,6 @@ export class DateField extends DynamicField {
     this.placement = options.placement || 'bottom';
     this.maxDate = options.maxDate;
     this.minDate = options.minDate;
+    this.locale = options.locale || 'en';
   }
 }

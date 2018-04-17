@@ -21,9 +21,15 @@
 
 <section class="home">
   <div class="container">
+    <fieldset>
+      <legend>set up</legend>
+      <div class="col-sm-3"><label><input [(ngModel)]="horizontal" type="checkbox" /> Horizontal form</label></div>
+      <div class="col-sm-3"><label>Label width</label> <input type="number" [(ngModel)]="labelWidth" /></div>
+      <div class="col-sm-3"><button *ngIf="editing" type="button" class="btn btn-info" (click)="populate()">Populate</button></div>
+    </fieldset>
+    <hr />
     <div class="panel-body">
-      <button *ngIf="editing" type="button" class="btn btn-info" (click)="populate()">Populate</button>
-      <ng-xform (onSubmit)="onSubmit($event)" [fields]="fields" [(editing)]="editing"></ng-xform>
+      <ng-xform [horizontalForm]="horizontal" [labelWidth]="labelWidth" (onSubmit)="onSubmit($event)" [fields]="fields" [(editing)]="editing"></ng-xform>
       <hr>
       <pre>{{ xformComponent.form.value | json }}</pre>
     </div>
