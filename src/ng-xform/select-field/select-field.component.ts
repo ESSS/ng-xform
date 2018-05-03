@@ -58,7 +58,9 @@ export class SelectFieldComponent extends BaseDynamicFieldComponent<SelectField>
           return;
         }
         this.field.searchByValueKeyHandler(value).subscribe((val: any) => {
-          this.optionValues = [val];
+          if (!this.optionValues) {
+            this.optionValues = [val];
+          }
           this.select.writeValue(value);
           this.updateOptionLabel();
         });
