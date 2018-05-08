@@ -6,7 +6,7 @@
   </div>
 </div>
 <div [hidden]="!fieldComponent.isEditing || !fieldComponent.visible" id="{{fieldComponent.elementId}}-div" class="form-group"
-[formGroup]="fieldComponent.form" [ngClass]="fieldStyleClass">
+[formGroup]="fieldComponent.form">
   <label *ngIf="!fieldComponent.hideLabelOnEdit" for="{{fieldComponent.elementId}}" [ngClass]="labelStyleClass">
     {{ fieldComponent.field.label }}
     <ng-xform-optional-tag [show]="fieldComponent.isOptional"></ng-xform-optional-tag>
