@@ -689,7 +689,7 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="110" class="link-to-prism">src/ng-xform/select-field/select-field.component.ts:110</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="112" class="link-to-prism">src/ng-xform/select-field/select-field.component.ts:112</a></div>
                                 </td>
                             </tr>
     
@@ -728,7 +728,7 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="97" class="link-to-prism">src/ng-xform/select-field/select-field.component.ts:97</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="99" class="link-to-prism">src/ng-xform/select-field/select-field.component.ts:99</a></div>
                                 </td>
                             </tr>
     
@@ -839,7 +839,7 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="77" class="link-to-prism">src/ng-xform/select-field/select-field.component.ts:77</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="79" class="link-to-prism">src/ng-xform/select-field/select-field.component.ts:79</a></div>
                                 </td>
                             </tr>
     
@@ -905,7 +905,7 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="80" class="link-to-prism">src/ng-xform/select-field/select-field.component.ts:80</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="82" class="link-to-prism">src/ng-xform/select-field/select-field.component.ts:82</a></div>
                                 </td>
                             </tr>
     
@@ -971,7 +971,7 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="83" class="link-to-prism">src/ng-xform/select-field/select-field.component.ts:83</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="85" class="link-to-prism">src/ng-xform/select-field/select-field.component.ts:85</a></div>
                                 </td>
                             </tr>
     
@@ -1039,7 +1039,7 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="91" class="link-to-prism">src/ng-xform/select-field/select-field.component.ts:91</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="93" class="link-to-prism">src/ng-xform/select-field/select-field.component.ts:93</a></div>
                                 </td>
                             </tr>
     
@@ -1076,7 +1076,7 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="72" class="link-to-prism">src/ng-xform/select-field/select-field.component.ts:72</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="74" class="link-to-prism">src/ng-xform/select-field/select-field.component.ts:74</a></div>
                                 </td>
                             </tr>
     
@@ -1405,7 +1405,7 @@
                     </tr>
                                 <tr>
                                     <td class="col-md-4">
-                                        <div class="io-line">Defined in <a href="" data-line="87" class="link-to-prism">src/ng-xform/select-field/select-field.component.ts:87</a></div>
+                                        <div class="io-line">Defined in <a href="" data-line="89" class="link-to-prism">src/ng-xform/select-field/select-field.component.ts:89</a></div>
                                     </td>
                                 </tr>
     
@@ -1476,7 +1476,9 @@ export class SelectFieldComponent extends BaseDynamicFieldComponent&lt;SelectFie
           return;
         }
         this.field.searchByValueKeyHandler(value).subscribe((val: any) &#x3D;&gt; {
-          this.optionValues &#x3D; [val];
+          if (!this.optionValues) {
+            this.optionValues &#x3D; [val];
+          }
           this.select.writeValue(value);
           this.updateOptionLabel();
         });
