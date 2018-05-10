@@ -23,13 +23,13 @@ export class BaseDynamicFieldComponent<T extends DynamicField> implements OnInit
   ngOnInit() {
     this.control = <FormControl>this.form.controls[this.field.key];
     if (this.field.visibilityFn) {
-      this.valueChangeSubscription = this.form.valueChanges.subscribe(val => {
+      this.valueChangeSubscription = this.form.root.valueChanges.subscribe(val => {
         this.visible = this.field.visibilityFn(val);
         if (!this.visible) {
           this.control.setValue(null, { emitEvent: false });
         }
       });
-      this.visible = this.field.visibilityFn(this.form.value);
+      this.visible = this.field.visibilityFn(this.form.root.value);
     }
 
   }
