@@ -1544,7 +1544,10 @@ export class SelectFieldComponent extends BaseDynamicFieldComponent&lt;SelectFie
     let options &#x3D; this.field.options;
 
     if (options instanceof Observable) {
-      (&lt;Observable&lt;any[]&gt;&gt;options).subscribe(ret &#x3D;&gt; this.optionValues &#x3D; ret);
+      (&lt;Observable&lt;any[]&gt;&gt;options).subscribe(ret &#x3D;&gt; {
+        this.optionValues &#x3D; ret;
+        this.updateOptionLabel();
+      });
     } else {
       this.optionValues &#x3D; options;
     }
