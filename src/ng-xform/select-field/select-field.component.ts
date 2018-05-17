@@ -126,7 +126,10 @@ export class SelectFieldComponent extends BaseDynamicFieldComponent<SelectField>
     let options = this.field.options;
 
     if (options instanceof Observable) {
-      (<Observable<any[]>>options).subscribe(ret => this.optionValues = ret);
+      (<Observable<any[]>>options).subscribe(ret => {
+        this.optionValues = ret;
+        this.updateOptionLabel();
+      });
     } else {
       this.optionValues = options;
     }
