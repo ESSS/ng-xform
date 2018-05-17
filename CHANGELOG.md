@@ -1,3 +1,25 @@
+<a name="0.9.1"></a>
+## [0.9.1](https://github.com/ESSS/ng-xform/compare/v0.9.0...v0.9.1) (2018-05-11)
+
+
+### Bug Fixes
+
+* **ng-xform:** Expose root form values in base dynamic field visibility fn ([92d0548](https://github.com/ESSS/ng-xform/commit/92d0548))
+* **SelectFieldCompoenet:** force label update when options are setted by observable ([#17](https://github.com/ESSS/ng-xform/issues/17)) ([bd330a3](https://github.com/ESSS/ng-xform/commit/bd330a3))
+
+
+
+<a name="0.9.0"></a>
+# [0.9.0](https://github.com/ESSS/ng-xform/compare/v0.8.0...v0.9.0) (2018-05-08)
+
+
+### Bug Fixes
+
+* **ci:** fix ci test runner ([c24a630](https://github.com/ESSS/ng-xform/commit/c24a630))
+* **ng-xform:** fix horizontal layout ([12b37ca](https://github.com/ESSS/ng-xform/commit/12b37ca))
+
+
+
 <a name="0.7.1"></a>
 ## [0.7.1](https://github.com/ESSS/ng-xform/compare/v0.7.0...v0.7.1) (2018-04-17)
 

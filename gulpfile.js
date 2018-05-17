@@ -624,7 +624,7 @@ gulp.task('commit-changes', (cb) => {
     [
       gulp.src('.'),
       gulpGit.add(),
-      gulpGit.commit(`chore(release): bump version number to ${version}`)
+      gulpGit.commit(`chore(release): bump version number to ${version}`, { disableAppendPaths: true })
     ], cb);
 });
 
