@@ -16,7 +16,7 @@ import { DynamicField } from '../fields/dynamic-field';
   styles: []
 })
 export class FormGroupComponent {
-  @Input() fields: DynamicField[];
+  @Input() fields: DynamicField<any>[];
   @Input() form: FormGroup;
   @Input() editing: boolean;
   @Input() isHorizontal: boolean;

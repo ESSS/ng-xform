@@ -17,7 +17,7 @@ import { DynamicField } from '../..';
   ]
 })
 export class FormControlLayoutComponent {
-  @Input() fieldComponent: BaseDynamicFieldComponent<DynamicField>;
+  @Input() fieldComponent: BaseDynamicFieldComponent<DynamicField<any>>;
 
   get labelStyleClass(): string {
     if (!this.fieldComponent.isHorizontal) {
