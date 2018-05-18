@@ -6,7 +6,7 @@ import { Subscription } from 'rxjs/Rx';
 /**
  * Base class for Dynamic Fields
  */
-export class BaseDynamicFieldComponent<T extends DynamicField<any>> implements OnInit, OnDestroy {
+export class BaseDynamicFieldComponent<T extends DynamicField> implements OnInit, OnDestroy {
 
   @Input() field: T;
   @Input() form: FormGroup;

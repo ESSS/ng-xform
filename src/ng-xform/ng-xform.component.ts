@@ -21,7 +21,7 @@ import { NestedFormGroup } from './fields/nested-form-group';
   styles: []
 })
 export class NgXformComponent implements OnInit, OnChanges {
-  @Input() fields: DynamicField<any>[];
+  @Input() fields: DynamicField[];
   @Input() errorCode: string;
   @Input() editing: boolean;
   @Input() horizontalForm = false;
@@ -57,7 +57,7 @@ export class NgXformComponent implements OnInit, OnChanges {
     this.form = this.createFormGroup(this.fields);
   }
 
-  createFormGroup(fields: DynamicField<any>[]): FormGroup {
+  createFormGroup(fields: DynamicField[]): FormGroup {
     let group: any = {};
 
     fields.forEach(field => {

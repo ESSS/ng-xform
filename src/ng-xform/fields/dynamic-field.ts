@@ -1,6 +1,6 @@
 import { ValidatorFn } from '@angular/forms';
 
-export abstract class DynamicField<T> {
+export abstract class DynamicField<T = any> {
   public key?: keyof T;
   public label?: string;
   public controlType?: string;
