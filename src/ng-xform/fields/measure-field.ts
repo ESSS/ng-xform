@@ -1,7 +1,7 @@
 import { Observable } from 'rxjs/Rx';
 import { DynamicField } from './dynamic-field';
 
-export class MeasureField extends DynamicField {
+export class MeasureField<T = any> extends DynamicField<T> {
   public controlType ? = 'MEASURE';
   public modelUnit?: string;
   public viewUnit?: string | Observable<string>;
@@ -9,7 +9,7 @@ export class MeasureField extends DynamicField {
   public precision?: number;
   public changedUnitHandler?: (unit: string) => void;
 
-  constructor(options: MeasureField) {
+  constructor(options: MeasureField<T>) {
     super(options);
     this.modelUnit = options.modelUnit;
     this.viewUnit = options.viewUnit;
