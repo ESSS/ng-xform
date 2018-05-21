@@ -673,7 +673,61 @@ export class OtherModule {
       &#39;formatted_address&#39;: &#39;Florianópolis - State of Santa Catarina, Brazil&#39;
     }).delay(300);
   }
-}</code></pre><h3 id="locales">Locales</h3>
+}</code></pre><h3 id="typed-key-validation">Typed key validation</h3>
+<p>Now it is possible to define a type that will be used to validate the key field values</p>
+<p>Example:</p>
+<pre class="line-numbers"><code class="language-ts">
+class Address {
+  street: string;
+  city: string;
+}
+
+class User {
+  name: string;
+  email: string;
+  address: Address;
+}
+
+export class UserComponent {
+
+  public fields: DynamicField[];
+
+  constructor() {
+
+    this.fields = [
+      new TextField&lt;User&gt;({
+        key: &#39;name&#39;,
+        label: &#39;Name&#39;,
+        validators: [
+          Validators.minLength(3)
+        ]
+      }),
+      new TextField&lt;User&gt;({
+        key: &#39;email&#39;,
+        label: &#39;E-mail&#39;,
+        validators: [
+          Validators.required,
+          Validators.email
+        ]
+      }),
+      new NestedFormGroup&lt;User&gt;({
+        key: &#39;address&#39;,
+        fields: [
+          new TextField&lt;Address&gt;({
+            key: &#39;street&#39;,
+            label: &#39;Street&#39;,
+          }),
+          new TextField&lt;Address&gt;({
+            key: &#39;city&#39;,
+            label: &#39;City&#39;,
+          }),
+        ]
+      })
+    ];
+  }
+}</code></pre><p>In the example, the <code>TextField</code> is created specialized whit the <code>User</code> class</p>
+<pre class="line-numbers"><code class="language-ts">new TextField&lt;User&gt;({</code></pre><p>the TextField <code>key</code> attribute will accept only keys of the class User (i.e. &#39;name&#39;, &#39;email&#39;, &#39;address&#39;), and show and error if any other value is provided.</p>
+<h3 id="locales">Locales</h3>
 <p>DatepickerField can use different locales. </p>
 <p>It&#39;s possible to change a locale by calling use method of BsLocaleService, list of available locales is in dropdown below.</p>
 <p>To use a different locale, you have to import it from ngx-bootstrap/chronos first, then define it in your @NgModule using function defineLocale</p>

@@ -531,7 +531,7 @@
                         <tbody>
                             <tr>
                                 <td class="col-md-4">
-                                    <code>constructor(options: <a href="../classes/TextField.html">TextField</a>)</code>
+                                    <code>constructor(options: <a href="../classes/TextField.html">TextField<T></a>)</code>
                                 </td>
                             </tr>
                                     <tr>
@@ -557,7 +557,7 @@
                                                             <tr>
                                                               <td>options</td>
                                                               <td>
-                                                                        <code><a href="../classes/TextField.html" target="_self" >TextField</a></code>
+                                                                        <code><a href="../classes/TextField.html" target="_self" >TextField&lt;T&gt;</a></code>
                                                               </td>
                                                               <td>
                                                               </td>
@@ -656,11 +656,11 @@
     <div class="tab-pane fade tab-source-code" id="c-source">
         <pre class="line-numbers"><code class="language-typescript">import { DynamicField } from &#x27;./dynamic-field&#x27;;
 
-export class TextField extends DynamicField {
+export class TextField&lt;T &#x3D; any&gt; extends DynamicField&lt;T&gt; {
   public controlType ? &#x3D; &#x27;TEXT&#x27;;
   public type?: string;
 
-  constructor(options: TextField) {
+  constructor(options: TextField&lt;T&gt;) {
     super(options);
     this.type &#x3D; options.type || &#x27;text&#x27;;
   }

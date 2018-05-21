@@ -531,7 +531,7 @@
                         <tbody>
                             <tr>
                                 <td class="col-md-4">
-                                    <code>constructor(options: <a href="../classes/MultilineField.html">MultilineField</a>)</code>
+                                    <code>constructor(options: <a href="../classes/MultilineField.html">MultilineField<T></a>)</code>
                                 </td>
                             </tr>
                                     <tr>
@@ -557,7 +557,7 @@
                                                             <tr>
                                                               <td>options</td>
                                                               <td>
-                                                                        <code><a href="../classes/MultilineField.html" target="_self" >MultilineField</a></code>
+                                                                        <code><a href="../classes/MultilineField.html" target="_self" >MultilineField&lt;T&gt;</a></code>
                                                               </td>
                                                               <td>
                                                               </td>
@@ -656,11 +656,11 @@
     <div class="tab-pane fade tab-source-code" id="c-source">
         <pre class="line-numbers"><code class="language-typescript">import { DynamicField } from &#x27;./dynamic-field&#x27;;
 
-export class MultilineField extends DynamicField {
+export class MultilineField&lt;T &#x3D; any&gt; extends DynamicField&lt;T&gt; {
   public controlType ? &#x3D; &#x27;MULTILINE&#x27;;
   public rows?: number;
 
-  constructor(options: MultilineField) {
+  constructor(options: MultilineField&lt;T&gt;) {
     super(options);
     this.rows &#x3D; options.rows;
   }

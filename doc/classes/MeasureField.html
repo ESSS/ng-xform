@@ -547,7 +547,7 @@
                         <tbody>
                             <tr>
                                 <td class="col-md-4">
-                                    <code>constructor(options: <a href="../classes/MeasureField.html">MeasureField</a>)</code>
+                                    <code>constructor(options: <a href="../classes/MeasureField.html">MeasureField<T></a>)</code>
                                 </td>
                             </tr>
                                     <tr>
@@ -573,7 +573,7 @@
                                                             <tr>
                                                               <td>options</td>
                                                               <td>
-                                                                        <code><a href="../classes/MeasureField.html" target="_self" >MeasureField</a></code>
+                                                                        <code><a href="../classes/MeasureField.html" target="_self" >MeasureField&lt;T&gt;</a></code>
                                                               </td>
                                                               <td>
                                                               </td>
@@ -813,7 +813,7 @@
         <pre class="line-numbers"><code class="language-typescript">import { Observable } from &#x27;rxjs/Rx&#x27;;
 import { DynamicField } from &#x27;./dynamic-field&#x27;;
 
-export class MeasureField extends DynamicField {
+export class MeasureField&lt;T &#x3D; any&gt; extends DynamicField&lt;T&gt; {
   public controlType ? &#x3D; &#x27;MEASURE&#x27;;
   public modelUnit?: string;
   public viewUnit?: string | Observable&lt;string&gt;;
@@ -821,7 +821,7 @@ export class MeasureField extends DynamicField {
   public precision?: number;
   public changedUnitHandler?: (unit: string) &#x3D;&gt; void;
 
-  constructor(options: MeasureField) {
+  constructor(options: MeasureField&lt;T&gt;) {
     super(options);
     this.modelUnit &#x3D; options.modelUnit;
     this.viewUnit &#x3D; options.viewUnit;

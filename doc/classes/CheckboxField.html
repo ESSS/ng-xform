@@ -527,7 +527,7 @@
                         <tbody>
                             <tr>
                                 <td class="col-md-4">
-                                    <code>constructor(options: <a href="../classes/CheckboxField.html">CheckboxField</a>)</code>
+                                    <code>constructor(options: <a href="../classes/CheckboxField.html">CheckboxField<T></a>)</code>
                                 </td>
                             </tr>
                                     <tr>
@@ -553,7 +553,7 @@
                                                             <tr>
                                                               <td>options</td>
                                                               <td>
-                                                                        <code><a href="../classes/CheckboxField.html" target="_self" >CheckboxField</a></code>
+                                                                        <code><a href="../classes/CheckboxField.html" target="_self" >CheckboxField&lt;T&gt;</a></code>
                                                               </td>
                                                               <td>
                                                               </td>
@@ -617,10 +617,10 @@
     <div class="tab-pane fade tab-source-code" id="c-source">
         <pre class="line-numbers"><code class="language-typescript">import { DynamicField } from &#x27;./dynamic-field&#x27;;
 
-export class CheckboxField extends DynamicField {
+export class CheckboxField&lt;T &#x3D; any&gt; extends DynamicField&lt;T&gt; {
   public controlType ? &#x3D; &#x27;CHECKBOX&#x27;;
 
-  constructor(options: CheckboxField) {
+  constructor(options: CheckboxField&lt;T&gt;) {
     super(options);
   }
 }

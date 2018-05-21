@@ -567,7 +567,7 @@
                         <tbody>
                             <tr>
                                 <td class="col-md-4">
-                                    <code>constructor(options: <a href="../classes/SelectField.html">SelectField</a>)</code>
+                                    <code>constructor(options: <a href="../classes/SelectField.html">SelectField<T></a>)</code>
                                 </td>
                             </tr>
                                     <tr>
@@ -593,7 +593,7 @@
                                                             <tr>
                                                               <td>options</td>
                                                               <td>
-                                                                        <code><a href="../classes/SelectField.html" target="_self" >SelectField</a></code>
+                                                                        <code><a href="../classes/SelectField.html" target="_self" >SelectField&lt;T&gt;</a></code>
                                                               </td>
                                                               <td>
                                                               </td>
@@ -1009,7 +1009,7 @@
 
 import { DynamicField } from &#x27;./dynamic-field&#x27;;
 
-export class SelectField extends DynamicField {
+export class SelectField&lt;T &#x3D; any&gt; extends DynamicField&lt;T&gt; {
   public controlType ? &#x3D; &#x27;SELECT&#x27;;
   public options?: any[] | Observable&lt;any[]&gt;;
   public multiple?: boolean;
@@ -1022,7 +1022,7 @@ export class SelectField extends DynamicField {
   public markFirst?: boolean;
   public separator?: string;
 
-  constructor(options: SelectField) {
+  constructor(options: SelectField&lt;T&gt;) {
     super(options);
     this.options &#x3D; options.options;
     this.multiple &#x3D; options.multiple || false;
