@@ -1,9 +1,9 @@
 import { DynamicField } from './dynamic-field';
 
-export class CheckboxField extends DynamicField {
+export class CheckboxField<T = any> extends DynamicField<T> {
   public controlType ? = 'CHECKBOX';
 
-  constructor(options: CheckboxField) {
+  constructor(options: CheckboxField<T>) {
     super(options);
   }
 }

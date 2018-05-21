@@ -2,7 +2,7 @@ import { Observable } from 'rxjs/Observable';
 
 import { DynamicField } from './dynamic-field';
 
-export class SelectField extends DynamicField {
+export class SelectField<T = any> extends DynamicField<T> {
   public controlType ? = 'SELECT';
   public options?: any[] | Observable<any[]>;
   public multiple?: boolean;
@@ -15,7 +15,7 @@ export class SelectField extends DynamicField {
   public markFirst?: boolean;
   public separator?: string;
 
-  constructor(options: SelectField) {
+  constructor(options: SelectField<T>) {
     super(options);
     this.options = options.options;
     this.multiple = options.multiple || false;

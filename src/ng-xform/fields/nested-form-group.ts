@@ -1,13 +1,13 @@
 import { DynamicField } from './dynamic-field';
 
-export class NestedFormGroup extends DynamicField {
+export class NestedFormGroup<T = any> extends DynamicField<T> {
     public controlType ? = 'GROUP';
-    public key: string;
+    public key: keyof T;
     public label?: string;
     public fields: DynamicField[];
 
     constructor(
-        options: NestedFormGroup
+        options: NestedFormGroup<T>
     ) {
         super(options);
         this.key = options.key;

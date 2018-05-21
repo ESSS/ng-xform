@@ -1,10 +1,10 @@
 import { DynamicField } from './dynamic-field';
 
-export class MultilineField extends DynamicField {
+export class MultilineField<T = any> extends DynamicField<T> {
   public controlType ? = 'MULTILINE';
   public rows?: number;
 
-  constructor(options: MultilineField) {
+  constructor(options: MultilineField<T>) {
     super(options);
     this.rows = options.rows;
   }

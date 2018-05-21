@@ -256,6 +256,70 @@ export class HomeComponent implements OnInit {
 }
 ```
 
+### Typed key validation
+
+Now it is possible to define a type that will be used to validate the key field values
+
+Example:
+```ts
+
+class Address {
+  street: string;
+  city: string;
+}
+
+class User {
+  name: string;
+  email: string;
+  address: Address;
+}
+
+export class UserComponent {
+
+  public fields: DynamicField[];
+
+  constructor() {
+
+    this.fields = [
+      new TextField<User>({
+        key: 'name',
+        label: 'Name',
+        validators: [
+          Validators.minLength(3)
+        ]
+      }),
+      new TextField<User>({
+        key: 'email',
+        label: 'E-mail',
+        validators: [
+          Validators.required,
+          Validators.email
+        ]
+      }),
+      new NestedFormGroup<User>({
+        key: 'address',
+        fields: [
+          new TextField<Address>({
+            key: 'street',
+            label: 'Street',
+          }),
+          new TextField<Address>({
+            key: 'city',
+            label: 'City',
+          }),
+        ]
+      })
+    ];
+  }
+}
+```
+
+In the example, the ```TextField``` is created specialized whit the ```User``` class
+```ts
+new TextField<User>({
+``` 
+the TextField ```key``` attribute will accept only keys of the class User (i.e. 'name', 'email', 'address'), and show and error if any other value is provided.
+
 ### Locales
 DatepickerField can use different locales. 
 
