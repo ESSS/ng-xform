@@ -1,3 +1,13 @@
+<a name="0.10.0"></a>
+# [0.10.0](https://github.com/ESSS/ng-xform/compare/v0.9.1...v0.10.0) (2018-05-21)
+
+
+### Features
+
+* **ng-xform:** support for type checked fields key ([d2d3e5b](https://github.com/ESSS/ng-xform/commit/d2d3e5b))
+
+
+
 <a name="0.9.1"></a>
 ## [0.9.1](https://github.com/ESSS/ng-xform/compare/v0.9.0...v0.9.1) (2018-05-11)
 
@@ -16,6 +26,7 @@
 ### Bug Fixes
 
 * **ci:** fix ci test runner ([c24a630](https://github.com/ESSS/ng-xform/commit/c24a630))
+* **ci:** fix ci test runner ([24aef01](https://github.com/ESSS/ng-xform/commit/24aef01))
 * **ng-xform:** fix horizontal layout ([12b37ca](https://github.com/ESSS/ng-xform/commit/12b37ca))
 
 
