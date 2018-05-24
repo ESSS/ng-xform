@@ -26,7 +26,7 @@ export class BaseDynamicFieldComponent<T extends DynamicField> implements OnInit
       let formRoot = this.form.root; // Make sure to get the root form, even for nested FromGroups
       this.valueChangeSubscription = formRoot.valueChanges.subscribe(val => {
         this.visible = this.field.visibilityFn(val);
-        if (!this.visible) {
+        if (!this.visible && !this.field.keepValueWhenHiding) {
           this.control.setValue(null, { emitEvent: false });
         }
       });
