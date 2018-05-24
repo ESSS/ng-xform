@@ -8,7 +8,7 @@ export abstract class DynamicField<T = any> {
   public readOnly?: boolean;
   public visibilityFn?: (val: any) => boolean;
   public keepValueWhenHiding?: boolean;
-
+ 
   constructor(options: DynamicField<T>) {
     this.key = options.key;
     this.label = options.label || '';
