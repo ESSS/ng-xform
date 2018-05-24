@@ -39,7 +39,9 @@
     "@angular/http": "^5.2.0",
     "@angular/platform-browser": "^5.2.0",
     "@ng-select/ng-select": "^0.16.0",
+    "@types/mathjs": "^3.20.0",
     "js-quantities": "^1.7.1",
+    "mathjs": "^4.3.0",
     "ngx-bootstrap": "^2.0.2",
     "rxjs": "^5.5.2"
   },
@@ -84,7 +86,7 @@
     "karma-remap-coverage": "^0.1.4",
     "karma-sourcemap-loader": "^0.3.7",
     "karma-webpack": "^2.0.5",
-    "node-sass": "^4.5.3",
+    "node-sass": "^4.7.2",
     "postcss": "^6.0.13",
     "postcss-strip-inline-comments": "^0.1.5",
     "pump": "^1.0.2",
