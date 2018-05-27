@@ -16,7 +16,7 @@ View all the directives in action at [Demo](https://esss.github.io/ng-xform) and
 ## Installation
 Install above dependencies via *npm*. 
 ```shell
-npm i --save @ng-select/ng-select@0.16.0 ngx-bootstrap@2.0.2 js-quantities@1.7.1
+npm i --save @ng-select/ng-select@0.16.0 ngx-bootstrap@2.0.2 mathjs@3.20.2
 ```
 
 Now install `@esss/ng-xform` via:
@@ -33,7 +33,7 @@ You will need to import styles. Example: 'src/styles.scss'
 Setup the MeasureComponent adding the js file on .angular-cli.json 
 ```json
 "scripts": [
-  "../node_modules/js-quantities/build/quantities.js"
+  "../node_modules/mathjs/dist/math.js"
 ]
 ```
 
