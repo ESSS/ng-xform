@@ -7,6 +7,7 @@ export abstract class DynamicField<T = any> {
   public validators?: Array<ValidatorFn | null | undefined>;
   public readOnly?: boolean;
   public visibilityFn?: (val: any) => boolean;
+  public keepValueWhenHiding?: boolean;
 
   constructor(options: DynamicField<T>) {
     this.key = options.key;
@@ -15,5 +16,6 @@ export abstract class DynamicField<T = any> {
     this.validators = options.validators;
     this.readOnly = options.readOnly;
     this.visibilityFn = options.visibilityFn;
+    this.keepValueWhenHiding = options.keepValueWhenHiding;
   }
 }
