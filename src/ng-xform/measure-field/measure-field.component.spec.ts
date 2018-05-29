@@ -67,6 +67,16 @@ describe('DynamicFormComponent', () => {
     expect(inputEl.nativeElement.value).toBe(initialValue);
   });
 
+  it('should disable form value', () => {
+    component.writeValue({ value: 22, unit: 'm' });
+
+    component.setDisabledState(true);
+    expect(inputEl.nativeElement.disabled).toBe(true);
+
+    component.setDisabledState(false);
+    expect(inputEl.nativeElement.disabled).toBe(false);
+  });
+
   it('should update form value', () => {
     const newValueString = '15';
     let updatedValue;
@@ -76,6 +86,14 @@ describe('DynamicFormComponent', () => {
     inputEl.nativeElement.dispatchEvent(new Event('input'));
     expect(updatedValue).toEqual(new Measure(15, 'm'));
 
+    component.changeUnit('cm');
+    expect(component.formattedValue).toEqual('1500 cm');
+    expect(updatedValue).toEqual(new Measure(15, 'm'));
+
+    component.changeUnit('');
+    expect(component.formattedValue).toEqual('15 m');
+    expect(updatedValue).toEqual(new Measure(15, 'm'));
+
     component.field.modelUnit = 'inch';
     fixture.detectChanges();
     component.ngOnInit();
@@ -83,10 +101,9 @@ describe('DynamicFormComponent', () => {
     inputEl.nativeElement.value = newValueString;
     inputEl.nativeElement.dispatchEvent(new Event('input'));
     expect(updatedValue).toEqual(new Measure(15, 'inch'));
-
   });
 
-  it('should show unit and, default units dropdown', () => {
+  it('should show unit and units dropdown', () => {
     fixture.detectChanges();
     expect(component.availableUnits.length).toBe(1);
 
