@@ -23,7 +23,7 @@
         "styles.scss"
       ],
       "scripts": [
-        "../node_modules/js-quantities/build/quantities.js"
+        "../node_modules/mathjs/dist/math.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {
@@ -51,7 +51,7 @@
         "styles.scss"
       ],
       "scripts": [
-        "../node_modules/js-quantities/build/quantities.js"
+        "../node_modules/mathjs/dist/math.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {

@@ -81,7 +81,7 @@ describe('DynamicFormComponent', () => {
     component.fields = [
       new TextField({ key: 'text1', label: 'Text 1' }),
       new TextField({ key: 'required', label: 'Required 1', validators: [Validators.required] }),
-      new MeasureField({ key: 'measure1', label: 'Measure 1', modelUnit: 'tempC' }),
+      new MeasureField({ key: 'measure1', label: 'Measure 1', modelUnit: 'degC' }),
       new SelectField({
         key: 'choice_id',
         label: 'Choice',

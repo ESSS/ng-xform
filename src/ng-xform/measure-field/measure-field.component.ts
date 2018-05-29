@@ -5,6 +5,8 @@ import { Component, AfterViewInit, ElementRef, OnInit, ViewChild } from '@angula
 import { Measure } from './../models/measure';
 import { BaseDynamicFieldComponent } from '../field-components/base-dynamic-field.component';
 import { MeasureField } from '../fields';
+import { Unit } from 'mathjs';
+import * as math from 'mathjs';
 
 
 /**
@@ -29,7 +31,7 @@ export class MeasureFieldComponent extends BaseDynamicFieldComponent<MeasureFiel
   @ViewChild('unitsDropdown') unitsDropdown: ElementRef;
 
   private input: HTMLInputElement;
-  private quantity: Qty;
+  private quantity: Unit;
 
   viewUnit: string;
   availableUnits: string[];
@@ -42,7 +44,7 @@ export class MeasureFieldComponent extends BaseDynamicFieldComponent<MeasureFiel
   }
 
   get formattedValue() {
-    return this.quantity ? this.quantity.format(this.viewUnit) : '-'
+    return this.quantity ? math.format(this.quantity.to(this.viewUnit)) : '-'
   }
 
   ngOnInit() {
@@ -63,10 +65,11 @@ export class MeasureFieldComponent extends BaseDynamicFieldComponent<MeasureFiel
         this._onChange(null);
         return;
       }
+
       const value = Number(field.value);
-      this.quantity = new Qty(value, this.viewUnit).to(this.field.modelUnit);
+      this.quantity = math.unit(value, this.viewUnit).to(this.field.modelUnit);
       this._onChange(new Measure(
-        this.quantity.to(this.field.modelUnit).scalar,
+        this.quantity.toNumber(this.field.modelUnit),
         this.field.modelUnit
       ));
     }
@@ -76,7 +79,7 @@ export class MeasureFieldComponent extends BaseDynamicFieldComponent<MeasureFiel
     if (!obj) {
       return;
     }
-    this.quantity = new Qty(obj.value, obj.unit).to(this.field.modelUnit);
+    this.quantity = math.unit(obj.value, obj.unit).to(this.field.modelUnit);
     this.updateInputValue();
   }
   registerOnChange(fn: any): void {
@@ -105,7 +108,7 @@ export class MeasureFieldComponent extends BaseDynamicFieldComponent<MeasureFiel
   }
 
   private updateInputValue() {
-    const value = this.quantity.to(this.viewUnit).scalar
+    const value = this.quantity.toNumber(this.viewUnit);
     if (this.input) {
       this.input.value = Number(value.toFixed(this.field.precision)).toString();
     }
@@ -113,9 +116,7 @@ export class MeasureFieldComponent extends BaseDynamicFieldComponent<MeasureFiel
 
   private setViewUnits() {
     if (!this.field.availableUnits) {
-      const qt = Qty(0, this.field.modelUnit);
-      const availableUnitsKind = qt.kind();
-      this.availableUnits = Qty.getUnits(availableUnitsKind).map(el => Qty.getAliases(el)[0]);
+      this.availableUnits = [this.field.modelUnit];
       return;
     }
 
