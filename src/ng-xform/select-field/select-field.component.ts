@@ -1,5 +1,5 @@
 import { NgSelectComponent } from '@ng-select/ng-select';
-import { ViewChild, Component, OnInit, AfterViewInit, Input, EventEmitter } from '@angular/core';
+import { ViewChild, Component, OnInit, AfterViewInit, Input, EventEmitter, SimpleChange } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor, FormControl } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
@@ -58,8 +58,10 @@ export class SelectFieldComponent extends BaseDynamicFieldComponent<SelectField>
           return;
         }
         this.field.searchByValueKeyHandler(value).subscribe((val: any) => {
-          if (!this.optionValues) {
+          if (this.field.searchHandler) {
+            const oldValue = this.optionValues;
             this.optionValues = [val];
+            this.select.ngOnChanges({ items: new SimpleChange(oldValue, this.optionValues, !this.optionValues)});
           }
           this.select.writeValue(value);
           this.updateOptionLabel();
