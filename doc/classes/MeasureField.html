@@ -815,7 +815,7 @@ import { DynamicField } from &#x27;./dynamic-field&#x27;;
 
 export class MeasureField&lt;T &#x3D; any&gt; extends DynamicField&lt;T&gt; {
   public controlType ? &#x3D; &#x27;MEASURE&#x27;;
-  public modelUnit?: string;
+  public modelUnit: string;
   public viewUnit?: string | Observable&lt;string&gt;;
   public availableUnits?: string[] | Observable&lt;string[]&gt;;
   public precision?: number;
