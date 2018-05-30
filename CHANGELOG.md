@@ -1,3 +1,15 @@
+<a name="0.12.0"></a>
+# [0.12.0](https://github.com/ESSS/ng-xform/compare/v0.11.0...v0.12.0) (2018-05-30)
+
+
+### Features
+
+* **ng-xform:** add tests for change unit and set disabled ([1fc31b4](https://github.com/ESSS/ng-xform/commit/1fc31b4))
+* **ng-xform:** support for bundle generation with external dependency for mathjs ([c1ca176](https://github.com/ESSS/ng-xform/commit/c1ca176))
+* **ng-xform:** update documentation and remove dependencies from js_quantities ([2446c29](https://github.com/ESSS/ng-xform/commit/2446c29))
+
+
+
 <a name="0.11.0"></a>
 # [0.11.0](https://github.com/ESSS/ng-xform/compare/v0.10.0...v0.11.0) (2018-05-24)
 
