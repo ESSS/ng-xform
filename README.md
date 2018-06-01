@@ -26,8 +26,9 @@ npm i --save @esss/ng-xform
 
 You will need to import styles. Example: 'src/styles.scss'
 ```css
-@import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
-@import '../node_modules/ngx-bootstrap/datepicker/bs-datepicker.css';
+@import '~bootstrap/dist/css/bootstrap.min.css';
+@import '~ngx-bootstrap/datepicker/bs-datepicker.css';
+@import "~@ng-select/ng-select/themes/default.theme.css";
 ```
 
 Setup the MeasureComponent adding the js file on .angular-cli.json 
