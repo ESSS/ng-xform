@@ -17,7 +17,7 @@ import { SelectField } from '../fields';
 import { NgXformGroup } from '../ng-xform-group';
 import { Subject } from 'rxjs/Subject';
 
-fdescribe('SelectFieldComponent', () => {
+describe('SelectFieldComponent', () => {
   let component: SelectFieldComponent;
   let fixture: ComponentFixture<SelectFieldComponent>;
   let options: any[];
