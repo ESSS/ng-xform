@@ -27,7 +27,6 @@ import { CheckboxField } from './fields/checkbox-field';
 import {
   TextField,
   MeasureField,
-  SelectField
 } from './fields';
 
 describe('DynamicFormComponent', () => {
@@ -57,7 +56,6 @@ describe('DynamicFormComponent', () => {
     model = {
       text1: 'value1',
       required: 'value2',
-      choice_id: 1,
       comments: 'comments here...',
       address: {
         street: 'St wall',
@@ -67,11 +65,6 @@ describe('DynamicFormComponent', () => {
       nested2: null,
       date: dateTest,
     };
-
-    options = [
-      { id: 1, description: 'Choice1' },
-      { id: 2, description: 'Choice2' }
-    ];
     const colors: any[] = [
       { id: 1, name: 'blue' },
       { id: 2, name: 'yellow' },
@@ -82,22 +75,7 @@ describe('DynamicFormComponent', () => {
       new TextField({ key: 'text1', label: 'Text 1' }),
       new TextField({ key: 'required', label: 'Required 1', validators: [Validators.required] }),
       new MeasureField({ key: 'measure1', label: 'Measure 1', modelUnit: 'degC' }),
-      new SelectField({
-        key: 'choice_id',
-        label: 'Choice',
-        optionValueKey: 'id',
-        optionLabelKey: 'description',
-        options: options
-      }),
       new MultilineField({ key: 'comments', label: 'Comments' }),
-      new SelectField({
-        key: 'color',
-        label: 'Color',
-        searchHandler: (keyword: string) => Observable.of(colors.filter(el => el.name === keyword)),
-        options: colors,
-        optionValueKey: 'id',
-        optionLabelKey: 'name',
-      }),
       new TextField({ key: 'other_color', label: 'Other Color', visibilityFn: (formVal: any) => formVal.color === 1 }),
       new NestedFormGroup({
         key: 'address', label: 'Address',
@@ -198,44 +176,6 @@ describe('DynamicFormComponent', () => {
     expect(component.form.value[fieldId].toISOString()).toBe(changeTo.toISOString());
   });
 
-  it('should render AutocompleteField', () => {
-    const el = fixture.debugElement.query(By.css(`#color-div`));
-    expect(el).toBeTruthy();
-    const label = el.query(By.css('label'));
-    expect(label).toBeTruthy();
-    expect(label.nativeElement.textContent).toContain('Color');
-    const input = el.query(By.css('input'));
-    expect(input).toBeTruthy();
-  });
-
-  it('should render SelectField', () => {
-    const el = fixture.debugElement.query(By.css(`#choice_id-div`));
-    expect(el).toBeTruthy();
-    const label = el.query(By.css('label'));
-    expect(label).toBeTruthy();
-    expect(label.nativeElement.textContent).toContain('Choice');
-    const selectComponet = el.query(By.css('ng-select'));
-    expect(selectComponet).toBeTruthy();
-    const optionsEl = el.queryAll(By.css('div.ng-option'));
-    expect(optionsEl.length).toBe(options.length);
-  });
-
-  it('should hidden/show other_color on change color', () => {
-    const fieldId = 'other_color';
-    const el = fixture.debugElement.queryAll(By.css('ng-xform-editable-label'))
-      .find(e => e.componentInstance.elementId === fieldId);
-    const elComponent = el.componentInstance;
-
-    expect(elComponent.visible).toBeFalsy();
-
-    component.setValue({ color: 1 });
-    expect(elComponent.visible).toBeTruthy();
-
-    component.setValue({ color: null });
-    expect(elComponent.visible).toBeFalsy();
-
-  });
-
   it('should patch value', () => {
     component.createForm();
     component.reset();
@@ -272,12 +212,10 @@ describe('DynamicFormComponent', () => {
       setTimeout(() => {
         expect(value.text1).toBe(model.text1);
         expect(value.comments).toBe(model.comments);
-        expect(value.choice_id).toBe(model.choice_id);
         expect(value.date).toBe(dateTest);
         // TODO RFDAP-593
         // expect(value.isChecked).not.toBeNull();
         expect(value.isChecked).toBeFalsy();
-        expect(value.color).toBeNull();
         done();
       });
     });
@@ -294,7 +232,6 @@ describe('DynamicFormComponent', () => {
     expectFormLabel('text1', 'Text 1', model.text1);
     expectFormLabel('comments', 'Comments', model.comments);
     // implement tes of value
-    expectFormLabel('choice_id', 'Choice', '-');
     expectFormLabel('street', 'Street', model.address.street);
     expectFormLabel('city', 'City', model.address.city);
     expectFormLabel('date', 'Date', datePipe.transform(dateTest, 'mediumDate', 'en'));

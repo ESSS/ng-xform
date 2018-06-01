@@ -17,7 +17,7 @@ import {
 import { NgXformGroup } from '../ng-xform-group';
 import { Subject } from 'rxjs/Subject';
 
-describe('DynamicFormComponent', () => {
+describe('MeasureFieldComponent', () => {
   let component: MeasureFieldComponent;
   let fixture: ComponentFixture<MeasureFieldComponent>;
   let model: any;

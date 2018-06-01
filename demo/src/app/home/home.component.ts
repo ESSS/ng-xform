@@ -144,7 +144,7 @@ export class HomeComponent implements OnInit {
   }
 
   populate() {
-    this.xformComponent.form.patchValue({
+    this.xformComponent.setValue({
       name: 'Customer',
       email: 'customer@mail.com',
       type_tags: [2],
