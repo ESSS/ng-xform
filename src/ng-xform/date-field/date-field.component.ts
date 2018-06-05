@@ -1,7 +1,7 @@
 import { DatePipe } from '@angular/common';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { Component, AfterContentInit, ElementRef, AfterViewInit } from '@angular/core';
+import { Component, AfterContentInit, ElementRef, AfterViewInit, Inject, LOCALE_ID } from '@angular/core';
 import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 
 import { BaseDynamicFieldComponent } from '../field-components/base-dynamic-field.component';
@@ -33,7 +33,7 @@ export class DateFieldComponent extends BaseDynamicFieldComponent<DateField> imp
   _onTouched = () => { };
 
   // the elementRef will be used to get the input element after the view is initialized.
-  constructor(private elementRef: ElementRef) {
+  constructor(private elementRef: ElementRef, @Inject(LOCALE_ID) private locale: string) {
     super();
     this.componentControl.valueChanges.subscribe((val: any) => {
       // replay changes from view to the form value
@@ -73,7 +73,7 @@ export class DateFieldComponent extends BaseDynamicFieldComponent<DateField> imp
   }
 
   get formattedValue(): string {
-    let dateFormatter = new DatePipe(this.field.locale);
+    let dateFormatter = new DatePipe(this.field.locale || this.locale);
     return dateFormatter.transform(this.form.controls[this.elementId].value, 'mediumDate') || '-';
   }
 

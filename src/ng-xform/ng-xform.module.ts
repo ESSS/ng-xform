@@ -2,10 +2,10 @@ import { OptionalTagComponent } from './field-components/optional-tag.component'
 import { DateFieldComponent } from './date-field/date-field.component';
 import { CheckboxFieldComponent } from './checkbox-field/checkbox-field.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { NgModule } from '@angular/core';
+import { NgModule, Inject, LOCALE_ID } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NgSelectModule } from '@ng-select/ng-select';
-import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { BsDatepickerModule, BsLocaleService } from 'ngx-bootstrap/datepicker';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
 import { NgXformComponent } from './ng-xform.component';
@@ -48,4 +48,10 @@ import { FormControlLayoutComponent } from './form-control-layout/form-control-l
     PipesModule,
   ]
 })
-export class NgXformModule { }
+export class NgXformModule {
+  constructor(bsLocaleService: BsLocaleService, @Inject(LOCALE_ID) locale: string) {
+    if (bsLocaleService.locale.value !== locale) {
+      bsLocaleService.use(locale);
+    }
+  }
+}
