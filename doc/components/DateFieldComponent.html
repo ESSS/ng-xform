@@ -644,7 +644,7 @@
                 <tbody>
                     <tr>
                         <td class="col-md-4">
-                            <code>constructor(elementRef: <a href="https://angular.io/api/core/ElementRef" target="_blank">ElementRef</a>)</code>
+                            <code>constructor(elementRef: <a href="https://angular.io/api/core/ElementRef" target="_blank">ElementRef</a>, locale: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                         </td>
                     </tr>
                             <tr>
@@ -671,6 +671,15 @@
                                                       <td>elementRef</td>
                                                       <td>
                                                                 <code><a href="https://angular.io/api/core/ElementRef" target="_blank" >ElementRef</a></code>
+                                                      </td>
+                                                      <td>
+                                                      </td>
+                                                      <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                      <td>locale</td>
+                                                      <td>
+                                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
                                                       </td>
                                                       <td>
                                                       </td>
@@ -1243,7 +1252,7 @@
         <pre class="line-numbers"><code class="language-typescript">import { DatePipe } from &#x27;@angular/common&#x27;;
 import { BehaviorSubject } from &#x27;rxjs/BehaviorSubject&#x27;;
 import { ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR } from &#x27;@angular/forms&#x27;;
-import { Component, AfterContentInit, ElementRef, AfterViewInit } from &#x27;@angular/core&#x27;;
+import { Component, AfterContentInit, ElementRef, AfterViewInit, Inject, LOCALE_ID } from &#x27;@angular/core&#x27;;
 import { BsDatepickerConfig } from &#x27;ngx-bootstrap/datepicker&#x27;;
 
 import { BaseDynamicFieldComponent } from &#x27;../field-components/base-dynamic-field.component&#x27;;
@@ -1275,7 +1284,7 @@ export class DateFieldComponent extends BaseDynamicFieldComponent&lt;DateField&g
   _onTouched &#x3D; () &#x3D;&gt; { };
 
   // the elementRef will be used to get the input element after the view is initialized.
-  constructor(private elementRef: ElementRef) {
+  constructor(private elementRef: ElementRef, @Inject(LOCALE_ID) private locale: string) {
     super();
     this.componentControl.valueChanges.subscribe((val: any) &#x3D;&gt; {
       // replay changes from view to the form value
@@ -1315,7 +1324,7 @@ export class DateFieldComponent extends BaseDynamicFieldComponent&lt;DateField&g
   }
 
   get formattedValue(): string {
-    let dateFormatter &#x3D; new DatePipe(this.field.locale);
+    let dateFormatter &#x3D; new DatePipe(this.field.locale || this.locale);
     return dateFormatter.transform(this.form.controls[this.elementId].value, &#x27;mediumDate&#x27;) || &#x27;-&#x27;;
   }
 

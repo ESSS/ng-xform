@@ -772,10 +772,10 @@
 import { DateFieldComponent } from &#x27;./date-field/date-field.component&#x27;;
 import { CheckboxFieldComponent } from &#x27;./checkbox-field/checkbox-field.component&#x27;;
 import { ReactiveFormsModule } from &#x27;@angular/forms&#x27;;
-import { NgModule } from &#x27;@angular/core&#x27;;
+import { NgModule, Inject, LOCALE_ID } from &#x27;@angular/core&#x27;;
 import { CommonModule } from &#x27;@angular/common&#x27;;
 import { NgSelectModule } from &#x27;@ng-select/ng-select&#x27;;
-import { BsDatepickerModule } from &#x27;ngx-bootstrap/datepicker&#x27;;
+import { BsDatepickerModule, BsLocaleService } from &#x27;ngx-bootstrap/datepicker&#x27;;
 import { BsDropdownModule } from &#x27;ngx-bootstrap/dropdown&#x27;;
 
 import { NgXformComponent } from &#x27;./ng-xform.component&#x27;;
@@ -818,7 +818,13 @@ import { FormControlLayoutComponent } from &#x27;./form-control-layout/form-cont
     PipesModule,
   ]
 })
-export class NgXformModule { }
+export class NgXformModule {
+  constructor(bsLocaleService: BsLocaleService, @Inject(LOCALE_ID) locale: string) {
+    if (bsLocaleService.locale.value !&#x3D;&#x3D; locale) {
+      bsLocaleService.use(locale);
+    }
+  }
+}
 </code></pre>
     </div>
 </div>
