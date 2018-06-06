@@ -1,3 +1,13 @@
+<a name="0.15.0"></a>
+# [0.15.0](https://github.com/ESSS/ng-xform/compare/v0.14.0...v0.15.0) (2018-06-06)
+
+
+### Features
+
+* **ng-xform:** set angular LOCALE_ID as default ([#23](https://github.com/ESSS/ng-xform/issues/23)) ([1a73f93](https://github.com/ESSS/ng-xform/commit/1a73f93))
+
+
+
 <a name="0.14.0"></a>
 # [0.14.0](https://github.com/ESSS/ng-xform/compare/v0.13.0...v0.14.0) (2018-06-01)
 
