@@ -356,5 +356,4 @@ For more information view common development activities on https://github.com/ti
 
 ## License
 
-Copyright (c) 2018 Eder Soares. Licensed under the MIT License (MIT)
-
+Copyright (c) 2018 ESSS. Licensed under the MIT License (MIT)
