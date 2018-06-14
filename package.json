@@ -1,7 +1,7 @@
 {
   "name": "@esss/ng-xform",
   "description": "Angular library built using ngx-library yeoman generator.",
-  "version": "0.11.0",
+  "version": "0.15.0",
   "homepage": "https://github.com/ESSS/ng-xform",
   "author": {
     "name": "Eder Soares",
@@ -38,9 +38,9 @@
     "@angular/forms": "^5.2.0",
     "@angular/http": "^5.2.0",
     "@angular/platform-browser": "^5.2.0",
-    "@ng-select/ng-select": "^0.16.0",
-    "js-quantities": "^1.7.1",
-    "ngx-bootstrap": "^2.0.2",
+    "@ng-select/ng-select": "^1.5.2",
+    "@types/mathjs": "^3.20.0",
+    "ngx-bootstrap": "^2.0.4",
     "rxjs": "^5.5.2"
   },
   "devDependencies": {
@@ -84,7 +84,8 @@
     "karma-remap-coverage": "^0.1.4",
     "karma-sourcemap-loader": "^0.3.7",
     "karma-webpack": "^2.0.5",
-    "node-sass": "^4.5.3",
+    "mathjs": "^3.20.2",
+    "node-sass": "^4.7.2",
     "postcss": "^6.0.13",
     "postcss-strip-inline-comments": "^0.1.5",
     "pump": "^1.0.2",

@@ -3,7 +3,7 @@ import { DynamicField } from './dynamic-field';
 
 export class MeasureField<T = any> extends DynamicField<T> {
   public controlType ? = 'MEASURE';
-  public modelUnit?: string;
+  public modelUnit: string;
   public viewUnit?: string | Observable<string>;
   public availableUnits?: string[] | Observable<string[]>;
   public precision?: number;

@@ -17,7 +17,7 @@ import {
 import { NgXformGroup } from '../ng-xform-group';
 import { Subject } from 'rxjs/Subject';
 
-describe('DynamicFormComponent', () => {
+describe('MeasureFieldComponent', () => {
   let component: MeasureFieldComponent;
   let fixture: ComponentFixture<MeasureFieldComponent>;
   let model: any;
@@ -40,7 +40,8 @@ describe('DynamicFormComponent', () => {
     component.form = new NgXformGroup({ 'measure': new FormControl() });
     component.field = new MeasureField({
       key: 'measure',
-      label: 'Measure'
+      label: 'Measure',
+      modelUnit: 'm'
     });
     component.ngOnInit();
     component.ngAfterViewInit();
@@ -66,6 +67,16 @@ describe('DynamicFormComponent', () => {
     expect(inputEl.nativeElement.value).toBe(initialValue);
   });
 
+  it('should disable form value', () => {
+    component.writeValue({ value: 22, unit: 'm' });
+
+    component.setDisabledState(true);
+    expect(inputEl.nativeElement.disabled).toBe(true);
+
+    component.setDisabledState(false);
+    expect(inputEl.nativeElement.disabled).toBe(false);
+  });
+
   it('should update form value', () => {
     const newValueString = '15';
     let updatedValue;
@@ -73,23 +84,29 @@ describe('DynamicFormComponent', () => {
     component.registerOnChange((val: any) => updatedValue = val);
     inputEl.nativeElement.value = newValueString;
     inputEl.nativeElement.dispatchEvent(new Event('input'));
-    expect(updatedValue).toEqual(new Measure(15, undefined));
+    expect(updatedValue).toEqual(new Measure(15, 'm'));
 
-    component.field.modelUnit = 'm';
+    component.changeUnit('cm');
+    expect(component.formattedValue).toEqual('1500 cm');
+    expect(updatedValue).toEqual(new Measure(15, 'm'));
+
+    component.changeUnit('');
+    expect(component.formattedValue).toEqual('15 m');
+    expect(updatedValue).toEqual(new Measure(15, 'm'));
+
+    component.field.modelUnit = 'inch';
     fixture.detectChanges();
     component.ngOnInit();
     component.registerOnChange((val: any) => updatedValue = val);
     inputEl.nativeElement.value = newValueString;
     inputEl.nativeElement.dispatchEvent(new Event('input'));
-    expect(updatedValue).toEqual(new Measure(15, 'm'));
-
+    expect(updatedValue).toEqual(new Measure(15, 'inch'));
   });
 
-  it('should show unit and, default units dropdown', () => {
+  it('should show unit and units dropdown', () => {
     fixture.detectChanges();
-    expect(component.availableUnits.length).toBe(0);
+    expect(component.availableUnits.length).toBe(1);
 
-    component.field.modelUnit = 'm';
     component.ngOnInit();
     fixture.detectChanges();
     let unitEl = fixture.debugElement.query(By.css('.input-group-addon span'));

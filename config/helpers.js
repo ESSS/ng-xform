@@ -60,8 +60,7 @@ execp = (cmd, opts) => {
  * @returns {Promise<number>}
  */
 installDependencies = (opts) => {
-  return execp('yarn -v') // first try to install deps using yarn
-    .then(exitCode => exitCode === 0 ? execp('yarn install', opts) : execp('npm install', opts));
+  return execp('npm install', opts);
 };
 
 var exports = module.exports = {

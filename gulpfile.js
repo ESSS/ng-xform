@@ -385,6 +385,7 @@ gulp.task('rollup-bundle', (cb) => {
       // This is required for UMD bundle users.
     '@ng-select/ng-select': 'NgSelectModule',
     'ngx-bootstrap/datepicker': 'BsDatepickerModule',
+    'mathjs': 'mathjs'
     };
     const rollupBaseConfig = {
       name: _.camelCase(config.libraryName),

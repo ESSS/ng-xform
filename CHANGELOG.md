@@ -1,3 +1,30 @@
+<a name="0.15.0"></a>
+# [0.15.0](https://github.com/ESSS/ng-xform/compare/v0.14.0...v0.15.0) (2018-06-06)
+
+
+### Features
+
+* **ng-xform:** set angular LOCALE_ID as default ([#23](https://github.com/ESSS/ng-xform/issues/23)) ([1a73f93](https://github.com/ESSS/ng-xform/commit/1a73f93))
+
+
+
+<a name="0.14.0"></a>
+# [0.14.0](https://github.com/ESSS/ng-xform/compare/v0.13.0...v0.14.0) (2018-06-01)
+
+
+
+<a name="0.13.0"></a>
+# [0.13.0](https://github.com/ESSS/ng-xform/compare/v0.11.0...v0.13.0) (2018-05-30)
+
+
+### Features
+
+* **ng-xform:** add tests for change unit and set disabled ([1fc31b4](https://github.com/ESSS/ng-xform/commit/1fc31b4))
+* **ng-xform:** support for bundle generation with external dependency for mathjs ([c1ca176](https://github.com/ESSS/ng-xform/commit/c1ca176))
+* **ng-xform:** update documentation and remove dependencies from js_quantities ([2446c29](https://github.com/ESSS/ng-xform/commit/2446c29))
+
+
+
 <a name="0.11.0"></a>
 # [0.11.0](https://github.com/ESSS/ng-xform/compare/v0.10.0...v0.11.0) (2018-05-24)
 

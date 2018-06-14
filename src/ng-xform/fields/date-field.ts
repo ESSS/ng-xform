@@ -15,6 +15,6 @@ export class DateField<T = any> extends DynamicField<T> {
     this.placement = options.placement || 'bottom';
     this.maxDate = options.maxDate;
     this.minDate = options.minDate;
-    this.locale = options.locale || 'en';
+    this.locale = options.locale;
   }
 }
