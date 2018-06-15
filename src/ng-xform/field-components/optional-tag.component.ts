@@ -7,9 +7,13 @@ import { Component, Input } from '@angular/core';
  * :show: Flag to control component state
  */
 @Component({
-  selector: 'ng-xform-optional-tag',
-  template: `<small *ngIf="show" style="color: gray">(optional)</small>`,
+  selector: 'ng-xform-required-field-tag',
+  template: `
+    <small *ngIf="!horizontal && optional" style="color: gray">(optional)</small>
+    <span *ngIf="horizontal && !optional" style='color: red'>*</span>
+  `,
 })
 export class OptionalTagComponent {
-  @Input() show = false;
+  @Input() optional = false;
+  @Input() horizontal = false;
 }
