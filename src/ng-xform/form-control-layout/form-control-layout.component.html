@@ -9,7 +9,7 @@
 [formGroup]="fieldComponent.form">
   <label *ngIf="!fieldComponent.hideLabelOnEdit" for="{{fieldComponent.elementId}}" [ngClass]="labelStyleClass">
     {{ fieldComponent.field.label }}
-    <ng-xform-optional-tag [show]="fieldComponent.isOptional"></ng-xform-optional-tag>
+    <ng-xform-required-field-tag [horizontal]='fieldComponent.isHorizontal' [optional]="fieldComponent.isOptional"></ng-xform-required-field-tag>
   </label>
   <div [ngClass]="fieldStyleClassCheckbox">
     <ng-content></ng-content>

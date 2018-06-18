@@ -237,21 +237,21 @@ describe('DynamicFormComponent', () => {
     expectFormLabel('date', 'Date', datePipe.transform(dateTest, 'mediumDate', 'en'));
   });
 
-  it('should display (optional) for required field', () => {
+  it('should display (optional) for optional field', () => {
     const fieldId = 'required';
     const el = fixture.debugElement.queryAll(By.css('ng-xform-editable-label'))
       .find(e => e.componentInstance.elementId === fieldId);
-    const optional = el.query(By.css('ng-xform-optional-tag'));
+    const optional = el.query(By.css('ng-xform-required-field-tag'));
     const fieldComponent = el.componentInstance;
     expect(el).toBeTruthy();
-    expect(optional.componentInstance.show).toBeFalsy();
+    expect(optional.componentInstance.optional).toBeFalsy();
 
     fieldComponent.field.validators = undefined;
     fixture.detectChanges();
 
     expect(fieldComponent.field.validators).toBeFalsy();
     expect(fieldComponent.isOptional).toBeTruthy();
-    expect(optional.componentInstance.show).toBeTruthy();
+    expect(optional.componentInstance.optional).toBeTruthy();
   });
 
   function expectFormLabel(fieldId: string, caption: string, value: any) {
