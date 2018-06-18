@@ -1,3 +1,13 @@
+<a name="0.15.1"></a>
+## [0.15.1](https://github.com/ESSS/ng-xform/compare/v0.15.0...v0.15.1) (2018-06-18)
+
+
+### Features
+
+* **ng-xform): Present flag red asterisk on required fields when in horizontal layout (#24:** feat(ng-xform): Present flag red asterisk on required fields when in horizontal layout (#24):  ([734b84d](https://github.com/ESSS/ng-xform/commit/734b84d)), closes [#24](https://github.com/ESSS/ng-xform/issues/24)
+
+
+
 <a name="0.15.0"></a>
 # [0.15.0](https://github.com/ESSS/ng-xform/compare/v0.14.0...v0.15.0) (2018-06-06)
 
