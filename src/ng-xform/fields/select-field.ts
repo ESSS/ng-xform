@@ -14,6 +14,8 @@ export class SelectField<T = any> extends DynamicField<T> {
   public searchable?: boolean;
   public markFirst?: boolean;
   public separator?: string;
+  public addTag?: boolean | ((term: string) => any | Promise<any>);
+  public addTagText?: string;
 
   constructor(options: SelectField<T>) {
     super(options);
@@ -27,5 +29,7 @@ export class SelectField<T = any> extends DynamicField<T> {
     this.searchByValueKeyHandler = options.searchByValueKeyHandler;
     this.markFirst = options.markFirst === true;
     this.separator = options.separator || ', ';
+    this.addTag = options.addTag;
+    this.addTagText = options.addTagText;
   }
 }

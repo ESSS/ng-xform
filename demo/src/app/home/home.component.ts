@@ -68,6 +68,8 @@ export class HomeComponent implements OnInit {
         label: 'Color',
         searchable: true,
         options: this.colors,
+        addTag: true,
+        addTagText: "Add Color",
         optionLabelKey: 'name',
       }),
       new TextField({
