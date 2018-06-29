@@ -2,6 +2,8 @@ import { Observable } from 'rxjs/Observable';
 
 import { DynamicField } from './dynamic-field';
 
+export type AddTagObservableFn = ((model: any) => any | Observable<any> | Promise<any>);
+
 export class SelectField<T = any> extends DynamicField<T> {
   public controlType ? = 'SELECT';
   public options?: any[] | Observable<any[]>;
@@ -14,7 +16,7 @@ export class SelectField<T = any> extends DynamicField<T> {
   public searchable?: boolean;
   public markFirst?: boolean;
   public separator?: string;
-  public addTag?: boolean | ((term: string) => any | Promise<any>);
+  public addTag?: boolean | AddTagObservableFn ;
   public addTagText?: string;
 
   constructor(options: SelectField<T>) {
