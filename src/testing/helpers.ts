@@ -29,4 +29,3 @@ export enum KeyCode {
   ArrowDown = 40,
   Backspace = 8
 }
-  

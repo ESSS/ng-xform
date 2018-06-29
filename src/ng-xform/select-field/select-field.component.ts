@@ -114,7 +114,7 @@ export class SelectFieldComponent extends BaseDynamicFieldComponent<SelectField>
 
   /**
    * Prepare addTag to be passed to ng-select. If addTag is a callback that returns an observable, transform it in a Promise
-   * 
+   *
    * Note: ng-select only suport calbacks that return Promise. This method add support for callbacks that returns observables.
    */
   private prepareAddTag() {
@@ -136,7 +136,6 @@ export class SelectFieldComponent extends BaseDynamicFieldComponent<SelectField>
   }
 
   private config() {
-    
     if (this.field.addTag) {
       this.prepareAddTag();
     }
