@@ -56,7 +56,7 @@ describe('SelectFieldComponent', () => {
         key: 'choice_id',
         label: 'Choice',
         searchable: true,
-        addTag: true,
+        addNewOption: true,
         optionValueKey: 'id',
         optionLabelKey: 'description',
         options: []
@@ -80,7 +80,7 @@ describe('SelectFieldComponent', () => {
         key: 'choice_id',
         label: 'Choice',
         searchable: true,
-        addTag: (model) => {return Observable.of({id: 5, description: model.description, valid: true})},
+        addNewOption: (model) => {return Observable.of({id: 5, description: model.description, valid: true})},
         optionValueKey: 'id',
         optionLabelKey: 'description',
         options: []
@@ -104,7 +104,7 @@ describe('SelectFieldComponent', () => {
         key: 'choice_id',
         label: 'Choice',
         searchable: true,
-        addTag: (model) => {return Observable.of({id: 5, description: model.description, valid: true}).toPromise()},
+        addNewOption: (model) => {return Observable.of({id: 5, description: model.description, valid: true}).toPromise()},
         optionValueKey: 'id',
         optionLabelKey: 'description',
         options: []
