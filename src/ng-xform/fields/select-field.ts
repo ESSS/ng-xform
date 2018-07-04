@@ -17,7 +17,7 @@ export class SelectField<T = any> extends DynamicField<T> {
   public markFirst?: boolean;
   public separator?: string;
   public addNewOption?: boolean | AddNewOptionObservableFn ;
-  public addNeOptionText?: string;
+  public addNewOptionText?: string;
 
   constructor(options: SelectField<T>) {
     super(options);
@@ -32,6 +32,6 @@ export class SelectField<T = any> extends DynamicField<T> {
     this.markFirst = options.markFirst === true;
     this.separator = options.separator || ', ';
     this.addNewOption = options.addNewOption;
-    this.addNeOptionText = options.addNeOptionText;
+    this.addNewOptionText = options.addNewOptionText;
   }
 }
