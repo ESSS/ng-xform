@@ -2,6 +2,8 @@ import { Observable } from 'rxjs/Observable';
 
 import { DynamicField } from './dynamic-field';
 
+export type AddNewOptionObservableFn = ((model: any) => any | Observable<any> | Promise<any>);
+
 export class SelectField<T = any> extends DynamicField<T> {
   public controlType ? = 'SELECT';
   public options?: any[] | Observable<any[]>;
@@ -14,6 +16,8 @@ export class SelectField<T = any> extends DynamicField<T> {
   public searchable?: boolean;
   public markFirst?: boolean;
   public separator?: string;
+  public addNewOption?: boolean | AddNewOptionObservableFn ;
+  public addNeOptionText?: string;
 
   constructor(options: SelectField<T>) {
     super(options);
@@ -27,5 +31,7 @@ export class SelectField<T = any> extends DynamicField<T> {
     this.searchByValueKeyHandler = options.searchByValueKeyHandler;
     this.markFirst = options.markFirst === true;
     this.separator = options.separator || ', ';
+    this.addNewOption = options.addNewOption;
+    this.addNeOptionText = options.addNeOptionText;
   }
 }

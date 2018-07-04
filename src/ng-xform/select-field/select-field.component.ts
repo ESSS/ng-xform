@@ -9,7 +9,7 @@ import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/operator/debounceTime';
 
 import { BaseDynamicFieldComponent } from './../field-components/base-dynamic-field.component';
-import { SelectField } from '../fields';
+import { SelectField, AddNewOptionObservableFn } from '../fields';
 
 
 /**
@@ -36,6 +36,7 @@ export class SelectFieldComponent extends BaseDynamicFieldComponent<SelectField>
   optionValues: any[] = [];
   optionLabel = '-';
   typeahead: EventEmitter<string>;
+  parsedAddNewOption: boolean | ((term: string) => any | Promise<any>);
 
   _onChange: any = (value: any) => { };
   _onTouched: any = () => { };
@@ -111,7 +112,34 @@ export class SelectFieldComponent extends BaseDynamicFieldComponent<SelectField>
     return searchHandler;
   }
 
+  /**
+   * Prepare addTag to be passed to ng-select. If addTag is a callback that returns an observable, transform it in a Promise
+   *
+   * Note: ng-select only suport calbacks that return Promise. This method add support for callbacks that returns observables.
+   */
+  private prepareAddTag() {
+    let addNewOption = this.field.addNewOption;
+    if (addNewOption instanceof Function ) {
+      this.parsedAddNewOption = (term: string) => {
+        let newItem = {}
+        newItem[this.field.optionLabelKey] = term;
+        let partialResult = (<AddNewOptionObservableFn>addNewOption)(newItem);
+        if (partialResult && partialResult instanceof Observable) {
+          return partialResult.toPromise();
+        } else {
+          return partialResult;
+        }
+      };
+    } else {
+      this.parsedAddNewOption = addNewOption;
+    }
+  }
+
   private config() {
+    if (this.field.addNewOption) {
+      this.prepareAddTag();
+    }
+
     if (this.field.searchHandler) {
       this.typeahead = new EventEmitter<string>();
       this.field.searchable = true;
