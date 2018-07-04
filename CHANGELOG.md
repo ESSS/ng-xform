@@ -1,3 +1,13 @@
+<a name="0.15.3"></a>
+## [0.15.3](https://github.com/ESSS/ng-xform/compare/v0.15.2...v0.15.3) (2018-07-04)
+
+
+### Bug Fixes
+
+* **ng-xform:** Fix typo and demo code ([#26](https://github.com/ESSS/ng-xform/issues/26)) ([3fb2cd1](https://github.com/ESSS/ng-xform/commit/3fb2cd1))
+
+
+
 <a name="0.15.2"></a>
 ## [0.15.2](https://github.com/ESSS/ng-xform/compare/v0.15.1...v0.15.2) (2018-07-04)
 
