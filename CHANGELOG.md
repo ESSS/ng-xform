@@ -1,3 +1,13 @@
+<a name="0.15.2"></a>
+## [0.15.2](https://github.com/ESSS/ng-xform/compare/v0.15.1...v0.15.2) (2018-07-04)
+
+
+### Features
+
+* **ng-xform:** Add support for addNewOption on the fly   ([2da43df](https://github.com/ESSS/ng-xform/commit/2da43df))
+
+
+
 <a name="0.15.1"></a>
 ## [0.15.1](https://github.com/ESSS/ng-xform/compare/v0.15.0...v0.15.1) (2018-06-18)
 
