@@ -921,7 +921,7 @@ This component can display an error code if that is defined.</p>
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="115" class="link-to-prism">src/ng-xform/ng-xform.component.ts:115</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="116" class="link-to-prism">src/ng-xform/ng-xform.component.ts:116</a></div>
                                 </td>
                             </tr>
     
@@ -1201,7 +1201,7 @@ This component can display an error code if that is defined.</p>
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="119" class="link-to-prism">src/ng-xform/ng-xform.component.ts:119</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="121" class="link-to-prism">src/ng-xform/ng-xform.component.ts:121</a></div>
                                 </td>
                             </tr>
     
@@ -1267,12 +1267,14 @@ This component can display an error code if that is defined.</p>
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="126" class="link-to-prism">src/ng-xform/ng-xform.component.ts:126</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="134" class="link-to-prism">src/ng-xform/ng-xform.component.ts:134</a></div>
                                 </td>
                             </tr>
     
                     <tr>
                         <td class="col-md-4">
+                                <div class="io-description"><p>Initialize the form with the values in @param value object</p>
+    </div>
     
                                 <div class="io-description">
                                         <b>Parameters :</b>
@@ -1293,7 +1295,9 @@ This component can display an error code if that is defined.</p>
                                                       </td>
                                                       <td>
                                                       </td>
-                                                      <td></td>
+                                                      <td><p>object with values to be set to the form</p>
+    <p>Note: Calling setValue(null) will not clear the form. Use clear() instead.</p>
+    </td>
                                                     </tr>
                                             </tbody>
                                         </table>
@@ -1611,6 +1615,7 @@ export class NgXformComponent implements OnInit, OnChanges {
   }
 
   reset() {
+    this.form.reset();
     if (this.model) {
       this.form.patchValue(this.model, { onlySelf: true });
     }
@@ -1620,6 +1625,7 @@ export class NgXformComponent implements OnInit, OnChanges {
 
   clear() {
     this.form.reset();
+    this.model &#x3D; undefined;
   }
 
   setEditing(state: boolean) {
@@ -1629,6 +1635,12 @@ export class NgXformComponent implements OnInit, OnChanges {
     this.editingChange.emit(state);
   }
 
+  /**
+   * Initialize the form with the values in @param value object
+   * @param value object with values to be set to the form
+   *
+   * Note: Calling setValue(null) will not clear the form. Use clear() instead.
+   */
   setValue(value: any) {
     this.model &#x3D; value;
     this.form.patchValue(value);

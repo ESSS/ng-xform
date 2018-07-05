@@ -817,7 +817,7 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">src/ng-xform/date-field/date-field.component.ts:65</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="67" class="link-to-prism">src/ng-xform/date-field/date-field.component.ts:67</a></div>
                                 </td>
                             </tr>
     
@@ -883,7 +883,7 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="68" class="link-to-prism">src/ng-xform/date-field/date-field.component.ts:68</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="70" class="link-to-prism">src/ng-xform/date-field/date-field.component.ts:70</a></div>
                                 </td>
                             </tr>
     
@@ -949,7 +949,7 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="71" class="link-to-prism">src/ng-xform/date-field/date-field.component.ts:71</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="73" class="link-to-prism">src/ng-xform/date-field/date-field.component.ts:73</a></div>
                                 </td>
                             </tr>
     
@@ -1256,7 +1256,7 @@
                     </tr>
                                 <tr>
                                     <td class="col-md-4">
-                                        <div class="io-line">Defined in <a href="" data-line="75" class="link-to-prism">src/ng-xform/date-field/date-field.component.ts:75</a></div>
+                                        <div class="io-line">Defined in <a href="" data-line="77" class="link-to-prism">src/ng-xform/date-field/date-field.component.ts:77</a></div>
                                     </td>
                                 </tr>
     
@@ -1329,6 +1329,8 @@ export class DateFieldComponent extends BaseDynamicFieldComponent&lt;DateField&g
       this.componentControl.setValue(obj);
     } else if (obj) {
       this.componentControl.setValue(new Date(obj));
+    } else {
+      this.componentControl.setValue(obj);
     }
   }
   registerOnChange(fn: any): void {
