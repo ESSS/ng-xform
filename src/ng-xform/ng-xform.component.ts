@@ -105,6 +105,7 @@ export class NgXformComponent implements OnInit, OnChanges {
   }
 
   reset() {
+    this.form.reset();
     if (this.model) {
       this.form.patchValue(this.model, { onlySelf: true });
     }
@@ -114,6 +115,7 @@ export class NgXformComponent implements OnInit, OnChanges {
 
   clear() {
     this.form.reset();
+    this.model = undefined;
   }
 
   setEditing(state: boolean) {
@@ -123,6 +125,12 @@ export class NgXformComponent implements OnInit, OnChanges {
     this.editingChange.emit(state);
   }
 
+  /**
+   * Initialize the form with the values in @param value object
+   * @param value object with values to be set to the form
+   *
+   * Note: Calling setValue(null) will not clear the form. Use clear() instead.
+   */
   setValue(value: any) {
     this.model = value;
     this.form.patchValue(value);

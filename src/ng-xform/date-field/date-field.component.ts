@@ -60,6 +60,8 @@ export class DateFieldComponent extends BaseDynamicFieldComponent<DateField> imp
       this.componentControl.setValue(obj);
     } else if (obj) {
       this.componentControl.setValue(new Date(obj));
+    } else {
+      this.componentControl.setValue(obj);
     }
   }
   registerOnChange(fn: any): void {
