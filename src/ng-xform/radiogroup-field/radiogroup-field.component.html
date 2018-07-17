@@ -1,0 +1,8 @@
+<ng-xform-form-control-layout [fieldComponent]="instance">
+  <div class="radio" *ngFor="let item of optionValues">
+    <label>
+      <input type="radio" name="{{field.key}}" [formControl]="control" id="{{elementId}}-{{item | nestedAttribute: field.optionValueKey}}"
+       value="{{item | nestedAttribute: field.optionValueKey }}"/>{{item | nestedAttribute: field.optionLabelKey}}
+    </label>
+  </div>
+</ng-xform-form-control-layout>

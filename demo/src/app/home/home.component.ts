@@ -4,7 +4,7 @@ import { Title } from '@angular/platform-browser';
 import { HttpClient } from '@angular/common/http';
 import {
   TextField, SelectField, MeasureField, NgXformComponent, CheckboxField,
-  MultilineField, DateField, DynamicField, NestedFormGroup
+  MultilineField, DateField, DynamicField, NestedFormGroup, RadiogroupField
 } from '@esss/ng-xform';
 import { Observable } from 'rxjs/Observable';
 import { delay } from 'rxjs/operators';
@@ -121,6 +121,13 @@ export class HomeComponent implements OnInit {
         key: 'news',
         label: 'News'
       }),
+      new RadiogroupField({
+        key: 'gender',
+        label: 'Gender',
+        options: Observable.of([{id: 1, label: 'male'}, {id: 2, label: 'female'}]).delay(2000),
+        optionValueKey: 'id',
+        optionLabelKey: 'label'
+      }),
       new MultilineField({
         key: 'comment',
         label: 'Comment',
@@ -156,6 +163,7 @@ export class HomeComponent implements OnInit {
       address: {
         street: 'ChIJn7h-4b9JJ5URGCq6n0zj1tM'
       },
+      gender: '1',
       length: { value: 2, unit: 'm'},
       news: true,
       comment: 'Mussum Ipsum, cacilds vidis litro abertis. Mauris nec dolor in eros commodo tempor. Aenean aliquam molestie leo, vitae ' +
