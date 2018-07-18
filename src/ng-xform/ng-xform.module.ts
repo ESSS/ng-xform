@@ -18,6 +18,7 @@ import { PipesModule } from '../pipes/pipes.module';
 import { MultilineFieldComponent } from './multiline-field/multiline-field.component';
 import { FormGroupComponent } from './form-group/form-group.component';
 import { FormControlLayoutComponent } from './form-control-layout/form-control-layout.component';
+import { RadioGroupFieldComponent } from './radiogroup-field/radiogroup-field.component';
 
 @NgModule({
   imports: [
@@ -33,6 +34,7 @@ import { FormControlLayoutComponent } from './form-control-layout/form-control-l
     FormGroupComponent,
     EditableLabelComponent,
     CheckboxFieldComponent,
+    RadioGroupFieldComponent,
     MeasureFieldComponent,
     SelectFieldComponent,
     FieldErrorMessageComponent,

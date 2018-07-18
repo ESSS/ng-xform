@@ -46,11 +46,6 @@ export class NgXformComponent implements OnInit, OnChanges {
     if (changes.fields) {
       this.createForm();
     }
-
-    if (!this.form) {
-      return;
-    }
-    this.reset();
   }
 
   createForm() {

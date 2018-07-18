@@ -4,6 +4,7 @@ export * from './text-field';
 export * from './select-field';
 export * from './select-option';
 export * from './checkbox-field';
+export * from './radiogroup-field';
 export * from './multiline-field';
 export * from './nested-form-group';
 export * from './date-field';
