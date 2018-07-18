@@ -163,7 +163,7 @@ export class HomeComponent implements OnInit {
       address: {
         street: 'ChIJn7h-4b9JJ5URGCq6n0zj1tM'
       },
-      gender: '1',
+      gender: 1,
       length: { value: 2, unit: 'm'},
       news: true,
       comment: 'Mussum Ipsum, cacilds vidis litro abertis. Mauris nec dolor in eros commodo tempor. Aenean aliquam molestie leo, vitae ' +
