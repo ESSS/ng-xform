@@ -18,7 +18,7 @@ import { RadioGroupField } from '../fields';
 })
 export class RadioGroupFieldComponent extends BaseDynamicFieldComponent<RadioGroupField> implements OnInit {
   optionValues: any[] = [];
-  private selectedLabel = '';
+  private selectedLabel = '-';
 
   ngOnInit() {
     super.ngOnInit();
@@ -33,9 +33,8 @@ export class RadioGroupFieldComponent extends BaseDynamicFieldComponent<RadioGro
       this.optionValues = options;
     }
     this.control.valueChanges.subscribe((v) => {
-      console.log('radiogroup', v);
       this.updateSelectedLabel();
-    })
+    });
   }
 
   get formattedValue(): string {
@@ -44,15 +43,15 @@ export class RadioGroupFieldComponent extends BaseDynamicFieldComponent<RadioGro
 
   private updateSelectedLabel() {
     const value = this.form.controls[this.elementId].value;
-    if (value && this.field.optionLabelKey) {
+    if (value !== null && this.field.optionLabelKey) {
       const selected = this.optionValues.find(option => {
-        if (this.field.optionValueKey && String(option[this.field.optionValueKey]) === value) {
+        if (this.field.optionValueKey && option[this.field.optionValueKey] === value) {
           return option
         } else if (option === value) {
           return option
         }
       });
-      this.selectedLabel = selected[this.field.optionLabelKey];
+      this.selectedLabel = selected ? selected[this.field.optionLabelKey] : '-';
     } else {
       this.selectedLabel = value === null ? '-' : value;
     }
