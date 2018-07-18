@@ -4,7 +4,7 @@ import { Title } from '@angular/platform-browser';
 import { HttpClient } from '@angular/common/http';
 import {
   TextField, SelectField, MeasureField, NgXformComponent, CheckboxField,
-  MultilineField, DateField, DynamicField, NestedFormGroup, RadiogroupField
+  MultilineField, DateField, DynamicField, NestedFormGroup, RadioGroupField
 } from '@esss/ng-xform';
 import { Observable } from 'rxjs/Observable';
 import { delay } from 'rxjs/operators';
@@ -121,7 +121,7 @@ export class HomeComponent implements OnInit {
         key: 'news',
         label: 'News'
       }),
-      new RadiogroupField({
+      new RadioGroupField({
         key: 'gender',
         label: 'Gender',
         options: Observable.of([{id: 1, label: 'male'}, {id: 2, label: 'female'}]).delay(2000),

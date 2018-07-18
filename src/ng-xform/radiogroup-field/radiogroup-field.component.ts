@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
 import { BaseDynamicFieldComponent } from '../field-components/base-dynamic-field.component';
-import { RadiogroupField } from '../fields';
+import { RadioGroupField } from '../fields';
 
 
 /**
@@ -16,7 +16,7 @@ import { RadiogroupField } from '../fields';
   selector: 'ng-xform-radiogroup-field',
   templateUrl: './radiogroup-field.component.html',
 })
-export class RadiogroupFieldComponent extends BaseDynamicFieldComponent<RadiogroupField> implements OnInit {
+export class RadioGroupFieldComponent extends BaseDynamicFieldComponent<RadioGroupField> implements OnInit {
   optionValues: any[] = [];
   private selectedLabel = '';
 
