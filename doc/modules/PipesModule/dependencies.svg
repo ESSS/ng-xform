@@ -22,69 +22,93 @@
 <text text-anchor="start" x="429.7258" y="-15.4" font-family="sans-serif" font-size="14.00" fill="#000000"> &#160;Exports</text>
 <g id="clust1" class="cluster">
 <title>cluster_PipesModule</title>
-<polygon fill="none" stroke="#000000" stroke-dasharray="1,5" points="118.5,-70 118.5,-268 377.5,-268 377.5,-70 118.5,-70"/>
+<polygon fill="none" stroke="#000000" stroke-dasharray="1,5" points="42.5,-70 42.5,-268 453.5,-268 453.5,-70 42.5,-70"/>
 </g>
 <g id="clust2" class="cluster">
 <title>cluster_PipesModule_declarations</title>
-<polygon fill="none" stroke="#000000" points="130.5,-78 130.5,-130 366.5,-130 366.5,-78 130.5,-78"/>
+<polygon fill="none" stroke="#000000" points="55.5,-78 55.5,-130 439.5,-130 439.5,-78 55.5,-78"/>
 </g>
-<g id="clust6" class="cluster">
+<g id="clust7" class="cluster">
 <title>cluster_PipesModule_exports</title>
-<polygon fill="none" stroke="#000000" points="126.5,-208 126.5,-260 369.5,-260 369.5,-208 126.5,-208"/>
+<polygon fill="none" stroke="#000000" points="50.5,-208 50.5,-260 445.5,-260 445.5,-208 50.5,-208"/>
 </g>
 <!-- ForceUtcPipe -->
 <g id="node1" class="node">
 <title>ForceUtcPipe</title>
-<polygon fill="#ffffb3" stroke="#000000" points="358.972,-122 266.028,-122 266.028,-86 358.972,-86 358.972,-122"/>
-<text text-anchor="middle" x="312.5" y="-99.8" font-family="Times,serif" font-size="14.00" fill="#000000">ForceUtcPipe</text>
+<polygon fill="#ffffb3" stroke="#000000" points="431.972,-122 339.028,-122 339.028,-86 431.972,-86 431.972,-122"/>
+<text text-anchor="middle" x="385.5" y="-99.8" font-family="Times,serif" font-size="14.00" fill="#000000">ForceUtcPipe</text>
 </g>
 <!-- PipesModule -->
-<g id="node3" class="node">
+<g id="node4" class="node">
 <title>PipesModule</title>
-<polygon fill="#8dd3c7" stroke="#000000" points="238.3823,-187 235.3823,-191 214.3823,-191 211.3823,-187 148.6177,-187 148.6177,-151 238.3823,-151 238.3823,-187"/>
-<text text-anchor="middle" x="193.5" y="-164.8" font-family="Times,serif" font-size="14.00" fill="#000000">PipesModule</text>
+<polygon fill="#8dd3c7" stroke="#000000" points="311.3823,-187 308.3823,-191 287.3823,-191 284.3823,-187 221.6177,-187 221.6177,-151 311.3823,-151 311.3823,-187"/>
+<text text-anchor="middle" x="266.5" y="-164.8" font-family="Times,serif" font-size="14.00" fill="#000000">PipesModule</text>
 </g>
 <!-- ForceUtcPipe&#45;&gt;PipesModule -->
 <g id="edge1" class="edge">
 <title>ForceUtcPipe&#45;&gt;PipesModule</title>
-<path fill="none" stroke="#000000" d="M327.9953,-122.0225C327.9953,-139.3734 327.9953,-163 327.9953,-163 327.9953,-163 248.6591,-163 248.6591,-163"/>
-<polygon fill="#000000" stroke="#000000" points="248.6592,-159.5001 238.6591,-163 248.6591,-166.5001 248.6592,-159.5001"/>
+<path fill="none" stroke="#000000" d="M401.7453,-122.0225C401.7453,-139.3734 401.7453,-163 401.7453,-163 401.7453,-163 321.5347,-163 321.5347,-163"/>
+<polygon fill="#000000" stroke="#000000" points="321.5348,-159.5001 311.5347,-163 321.5347,-166.5001 321.5348,-159.5001"/>
 </g>
 <!-- ValueSuffixPipe -->
 <g id="node2" class="node">
 <title>ValueSuffixPipe</title>
-<polygon fill="#ffffb3" stroke="#000000" points="248.309,-122 138.691,-122 138.691,-86 248.309,-86 248.309,-122"/>
-<text text-anchor="middle" x="193.5" y="-99.8" font-family="Times,serif" font-size="14.00" fill="#000000">ValueSuffixPipe</text>
+<polygon fill="#ffffb3" stroke="#000000" points="321.309,-122 211.691,-122 211.691,-86 321.309,-86 321.309,-122"/>
+<text text-anchor="middle" x="266.5" y="-99.8" font-family="Times,serif" font-size="14.00" fill="#000000">ValueSuffixPipe</text>
 </g>
 <!-- ValueSuffixPipe&#45;&gt;PipesModule -->
 <g id="edge2" class="edge">
 <title>ValueSuffixPipe&#45;&gt;PipesModule</title>
-<path fill="none" stroke="#000000" d="M193.5,-122.1061C193.5,-122.1061 193.5,-140.991 193.5,-140.991"/>
-<polygon fill="#000000" stroke="#000000" points="190.0001,-140.9909 193.5,-150.991 197.0001,-140.991 190.0001,-140.9909"/>
+<path fill="none" stroke="#000000" d="M266.5,-122.1061C266.5,-122.1061 266.5,-140.991 266.5,-140.991"/>
+<polygon fill="#000000" stroke="#000000" points="263.0001,-140.9909 266.5,-150.991 270.0001,-140.991 263.0001,-140.9909"/>
+</g>
+<!-- NestedAttributePipe -->
+<g id="node3" class="node">
+<title>NestedAttributePipe</title>
+<polygon fill="#ffffb3" stroke="#000000" points="193.8034,-122 63.1966,-122 63.1966,-86 193.8034,-86 193.8034,-122"/>
+<text text-anchor="middle" x="128.5" y="-99.8" font-family="Times,serif" font-size="14.00" fill="#000000">NestedAttributePipe</text>
+</g>
+<!-- NestedAttributePipe&#45;&gt;PipesModule -->
+<g id="edge3" class="edge">
+<title>NestedAttributePipe&#45;&gt;PipesModule</title>
+<path fill="none" stroke="#000000" d="M149.3838,-122.0225C149.3838,-139.3734 149.3838,-163 149.3838,-163 149.3838,-163 211.5548,-163 211.5548,-163"/>
+<polygon fill="#000000" stroke="#000000" points="211.5548,-166.5001 221.5548,-163 211.5547,-159.5001 211.5548,-166.5001"/>
 </g>
 <!-- ForceUtcPipe  -->
-<g id="node4" class="node">
+<g id="node5" class="node">
 <title>ForceUtcPipe </title>
-<polygon fill="#fb8072" stroke="#000000" points="361.9732,-252 265.0268,-252 265.0268,-216 361.9732,-216 361.9732,-252"/>
-<text text-anchor="middle" x="313.5" y="-229.8" font-family="Times,serif" font-size="14.00" fill="#000000">ForceUtcPipe </text>
+<polygon fill="#fb8072" stroke="#000000" points="437.9732,-252 341.0268,-252 341.0268,-216 437.9732,-216 437.9732,-252"/>
+<text text-anchor="middle" x="389.5" y="-229.8" font-family="Times,serif" font-size="14.00" fill="#000000">ForceUtcPipe </text>
 </g>
 <!-- PipesModule&#45;&gt;ForceUtcPipe  -->
-<g id="edge3" class="edge">
+<g id="edge4" class="edge">
 <title>PipesModule&#45;&gt;ForceUtcPipe </title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M238.5976,-175C266.4899,-175 297.0047,-175 297.0047,-175 297.0047,-175 297.0047,-205.9775 297.0047,-205.9775"/>
-<polygon fill="#000000" stroke="#000000" points="293.5048,-205.9774 297.0047,-215.9775 300.5048,-205.9775 293.5048,-205.9774"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M311.6408,-175C340.1007,-175 371.5047,-175 371.5047,-175 371.5047,-175 371.5047,-205.9775 371.5047,-205.9775"/>
+<polygon fill="#000000" stroke="#000000" points="368.0048,-205.9774 371.5047,-215.9775 375.0048,-205.9775 368.0048,-205.9774"/>
 </g>
 <!-- ValueSuffixPipe  -->
-<g id="node5" class="node">
+<g id="node6" class="node">
 <title>ValueSuffixPipe </title>
-<polygon fill="#fb8072" stroke="#000000" points="246.8088,-252 134.1912,-252 134.1912,-216 246.8088,-216 246.8088,-252"/>
-<text text-anchor="middle" x="190.5" y="-229.8" font-family="Times,serif" font-size="14.00" fill="#000000">ValueSuffixPipe </text>
+<polygon fill="#fb8072" stroke="#000000" points="322.8088,-252 210.1912,-252 210.1912,-216 322.8088,-216 322.8088,-252"/>
+<text text-anchor="middle" x="266.5" y="-229.8" font-family="Times,serif" font-size="14.00" fill="#000000">ValueSuffixPipe </text>
 </g>
 <!-- PipesModule&#45;&gt;ValueSuffixPipe  -->
-<g id="edge4" class="edge">
+<g id="edge5" class="edge">
 <title>PipesModule&#45;&gt;ValueSuffixPipe </title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M193.5,-187.1061C193.5,-187.1061 193.5,-205.991 193.5,-205.991"/>
-<polygon fill="#000000" stroke="#000000" points="190.0001,-205.9909 193.5,-215.991 197.0001,-205.991 190.0001,-205.9909"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M266.5,-187.1061C266.5,-187.1061 266.5,-205.991 266.5,-205.991"/>
+<polygon fill="#000000" stroke="#000000" points="263.0001,-205.9909 266.5,-215.991 270.0001,-205.991 263.0001,-205.9909"/>
+</g>
+<!-- NestedAttributePipe  -->
+<g id="node7" class="node">
+<title>NestedAttributePipe </title>
+<polygon fill="#fb8072" stroke="#000000" points="192.3031,-252 58.6969,-252 58.6969,-216 192.3031,-216 192.3031,-252"/>
+<text text-anchor="middle" x="125.5" y="-229.8" font-family="Times,serif" font-size="14.00" fill="#000000">NestedAttributePipe </text>
+</g>
+<!-- PipesModule&#45;&gt;NestedAttributePipe  -->
+<g id="edge6" class="edge">
+<title>PipesModule&#45;&gt;NestedAttributePipe </title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M221.4677,-175C174.1041,-175 106.3662,-175 106.3662,-175 106.3662,-175 106.3662,-205.9775 106.3662,-205.9775"/>
+<polygon fill="#000000" stroke="#000000" points="102.8663,-205.9774 106.3662,-215.9775 109.8663,-205.9775 102.8663,-205.9774"/>
 </g>
 </g>
 </svg>
