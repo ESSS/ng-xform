@@ -1,3 +1,19 @@
+<a name="0.15.5"></a>
+## [0.15.5](https://github.com/ESSS/ng-xform/compare/v0.15.4...v0.15.5) (2018-07-18)
+
+
+### Bug Fixes
+
+* **RadioGroupField:** fixing boolean values error ([f7c94da](https://github.com/ESSS/ng-xform/commit/f7c94da))
+
+
+### Features
+
+* **RadiogroupField:** add support to radio group ([b4f688b](https://github.com/ESSS/ng-xform/commit/b4f688b))
+* **RadiogroupField:** add support to radio group ([#28](https://github.com/ESSS/ng-xform/issues/28)) ([368df53](https://github.com/ESSS/ng-xform/commit/368df53))
+
+
+
 <a name="0.15.4"></a>
 ## [0.15.4](https://github.com/ESSS/ng-xform/compare/v0.15.3...v0.15.4) (2018-07-05)
 
