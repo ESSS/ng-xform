@@ -18,7 +18,7 @@ export class ErrorMessagePipe implements PipeTransform {
       case 'maxlength':
         return messages[error].replace('{requiredLength}', value[error].requiredLength);
 
-      default: return messages[error] || '';
+      default: return messages[error] || value[error];
     }
   }
 
