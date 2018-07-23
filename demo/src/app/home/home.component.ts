@@ -113,9 +113,16 @@ export class HomeComponent implements OnInit {
       new MeasureField({
         key: 'length',
         label: 'Length',
-        modelUnit: 'm',
-        viewUnit: Observable.of('cm').delay(200),
-        availableUnits: Observable.of(['m', 'cm', 'mm', 'ft']).delay(200)
+        modelUnit: 'mm',
+        viewUnit: Observable.of('m').delay(200),
+        availableUnits: Observable.of(['m', 'cm', 'mm']).delay(200)
+      }),
+      new MeasureField({
+        key: 'width',
+        label: 'Width',
+        modelUnit: 'inch',
+        viewUnit: Observable.of('inch').delay(200),
+        availableUnits: Observable.of(['inch', 'ft']).delay(200)
       }),
       new CheckboxField({
         key: 'news',
@@ -165,6 +172,7 @@ export class HomeComponent implements OnInit {
       },
       gender: 1,
       length: { value: 2, unit: 'm'},
+      width: { value: 3, unit: 'ft'},
       news: true,
       comment: 'Mussum Ipsum, cacilds vidis litro abertis. Mauris nec dolor in eros commodo tempor. Aenean aliquam molestie leo, vitae ' +
       'iaculis nisl. Quem num gosta di mé, boa gentis num é. Tá deprimidis, eu conheço uma cachacis que pode alegrar sua vidis. Em pé ' +
