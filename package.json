@@ -1,7 +1,7 @@
 {
   "name": "@esss/ng-xform",
   "description": "Angular library built using ngx-library yeoman generator.",
-  "version": "0.15.5",
+  "version": "0.16.0",
   "homepage": "https://github.com/ESSS/ng-xform",
   "author": {
     "name": "Eder Soares",

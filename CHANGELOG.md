@@ -1,3 +1,14 @@
+<a name="0.16.0"></a>
+# [0.16.0](https://github.com/ESSS/ng-xform/compare/v0.15.5...v0.16.0) (2018-07-24)
+
+
+### Features
+
+* **error-message.pipe:** adding custom error message support ([#30](https://github.com/ESSS/ng-xform/issues/30)) ([aea9c13](https://github.com/ESSS/ng-xform/commit/aea9c13))
+* **MeasureField:** setting min-width and text-align ([#29](https://github.com/ESSS/ng-xform/issues/29)) ([6462c53](https://github.com/ESSS/ng-xform/commit/6462c53))
+
+
+
 <a name="0.15.5"></a>
 ## [0.15.5](https://github.com/ESSS/ng-xform/compare/v0.15.4...v0.15.5) (2018-07-18)
 
