@@ -19,6 +19,7 @@ import * as math from 'mathjs';
 @Component({
   selector: 'ng-xform-measure-field',
   templateUrl: './measure-field.component.html',
+  styleUrls: ['./measure-field.component.scss'],
   providers: [{
     provide: NG_VALUE_ACCESSOR,
     useExisting: MeasureFieldComponent,
