@@ -1,0 +1,21 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../out-tsc/app",
+    "baseUrl": "./",
+    "module": "es2015",
+    "types": [],
+    "paths": {
+      "@angular/*": ["../node_modules/@angular/*"],
+      "@ng-select/ng-select": ["../node_modules/@ng-select/ng-select"],
+      "@types/mathjs": ["../node_modules/@types/mathjs"],
+      "ngx-bootstrap": ["../node_modules/ngx-bootstrap"],
+      "mathjs": ["../node_modules/mathjs"]
+    }
+  },
+  "exclude": [
+    "testing/*",
+    "test.ts",
+    "**/*.spec.ts"
+  ]
+}

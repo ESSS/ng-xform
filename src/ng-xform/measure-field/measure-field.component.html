@@ -1,0 +1,16 @@
+<ng-xform-form-control-layout [fieldComponent]="instance">
+  <div [class.input-group]="viewUnit" [class.form-group]="!viewUnit">
+    <input type="number" id="{{elementId}}" class="form-control" />
+    <div *ngIf="viewUnit" class="input-group-addon measure-unit-selector" dropdown>
+      <span style="cursor: pointer;" dropdownToggle>
+        {{viewUnit}}
+        <span class="caret"></span>
+      </span>
+      <ul class="dropdown-menu dropdown-menu-right" role="menu" *dropdownMenu>
+        <li *ngFor="let item of availableUnits">
+          <a href="javascript:void(0);" (click)="changeUnit(item)">{{ item }}</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</ng-xform-form-control-layout>

@@ -1,0 +1,44 @@
+{
+  "generator-ngx-library": {
+    "version": "6.2.1",
+    "authorName": "Eder Soares",
+    "authorEmail": "edetec@gmail.com",
+    "githubUsername": "edetec",
+    "githubRepoName": "ng-xform",
+    "projectName": "@esss/ng-xform",
+    "projectVersion": "0.16.0",
+    "projectDescription": "Angular library",
+    "projectKeywords": [
+      "ng",
+      "angular",
+      "library"
+    ],
+    "ngVersion": "6.0.0",
+    "ngModules": [
+      "core",
+      "common"
+    ],
+    "otherDependencies": [
+      "@ng-select/ng-select",
+      "@types/mathjs",
+      "ngx-bootstrap",
+      "mathjs"
+    ],
+    "additionalPackageFiles": [
+      "mathjs"
+    ],
+    "dependenciesRange": "^",
+    "ngPrefix": "ng-xform",
+    "testingFramework": "karma",
+    "useGreenkeeper": true,
+    "useCompodoc": true,
+    "enforceNgGitCommitMsg": true,
+    "exclusions": [
+      "demo/src/jestGlobalMocks.ts",
+      "demo/src/setupJest.ts",
+      "config/jestGlobalMocks.ts",
+      "config/setupJest.ts"
+    ],
+    "deleteExclusions": []
+  }
+}

@@ -1,0 +1,13 @@
+<ng-xform-form-control-layout [fieldComponent]="instance">
+  <ng-select id='{{elementId}}'
+  [searchable]="field.searchable"
+  [typeahead]="typeahead"
+  [items]="optionValues"
+  [multiple]="field.multiple"
+  [markFirst]="field.markFirst"
+  [addTag]="parsedAddNewOption"
+  [addTagText]="field.addNewOptionText"
+  bindLabel="{{field.optionLabelKey}}"
+  bindValue="{{field.optionValueKey}}">
+  </ng-select>
+</ng-xform-form-control-layout>
