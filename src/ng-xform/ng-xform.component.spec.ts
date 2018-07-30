@@ -1,10 +1,8 @@
+import { BsLocaleService } from 'ngx-bootstrap/datepicker';
 import { DatePipe } from '@angular/common';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Validators } from '@angular/forms';
 import { By } from '@angular/platform-browser';
-import { defineLocale } from 'ngx-bootstrap/chronos';
-import { enGbLocale } from 'ngx-bootstrap/locale';
-defineLocale('en-us', enGbLocale);
 
 
 import { DateField, MeasureField, TextField } from './fields';
@@ -22,6 +20,7 @@ describe('DynamicFormComponent', () => {
   let options: any[];
   let dateTest: Date;
   let datePipe: DatePipe;
+  let bsLocaleService: BsLocaleService;
 
   beforeEach(
     async(() => {
@@ -30,6 +29,8 @@ describe('DynamicFormComponent', () => {
           NgXformModule
         ]
       }).compileComponents();
+      bsLocaleService = TestBed.get(BsLocaleService);
+      bsLocaleService.use('en');
     })
   );
 
