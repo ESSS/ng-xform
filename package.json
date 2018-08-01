@@ -26,6 +26,7 @@
     "demo": "gulp serve:demo",
     "start": "gulp build",
     "test": " gulp test",
+    "watch-fast": "gulp build:watch-fast",
     "check-travis": " travis-status --repo=ESSS/ng-xform --branch=master --fail-pending || echo 'Not yet passing'"
   },
   "dependencies": {

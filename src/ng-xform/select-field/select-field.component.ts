@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, EventEmitter, OnInit, SimpleChange, ViewChild } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { NgSelectComponent } from '@ng-select/ng-select';
-import { BehaviorSubject, Observable, from } from 'rxjs';
+import { BehaviorSubject, Observable, isObservable, from } from 'rxjs';
 import { distinctUntilChanged, switchMap, debounceTime } from 'rxjs/operators';
 
 import { AddNewOptionObservableFn, SelectField } from '../fields';
@@ -144,7 +144,7 @@ export class SelectFieldComponent extends BaseDynamicFieldComponent<SelectField>
     }
     const options = this.field.options;
 
-    if (options instanceof Observable) {
+    if (isObservable(options)) {
       (<Observable<any[]>>options).subscribe(ret => {
         this.optionValues = ret;
         this.updateOptionLabel();

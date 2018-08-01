@@ -1,3 +1,6 @@
+import { HttpClientModule } from '@angular/common/http';
+import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { NgXformModule } from '@esss/ng-xform';
 
@@ -9,7 +12,13 @@ describe('HomeComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [NgXformModule],
+      imports: [
+        CommonModule,
+        ReactiveFormsModule,
+        FormsModule,
+        HttpClientModule,
+        NgXformModule
+      ],
       declarations: [HomeComponent]
     })
       .compileComponents()

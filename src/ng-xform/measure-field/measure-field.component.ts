@@ -1,12 +1,12 @@
-import { Observable, isObservable } from 'rxjs';
-import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
-import { Component, AfterViewInit, ElementRef, OnInit, ViewChild } from '@angular/core';
-
-import { Measure } from './../models/measure';
-import { BaseDynamicFieldComponent } from '../field-components/base-dynamic-field.component';
-import { MeasureField } from '../fields';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { Unit } from 'mathjs';
 import * as math from 'mathjs';
+import { isObservable } from 'rxjs';
+
+import { BaseDynamicFieldComponent } from '../field-components/base-dynamic-field.component';
+import { MeasureField } from '../fields';
+import { Measure } from './../models/measure';
 
 
 /**
