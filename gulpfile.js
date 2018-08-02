@@ -130,7 +130,7 @@ const readyToRelease = () => {
   let onMasterBranch = execSync('git symbolic-ref --short -q HEAD').toString().trim() === 'master';
   let canBump = !!argv.version;
   let canGhRelease = argv.ghToken || process.env.CONVENTIONAL_GITHUB_RELEASER_TOKEN;
-  let canNpmPublish = !!execSync('npm whoami --registry=https://registry.npmjs.org').toString().trim();
+  let canNpmPublish = !!execSync('npm whoami').toString().trim() && execSync('npm config get registry').toString().trim() === 'https://registry.npmjs.org/';
 
   fancyLog(`[travis-ci]      Travis build on 'master' branch is passing............................................${isOK(isTravisPassing)}`);
   fancyLog(`[git-branch]     User is currently on 'master' branch..................................................${isOK(onMasterBranch)}`);
