@@ -27,11 +27,11 @@
         <legend>set up</legend>
         <div class="col-sm-3 form-group">
           <label>
-            <input [(ngModel)]="horizontal" type="checkbox" ngModelOptions="{standalone: true}"/> Horizontal form</label>
+            <input [(ngModel)]="horizontal" type="checkbox" [ngModelOptions]="{standalone: true}"/> Horizontal form</label>
         </div>
         <div class="col-sm-6 form-group">
           <label>Label width</label>
-          <input type="number" class="form-control" [(ngModel)]="labelWidth" ngModelOptions="{standalone: true}"/>
+          <input type="number" class="form-control" [(ngModel)]="labelWidth" [ngModelOptions]="{standalone: true}"/>
         </div>
         <div class="col-sm-3 form-group">
           <button *ngIf="editing" type="button" class="btn btn-info" (click)="populate()">Populate</button>
