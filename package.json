@@ -22,7 +22,8 @@
   },
   "private": true,
   "scripts": {
-    "setup": "npm i && gulp build && cd demo && npm i",
+    "setup:demo": "gulp link && cd demo && npm i && npm link @esss/ng-xform",
+    "setup": "npm i && gulp build && npm run setup:demo",
     "demo": "gulp serve:demo",
     "start": "gulp build",
     "test": " gulp test",

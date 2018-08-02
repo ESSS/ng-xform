@@ -530,6 +530,10 @@ gulp.task('test:demo', () => {
   return execDemoCmd('test --preserve-symlinks', { cwd: `${config.demoDir}`});
 });
 
+gulp.task('test:demo_ci', () => {
+  return execDemoCmd('test --preserve-symlinks --progress=false --watch=false', { cwd: `${config.demoDir}`});
+});
+
 gulp.task('serve:demo', () => {
   return execDemoCmd('serve --aot --proxy-config proxy.conf.json', { cwd: `${config.demoDir}` });
 });
