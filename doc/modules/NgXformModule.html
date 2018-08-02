@@ -819,27 +819,28 @@
 
 
     <div class="tab-pane fade tab-source-code" id="c-source">
-        <pre class="line-numbers"><code class="language-typescript">import { OptionalTagComponent } from &#x27;./field-components/optional-tag.component&#x27;;
-import { DateFieldComponent } from &#x27;./date-field/date-field.component&#x27;;
-import { CheckboxFieldComponent } from &#x27;./checkbox-field/checkbox-field.component&#x27;;
-import { ReactiveFormsModule } from &#x27;@angular/forms&#x27;;
-import { NgModule, Inject, LOCALE_ID } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers"><code class="language-typescript">import { bsDatepickerModuleWithProviders, bsDropdownModuleWithProviders } from &#x27;./ng-xform.module-imports&#x27;;
 import { CommonModule } from &#x27;@angular/common&#x27;;
+import { Inject, LOCALE_ID, NgModule } from &#x27;@angular/core&#x27;;
+import { ReactiveFormsModule } from &#x27;@angular/forms&#x27;;
 import { NgSelectModule } from &#x27;@ng-select/ng-select&#x27;;
-import { BsDatepickerModule, BsLocaleService } from &#x27;ngx-bootstrap/datepicker&#x27;;
-import { BsDropdownModule } from &#x27;ngx-bootstrap/dropdown&#x27;;
+import { BsLocaleService } from &#x27;ngx-bootstrap/datepicker&#x27;;
 
-import { NgXformComponent } from &#x27;./ng-xform.component&#x27;;
-import { EditableLabelComponent } from &#x27;./editable-label/editable-label.component&#x27;;
-import { MeasureFieldComponent } from &#x27;./measure-field/measure-field.component&#x27;;
-import { SelectFieldComponent } from &#x27;./select-field/select-field.component&#x27;;
-import { FieldErrorMessageComponent } from &#x27;./field-error-message/field-error-message.component&#x27;;
-import { ErrorMessagePipe } from &#x27;./field-error-message/error-message.pipe&#x27;;
 import { PipesModule } from &#x27;../pipes/pipes.module&#x27;;
-import { MultilineFieldComponent } from &#x27;./multiline-field/multiline-field.component&#x27;;
-import { FormGroupComponent } from &#x27;./form-group/form-group.component&#x27;;
+import { CheckboxFieldComponent } from &#x27;./checkbox-field/checkbox-field.component&#x27;;
+import { DateFieldComponent } from &#x27;./date-field/date-field.component&#x27;;
+import { EditableLabelComponent } from &#x27;./editable-label/editable-label.component&#x27;;
+import { OptionalTagComponent } from &#x27;./field-components/optional-tag.component&#x27;;
+import { ErrorMessagePipe } from &#x27;./field-error-message/error-message.pipe&#x27;;
+import { FieldErrorMessageComponent } from &#x27;./field-error-message/field-error-message.component&#x27;;
 import { FormControlLayoutComponent } from &#x27;./form-control-layout/form-control-layout.component&#x27;;
+import { FormGroupComponent } from &#x27;./form-group/form-group.component&#x27;;
+import { MeasureFieldComponent } from &#x27;./measure-field/measure-field.component&#x27;;
+import { MultilineFieldComponent } from &#x27;./multiline-field/multiline-field.component&#x27;;
+import { NgXformComponent } from &#x27;./ng-xform.component&#x27;;
 import { RadioGroupFieldComponent } from &#x27;./radiogroup-field/radiogroup-field.component&#x27;;
+import { SelectFieldComponent } from &#x27;./select-field/select-field.component&#x27;;
+
 
 @NgModule({
   imports: [
@@ -847,8 +848,8 @@ import { RadioGroupFieldComponent } from &#x27;./radiogroup-field/radiogroup-fie
     ReactiveFormsModule,
     PipesModule,
     NgSelectModule,
-    BsDatepickerModule.forRoot(),
-    BsDropdownModule.forRoot(),
+    bsDatepickerModuleWithProviders,
+    bsDropdownModuleWithProviders,
   ],
   declarations: [
     NgXformComponent,

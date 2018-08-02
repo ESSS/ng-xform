@@ -501,15 +501,15 @@
 <p>View all the directives in action at <a href="https://esss.github.io/ng-xform">Demo</a> and <a href="https://github.com/ESSS/ng-xform/blob/master/demo/src/app/home/home.component.ts">Demo source code</a></p>
 <h2 id="dependencies">Dependencies</h2>
 <ul>
-<li><a href="https://angular.io">Angular</a> (<em>requires</em> Angular 4 or higher, tested with 5.2.0)</li>
+<li><a href="https://angular.io">Angular</a> (<em>requires</em> Angular 6, tested with 6.1.0)</li>
 </ul>
 <h2 id="installation">Installation</h2>
 <p>Install above dependencies via <em>npm</em>. </p>
-<pre class="line-numbers"><code class="language-shell">npm i --save &#64;ng-select/ng-select&#64;0.16.0 ngx-bootstrap&#64;2.0.2 mathjs&#64;3.20.2</code></pre><p>Now install <code>@esss/ng-xform</code> via:</p>
+<pre class="line-numbers"><code class="language-shell">npm i --save &#64;ng-select/ng-select&#64;2.3.5 ngx-bootstrap&#64;3.0.1 mathjs&#64;3.20.2</code></pre><p>Now install <code>@esss/ng-xform</code> via:</p>
 <pre class="line-numbers"><code class="language-shell">npm i --save &#64;esss/ng-xform</code></pre><p>You will need to import styles. Example: &#39;src/styles.scss&#39;</p>
-<pre class="line-numbers"><code class="language-css">&#64;import &#39;~bootstrap/dist/css/bootstrap.min.css&#39;;
-&#64;import &#39;~ngx-bootstrap/datepicker/bs-datepicker.css&#39;;
-&#64;import &quot;~&#64;ng-select/ng-select/themes/default.theme.css&quot;;</code></pre><p>Setup the MeasureComponent adding the js file on .angular-cli.json </p>
+<pre class="line-numbers"><code class="language-css">&#64;import &#39;bootstrap/dist/css/bootstrap.min.css&#39;;
+&#64;import &#39;ngx-bootstrap/datepicker/bs-datepicker.css&#39;;
+&#64;import &quot;&#64;ng-select/ng-select/themes/default.theme.css&quot;;</code></pre><p>Setup the MeasureComponent adding the js file on .angular-cli.json </p>
 <pre class="line-numbers"><code class="language-json">&quot;scripts&quot;: [
   &quot;../node_modules/mathjs/dist/math.js&quot;
 ]</code></pre><hr>
@@ -641,8 +641,8 @@ export class OtherModule {
         key: &#39;length&#39;,
         label: &#39;Length&#39;,
         modelUnit: &#39;m&#39;,
-        viewUnit: Observable.of(&#39;cm&#39;).delay(200),
-        availableUnits: Observable.of([&#39;m&#39;, &#39;cm&#39;, &#39;mm&#39;, &#39;ft&#39;]).delay(200)
+        viewUnit: of(&#39;cm&#39;).delay(200),
+        availableUnits: of([&#39;m&#39;, &#39;cm&#39;, &#39;mm&#39;, &#39;ft&#39;]).delay(200)
       }),
       new CheckboxField({
         key: &#39;news&#39;,
@@ -700,12 +700,12 @@ export class OtherModule {
       return this.http.get(url)
         .map((res) =&gt; res[&#39;results&#39;]);
     } else {
-      return Observable.of([]);
+      return of([]);
     }
   }
 
   public observableSourceByPlaceId(place_id: any): Observable&lt;any&gt; {
-    return Observable.of({
+    return of({
       &#39;place_id&#39;: &#39;ChIJn7h-4b9JJ5URGCq6n0zj1tM&#39;,
       &#39;formatted_address&#39;: &#39;Florianópolis - State of Santa Catarina, Brazil&#39;
     }).delay(300);

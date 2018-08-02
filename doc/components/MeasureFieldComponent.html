@@ -1568,15 +1568,15 @@
 
 
     <div class="tab-pane fade tab-source-code" id="c-source">
-        <pre class="line-numbers"><code class="language-typescript">import { Observable } from &#x27;rxjs/Observable&#x27;;
-import { NG_VALUE_ACCESSOR, ControlValueAccessor } from &#x27;@angular/forms&#x27;;
-import { Component, AfterViewInit, ElementRef, OnInit, ViewChild } from &#x27;@angular/core&#x27;;
-
-import { Measure } from &#x27;./../models/measure&#x27;;
-import { BaseDynamicFieldComponent } from &#x27;../field-components/base-dynamic-field.component&#x27;;
-import { MeasureField } from &#x27;../fields&#x27;;
+        <pre class="line-numbers"><code class="language-typescript">import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from &#x27;@angular/core&#x27;;
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from &#x27;@angular/forms&#x27;;
 import { Unit } from &#x27;mathjs&#x27;;
 import * as math from &#x27;mathjs&#x27;;
+import { isObservable } from &#x27;rxjs&#x27;;
+
+import { BaseDynamicFieldComponent } from &#x27;../field-components/base-dynamic-field.component&#x27;;
+import { MeasureField } from &#x27;../fields&#x27;;
+import { Measure } from &#x27;./../models/measure&#x27;;
 
 
 /**
@@ -1691,7 +1691,7 @@ export class MeasureFieldComponent extends BaseDynamicFieldComponent&lt;MeasureF
       return;
     }
 
-    if (this.field.availableUnits instanceof Observable) {
+    if (isObservable(this.field.availableUnits)) {
       this.field.availableUnits.subscribe(unitList &#x3D;&gt; this.availableUnits &#x3D; unitList);
       this.availableUnits &#x3D; [];
     } else {
@@ -1705,7 +1705,7 @@ export class MeasureFieldComponent extends BaseDynamicFieldComponent&lt;MeasureF
       return;
     }
 
-    if (this.field.viewUnit instanceof Observable) {
+    if (isObservable(this.field.viewUnit)) {
       this.field.viewUnit.subscribe(unit &#x3D;&gt; this.changeUnit(unit, false));
     } else {
       this.viewUnit &#x3D; this.field.viewUnit;

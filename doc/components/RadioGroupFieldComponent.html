@@ -713,7 +713,7 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/ng-xform/radiogroup-field/radiogroup-field.component.ts:44</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/ng-xform/radiogroup-field/radiogroup-field.component.ts:42</a></div>
                                 </td>
                             </tr>
     
@@ -830,7 +830,7 @@
                     </tr>
                                 <tr>
                                     <td class="col-md-4">
-                                        <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/ng-xform/radiogroup-field/radiogroup-field.component.ts:40</a></div>
+                                        <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/ng-xform/radiogroup-field/radiogroup-field.component.ts:38</a></div>
                                     </td>
                                 </tr>
     
@@ -842,7 +842,7 @@
 
     <div class="tab-pane fade tab-source-code" id="c-source">
         <pre class="line-numbers"><code class="language-typescript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
-import { Observable } from &#x27;rxjs/Observable&#x27;;
+import { Observable, isObservable } from &#x27;rxjs&#x27;;
 
 import { BaseDynamicFieldComponent } from &#x27;../field-components/base-dynamic-field.component&#x27;;
 import { RadioGroupField } from &#x27;../fields&#x27;;
@@ -865,9 +865,9 @@ export class RadioGroupFieldComponent extends BaseDynamicFieldComponent&lt;Radio
 
   ngOnInit() {
     super.ngOnInit();
-    let options &#x3D; this.field.options;
+    const options &#x3D; this.field.options;
 
-    if (options instanceof Observable) {
+    if (isObservable(options)) {
       (&lt;Observable&lt;any[]&gt;&gt;options).subscribe(ret &#x3D;&gt; {
         this.optionValues &#x3D; ret;
         this.updateSelectedLabel();
@@ -875,9 +875,7 @@ export class RadioGroupFieldComponent extends BaseDynamicFieldComponent&lt;Radio
     } else {
       this.optionValues &#x3D; options;
     }
-    this.control.valueChanges.subscribe((v) &#x3D;&gt; {
-      this.updateSelectedLabel();
-    });
+    this.control.valueChanges.subscribe(() &#x3D;&gt; this.updateSelectedLabel());
   }
 
   get formattedValue(): string {

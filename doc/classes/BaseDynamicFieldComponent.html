@@ -1017,7 +1017,7 @@
         <pre class="line-numbers"><code class="language-typescript">import { Input, OnInit, OnDestroy } from &#x27;@angular/core&#x27;;
 import { FormGroup, FormControl, Validators } from &#x27;@angular/forms&#x27;;
 import { DynamicField } from &#x27;../fields&#x27;;
-import { Subscription } from &#x27;rxjs/Rx&#x27;;
+import { Subscription } from &#x27;rxjs&#x27;;
 
 /**
  * Base class for Dynamic Fields
@@ -1037,9 +1037,9 @@ export class BaseDynamicFieldComponent&lt;T extends DynamicField&gt; implements 
   private valueChangeSubscription: Subscription;
 
   ngOnInit() {
-    this.control &#x3D; &lt;FormControl&gt;this.form.controls[this.field.key];
+    this.control &#x3D; this.form.controls[this.elementId] as FormControl;
     if (this.field.visibilityFn) {
-      let formRoot &#x3D; this.form.root; // Make sure to get the root form, even for nested FromGroups
+      const formRoot &#x3D; this.form.root; // Make sure to get the root form, even for nested FromGroups
       this.valueChangeSubscription &#x3D; formRoot.valueChanges.subscribe(val &#x3D;&gt; {
         this.visible &#x3D; this.field.visibilityFn(val);
         if (!this.visible &amp;&amp; !this.field.keepValueWhenHiding) {
@@ -1061,7 +1061,7 @@ export class BaseDynamicFieldComponent&lt;T extends DynamicField&gt; implements 
    * Property to be used as the Form Element ID
    */
   get elementId(): string {
-    return this.field.key;
+    return String(this.field.key);
   }
 
   get instance(): BaseDynamicFieldComponent&lt;T&gt; {
