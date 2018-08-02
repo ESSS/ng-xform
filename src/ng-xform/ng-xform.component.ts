@@ -53,7 +53,7 @@ export class NgXformComponent implements OnInit, OnChanges {
   }
 
   createFormGroup(fields: DynamicField[]): FormGroup {
-    let group: any = {};
+    const group: any = {};
 
     fields.forEach(field => {
       if (field instanceof NestedFormGroup) {
@@ -69,10 +69,10 @@ export class NgXformComponent implements OnInit, OnChanges {
   }
 
   unpatchValue(form: FormGroup, model: any) {
-    let modelToSend = { ...model };
+    const modelToSend = { ...model };
     for (const attr in form.controls) {
       if (form.controls[attr] instanceof FormGroup) {
-        let modelAttr = model ? model[attr] : null;
+        const modelAttr = model ? model[attr] : null;
         modelToSend[attr] = this.unpatchValue(<FormGroup>form.controls[attr], modelAttr);
       } else {
         modelToSend[attr] = form.controls[attr].value;
@@ -88,7 +88,7 @@ export class NgXformComponent implements OnInit, OnChanges {
     this.errorCode = undefined;
 
     // copy object
-    let modelToSend = this.unpatchValue(this.form, this.model);
+    const modelToSend = this.unpatchValue(this.form, this.model);
     this.onSubmit.emit(modelToSend);
   }
 

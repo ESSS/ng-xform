@@ -1,15 +1,11 @@
+import { AfterViewInit, Component, EventEmitter, OnInit, SimpleChange, ViewChild } from '@angular/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { NgSelectComponent } from '@ng-select/ng-select';
-import { ViewChild, Component, OnInit, AfterViewInit, Input, EventEmitter, SimpleChange } from '@angular/core';
-import { NG_VALUE_ACCESSOR, ControlValueAccessor, FormControl } from '@angular/forms';
-import { Observable } from 'rxjs/Observable';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/switchMap';
-import 'rxjs/add/operator/distinctUntilChanged';
-import 'rxjs/add/operator/debounceTime';
+import { BehaviorSubject, Observable, isObservable, from } from 'rxjs';
+import { distinctUntilChanged, switchMap, debounceTime } from 'rxjs/operators';
 
+import { AddNewOptionObservableFn, SelectField } from '../fields';
 import { BaseDynamicFieldComponent } from './../field-components/base-dynamic-field.component';
-import { SelectField, AddNewOptionObservableFn } from '../fields';
 
 
 /**
@@ -100,15 +96,8 @@ export class SelectFieldComponent extends BaseDynamicFieldComponent<SelectField>
   }
 
   private getTypeaheadWithDistinctAndDebounce() {
-    let searchHandler = this.typeahead.asObservable();
-    if (searchHandler.distinctUntilChanged instanceof Function && searchHandler.distinctUntilChanged instanceof Function) {
-      // These two operators only work if the main application has the 'import "rxjs/Rx" ;
-      searchHandler = searchHandler
-        .distinctUntilChanged()
-        .debounceTime(200);
-    } else {
-      console.warn('You need to add \'import "rxjs/Rx";\' on your main.ts to use distinctUntilChanged and debounceTime operators');
-    }
+    let searchHandler = from(this.typeahead);
+    searchHandler = searchHandler.pipe(distinctUntilChanged(), debounceTime(200));
     return searchHandler;
   }
 
@@ -118,12 +107,12 @@ export class SelectFieldComponent extends BaseDynamicFieldComponent<SelectField>
    * Note: ng-select only suport calbacks that return Promise. This method add support for callbacks that returns observables.
    */
   private prepareAddTag() {
-    let addNewOption = this.field.addNewOption;
+    const addNewOption = this.field.addNewOption;
     if (addNewOption instanceof Function ) {
       this.parsedAddNewOption = (term: string) => {
-        let newItem = {}
+        const newItem = {}
         newItem[this.field.optionLabelKey] = term;
-        let partialResult = (<AddNewOptionObservableFn>addNewOption)(newItem);
+        const partialResult = (<AddNewOptionObservableFn>addNewOption)(newItem);
         if (partialResult && partialResult instanceof Observable) {
           return partialResult.toPromise();
         } else {
@@ -145,7 +134,7 @@ export class SelectFieldComponent extends BaseDynamicFieldComponent<SelectField>
       this.field.searchable = true;
 
       this.getTypeaheadWithDistinctAndDebounce()
-        .switchMap((term: string) => this.field.searchHandler(term))
+        .pipe(switchMap((term: string) => this.field.searchHandler(term)))
         .subscribe((items: string[]) => {
           this.optionValues = items;
         }, (err: any) => {
@@ -153,9 +142,9 @@ export class SelectFieldComponent extends BaseDynamicFieldComponent<SelectField>
           this.optionValues = [];
         });
     }
-    let options = this.field.options;
+    const options = this.field.options;
 
-    if (options instanceof Observable) {
+    if (isObservable(options)) {
       (<Observable<any[]>>options).subscribe(ret => {
         this.optionValues = ret;
         this.updateOptionLabel();

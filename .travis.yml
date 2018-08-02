@@ -7,11 +7,14 @@ addons:
 
 language: node_js
 node_js:
-  - "8.7"
+  - "8.9"
 
 before_script:
   - npm install --quiet -g gulp-cli
 
-script: gulp test:ci
+script:
+- gulp build
+- npm run setup:demo
+- gulp test:demo_ci
 
 after_success: gulp coveralls

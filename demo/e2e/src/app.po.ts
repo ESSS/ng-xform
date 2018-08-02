@@ -1,6 +1,6 @@
 import { browser, element, by } from 'protractor';
 
-export class EsssNgXformDemoPage {
+export class NgXformDemoPage {
   navigateTo() {
     return browser.get('/');
   }

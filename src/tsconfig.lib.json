@@ -4,7 +4,8 @@
     "outDir": "../tmp/lib-es2015/",
     "target": "es2015",
     "rootDir": "./",
-    "baseUrl": ""
+    "baseUrl": "",
+    "types": [ "node"]
   },
   "files": [
     "./index.ts"

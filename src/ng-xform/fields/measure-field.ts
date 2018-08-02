@@ -1,4 +1,4 @@
-import { Observable } from 'rxjs/Rx';
+import { Observable } from 'rxjs';
 import { DynamicField } from './dynamic-field';
 
 export class MeasureField<T = any> extends DynamicField<T> {

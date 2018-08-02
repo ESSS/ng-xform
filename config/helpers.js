@@ -34,12 +34,14 @@ binPath = (cmd) => {
  *
  * @param cmd
  * @param opts See child_process.exec node docs
+ * https://nodejs.org/docs/latest-v8.x/api/child_process.html#child_process_child_process_exec_command_options_callback
  * @returns {Promise<number>}
  */
 execp = (cmd, opts) => {
   opts = Object.assign(opts || {}, {
     stdout: process.stdout,
-    stderr: process.stderr
+    stderr: process.stderr,
+    maxBuffer: 10 * 1024 * 1024 // 10 MB
   });
   return new Promise((resolve, reject) => {
     const child = exec(cmd, opts,

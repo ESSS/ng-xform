@@ -4,7 +4,10 @@
     "baseUrl": "",
     "module": "commonjs",
     "declaration": false,
-    "emitDecoratorMetadata": true
+    "emitDecoratorMetadata": true,
+    "typeRoots": [
+      "../node_modules/@types"
+    ]
   },
   "awesomeTypescriptLoaderOptions": {
     "useWebpackText": true

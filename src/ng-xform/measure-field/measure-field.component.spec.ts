@@ -1,21 +1,13 @@
-import { Observable } from 'rxjs/Observable';
-import { Measure, NgXformModule } from '../../index';
-import { CommonModule, DatePipe } from '@angular/common';
 import { DebugElement } from '@angular/core';
-import {
-  async,
-  ComponentFixture,
-  TestBed,
-} from '@angular/core/testing';
-import { Validators, FormGroup, FormControl } from '@angular/forms';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormControl } from '@angular/forms';
 import { By } from '@angular/platform-browser';
+import { Subject } from 'rxjs';
 
-import { MeasureFieldComponent } from './measure-field.component';
-import {
-  MeasureField,
-} from '../fields';
+import { Measure, NgXformModule } from '../..';
+import { MeasureField } from '../fields';
 import { NgXformGroup } from '../ng-xform-group';
-import { Subject } from 'rxjs/Subject';
+import { MeasureFieldComponent } from './measure-field.component';
 
 describe('MeasureFieldComponent', () => {
   let component: MeasureFieldComponent;

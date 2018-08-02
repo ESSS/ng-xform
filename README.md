@@ -11,12 +11,12 @@
 View all the directives in action at [Demo](https://esss.github.io/ng-xform) and [Demo source code](https://github.com/ESSS/ng-xform/blob/master/demo/src/app/home/home.component.ts)
 
 ## Dependencies
-* [Angular](https://angular.io) (*requires* Angular 4 or higher, tested with 5.2.0)
+* [Angular](https://angular.io) (*requires* Angular 6, tested with 6.1.0)
 
 ## Installation
 Install above dependencies via *npm*. 
 ```shell
-npm i --save @ng-select/ng-select@0.16.0 ngx-bootstrap@2.0.2 mathjs@3.20.2
+npm i --save @ng-select/ng-select@2.3.5 ngx-bootstrap@3.0.1 mathjs@3.20.2
 ```
 
 Now install `@esss/ng-xform` via:
@@ -26,9 +26,9 @@ npm i --save @esss/ng-xform
 
 You will need to import styles. Example: 'src/styles.scss'
 ```css
-@import '~bootstrap/dist/css/bootstrap.min.css';
-@import '~ngx-bootstrap/datepicker/bs-datepicker.css';
-@import "~@ng-select/ng-select/themes/default.theme.css";
+@import 'bootstrap/dist/css/bootstrap.min.css';
+@import 'ngx-bootstrap/datepicker/bs-datepicker.css';
+@import "@ng-select/ng-select/themes/default.theme.css";
 ```
 
 Setup the MeasureComponent adding the js file on .angular-cli.json 
@@ -185,8 +185,8 @@ export class HomeComponent implements OnInit {
         key: 'length',
         label: 'Length',
         modelUnit: 'm',
-        viewUnit: Observable.of('cm').delay(200),
-        availableUnits: Observable.of(['m', 'cm', 'mm', 'ft']).delay(200)
+        viewUnit: of('cm').delay(200),
+        availableUnits: of(['m', 'cm', 'mm', 'ft']).delay(200)
       }),
       new CheckboxField({
         key: 'news',
@@ -244,12 +244,12 @@ export class HomeComponent implements OnInit {
       return this.http.get(url)
         .map((res) => res['results']);
     } else {
-      return Observable.of([]);
+      return of([]);
     }
   }
 
   public observableSourceByPlaceId(place_id: any): Observable<any> {
-    return Observable.of({
+    return of({
       'place_id': 'ChIJn7h-4b9JJ5URGCq6n0zj1tM',
       'formatted_address': 'Florianópolis - State of Santa Catarina, Brazil'
     }).delay(300);

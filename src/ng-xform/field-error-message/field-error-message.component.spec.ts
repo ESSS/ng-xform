@@ -1,4 +1,3 @@
-import { FormControl, Validators } from '@angular/forms';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ErrorMessagePipe } from './error-message.pipe';

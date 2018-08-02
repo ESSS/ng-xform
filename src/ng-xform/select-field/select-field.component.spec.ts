@@ -1,20 +1,13 @@
-import { Observable } from 'rxjs/Rx';
-import {
-  async,
-  ComponentFixture,
-  TestBed,
-  tick,
-  fakeAsync,
-} from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { FormControl } from '@angular/forms';
 import { By } from '@angular/platform-browser';
+import { of } from 'rxjs';
 
-import { SelectFieldComponent } from './select-field.component';
+import { getNgSelectElement, KeyCode, tickAndDetectChanges, triggerKeyDownEvent } from '../../testing/helpers';
 import { SelectField } from '../fields';
 import { NgXformGroup } from '../ng-xform-group';
 import { NgXformModule } from '../ng-xform.module';
-import { tickAndDetectChanges, triggerKeyDownEvent, getNgSelectElement, KeyCode } from '../../testing/helpers';
-
+import { SelectFieldComponent } from './select-field.component';
 
 describe('SelectFieldComponent', () => {
   it('should render SelectField', () => {
@@ -80,7 +73,7 @@ describe('SelectFieldComponent', () => {
         key: 'choice_id',
         label: 'Choice',
         searchable: true,
-        addNewOption: (model) => {return Observable.of({id: 5, description: model.description, valid: true})},
+        addNewOption: (model) => of({id: 5, description: model.description, valid: true}),
         optionValueKey: 'id',
         optionLabelKey: 'description',
         options: []
@@ -104,7 +97,7 @@ describe('SelectFieldComponent', () => {
         key: 'choice_id',
         label: 'Choice',
         searchable: true,
-        addNewOption: (model) => {return Observable.of({id: 5, description: model.description, valid: true}).toPromise()},
+        addNewOption: (model) => of({id: 5, description: model.description, valid: true}).toPromise(),
         optionValueKey: 'id',
         optionLabelKey: 'description',
         options: []

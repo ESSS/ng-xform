@@ -1,13 +1,21 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { Validators, FormGroup, FormControl } from '@angular/forms';
-import { Title } from '@angular/platform-browser';
 import { HttpClient } from '@angular/common/http';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { Validators } from '@angular/forms';
+import { Title } from '@angular/platform-browser';
 import {
-  TextField, SelectField, MeasureField, NgXformComponent, CheckboxField,
-  MultilineField, DateField, DynamicField, NestedFormGroup, RadioGroupField
+  CheckboxField,
+  DateField,
+  DynamicField,
+  MeasureField,
+  MultilineField,
+  NestedFormGroup,
+  NgXformComponent,
+  RadioGroupField,
+  SelectField,
+  TextField,
 } from '@esss/ng-xform';
-import { Observable } from 'rxjs/Observable';
-import { delay } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
+import { delay, map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-home',
@@ -114,15 +122,15 @@ export class HomeComponent implements OnInit {
         key: 'length',
         label: 'Length',
         modelUnit: 'mm',
-        viewUnit: Observable.of('m').delay(200),
-        availableUnits: Observable.of(['m', 'cm', 'mm']).delay(200)
+        viewUnit: of('m').pipe(delay(200)),
+        availableUnits: of(['m', 'cm', 'mm']).pipe(delay(200))
       }),
       new MeasureField({
         key: 'width',
         label: 'Width',
         modelUnit: 'inch',
-        viewUnit: Observable.of('inch').delay(200),
-        availableUnits: Observable.of(['inch', 'ft']).delay(200)
+        viewUnit: of('inch').pipe(delay(200)),
+        availableUnits: of(['inch', 'ft']).pipe(delay(200))
       }),
       new CheckboxField({
         key: 'news',
@@ -131,7 +139,7 @@ export class HomeComponent implements OnInit {
       new RadioGroupField({
         key: 'gender',
         label: 'Gender',
-        options: Observable.of([{id: 1, label: 'male'}, {id: 2, label: 'female'}]).delay(2000),
+        options: of([{id: 1, label: 'male'}, {id: 2, label: 'female'}]).pipe(delay(2000)),
         optionValueKey: 'id',
         optionLabelKey: 'label'
       }),
@@ -187,16 +195,16 @@ export class HomeComponent implements OnInit {
     const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${keyword}`;
     if (keyword) {
       return this.http.get(url)
-        .map((res) => res['results']);
+        .pipe(map((res) => res['results']));
     } else {
-      return Observable.of([]);
+      return of([]);
     }
   }
 
   public observableSourceByPlaceId(place_id: any): Observable<any> {
-    return Observable.of({
+    return of({
       'place_id': 'ChIJn7h-4b9JJ5URGCq6n0zj1tM',
       'formatted_address': 'Florianópolis - State of Santa Catarina, Brazil'
-    }).delay(300);
+    }).pipe(delay(300));
   }
 }

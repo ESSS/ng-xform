@@ -1,4 +1,4 @@
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { DynamicField } from './dynamic-field';
 
 export class RadioGroupField<T = any> extends DynamicField<T> {

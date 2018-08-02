@@ -1,8 +1,7 @@
-import { Observable } from 'rxjs/Observable';
 import { Component, Input } from '@angular/core';
 
-import { BaseDynamicFieldComponent } from '../../ng-xform/field-components/base-dynamic-field.component';
 import { DynamicField } from '../..';
+import { BaseDynamicFieldComponent } from '../field-components/base-dynamic-field.component';
 
 
 

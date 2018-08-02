@@ -17,8 +17,8 @@ module.exports = function (config) {
       require('karma-jasmine-html-reporter'),
     ],
     customLaunchers: {
-      // chrome setup for travis CI
-      Chrome_travis_ci: {
+      // Chrome setup for CI (Travis, Docker, ...)
+      ChromeHeadlessCI: {
         base: 'ChromeHeadless',
         flags: ['--no-sandbox']
       },
@@ -33,7 +33,7 @@ module.exports = function (config) {
       }
     },
     files: [
-      { pattern: './config/karma-test-shim.js', watched: false },
+      {pattern: './config/karma-test-shim.js', watched: false}
     ],
 
     preprocessors: {
@@ -50,7 +50,7 @@ module.exports = function (config) {
       // and use stats to turn off verbose output
       stats: {
         // options i.e.
-        chunks: false
+        chunks: true
       }
     },
 

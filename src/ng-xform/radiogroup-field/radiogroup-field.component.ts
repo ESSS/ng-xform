@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
+import { Observable, isObservable } from 'rxjs';
 
 import { BaseDynamicFieldComponent } from '../field-components/base-dynamic-field.component';
 import { RadioGroupField } from '../fields';
@@ -22,9 +22,9 @@ export class RadioGroupFieldComponent extends BaseDynamicFieldComponent<RadioGro
 
   ngOnInit() {
     super.ngOnInit();
-    let options = this.field.options;
+    const options = this.field.options;
 
-    if (options instanceof Observable) {
+    if (isObservable(options)) {
       (<Observable<any[]>>options).subscribe(ret => {
         this.optionValues = ret;
         this.updateSelectedLabel();
@@ -32,9 +32,7 @@ export class RadioGroupFieldComponent extends BaseDynamicFieldComponent<RadioGro
     } else {
       this.optionValues = options;
     }
-    this.control.valueChanges.subscribe((v) => {
-      this.updateSelectedLabel();
-    });
+    this.control.valueChanges.subscribe(() => this.updateSelectedLabel());
   }
 
   get formattedValue(): string {

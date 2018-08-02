@@ -1,10 +1,10 @@
-import { EsssNgXformDemoPage } from './app.po';
+import { NgXformDemoPage } from './app.po';
 
-describe('@esss/ng-xform-demo App', () => {
-  let page: EsssNgXformDemoPage;
+describe('ng-xform-demo App', () => {
+  let page: NgXformDemoPage;
 
   beforeEach(() => {
-    page = new EsssNgXformDemoPage ();
+    page = new NgXformDemoPage ();
   });
 
   it('should display message saying app works', () => {

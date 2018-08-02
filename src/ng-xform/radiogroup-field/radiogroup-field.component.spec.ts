@@ -1,7 +1,7 @@
-import { Observable } from 'rxjs/Observable';
-import { ComponentFixture, TestBed, tick } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormControl } from '@angular/forms';
 import { By } from '@angular/platform-browser';
+import { of } from 'rxjs';
 
 import { RadioGroupField } from '../fields';
 import { NgXformGroup } from '../ng-xform-group';
@@ -65,7 +65,7 @@ describe('RadiogroupFieldComponent', () => {
     const fixture = createTestingModule(new RadioGroupField({
       key: 'choice_id',
       label: 'Choice',
-      options: Observable.of([ 'Choice1', 'Choice2'])
+      options: of([ 'Choice1', 'Choice2'])
     }));
     let component = fixture.componentInstance;
     fixture.detectChanges();

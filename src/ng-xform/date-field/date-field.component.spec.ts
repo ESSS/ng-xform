@@ -1,22 +1,17 @@
-import {
-  ComponentFixture,
-  TestBed,
-  fakeAsync,
-} from '@angular/core/testing';
-
-import { DateField } from '../fields';
-import { NgXformModule } from '../ng-xform.module';
-import { DateFieldComponent } from './date-field.component';
-import { Component, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NgXformGroup } from '../ng-xform-group';
+import { Component, ViewChild } from '@angular/core';
+import { ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+
 import { tickAndDetectChanges } from '../../testing/helpers';
-import { BsDatepickerModule, BsLocaleService } from 'ngx-bootstrap/datepicker';
-import { FormControlLayoutComponent } from '../form-control-layout/form-control-layout.component';
-import { FieldErrorMessageComponent } from '../field-error-message/field-error-message.component';
 import { OptionalTagComponent } from '../field-components/optional-tag.component';
 import { ErrorMessagePipe } from '../field-error-message/error-message.pipe';
+import { FieldErrorMessageComponent } from '../field-error-message/field-error-message.component';
+import { DateField } from '../fields';
+import { FormControlLayoutComponent } from '../form-control-layout/form-control-layout.component';
+import { NgXformGroup } from '../ng-xform-group';
+import { DateFieldComponent } from './date-field.component';
 
 
 describe('DateFieldComponent', () => {
@@ -32,7 +27,7 @@ describe('DateFieldComponent', () => {
   it('should patch value to DateField', fakeAsync(() => {
     const fixture = createTestingModule(`
       <form [formGroup]="form">
-        <ng-xform-date-field [field]="field" 
+        <ng-xform-date-field [field]="field"
           [formControlName]="field.key"
           [form]="form"
           [(ngModel)]="dateValue">
@@ -57,7 +52,7 @@ describe('DateFieldComponent', () => {
   it('should be set to null when form resets ', fakeAsync(() => {
     const fixture = createTestingModule(`
       <form [formGroup]="form">
-        <ng-xform-date-field [field]="field" 
+        <ng-xform-date-field [field]="field"
           [formControlName]="field.key"
           [form]="form"
           [(ngModel)]="dateValue">
@@ -68,7 +63,7 @@ describe('DateFieldComponent', () => {
     const dateField: DateFieldTestComponent = fixture.componentInstance;
 
     const changeTo = new Date(2018, 1, 28, 0, 0, 0);
-    
+
     dateField.form.patchValue({date: changeTo});
     tickAndDetectChanges(fixture);
 

@@ -1,20 +1,21 @@
-import { FormsModule } from '@angular/forms';
-import { ReactiveFormsModule } from '@angular/forms';
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {  NgXformModule  } from '@esss/ng-xform';
+import { HttpClientModule } from '@angular/common/http';
+import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgXformModule } from '@esss/ng-xform';
 
 import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
 
 @NgModule({
-    imports: [
-        CommonModule,
-        NgXformModule,
-        ReactiveFormsModule,
-        FormsModule,
-        HomeRoutingModule,
-    ],
-    declarations: [HomeComponent],
+  imports: [
+    HttpClientModule,
+    CommonModule,
+    NgXformModule,
+    HomeRoutingModule,
+    ReactiveFormsModule,
+    FormsModule
+  ],
+  declarations: [HomeComponent]
 })
-export class HomeModule { }
+export class HomeModule {}

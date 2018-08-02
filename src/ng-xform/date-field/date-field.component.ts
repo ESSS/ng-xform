@@ -1,5 +1,4 @@
 import { DatePipe } from '@angular/common';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { Component, AfterContentInit, ElementRef, AfterViewInit, Inject, LOCALE_ID } from '@angular/core';
 import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
@@ -75,7 +74,7 @@ export class DateFieldComponent extends BaseDynamicFieldComponent<DateField> imp
   }
 
   get formattedValue(): string {
-    let dateFormatter = new DatePipe(this.field.locale || this.locale);
+    const dateFormatter = new DatePipe(this.field.locale || this.locale);
     return dateFormatter.transform(this.form.controls[this.elementId].value, 'mediumDate') || '-';
   }
 
