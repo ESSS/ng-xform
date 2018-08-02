@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 
 import { DynamicField } from '../..';
-import { BaseDynamicFieldComponent } from '../../ng-xform/field-components/base-dynamic-field.component';
+import { BaseDynamicFieldComponent } from '../field-components/base-dynamic-field.component';
 
 
 

@@ -1,4 +1,4 @@
-import { bsDatepickerModuleWithProviders, bsDropdownModuleWithProviders } from './modules-import';
+import { bsDatepickerModuleWithProviders, bsDropdownModuleWithProviders } from './ng-xform.module-imports';
 import { CommonModule } from '@angular/common';
 import { Inject, LOCALE_ID, NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
