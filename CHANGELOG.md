@@ -1,3 +1,14 @@
+<a name="0.17.0"></a>
+# [0.17.0](https://github.com/ESSS/ng-xform/compare/v0.16.0...v0.17.0) (2018-08-02)
+
+
+### Bug Fixes
+
+* **npm:** checking if logged in ([2cc979c](https://github.com/ESSS/ng-xform/commit/2cc979c))
+* **npm:** checking if logged in ([ef40512](https://github.com/ESSS/ng-xform/commit/ef40512))
+
+
+
 <a name="0.16.0"></a>
 # [0.16.0](https://github.com/ESSS/ng-xform/compare/v0.15.5...v0.16.0) (2018-07-24)
 
