@@ -20,7 +20,6 @@
   "bugs": {
     "url": "https://github.com/ESSS/ng-xform/issues"
   },
-  "private": true,
   "scripts": {
     "setup:demo": "gulp link && cd demo && npm i && npm link @esss/ng-xform",
     "setup": "npm i && gulp build && npm run setup:demo",
