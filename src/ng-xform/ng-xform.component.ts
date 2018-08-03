@@ -22,7 +22,6 @@ import { NestedFormGroup } from './fields/nested-form-group';
 })
 export class NgXformComponent implements OnInit, OnChanges {
   @Input() fields: DynamicField[];
-  @Input() errorCode: string;
   @Input() editing: boolean;
   @Input() horizontalForm = false;
   @Input() labelWidth: number;
@@ -85,7 +84,6 @@ export class NgXformComponent implements OnInit, OnChanges {
     if (this.form.invalid) {
       return;
     }
-    this.errorCode = undefined;
 
     // copy object
     const modelToSend = this.unpatchValue(this.form, this.model);
@@ -104,8 +102,6 @@ export class NgXformComponent implements OnInit, OnChanges {
     if (this.model) {
       this.form.patchValue(this.model, { onlySelf: true });
     }
-
-    this.errorCode = undefined;
   }
 
   clear() {
