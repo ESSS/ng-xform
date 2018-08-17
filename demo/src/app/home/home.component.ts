@@ -1,5 +1,6 @@
+import { CustomField } from './../../../../tmp/ng-xform/fields/custom-field';
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import {
@@ -25,6 +26,8 @@ import { delay, map } from 'rxjs/operators';
 export class HomeComponent implements OnInit {
 
   @ViewChild(NgXformComponent) xformComponent: NgXformComponent;
+  @ViewChild('customField') customFieldTmpl: TemplateRef<any>;
+
   private colors: any[] = [
     { id: 0, name: 'other' },
     { id: 1, name: 'blue' },
@@ -40,13 +43,15 @@ export class HomeComponent implements OnInit {
   public horizontal = false;
   public labelWidth = 2;
 
-  constructor(private titleService: Title, private http: HttpClient) {
+  constructor(private titleService: Title, private http: HttpClient) { }
+
+  ngOnInit() {
     const minDate = new Date();
     const maxDate = new Date();
 
     minDate.setDate(minDate.getDate() - 3);
     maxDate.setDate(maxDate.getDate() + 3);
-
+    this.titleService.setTitle('Home | @esss/ng-xform');
     this.fields = [
       new TextField({
         key: 'name',
@@ -155,11 +160,12 @@ export class HomeComponent implements OnInit {
         minDate: minDate,
         maxDate: maxDate
       }),
+      new CustomField({
+        key: 'custom_amount',
+        label: 'Custom Field Amount',
+        tmpl: this.customFieldTmpl
+      }),
     ];
-  }
-
-  ngOnInit() {
-    this.titleService.setTitle('Home | @esss/ng-xform');
   }
 
   public onSubmit(values: object) {
@@ -187,7 +193,8 @@ export class HomeComponent implements OnInit {
       'sem cair, deitado sem dormir, sentado sem cochilar e fazendo pose. Leite de capivaris, leite de mula manquis sem cabeça. Praesent ' +
       'vel viverra nisi. Mauris aliquet nunc non turpis scelerisque, eget. Casamentiss faiz malandris se pirulitá. Sapien in monti ' +
       'palavris qui num significa nadis i pareci latim.',
-      birth: new Date()
+      birth: new Date(),
+      custom_amount: 456
     });
   }
 

@@ -19,6 +19,7 @@ import { MultilineFieldComponent } from './multiline-field/multiline-field.compo
 import { NgXformComponent } from './ng-xform.component';
 import { RadioGroupFieldComponent } from './radiogroup-field/radiogroup-field.component';
 import { SelectFieldComponent } from './select-field/select-field.component';
+import { CustomFieldComponent } from './custom-field/custom-field.component';
 
 
 @NgModule({
@@ -35,6 +36,7 @@ import { SelectFieldComponent } from './select-field/select-field.component';
     FormGroupComponent,
     EditableLabelComponent,
     CheckboxFieldComponent,
+    CustomFieldComponent,
     RadioGroupFieldComponent,
     MeasureFieldComponent,
     SelectFieldComponent,

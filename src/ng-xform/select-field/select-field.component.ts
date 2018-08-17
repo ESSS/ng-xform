@@ -135,12 +135,10 @@ export class SelectFieldComponent extends BaseDynamicFieldComponent<SelectField>
 
       this.getTypeaheadWithDistinctAndDebounce()
         .pipe(switchMap((term: string) => this.field.searchHandler(term)))
-        .subscribe((items: string[]) => {
-          this.optionValues = items;
-        }, (err: any) => {
-          console.error(err);
-          this.optionValues = [];
-        });
+        .subscribe(
+          (items: string[]) => this.optionValues = items,
+          (err: any) => this.optionValues = []
+        );
     }
     const options = this.field.options;
 

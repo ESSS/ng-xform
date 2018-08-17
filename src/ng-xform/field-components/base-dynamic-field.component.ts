@@ -17,6 +17,7 @@ export class BaseDynamicFieldComponent<T extends DynamicField> implements OnInit
   control: FormControl;
   visible = true;
   public hideLabelOnEdit = false;
+  public useFormattedValueOnReadonly = true;
 
   private valueChangeSubscription: Subscription;
 

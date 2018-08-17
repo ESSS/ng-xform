@@ -27,6 +27,9 @@
       <ng-xform-checkbox-field *ngSwitchCase="'CHECKBOX'" [labelWidth]="labelWidth" [isHorizontal]="isHorizontal" [field]="field" [form]="form" [editing]="editing !== false">
       </ng-xform-checkbox-field>
 
+      <ng-xform-custom-field *ngSwitchCase="'CUSTOM'" [labelWidth]="labelWidth" [isHorizontal]="isHorizontal" [field]="field" [form]="form" [editing]="editing !== false">
+      </ng-xform-custom-field>
+
       <ng-xform-radiogroup-field *ngSwitchCase="'RADIOGROUP'" [labelWidth]="labelWidth" [isHorizontal]="isHorizontal" [field]="field" [form]="form" [editing]="editing !== false">
       </ng-xform-radiogroup-field>
 
