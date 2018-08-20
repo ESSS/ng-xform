@@ -93,7 +93,6 @@ describe('DynamicFormComponent', () => {
   it('should patch value', () => {
     component.createForm();
     component.reset();
-    expect(component.errorCode).toBeUndefined();
     expect(component.form.value.nested2).toBeTruthy();
   });
 
@@ -165,7 +164,6 @@ describe('DynamicFormComponent', () => {
   it('should patch value', () => {
     component.createForm();
     component.reset();
-    expect(component.errorCode).toBeUndefined();
     expect(component.form.value.nested2).toBeTruthy();
   });
 
