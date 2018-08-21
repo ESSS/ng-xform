@@ -157,7 +157,7 @@
                                     <a href="../classes/CheckboxField.html" >CheckboxField</a>
                                 </li>
                                 <li class="link">
-                                    <a href="../classes/CustomField.html" >CustomField</a>
+                                    <a href="../classes/CustomField.html"  data-type="entity-link" class="active" >CustomField</a>
                                 </li>
                                 <li class="link">
                                     <a href="../classes/DateField.html" >DateField</a>
@@ -184,7 +184,7 @@
                                     <a href="../classes/RadioGroupField.html" >RadioGroupField</a>
                                 </li>
                                 <li class="link">
-                                    <a href="../classes/SelectField.html"  data-type="entity-link" class="active" >SelectField</a>
+                                    <a href="../classes/SelectField.html" >SelectField</a>
                                 </li>
                                 <li class="link">
                                     <a href="../classes/SelectOption.html" >SelectOption</a>
@@ -400,7 +400,7 @@
                                            <a href="../classes/CheckboxField.html" >CheckboxField</a>
                                        </li>
                                        <li class="link">
-                                           <a href="../classes/CustomField.html" >CustomField</a>
+                                           <a href="../classes/CustomField.html"  data-type="entity-link" class="active" >CustomField</a>
                                        </li>
                                        <li class="link">
                                            <a href="../classes/DateField.html" >DateField</a>
@@ -427,7 +427,7 @@
                                            <a href="../classes/RadioGroupField.html" >RadioGroupField</a>
                                        </li>
                                        <li class="link">
-                                           <a href="../classes/SelectField.html"  data-type="entity-link" class="active" >SelectField</a>
+                                           <a href="../classes/SelectField.html" >SelectField</a>
                                        </li>
                                        <li class="link">
                                            <a href="../classes/SelectOption.html" >SelectOption</a>
@@ -513,7 +513,7 @@
 
 <ol class="breadcrumb">
   <li>Classes</li>
-  <li>SelectField</li>
+  <li>CustomField</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -533,7 +533,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/ng-xform/fields/select-field.ts</code>
+            <code>src/ng-xform/fields/custom-field.ts</code>
         </p>
 
 
@@ -560,55 +560,11 @@
                                 <ul class="index-list">
                                     <li>
                                             <span class="modifier">Public</span>
-                                        <a href="#addNewOption">addNewOption</a>
-                                    </li>
-                                    <li>
-                                            <span class="modifier">Public</span>
-                                        <a href="#addNewOptionText">addNewOptionText</a>
-                                    </li>
-                                    <li>
-                                            <span class="modifier">Public</span>
                                         <a href="#controlType">controlType</a>
                                     </li>
                                     <li>
                                             <span class="modifier">Public</span>
-                                        <a href="#markFirst">markFirst</a>
-                                    </li>
-                                    <li>
-                                            <span class="modifier">Public</span>
-                                        <a href="#multiple">multiple</a>
-                                    </li>
-                                    <li>
-                                            <span class="modifier">Public</span>
-                                        <a href="#noFilterUntil">noFilterUntil</a>
-                                    </li>
-                                    <li>
-                                            <span class="modifier">Public</span>
-                                        <a href="#optionLabelKey">optionLabelKey</a>
-                                    </li>
-                                    <li>
-                                            <span class="modifier">Public</span>
-                                        <a href="#options">options</a>
-                                    </li>
-                                    <li>
-                                            <span class="modifier">Public</span>
-                                        <a href="#optionValueKey">optionValueKey</a>
-                                    </li>
-                                    <li>
-                                            <span class="modifier">Public</span>
-                                        <a href="#searchable">searchable</a>
-                                    </li>
-                                    <li>
-                                            <span class="modifier">Public</span>
-                                        <a href="#searchByValueKeyHandler">searchByValueKeyHandler</a>
-                                    </li>
-                                    <li>
-                                            <span class="modifier">Public</span>
-                                        <a href="#searchHandler">searchHandler</a>
-                                    </li>
-                                    <li>
-                                            <span class="modifier">Public</span>
-                                        <a href="#separator">separator</a>
+                                        <a href="#tmpl">tmpl</a>
                                     </li>
                                 </ul>
                             </td>
@@ -623,12 +579,12 @@
                         <tbody>
                             <tr>
                                 <td class="col-md-4">
-                                    <code>constructor(options: <a href="../classes/SelectField.html">SelectField<T></a>)</code>
+                                    <code>constructor(options: <a href="../classes/CustomField.html">CustomField<T></a>)</code>
                                 </td>
                             </tr>
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/ng-xform/fields/select-field.ts:20</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="6" class="link-to-prism">src/ng-xform/fields/custom-field.ts:6</a></div>
                                         </td>
                                     </tr>
             
@@ -649,7 +605,7 @@
                                                             <tr>
                                                               <td>options</td>
                                                               <td>
-                                                                        <code><a href="../classes/SelectField.html" target="_self" >SelectField&lt;T&gt;</a></code>
+                                                                        <code><a href="../classes/CustomField.html" target="_self" >CustomField&lt;T&gt;</a></code>
                                                               </td>
                                                               <td>
                                                               </td>
@@ -675,76 +631,6 @@
                         <tbody>
                             <tr>
                                 <td class="col-md-4">
-                                    <a name="addNewOption"></a>
-                                    <span class="name">
-                                        <b>
-                                            <span class="modifier">Public</span>
-                                        addNewOption
-                                        </b>
-                                        <a href="#addNewOption"><span class="fa fa-link"></span></a>
-                                    </span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="col-md-4">
-                                    <span class="modifier-icon fa fa-reset"></span><code>addNewOption:     <code><a href="../miscellaneous/typealiases.html#AddNewOptionObservableFn" target="_self" >boolean | AddNewOptionObservableFn</a></code>
-            </code>
-                                </td>
-                            </tr>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <i>Type : </i>    <code><a href="../miscellaneous/typealiases.html#AddNewOptionObservableFn" target="_self" >boolean | AddNewOptionObservableFn</a></code>
-            
-                                    </td>
-                                </tr>
-                                    <tr>
-                                        <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/ng-xform/fields/select-field.ts:19</a></div>
-                                        </td>
-                                    </tr>
-            
-            
-                        </tbody>
-                    </table>
-                    <table class="table table-sm table-bordered">
-                        <tbody>
-                            <tr>
-                                <td class="col-md-4">
-                                    <a name="addNewOptionText"></a>
-                                    <span class="name">
-                                        <b>
-                                            <span class="modifier">Public</span>
-                                        addNewOptionText
-                                        </b>
-                                        <a href="#addNewOptionText"><span class="fa fa-link"></span></a>
-                                    </span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="col-md-4">
-                                    <span class="modifier-icon fa fa-reset"></span><code>addNewOptionText:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-            </code>
-                                </td>
-                            </tr>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-            
-                                    </td>
-                                </tr>
-                                    <tr>
-                                        <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/ng-xform/fields/select-field.ts:20</a></div>
-                                        </td>
-                                    </tr>
-            
-            
-                        </tbody>
-                    </table>
-                    <table class="table table-sm table-bordered">
-                        <tbody>
-                            <tr>
-                                <td class="col-md-4">
                                     <a name="controlType"></a>
                                     <span class="name">
                                         <b>
@@ -763,12 +649,12 @@
                             </tr>
                                 <tr>
                                     <td class="col-md-4">
-                                        <i>Default value : </i><code>&#x27;SELECT&#x27;</code>
+                                        <i>Default value : </i><code>&#x27;CUSTOM&#x27;</code>
                                     </td>
                                 </tr>
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">src/ng-xform/fields/select-field.ts:8</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="5" class="link-to-prism">src/ng-xform/fields/custom-field.ts:5</a></div>
                                         </td>
                                     </tr>
             
@@ -779,346 +665,31 @@
                         <tbody>
                             <tr>
                                 <td class="col-md-4">
-                                    <a name="markFirst"></a>
+                                    <a name="tmpl"></a>
                                     <span class="name">
                                         <b>
                                             <span class="modifier">Public</span>
-                                        markFirst
+                                        tmpl
                                         </b>
-                                        <a href="#markFirst"><span class="fa fa-link"></span></a>
+                                        <a href="#tmpl"><span class="fa fa-link"></span></a>
                                     </span>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <span class="modifier-icon fa fa-reset"></span><code>markFirst:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                                    <span class="modifier-icon fa fa-reset"></span><code>tmpl:     <code>TemplateRef&lt;any&gt;</code>
             </code>
                                 </td>
                             </tr>
                                 <tr>
                                     <td class="col-md-4">
-                                        <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                                        <i>Type : </i>    <code>TemplateRef&lt;any&gt;</code>
             
                                     </td>
                                 </tr>
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/ng-xform/fields/select-field.ts:17</a></div>
-                                        </td>
-                                    </tr>
-            
-            
-                        </tbody>
-                    </table>
-                    <table class="table table-sm table-bordered">
-                        <tbody>
-                            <tr>
-                                <td class="col-md-4">
-                                    <a name="multiple"></a>
-                                    <span class="name">
-                                        <b>
-                                            <span class="modifier">Public</span>
-                                        multiple
-                                        </b>
-                                        <a href="#multiple"><span class="fa fa-link"></span></a>
-                                    </span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="col-md-4">
-                                    <span class="modifier-icon fa fa-reset"></span><code>multiple:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
-            </code>
-                                </td>
-                            </tr>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
-            
-                                    </td>
-                                </tr>
-                                    <tr>
-                                        <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/ng-xform/fields/select-field.ts:10</a></div>
-                                        </td>
-                                    </tr>
-            
-            
-                        </tbody>
-                    </table>
-                    <table class="table table-sm table-bordered">
-                        <tbody>
-                            <tr>
-                                <td class="col-md-4">
-                                    <a name="noFilterUntil"></a>
-                                    <span class="name">
-                                        <b>
-                                            <span class="modifier">Public</span>
-                                        noFilterUntil
-                                        </b>
-                                        <a href="#noFilterUntil"><span class="fa fa-link"></span></a>
-                                    </span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="col-md-4">
-                                    <span class="modifier-icon fa fa-reset"></span><code>noFilterUntil:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
-            </code>
-                                </td>
-                            </tr>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
-            
-                                    </td>
-                                </tr>
-                                    <tr>
-                                        <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/ng-xform/fields/select-field.ts:11</a></div>
-                                        </td>
-                                    </tr>
-            
-            
-                        </tbody>
-                    </table>
-                    <table class="table table-sm table-bordered">
-                        <tbody>
-                            <tr>
-                                <td class="col-md-4">
-                                    <a name="optionLabelKey"></a>
-                                    <span class="name">
-                                        <b>
-                                            <span class="modifier">Public</span>
-                                        optionLabelKey
-                                        </b>
-                                        <a href="#optionLabelKey"><span class="fa fa-link"></span></a>
-                                    </span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="col-md-4">
-                                    <span class="modifier-icon fa fa-reset"></span><code>optionLabelKey:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-            </code>
-                                </td>
-                            </tr>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-            
-                                    </td>
-                                </tr>
-                                    <tr>
-                                        <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/ng-xform/fields/select-field.ts:13</a></div>
-                                        </td>
-                                    </tr>
-            
-            
-                        </tbody>
-                    </table>
-                    <table class="table table-sm table-bordered">
-                        <tbody>
-                            <tr>
-                                <td class="col-md-4">
-                                    <a name="options"></a>
-                                    <span class="name">
-                                        <b>
-                                            <span class="modifier">Public</span>
-                                        options
-                                        </b>
-                                        <a href="#options"><span class="fa fa-link"></span></a>
-                                    </span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="col-md-4">
-                                    <span class="modifier-icon fa fa-reset"></span><code>options:     <code>[] | Observable</code>
-            </code>
-                                </td>
-                            </tr>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <i>Type : </i>    <code>[] | Observable</code>
-            
-                                    </td>
-                                </tr>
-                                    <tr>
-                                        <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">src/ng-xform/fields/select-field.ts:9</a></div>
-                                        </td>
-                                    </tr>
-            
-            
-                        </tbody>
-                    </table>
-                    <table class="table table-sm table-bordered">
-                        <tbody>
-                            <tr>
-                                <td class="col-md-4">
-                                    <a name="optionValueKey"></a>
-                                    <span class="name">
-                                        <b>
-                                            <span class="modifier">Public</span>
-                                        optionValueKey
-                                        </b>
-                                        <a href="#optionValueKey"><span class="fa fa-link"></span></a>
-                                    </span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="col-md-4">
-                                    <span class="modifier-icon fa fa-reset"></span><code>optionValueKey:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-            </code>
-                                </td>
-                            </tr>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-            
-                                    </td>
-                                </tr>
-                                    <tr>
-                                        <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/ng-xform/fields/select-field.ts:12</a></div>
-                                        </td>
-                                    </tr>
-            
-            
-                        </tbody>
-                    </table>
-                    <table class="table table-sm table-bordered">
-                        <tbody>
-                            <tr>
-                                <td class="col-md-4">
-                                    <a name="searchable"></a>
-                                    <span class="name">
-                                        <b>
-                                            <span class="modifier">Public</span>
-                                        searchable
-                                        </b>
-                                        <a href="#searchable"><span class="fa fa-link"></span></a>
-                                    </span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="col-md-4">
-                                    <span class="modifier-icon fa fa-reset"></span><code>searchable:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
-            </code>
-                                </td>
-                            </tr>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
-            
-                                    </td>
-                                </tr>
-                                    <tr>
-                                        <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/ng-xform/fields/select-field.ts:16</a></div>
-                                        </td>
-                                    </tr>
-            
-            
-                        </tbody>
-                    </table>
-                    <table class="table table-sm table-bordered">
-                        <tbody>
-                            <tr>
-                                <td class="col-md-4">
-                                    <a name="searchByValueKeyHandler"></a>
-                                    <span class="name">
-                                        <b>
-                                            <span class="modifier">Public</span>
-                                        searchByValueKeyHandler
-                                        </b>
-                                        <a href="#searchByValueKeyHandler"><span class="fa fa-link"></span></a>
-                                    </span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="col-md-4">
-                                    <span class="modifier-icon fa fa-reset"></span><code>searchByValueKeyHandler:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/function" target="_blank" >function</a></code>
-            </code>
-                                </td>
-                            </tr>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/function" target="_blank" >function</a></code>
-            
-                                    </td>
-                                </tr>
-                                    <tr>
-                                        <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/ng-xform/fields/select-field.ts:15</a></div>
-                                        </td>
-                                    </tr>
-            
-            
-                        </tbody>
-                    </table>
-                    <table class="table table-sm table-bordered">
-                        <tbody>
-                            <tr>
-                                <td class="col-md-4">
-                                    <a name="searchHandler"></a>
-                                    <span class="name">
-                                        <b>
-                                            <span class="modifier">Public</span>
-                                        searchHandler
-                                        </b>
-                                        <a href="#searchHandler"><span class="fa fa-link"></span></a>
-                                    </span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="col-md-4">
-                                    <span class="modifier-icon fa fa-reset"></span><code>searchHandler:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/function" target="_blank" >function</a></code>
-            </code>
-                                </td>
-                            </tr>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/function" target="_blank" >function</a></code>
-            
-                                    </td>
-                                </tr>
-                                    <tr>
-                                        <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/ng-xform/fields/select-field.ts:14</a></div>
-                                        </td>
-                                    </tr>
-            
-            
-                        </tbody>
-                    </table>
-                    <table class="table table-sm table-bordered">
-                        <tbody>
-                            <tr>
-                                <td class="col-md-4">
-                                    <a name="separator"></a>
-                                    <span class="name">
-                                        <b>
-                                            <span class="modifier">Public</span>
-                                        separator
-                                        </b>
-                                        <a href="#separator"><span class="fa fa-link"></span></a>
-                                    </span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="col-md-4">
-                                    <span class="modifier-icon fa fa-reset"></span><code>separator:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-            </code>
-                                </td>
-                            </tr>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-            
-                                    </td>
-                                </tr>
-                                    <tr>
-                                        <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/ng-xform/fields/select-field.ts:18</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="6" class="link-to-prism">src/ng-xform/fields/custom-field.ts:6</a></div>
                                         </td>
                                     </tr>
             
@@ -1131,41 +702,16 @@
 
 
     <div class="tab-pane fade tab-source-code" id="c-source">
-        <pre class="line-numbers"><code class="language-typescript">import { Observable } from &#x27;rxjs&#x27;;
-
+        <pre class="line-numbers"><code class="language-typescript">import { TemplateRef } from &#x27;@angular/core&#x27;;
 import { DynamicField } from &#x27;./dynamic-field&#x27;;
 
-export type AddNewOptionObservableFn &#x3D; ((model: any) &#x3D;&gt; any | Observable&lt;any&gt; | Promise&lt;any&gt;);
+export class CustomField&lt;T &#x3D; any&gt; extends DynamicField&lt;T&gt; {
+  public controlType ? &#x3D; &#x27;CUSTOM&#x27;;
+  public tmpl: TemplateRef&lt;any&gt;;
 
-export class SelectField&lt;T &#x3D; any&gt; extends DynamicField&lt;T&gt; {
-  public controlType ? &#x3D; &#x27;SELECT&#x27;;
-  public options?: any[] | Observable&lt;any[]&gt;;
-  public multiple?: boolean;
-  public noFilterUntil?: number;
-  public optionValueKey?: string;
-  public optionLabelKey?: string;
-  public searchHandler?: (value: string) &#x3D;&gt; Observable&lt;any[]&gt;;
-  public searchByValueKeyHandler?: (value: string) &#x3D;&gt; Observable&lt;any&gt;;
-  public searchable?: boolean;
-  public markFirst?: boolean;
-  public separator?: string;
-  public addNewOption?: boolean | AddNewOptionObservableFn ;
-  public addNewOptionText?: string;
-
-  constructor(options: SelectField&lt;T&gt;) {
+  constructor(options: CustomField&lt;T&gt;) {
     super(options);
-    this.options &#x3D; options.options;
-    this.multiple &#x3D; options.multiple || false;
-    this.noFilterUntil &#x3D; options.noFilterUntil || 2;
-    this.optionValueKey &#x3D; options.optionValueKey;
-    this.optionLabelKey &#x3D; options.optionLabelKey;
-    this.searchable &#x3D; options.searchable &#x3D;&#x3D;&#x3D; true;
-    this.searchHandler &#x3D; options.searchHandler;
-    this.searchByValueKeyHandler &#x3D; options.searchByValueKeyHandler;
-    this.markFirst &#x3D; options.markFirst &#x3D;&#x3D;&#x3D; true;
-    this.separator &#x3D; options.separator || &#x27;, &#x27;;
-    this.addNewOption &#x3D; options.addNewOption;
-    this.addNewOptionText &#x3D; options.addNewOptionText;
+    this.tmpl &#x3D; options.tmpl;
   }
 }
 </code></pre>

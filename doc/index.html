@@ -100,6 +100,9 @@
                                     <a href="./components/CheckboxFieldComponent.html" >CheckboxFieldComponent</a>
                                 </li>
                                 <li class="link">
+                                    <a href="./components/CustomFieldComponent.html" >CustomFieldComponent</a>
+                                </li>
+                                <li class="link">
                                     <a href="./components/DateFieldComponent.html" >DateFieldComponent</a>
                                 </li>
                                 <li class="link">
@@ -152,6 +155,9 @@
                                 </li>
                                 <li class="link">
                                     <a href="./classes/CheckboxField.html" >CheckboxField</a>
+                                </li>
+                                <li class="link">
+                                    <a href="./classes/CustomField.html" >CustomField</a>
                                 </li>
                                 <li class="link">
                                     <a href="./classes/DateField.html" >DateField</a>
@@ -337,6 +343,9 @@
                                            <a href="./components/CheckboxFieldComponent.html" >CheckboxFieldComponent</a>
                                        </li>
                                        <li class="link">
+                                           <a href="./components/CustomFieldComponent.html" >CustomFieldComponent</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="./components/DateFieldComponent.html" >DateFieldComponent</a>
                                        </li>
                                        <li class="link">
@@ -389,6 +398,9 @@
                                        </li>
                                        <li class="link">
                                            <a href="./classes/CheckboxField.html" >CheckboxField</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="./classes/CustomField.html" >CustomField</a>
                                        </li>
                                        <li class="link">
                                            <a href="./classes/DateField.html" >DateField</a>
@@ -710,7 +722,36 @@ export class OtherModule {
       &#39;formatted_address&#39;: &#39;Florianópolis - State of Santa Catarina, Brazil&#39;
     }).delay(300);
   }
-}</code></pre><h3 id="typed-key-validation">Typed key validation</h3>
+}</code></pre><h3 id="custom-field">Custom Field</h3>
+<p>It&#39;s possible to create your own field template and set it on dynamic field list through CustomField</p>
+<p>Example:
+<code>my-component.html</code></p>
+<pre class="line-numbers"><code class="language-html">&lt;ng-template #customField let-customControl=&quot;control&quot; let-isEditing=&quot;isEditing&quot;&gt;
+  &lt;div class=&quot;input-group&quot;&gt;
+    &lt;div class=&quot;input-group-addon&quot;&gt;$&lt;/div&gt;
+    &lt;input type=&quot;number&quot;
+      [formControl]=&quot;customControl&quot;
+      [attr.disabled]=&quot;!isEditing || null&quot; 
+      class=&quot;form-control&quot;
+      style=&quot;text-align:right&quot; 
+      id=&quot;exampleInputAmount&quot; 
+      placeholder=&quot;Amount&quot; /&gt;
+    &lt;div class=&quot;input-group-addon&quot;&gt;.00&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/ng-template&gt;</code></pre><p><code>my-component.ts</code></p>
+<pre class="line-numbers"><code class="language-ts">
+  &#64;ViewChild(&#39;customField&#39;) customFieldTmpl: TemplateRef&lt;any&gt;;
+  public fields: DynamicField[];
+  ...
+  ngOnInit() {
+    this.fields = [
+      new CustomField({
+        key: &#39;custom_amount&#39;,
+        label: &#39;Custom Field Amount&#39;,
+        tmpl: this.customFieldTmpl
+      }),
+    ];
+  }</code></pre><h3 id="typed-key-validation">Typed key validation</h3>
 <p>Now it is possible to define a type that will be used to validate the key field values</p>
 <p>Example:</p>
 <pre class="line-numbers"><code class="language-ts">

@@ -100,6 +100,9 @@
                                     <a href="../components/CheckboxFieldComponent.html" >CheckboxFieldComponent</a>
                                 </li>
                                 <li class="link">
+                                    <a href="../components/CustomFieldComponent.html" >CustomFieldComponent</a>
+                                </li>
+                                <li class="link">
                                     <a href="../components/DateFieldComponent.html" >DateFieldComponent</a>
                                 </li>
                                 <li class="link">
@@ -152,6 +155,9 @@
                                 </li>
                                 <li class="link">
                                     <a href="../classes/CheckboxField.html" >CheckboxField</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../classes/CustomField.html" >CustomField</a>
                                 </li>
                                 <li class="link">
                                     <a href="../classes/DateField.html" >DateField</a>
@@ -337,6 +343,9 @@
                                            <a href="../components/CheckboxFieldComponent.html" >CheckboxFieldComponent</a>
                                        </li>
                                        <li class="link">
+                                           <a href="../components/CustomFieldComponent.html" >CustomFieldComponent</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../components/DateFieldComponent.html" >DateFieldComponent</a>
                                        </li>
                                        <li class="link">
@@ -389,6 +398,9 @@
                                        </li>
                                        <li class="link">
                                            <a href="../classes/CheckboxField.html" >CheckboxField</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../classes/CustomField.html" >CustomField</a>
                                        </li>
                                        <li class="link">
                                            <a href="../classes/DateField.html" >DateField</a>
@@ -780,6 +792,9 @@ export class FormGroupComponent {
       &lt;ng-xform-checkbox-field *ngSwitchCase&#x3D;&quot;&#x27;CHECKBOX&#x27;&quot; [labelWidth]&#x3D;&quot;labelWidth&quot; [isHorizontal]&#x3D;&quot;isHorizontal&quot; [field]&#x3D;&quot;field&quot; [form]&#x3D;&quot;form&quot; [editing]&#x3D;&quot;editing !&#x3D;&#x3D; false&quot;&gt;
       &lt;/ng-xform-checkbox-field&gt;
 
+      &lt;ng-xform-custom-field *ngSwitchCase&#x3D;&quot;&#x27;CUSTOM&#x27;&quot; [labelWidth]&#x3D;&quot;labelWidth&quot; [isHorizontal]&#x3D;&quot;isHorizontal&quot; [field]&#x3D;&quot;field&quot; [form]&#x3D;&quot;form&quot; [editing]&#x3D;&quot;editing !&#x3D;&#x3D; false&quot;&gt;
+      &lt;/ng-xform-custom-field&gt;
+
       &lt;ng-xform-radiogroup-field *ngSwitchCase&#x3D;&quot;&#x27;RADIOGROUP&#x27;&quot; [labelWidth]&#x3D;&quot;labelWidth&quot; [isHorizontal]&#x3D;&quot;isHorizontal&quot; [field]&#x3D;&quot;field&quot; [form]&#x3D;&quot;form&quot; [editing]&#x3D;&quot;editing !&#x3D;&#x3D; false&quot;&gt;
       &lt;/ng-xform-radiogroup-field&gt;
 
@@ -819,8 +834,8 @@ export class FormGroupComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div [formGroup]=\'form\'>  <div *ngFor="let field of fields">    <div [ngSwitch]="field.controlType">      <ng-template [ngSwitchCase]="\'GROUP\'">        <hr *ngIf=\'field.label\'>        <h4 *ngIf=\'field.label\'>          {{field.label}}        </h4>        <div [formGroupName]="field.key">          <ng-xform-form-group [fields]=\'field.fields\' [labelWidth]="labelWidth" [isHorizontal]="isHorizontal" [form]=\'form.get(field.key)\' [editing]=\'editing\'>          </ng-xform-form-group>        </div>      </ng-template>      <ng-xform-measure-field  *ngSwitchCase="\'MEASURE\'" [labelWidth]="labelWidth" [isHorizontal]="isHorizontal" [field]="field" [form]="form" [formControlName]="field.key" [editing]="editing !== false">      </ng-xform-measure-field>      <ng-xform-editable-label *ngSwitchCase="\'TEXT\'" [labelWidth]="labelWidth" [isHorizontal]="isHorizontal" [field]="field" [form]="form" [editing]="editing !== false">      </ng-xform-editable-label>      <ng-xform-multiline-field *ngSwitchCase="\'MULTILINE\'" [labelWidth]="labelWidth" [isHorizontal]="isHorizontal" [field]="field" [form]="form" [editing]="editing !== false">      </ng-xform-multiline-field>      <ng-xform-checkbox-field *ngSwitchCase="\'CHECKBOX\'" [labelWidth]="labelWidth" [isHorizontal]="isHorizontal" [field]="field" [form]="form" [editing]="editing !== false">      </ng-xform-checkbox-field>      <ng-xform-radiogroup-field *ngSwitchCase="\'RADIOGROUP\'" [labelWidth]="labelWidth" [isHorizontal]="isHorizontal" [field]="field" [form]="form" [editing]="editing !== false">      </ng-xform-radiogroup-field>      <ng-xform-select-field *ngSwitchCase="\'SELECT\'" [labelWidth]="labelWidth" [isHorizontal]="isHorizontal" [field]="field" [form]="form" [formControlName]="field.key" [editing]="editing !== false">      </ng-xform-select-field>      <ng-xform-date-field *ngSwitchCase="\'DATE\'" [labelWidth]="labelWidth" [isHorizontal]="isHorizontal" [field]="field" [form]="form" [formControlName]="field.key" [editing]="editing !== false">      </ng-xform-date-field>      <pre *ngSwitchDefault>{{ field | json}}</pre>    </div>  </div></div></div>'
-    var COMPONENTS = [{'name': 'CheckboxFieldComponent', 'selector': 'ng-xform-checkbox-field'},{'name': 'DateFieldComponent', 'selector': 'ng-xform-date-field'},{'name': 'EditableLabelComponent', 'selector': 'ng-xform-editable-label'},{'name': 'FieldErrorMessageComponent', 'selector': 'ng-xform-field-error-message'},{'name': 'FormControlLayoutComponent', 'selector': 'ng-xform-form-control-layout'},{'name': 'FormGroupComponent', 'selector': 'ng-xform-form-group'},{'name': 'MeasureFieldComponent', 'selector': 'ng-xform-measure-field'},{'name': 'MultilineFieldComponent', 'selector': 'ng-xform-multiline-field'},{'name': 'NgXformComponent', 'selector': 'ng-xform'},{'name': 'OptionalTagComponent', 'selector': 'ng-xform-required-field-tag'},{'name': 'RadioGroupFieldComponent', 'selector': 'ng-xform-radiogroup-field'},{'name': 'SelectFieldComponent', 'selector': 'ng-xform-select-field'}];
+        var COMPONENT_TEMPLATE = '<div><div [formGroup]=\'form\'>  <div *ngFor="let field of fields">    <div [ngSwitch]="field.controlType">      <ng-template [ngSwitchCase]="\'GROUP\'">        <hr *ngIf=\'field.label\'>        <h4 *ngIf=\'field.label\'>          {{field.label}}        </h4>        <div [formGroupName]="field.key">          <ng-xform-form-group [fields]=\'field.fields\' [labelWidth]="labelWidth" [isHorizontal]="isHorizontal" [form]=\'form.get(field.key)\' [editing]=\'editing\'>          </ng-xform-form-group>        </div>      </ng-template>      <ng-xform-measure-field  *ngSwitchCase="\'MEASURE\'" [labelWidth]="labelWidth" [isHorizontal]="isHorizontal" [field]="field" [form]="form" [formControlName]="field.key" [editing]="editing !== false">      </ng-xform-measure-field>      <ng-xform-editable-label *ngSwitchCase="\'TEXT\'" [labelWidth]="labelWidth" [isHorizontal]="isHorizontal" [field]="field" [form]="form" [editing]="editing !== false">      </ng-xform-editable-label>      <ng-xform-multiline-field *ngSwitchCase="\'MULTILINE\'" [labelWidth]="labelWidth" [isHorizontal]="isHorizontal" [field]="field" [form]="form" [editing]="editing !== false">      </ng-xform-multiline-field>      <ng-xform-checkbox-field *ngSwitchCase="\'CHECKBOX\'" [labelWidth]="labelWidth" [isHorizontal]="isHorizontal" [field]="field" [form]="form" [editing]="editing !== false">      </ng-xform-checkbox-field>      <ng-xform-custom-field *ngSwitchCase="\'CUSTOM\'" [labelWidth]="labelWidth" [isHorizontal]="isHorizontal" [field]="field" [form]="form" [editing]="editing !== false">      </ng-xform-custom-field>      <ng-xform-radiogroup-field *ngSwitchCase="\'RADIOGROUP\'" [labelWidth]="labelWidth" [isHorizontal]="isHorizontal" [field]="field" [form]="form" [editing]="editing !== false">      </ng-xform-radiogroup-field>      <ng-xform-select-field *ngSwitchCase="\'SELECT\'" [labelWidth]="labelWidth" [isHorizontal]="isHorizontal" [field]="field" [form]="form" [formControlName]="field.key" [editing]="editing !== false">      </ng-xform-select-field>      <ng-xform-date-field *ngSwitchCase="\'DATE\'" [labelWidth]="labelWidth" [isHorizontal]="isHorizontal" [field]="field" [form]="form" [formControlName]="field.key" [editing]="editing !== false">      </ng-xform-date-field>      <pre *ngSwitchDefault>{{ field | json}}</pre>    </div>  </div></div></div>'
+    var COMPONENTS = [{'name': 'CheckboxFieldComponent', 'selector': 'ng-xform-checkbox-field'},{'name': 'CustomFieldComponent', 'selector': 'ng-xform-custom-field'},{'name': 'DateFieldComponent', 'selector': 'ng-xform-date-field'},{'name': 'EditableLabelComponent', 'selector': 'ng-xform-editable-label'},{'name': 'FieldErrorMessageComponent', 'selector': 'ng-xform-field-error-message'},{'name': 'FormControlLayoutComponent', 'selector': 'ng-xform-form-control-layout'},{'name': 'FormGroupComponent', 'selector': 'ng-xform-form-group'},{'name': 'MeasureFieldComponent', 'selector': 'ng-xform-measure-field'},{'name': 'MultilineFieldComponent', 'selector': 'ng-xform-multiline-field'},{'name': 'NgXformComponent', 'selector': 'ng-xform'},{'name': 'OptionalTagComponent', 'selector': 'ng-xform-required-field-tag'},{'name': 'RadioGroupFieldComponent', 'selector': 'ng-xform-radiogroup-field'},{'name': 'SelectFieldComponent', 'selector': 'ng-xform-select-field'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'FormGroupComponent'};
 </script>
