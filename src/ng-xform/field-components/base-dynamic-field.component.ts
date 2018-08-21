@@ -17,6 +17,10 @@ export class BaseDynamicFieldComponent<T extends DynamicField> implements OnInit
   control: FormControl;
   visible = true;
   public hideLabelOnEdit = false;
+
+  /** If true, the read-only state will show the value obtained from the formattedValue method;
+   * otherwise, will keep the component to manage this behavior.
+   */
   public useFormattedValueOnReadonly = true;
 
   private valueChangeSubscription: Subscription;
