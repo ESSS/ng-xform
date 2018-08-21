@@ -1,3 +1,14 @@
+<a name="0.18.0"></a>
+# [0.18.0](https://github.com/ESSS/ng-xform/compare/v0.17.0...v0.18.0) (2018-08-21)
+
+
+### Features
+
+* **Custom Field:** add support to custom field with template ([#33](https://github.com/ESSS/ng-xform/issues/33)) ([a834db7](https://github.com/ESSS/ng-xform/commit/a834db7))
+* **NgXform:** remove errorCode ([#32](https://github.com/ESSS/ng-xform/issues/32)) ([9c1b77b](https://github.com/ESSS/ng-xform/commit/9c1b77b))
+
+
+
 <a name="0.17.0"></a>
 # [0.17.0](https://github.com/ESSS/ng-xform/compare/v0.16.0...v0.17.0) (2018-08-02)
 
