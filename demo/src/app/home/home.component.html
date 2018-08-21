@@ -46,3 +46,16 @@
     </div>
   </div>
 </section>
+<ng-template #customField let-customControl="control" let-isEditing="isEditing">
+  <div class="input-group">
+    <div class="input-group-addon">$</div>
+    <input type="number"
+      [formControl]="customControl"
+      [attr.disabled]="!isEditing || null" 
+      class="form-control"
+      style="text-align:right" 
+      id="exampleInputAmount" 
+      placeholder="Amount" />
+    <div class="input-group-addon">.00</div>
+  </div>
+</ng-template>

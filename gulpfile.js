@@ -535,7 +535,7 @@ gulp.task('test:demo_ci', () => {
 });
 
 gulp.task('serve:demo', () => {
-  return execDemoCmd('serve --aot --proxy-config proxy.conf.json', { cwd: `${config.demoDir}` });
+  return execDemoCmd('serve --proxy-config proxy.conf.json', { cwd: `${config.demoDir}` });
 });
 
 gulp.task('serve:demo-hmr', () => {

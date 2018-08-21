@@ -240,13 +240,13 @@ describe('DynamicFormComponent', () => {
 
   function expectFormLabel(fieldId: string, caption: string, value: any) {
 
-    const el = fixture.debugElement.query(By.css(`#${fieldId}-label`));
+    const el = fixture.debugElement.query(By.css(`#${fieldId}-div`));
     expect(el).toBeTruthy();
     expect(el.nativeElement).toBeTruthy();
     expect(el.nativeElement.hidden).toBeFalsy();
-    const label = el.query(By.css('strong'));
-    expect(label.nativeElement.textContent).toBe(caption);
-    const labelValue = el.query(By.css('div'));
+    const label = el.query(By.css('label'));
+    expect(label.nativeElement.textContent.trim()).toBe(caption);
+    const labelValue = el.query(By.css('div.text-muted'));
     expect(labelValue).toBeTruthy();
     expect(labelValue.nativeElement.textContent.trim()).toBe(value);
   }

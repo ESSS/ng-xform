@@ -256,6 +256,44 @@ export class HomeComponent implements OnInit {
   }
 }
 ```
+### Custom Field
+
+It's possible to create your own field template and set it on dynamic field list through CustomField
+
+Example:
+`my-component.html`
+```html
+<ng-template #customField let-customControl="control" let-isEditing="isEditing">
+  <div class="input-group">
+    <div class="input-group-addon">$</div>
+    <input type="number"
+      [formControl]="customControl"
+      [attr.disabled]="!isEditing || null" 
+      class="form-control"
+      style="text-align:right" 
+      id="exampleInputAmount" 
+      placeholder="Amount" />
+    <div class="input-group-addon">.00</div>
+  </div>
+</ng-template>
+```
+
+`my-component.ts`
+```ts
+
+  @ViewChild('customField') customFieldTmpl: TemplateRef<any>;
+  public fields: DynamicField[];
+  ...
+  ngOnInit() {
+    this.fields = [
+      new CustomField({
+        key: 'custom_amount',
+        label: 'Custom Field Amount',
+        tmpl: this.customFieldTmpl
+      }),
+    ];
+  }
+``` 
 
 ### Typed key validation
 

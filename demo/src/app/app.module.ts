@@ -1,4 +1,4 @@
-import { BsLocaleService } from 'ngx-bootstrap/datepicker';
+import { BsLocaleService, BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
@@ -26,6 +26,7 @@ defineLocale('en-us', enGbLocale);
     TransferHttpCacheModule,
     FormsModule,
     HttpModule,
+    BsDatepickerModule.forRoot(),
     AppRoutingModule,
     AppSharedModule,
     HomeModule
