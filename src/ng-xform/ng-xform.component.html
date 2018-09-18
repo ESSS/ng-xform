@@ -1,16 +1,17 @@
 <div>
-  <form [formGroup]="form" [class.form-horizontal]="horizontalForm">
+  <form (ngSubmit)="submit()" [formGroup]="form" [class.form-horizontal]="horizontalForm">
     <ng-xform-form-group [isHorizontal]="horizontalForm" [labelWidth]="labelWidth" [fields]='fields' [form]=form [editing]='editing'></ng-xform-form-group>
+    <div class="row">
+      <div class=" col-sm-12 text-right">
+        <button type="submit" class="btn btn-primary" (click)="setEditing(true)" *ngIf="editing === false">
+          <span class="fa fa-pencil"></span> Edit
+        </button>
+        <ng-template [ngIf]="editing !== false">
+          <button type="submit" id="formSubmitBtn" class="btn btn-primary">Save</button>
+          &nbsp;
+          <button type="button" class="btn btn-default" (click)="cancel()">Cancel</button>
+        </ng-template>
+      </div>
+    </div>
   </form>
-</div>
-<div class="row">
-  <div class=" col-sm-12 text-right">
-    <button type="submit" class="btn btn-primary" (click)="setEditing(true)" *ngIf="editing === false">
-      <span class="fa fa-pencil"></span> Edit
-    </button>
-    <ng-template [ngIf]="editing !== false">
-      <button [disabled]="form.invalid" type="submit" id="formSubmitBtn" class="btn btn-primary" (click)="submit()">Save</button>
-      <button type="button" class="btn btn-default" (click)="cancel()">Cancel</button>
-    </ng-template>
-  </div>
 </div>
