@@ -100,6 +100,7 @@ export class HomeComponent implements OnInit {
             label: 'Street',
             searchHandler: this.observableSource.bind(this),
             searchByValueKeyHandler: this.observableSourceByPlaceId.bind(this),
+            searchOnFocus: true,
             searchable: true,
             optionLabelKey: 'formatted_address',
             optionValueKey: 'place_id',
@@ -210,7 +211,8 @@ export class HomeComponent implements OnInit {
   }
 
   public observableSource(keyword: any): Observable<any[]> {
-    const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${keyword}`;
+    const apiKey = 'AIzaSyB4Hm7LBQ4482DJC5PoHv37UkRBmT4gNFU';
+    const url = `https://maps.googleapis.com/maps/api/geocode/json?key=${apiKey}&address=${keyword}`;
     if (keyword) {
       return this.http.get(url)
         .pipe(map((res) => res['results']));
