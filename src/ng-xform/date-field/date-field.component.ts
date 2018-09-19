@@ -42,9 +42,9 @@ export class DateFieldComponent extends BaseDynamicFieldComponent<DateField> imp
 
   ngAfterContentInit() {
     this.componentControl.setValidators(this.field.validators);
-    this.config = Object.assign({}, {
+    this.config = {
       containerClass: `theme-${this.field.theme}`,
-    });
+    };
   }
 
   ngAfterViewInit() {
@@ -63,12 +63,15 @@ export class DateFieldComponent extends BaseDynamicFieldComponent<DateField> imp
       this.componentControl.setValue(obj);
     }
   }
+
   registerOnChange(fn: any): void {
     this._onChange = fn;
   }
+
   registerOnTouched(fn: any): void {
     this._onTouched = fn;
   }
+
   setDisabledState?(isDisabled: boolean): void {
     this.input.disabled = isDisabled;
   }

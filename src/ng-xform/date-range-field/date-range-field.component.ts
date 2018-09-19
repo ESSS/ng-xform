@@ -43,9 +43,9 @@ export class DateRangeFieldComponent extends BaseDynamicFieldComponent<DateRange
 
   ngAfterContentInit() {
     this.componentControl.setValidators(this.field.validators);
-    this.config = Object.assign({}, {
+    this.config = {
       containerClass: `theme-${this.field.theme}`,
-    });
+    };
   }
 
   ngAfterViewInit() {
@@ -62,12 +62,15 @@ export class DateRangeFieldComponent extends BaseDynamicFieldComponent<DateRange
       this.componentControl.setValue(obj);
     }
   }
+
   registerOnChange(fn: any): void {
     this._onChange = fn;
   }
+
   registerOnTouched(fn: any): void {
     this._onTouched = fn;
   }
+
   setDisabledState?(isDisabled: boolean): void {
     this.input.disabled = isDisabled;
   }
