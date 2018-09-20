@@ -106,6 +106,9 @@
                                     <a href="../components/DateFieldComponent.html" >DateFieldComponent</a>
                                 </li>
                                 <li class="link">
+                                    <a href="../components/DateRangeFieldComponent.html" >DateRangeFieldComponent</a>
+                                </li>
+                                <li class="link">
                                     <a href="../components/EditableLabelComponent.html" >EditableLabelComponent</a>
                                 </li>
                                 <li class="link">
@@ -161,6 +164,9 @@
                                 </li>
                                 <li class="link">
                                     <a href="../classes/DateField.html" >DateField</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../classes/DateRangeField.html" >DateRangeField</a>
                                 </li>
                                 <li class="link">
                                     <a href="../classes/DynamicField.html" >DynamicField</a>
@@ -349,6 +355,9 @@
                                            <a href="../components/DateFieldComponent.html" >DateFieldComponent</a>
                                        </li>
                                        <li class="link">
+                                           <a href="../components/DateRangeFieldComponent.html" >DateRangeFieldComponent</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../components/EditableLabelComponent.html" >EditableLabelComponent</a>
                                        </li>
                                        <li class="link">
@@ -404,6 +413,9 @@
                                        </li>
                                        <li class="link">
                                            <a href="../classes/DateField.html" >DateField</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../classes/DateRangeField.html" >DateRangeField</a>
                                        </li>
                                        <li class="link">
                                            <a href="../classes/DynamicField.html" >DynamicField</a>
@@ -836,7 +848,7 @@ export class FormControlLayoutComponent {
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
         var COMPONENT_TEMPLATE = '<div><div [hidden]="!fieldComponent.visible"  id="{{fieldComponent.elementId}}-div"  class="form-group"  [formGroup]="fieldComponent.form">  <label *ngIf="!fieldComponent.hideLabelOnEdit || (!fieldComponent.isEditing && fieldComponent.visible)"   for="{{fieldComponent.elementId}}"   [ngClass]="labelStyleClass">    {{ fieldComponent.field.label }}    <ng-xform-required-field-tag     *ngIf="fieldComponent.isEditing"     [horizontal]=\'fieldComponent.isHorizontal\'     [optional]="fieldComponent.isOptional"></ng-xform-required-field-tag>  </label>  <div [ngClass]="fieldStyleClassCheckbox"   [hidden]="!fieldComponent.isEditing && fieldComponent.visible && fieldComponent.useFormattedValueOnReadonly">    <ng-content></ng-content>    <ng-xform-field-error-message [control]="fieldComponent.control"></ng-xform-field-error-message>  </div>  <div [ngClass]="fieldStyleClass"   *ngIf="!fieldComponent.isEditing && fieldComponent.visible && fieldComponent.useFormattedValueOnReadonly"   [class.horizontal-readonly]="fieldComponent.isHorizontal"   [class.readonly]="!fieldComponent.isHorizontal"   class="text-muted class.readonly">    {{ fieldComponent.formattedValue }}  </div></div></div>'
-    var COMPONENTS = [{'name': 'CheckboxFieldComponent', 'selector': 'ng-xform-checkbox-field'},{'name': 'CustomFieldComponent', 'selector': 'ng-xform-custom-field'},{'name': 'DateFieldComponent', 'selector': 'ng-xform-date-field'},{'name': 'EditableLabelComponent', 'selector': 'ng-xform-editable-label'},{'name': 'FieldErrorMessageComponent', 'selector': 'ng-xform-field-error-message'},{'name': 'FormControlLayoutComponent', 'selector': 'ng-xform-form-control-layout'},{'name': 'FormGroupComponent', 'selector': 'ng-xform-form-group'},{'name': 'MeasureFieldComponent', 'selector': 'ng-xform-measure-field'},{'name': 'MultilineFieldComponent', 'selector': 'ng-xform-multiline-field'},{'name': 'NgXformComponent', 'selector': 'ng-xform'},{'name': 'OptionalTagComponent', 'selector': 'ng-xform-required-field-tag'},{'name': 'RadioGroupFieldComponent', 'selector': 'ng-xform-radiogroup-field'},{'name': 'SelectFieldComponent', 'selector': 'ng-xform-select-field'}];
+    var COMPONENTS = [{'name': 'CheckboxFieldComponent', 'selector': 'ng-xform-checkbox-field'},{'name': 'CustomFieldComponent', 'selector': 'ng-xform-custom-field'},{'name': 'DateFieldComponent', 'selector': 'ng-xform-date-field'},{'name': 'DateRangeFieldComponent', 'selector': 'ng-xform-date-range-field'},{'name': 'EditableLabelComponent', 'selector': 'ng-xform-editable-label'},{'name': 'FieldErrorMessageComponent', 'selector': 'ng-xform-field-error-message'},{'name': 'FormControlLayoutComponent', 'selector': 'ng-xform-form-control-layout'},{'name': 'FormGroupComponent', 'selector': 'ng-xform-form-group'},{'name': 'MeasureFieldComponent', 'selector': 'ng-xform-measure-field'},{'name': 'MultilineFieldComponent', 'selector': 'ng-xform-multiline-field'},{'name': 'NgXformComponent', 'selector': 'ng-xform'},{'name': 'OptionalTagComponent', 'selector': 'ng-xform-required-field-tag'},{'name': 'RadioGroupFieldComponent', 'selector': 'ng-xform-radiogroup-field'},{'name': 'SelectFieldComponent', 'selector': 'ng-xform-select-field'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'FormControlLayoutComponent'};
 </script>

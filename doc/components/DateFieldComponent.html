@@ -106,6 +106,9 @@
                                     <a href="../components/DateFieldComponent.html"  data-type="entity-link" class="active" >DateFieldComponent</a>
                                 </li>
                                 <li class="link">
+                                    <a href="../components/DateRangeFieldComponent.html" >DateRangeFieldComponent</a>
+                                </li>
+                                <li class="link">
                                     <a href="../components/EditableLabelComponent.html" >EditableLabelComponent</a>
                                 </li>
                                 <li class="link">
@@ -161,6 +164,9 @@
                                 </li>
                                 <li class="link">
                                     <a href="../classes/DateField.html" >DateField</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../classes/DateRangeField.html" >DateRangeField</a>
                                 </li>
                                 <li class="link">
                                     <a href="../classes/DynamicField.html" >DynamicField</a>
@@ -349,6 +355,9 @@
                                            <a href="../components/DateFieldComponent.html"  data-type="entity-link" class="active" >DateFieldComponent</a>
                                        </li>
                                        <li class="link">
+                                           <a href="../components/DateRangeFieldComponent.html" >DateRangeFieldComponent</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../components/EditableLabelComponent.html" >EditableLabelComponent</a>
                                        </li>
                                        <li class="link">
@@ -404,6 +413,9 @@
                                        </li>
                                        <li class="link">
                                            <a href="../classes/DateField.html" >DateField</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../classes/DateRangeField.html" >DateRangeField</a>
                                        </li>
                                        <li class="link">
                                            <a href="../classes/DynamicField.html" >DynamicField</a>
@@ -847,7 +859,7 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="66" class="link-to-prism">src/ng-xform/date-field/date-field.component.ts:66</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="67" class="link-to-prism">src/ng-xform/date-field/date-field.component.ts:67</a></div>
                                 </td>
                             </tr>
     
@@ -913,7 +925,7 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="69" class="link-to-prism">src/ng-xform/date-field/date-field.component.ts:69</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="71" class="link-to-prism">src/ng-xform/date-field/date-field.component.ts:71</a></div>
                                 </td>
                             </tr>
     
@@ -979,7 +991,7 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="72" class="link-to-prism">src/ng-xform/date-field/date-field.component.ts:72</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="75" class="link-to-prism">src/ng-xform/date-field/date-field.component.ts:75</a></div>
                                 </td>
                             </tr>
     
@@ -1286,7 +1298,7 @@
                     </tr>
                                 <tr>
                                     <td class="col-md-4">
-                                        <div class="io-line">Defined in <a href="" data-line="76" class="link-to-prism">src/ng-xform/date-field/date-field.component.ts:76</a></div>
+                                        <div class="io-line">Defined in <a href="" data-line="79" class="link-to-prism">src/ng-xform/date-field/date-field.component.ts:79</a></div>
                                     </td>
                                 </tr>
     
@@ -1341,9 +1353,9 @@ export class DateFieldComponent extends BaseDynamicFieldComponent&lt;DateField&g
 
   ngAfterContentInit() {
     this.componentControl.setValidators(this.field.validators);
-    this.config &#x3D; Object.assign({}, {
+    this.config &#x3D; {
       containerClass: &#x60;theme-${this.field.theme}&#x60;,
-    });
+    };
   }
 
   ngAfterViewInit() {
@@ -1362,12 +1374,15 @@ export class DateFieldComponent extends BaseDynamicFieldComponent&lt;DateField&g
       this.componentControl.setValue(obj);
     }
   }
+
   registerOnChange(fn: any): void {
     this._onChange &#x3D; fn;
   }
+
   registerOnTouched(fn: any): void {
     this._onTouched &#x3D; fn;
   }
+
   setDisabledState?(isDisabled: boolean): void {
     this.input.disabled &#x3D; isDisabled;
   }
@@ -1417,7 +1432,7 @@ export class DateFieldComponent extends BaseDynamicFieldComponent&lt;DateField&g
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
         var COMPONENT_TEMPLATE = '<div><ng-xform-form-control-layout [fieldComponent]="instance"><input bsDatepicker type="text" class="form-control" [formControl]="componentControl" id="{{elementId}}"   [bsConfig]="config"   [bsValue]="field.initialValue"   [placement]="field.placement"   [maxDate]="field.maxDate"   [minDate]="field.minDate" /></ng-xform-form-control-layout></div>'
-    var COMPONENTS = [{'name': 'CheckboxFieldComponent', 'selector': 'ng-xform-checkbox-field'},{'name': 'CustomFieldComponent', 'selector': 'ng-xform-custom-field'},{'name': 'DateFieldComponent', 'selector': 'ng-xform-date-field'},{'name': 'EditableLabelComponent', 'selector': 'ng-xform-editable-label'},{'name': 'FieldErrorMessageComponent', 'selector': 'ng-xform-field-error-message'},{'name': 'FormControlLayoutComponent', 'selector': 'ng-xform-form-control-layout'},{'name': 'FormGroupComponent', 'selector': 'ng-xform-form-group'},{'name': 'MeasureFieldComponent', 'selector': 'ng-xform-measure-field'},{'name': 'MultilineFieldComponent', 'selector': 'ng-xform-multiline-field'},{'name': 'NgXformComponent', 'selector': 'ng-xform'},{'name': 'OptionalTagComponent', 'selector': 'ng-xform-required-field-tag'},{'name': 'RadioGroupFieldComponent', 'selector': 'ng-xform-radiogroup-field'},{'name': 'SelectFieldComponent', 'selector': 'ng-xform-select-field'}];
+    var COMPONENTS = [{'name': 'CheckboxFieldComponent', 'selector': 'ng-xform-checkbox-field'},{'name': 'CustomFieldComponent', 'selector': 'ng-xform-custom-field'},{'name': 'DateFieldComponent', 'selector': 'ng-xform-date-field'},{'name': 'DateRangeFieldComponent', 'selector': 'ng-xform-date-range-field'},{'name': 'EditableLabelComponent', 'selector': 'ng-xform-editable-label'},{'name': 'FieldErrorMessageComponent', 'selector': 'ng-xform-field-error-message'},{'name': 'FormControlLayoutComponent', 'selector': 'ng-xform-form-control-layout'},{'name': 'FormGroupComponent', 'selector': 'ng-xform-form-group'},{'name': 'MeasureFieldComponent', 'selector': 'ng-xform-measure-field'},{'name': 'MultilineFieldComponent', 'selector': 'ng-xform-multiline-field'},{'name': 'NgXformComponent', 'selector': 'ng-xform'},{'name': 'OptionalTagComponent', 'selector': 'ng-xform-required-field-tag'},{'name': 'RadioGroupFieldComponent', 'selector': 'ng-xform-radiogroup-field'},{'name': 'SelectFieldComponent', 'selector': 'ng-xform-select-field'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'DateFieldComponent'};
 </script>
