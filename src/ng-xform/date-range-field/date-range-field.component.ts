@@ -1,3 +1,4 @@
+import { DateRangeField } from './../fields/date-range-field';
 import { DatePipe } from '@angular/common';
 import { ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { Component, AfterContentInit, ElementRef, AfterViewInit, Inject, LOCALE_ID } from '@angular/core';
@@ -14,15 +15,15 @@ import { DateField } from '../fields';
  * :field: Intance of field configurations
  */
 @Component({
-  selector: 'ng-xform-date-field',
-  templateUrl: './date-field.component.html',
+  selector: 'ng-xform-date-range-field',
+  templateUrl: './date-range-field.component.html',
   providers: [{
     provide: NG_VALUE_ACCESSOR,
-    useExisting: DateFieldComponent,
+    useExisting: DateRangeFieldComponent,
     multi: true
   }],
 })
-export class DateFieldComponent extends BaseDynamicFieldComponent<DateField> implements AfterViewInit, AfterContentInit,
+export class DateRangeFieldComponent extends BaseDynamicFieldComponent<DateRangeField> implements AfterViewInit, AfterContentInit,
   ControlValueAccessor {
   config: Partial<BsDatepickerConfig>;
   componentControl = new FormControl();
@@ -55,10 +56,8 @@ export class DateFieldComponent extends BaseDynamicFieldComponent<DateField> imp
   }
 
   writeValue(obj: any): void {
-    if (obj instanceof Date) {
-      this.componentControl.setValue(obj);
-    } else if (obj) {
-      this.componentControl.setValue(new Date(obj));
+    if (obj instanceof Array) {
+      this.componentControl.setValue(obj.map(item => new Date(item)));
     } else {
       this.componentControl.setValue(obj);
     }
@@ -78,7 +77,12 @@ export class DateFieldComponent extends BaseDynamicFieldComponent<DateField> imp
 
   get formattedValue(): string {
     const dateFormatter = new DatePipe(this.field.locale || this.locale);
-    return dateFormatter.transform(this.form.controls[this.elementId].value, 'mediumDate') || '-';
+    if (!this.form.controls[this.elementId].value) {
+      return '-';
+    }
+    const start = dateFormatter.transform(this.form.controls[this.elementId].value[0], 'mediumDate');
+    const end = dateFormatter.transform(this.form.controls[this.elementId].value[1], 'mediumDate');
+    return `${start} - ${end}`;
   }
 
 }

@@ -9,7 +9,7 @@
       <span class="fa fa-pencil"></span> Edit
     </button>
     <ng-template [ngIf]="editing !== false">
-      <button [disabled]="form.invalid" type="submit" id="formSubmitBtn" class="btn btn-primary" (click)="submit()">Save</button>
+      <button type="submit" id="formSubmitBtn" class="btn btn-primary" (click)="submit()">Save</button>
       <button type="button" class="btn btn-default" (click)="cancel()">Cancel</button>
     </ng-template>
   </div>

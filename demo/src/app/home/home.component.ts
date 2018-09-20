@@ -1,11 +1,11 @@
-import { CustomField } from './../../../../tmp/ng-xform/fields/custom-field';
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import {
   CheckboxField,
   DateField,
+  DateRangeField,
   DynamicField,
   MeasureField,
   MultilineField,
@@ -14,9 +14,11 @@ import {
   RadioGroupField,
   SelectField,
   TextField,
+  CustomField,
 } from '@esss/ng-xform';
 import { Observable, of } from 'rxjs';
 import { delay, map } from 'rxjs/operators';
+
 
 @Component({
   selector: 'app-home',
@@ -98,6 +100,7 @@ export class HomeComponent implements OnInit {
             label: 'Street',
             searchHandler: this.observableSource.bind(this),
             searchByValueKeyHandler: this.observableSourceByPlaceId.bind(this),
+            searchOnFocus: true,
             searchable: true,
             optionLabelKey: 'formatted_address',
             optionValueKey: 'place_id',
@@ -160,6 +163,11 @@ export class HomeComponent implements OnInit {
         minDate: minDate,
         maxDate: maxDate
       }),
+      new DateRangeField({
+        key: 'range',
+        label: 'Date range',
+        theme: 'blue'
+      }),
       new CustomField({
         key: 'custom_amount',
         label: 'Custom Field Amount',
@@ -194,12 +202,17 @@ export class HomeComponent implements OnInit {
       'vel viverra nisi. Mauris aliquet nunc non turpis scelerisque, eget. Casamentiss faiz malandris se pirulitá. Sapien in monti ' +
       'palavris qui num significa nadis i pareci latim.',
       birth: new Date(),
+      range: [
+        '2018-09-06T03:00:00.000Z',
+        '2018-10-08T03:00:00.000Z'
+      ],
       custom_amount: 456
     });
   }
 
   public observableSource(keyword: any): Observable<any[]> {
-    const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${keyword}`;
+    const apiKey = 'AIzaSyB4Hm7LBQ4482DJC5PoHv37UkRBmT4gNFU';
+    const url = `https://maps.googleapis.com/maps/api/geocode/json?key=${apiKey}&address=${keyword}`;
     if (keyword) {
       return this.http.get(url)
         .pipe(map((res) => res['results']));
