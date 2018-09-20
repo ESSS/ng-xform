@@ -1,3 +1,13 @@
+<a name="0.19.0"></a>
+# [0.19.0](https://github.com/ESSS/ng-xform/compare/v0.18.0...v0.19.0) (2018-09-20)
+
+
+### Features
+
+* **NgXform:** validate all fields on submit ([#34](https://github.com/ESSS/ng-xform/issues/34)) ([4067c28](https://github.com/ESSS/ng-xform/commit/4067c28)), closes [#35](https://github.com/ESSS/ng-xform/issues/35) [#36](https://github.com/ESSS/ng-xform/issues/36)
+
+
+
 <a name="0.18.0"></a>
 # [0.18.0](https://github.com/ESSS/ng-xform/compare/v0.17.0...v0.18.0) (2018-08-21)
 
