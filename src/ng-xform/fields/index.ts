@@ -9,3 +9,4 @@ export * from './radiogroup-field';
 export * from './multiline-field';
 export * from './nested-form-group';
 export * from './date-field';
+export * from './date-range-field';
