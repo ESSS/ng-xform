@@ -1,10 +1,10 @@
-import { bsDatepickerModuleWithProviders, bsDropdownModuleWithProviders } from './ng-xform.module-imports';
 import { CommonModule } from '@angular/common';
 import { Inject, LOCALE_ID, NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { NgSelectModule } from '@ng-select/ng-select';
-import { BsLocaleService } from 'ngx-bootstrap/datepicker';
 
+import { NgSelectModule } from '@ng-select/ng-select';
+import { bsDatepickerModuleWithProviders, bsDropdownModuleWithProviders } from './ng-xform.module-imports';
+import { BsLocaleService } from 'ngx-bootstrap/datepicker';
 import { PipesModule } from '../pipes/pipes.module';
 import { CheckboxFieldComponent } from './checkbox-field/checkbox-field.component';
 import { DateFieldComponent } from './date-field/date-field.component';
@@ -20,6 +20,8 @@ import { NgXformComponent } from './ng-xform.component';
 import { RadioGroupFieldComponent } from './radiogroup-field/radiogroup-field.component';
 import { SelectFieldComponent } from './select-field/select-field.component';
 import { CustomFieldComponent } from './custom-field/custom-field.component';
+import { NgXformSaveEditComponent } from './ng-xform-save-edit/ng-xform-save-edit.component';
+import { ButtonBarComponent } from './button-bar/button-bar.component';
 
 
 @NgModule({
@@ -33,6 +35,7 @@ import { CustomFieldComponent } from './custom-field/custom-field.component';
   ],
   declarations: [
     NgXformComponent,
+    NgXformSaveEditComponent,
     FormGroupComponent,
     EditableLabelComponent,
     CheckboxFieldComponent,
@@ -46,9 +49,11 @@ import { CustomFieldComponent } from './custom-field/custom-field.component';
     OptionalTagComponent,
     DateFieldComponent,
     FormControlLayoutComponent,
+    ButtonBarComponent,
   ],
   exports: [
     NgXformComponent,
+    NgXformSaveEditComponent,
     FieldErrorMessageComponent,
     PipesModule,
   ]

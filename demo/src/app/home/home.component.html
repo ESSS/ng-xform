@@ -40,9 +40,10 @@
     </form>
     <hr />
     <div class="panel-body">
-      <ng-xform [horizontalForm]="horizontal" [labelWidth]="labelWidth" (onSubmit)="onSubmit($event)" [fields]="fields" [(editing)]="editing"></ng-xform>
+      <ng-xform-save-edit [horizontalForm]="horizontal" [labelWidth]="labelWidth" (submit)="onSubmit($event)" [fields]="fields" [(editing)]="editing">
+      </ng-xform-save-edit>
       <hr>
-      <pre>{{ xformComponent.form.value | json }}</pre>
+      <pre>{{ model | json }}</pre>
     </div>
   </div>
 </section>

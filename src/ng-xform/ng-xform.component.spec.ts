@@ -15,9 +15,7 @@ import { NgXformModule } from './ng-xform.module';
 describe('DynamicFormComponent', () => {
   let component: NgXformComponent;
   let fixture: ComponentFixture<NgXformComponent>;
-  let optieditingons: any[];
   let model: any;
-  let options: any[];
   let dateTest: Date;
   let datePipe: DatePipe;
   let bsLocaleService: BsLocaleService;
@@ -85,11 +83,6 @@ describe('DynamicFormComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create form', () => {
-    component.createForm();
-    expect(component.form).toBeTruthy();
-  });
-
   it('should patch value', () => {
     component.createForm();
     component.reset();
@@ -110,15 +103,13 @@ describe('DynamicFormComponent', () => {
     expect(component.form.value['nested2']).toBeTruthy();
     expect(component.form.value['nested2']['field1']).toBe('some value');
 
-    component.onSubmit.subscribe((value: any) => {
+    component.submit.subscribe((value: any) => {
       expect(value.nested2.field1).toBe('some value');
       done();
     });
-    const buttonEl = fixture.debugElement.query(By.css(`#formSubmitBtn`));
     fixture.detectChanges();
-    expect(buttonEl).toBeTruthy();
     expect(component.form.valid).toBeTruthy();
-    buttonEl.nativeElement.click();
+    component.onSubmit();
   });
 
   it('should create', () => {
@@ -178,21 +169,18 @@ describe('DynamicFormComponent', () => {
     expect(component.form.value['nested2']).toBeTruthy();
     expect(component.form.value['nested2']['field1']).toBe('some value');
 
-    component.onSubmit.subscribe((value: any) => {
+    component.submit.subscribe((value: any) => {
       expect(value.nested2.field1).toBe('some value');
       expect(value.address.extra_field).toBe(model.address.extra_field);
       done();
     });
-    const buttonEl = fixture.debugElement.query(By.css(`#formSubmitBtn`));
     fixture.detectChanges();
-    expect(buttonEl).toBeTruthy();
     expect(component.form.valid).toBeTruthy();
-    buttonEl.nativeElement.click();
-
+    component.onSubmit();
   });
 
   it('should emit form value on submit', (done: any) => {
-    component.onSubmit.subscribe((value: any) => {
+    component.submit.subscribe((value: any) => {
       setTimeout(() => {
         expect(value.text1).toBe(model.text1);
         expect(value.comments).toBe(model.comments);
@@ -203,11 +191,9 @@ describe('DynamicFormComponent', () => {
         done();
       });
     });
-    const buttonEl = fixture.debugElement.query(By.css(`#formSubmitBtn`));
     fixture.detectChanges();
-    expect(buttonEl).toBeTruthy();
     expect(component.form.valid).toBeTruthy();
-    buttonEl.nativeElement.click();
+    component.onSubmit();
   });
 
   it('should be read mode', () => {

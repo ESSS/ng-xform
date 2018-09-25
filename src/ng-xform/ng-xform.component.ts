@@ -28,10 +28,10 @@ export class NgXformComponent implements OnInit, OnChanges {
   @Output() editingChange = new EventEmitter();
 
   /** To listening submitSuccessful event */
-  @Output() onSubmit = new EventEmitter();
+  @Output() submit = new EventEmitter();
 
   /** To listening submitSuccessful event */
-  @Output() onCancel = new EventEmitter();
+  @Output() cancel = new EventEmitter();
 
   model: any;
   form: FormGroup;
@@ -80,21 +80,21 @@ export class NgXformComponent implements OnInit, OnChanges {
     return modelToSend;
   }
 
-  submit() {
+  onSubmit() {
     if (this.form.invalid) {
       return;
     }
 
     // copy object
     const modelToSend = this.unpatchValue(this.form, this.model);
-    this.onSubmit.emit(modelToSend);
+    this.submit.emit(modelToSend);
   }
 
   /** It is called by cancel button */
-  cancel() {
+  onCancel() {
     this.setEditing(false);
     this.reset();
-    this.onCancel.emit();
+    this.cancel.emit();
   }
 
   reset() {
@@ -125,5 +125,9 @@ export class NgXformComponent implements OnInit, OnChanges {
   setValue(value: any) {
     this.model = value;
     this.form.patchValue(value);
+  }
+
+  getModel() {
+    return this.unpatchValue(this.form, this.model);
   }
 }

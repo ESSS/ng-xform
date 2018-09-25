@@ -1,7 +1,6 @@
-import { CustomField } from './../../../../tmp/ng-xform/fields/custom-field';
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
 import { Validators } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
 import { Title } from '@angular/platform-browser';
 import {
   CheckboxField,
@@ -10,10 +9,11 @@ import {
   MeasureField,
   MultilineField,
   NestedFormGroup,
-  NgXformComponent,
+  NgXformSaveEditComponent,
   RadioGroupField,
   SelectField,
   TextField,
+  CustomField
 } from '@esss/ng-xform';
 import { Observable, of } from 'rxjs';
 import { delay, map } from 'rxjs/operators';
@@ -25,7 +25,7 @@ import { delay, map } from 'rxjs/operators';
 })
 export class HomeComponent implements OnInit {
 
-  @ViewChild(NgXformComponent) xformComponent: NgXformComponent;
+  @ViewChild(NgXformSaveEditComponent) xformComponent: NgXformSaveEditComponent;
   @ViewChild('customField') customFieldTmpl: TemplateRef<any>;
 
   private colors: any[] = [
@@ -42,6 +42,7 @@ export class HomeComponent implements OnInit {
   public editing = true;
   public horizontal = false;
   public labelWidth = 2;
+  public model: any;
 
   constructor(private titleService: Title, private http: HttpClient) { }
 
@@ -170,7 +171,7 @@ export class HomeComponent implements OnInit {
 
   public onSubmit(values: object) {
     this.editing = !this.editing;
-    console.log(values);
+    this.model = values;
   }
 
   populate() {
