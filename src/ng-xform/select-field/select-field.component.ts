@@ -75,6 +75,12 @@ export class SelectFieldComponent extends BaseDynamicFieldComponent<SelectField>
     this.viewModel.next(obj);
   }
 
+  forceSearch() {
+    if (this.field.searchOnFocus && !this.optionValues && this.field.searchHandler) {
+      this.typeahead.emit('');
+    }
+  }
+
   registerOnChange(fn: any): void {
     this._onChange = fn;
   }

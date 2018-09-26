@@ -13,6 +13,7 @@ export class SelectField<T = any> extends DynamicField<T> {
   public optionLabelKey?: string;
   public searchHandler?: (value: string) => Observable<any[]>;
   public searchByValueKeyHandler?: (value: string) => Observable<any>;
+  public searchOnFocus?: boolean;
   public searchable?: boolean;
   public markFirst?: boolean;
   public separator?: string;
@@ -28,6 +29,7 @@ export class SelectField<T = any> extends DynamicField<T> {
     this.optionLabelKey = options.optionLabelKey;
     this.searchable = options.searchable === true;
     this.searchHandler = options.searchHandler;
+    this.searchOnFocus = options.searchOnFocus || false;
     this.searchByValueKeyHandler = options.searchByValueKeyHandler;
     this.markFirst = options.markFirst === true;
     this.separator = options.separator || ', ';

@@ -7,7 +7,9 @@ import { bsDatepickerModuleWithProviders, bsDropdownModuleWithProviders } from '
 import { BsLocaleService } from 'ngx-bootstrap/datepicker';
 import { PipesModule } from '../pipes/pipes.module';
 import { CheckboxFieldComponent } from './checkbox-field/checkbox-field.component';
+import { CustomFieldComponent } from './custom-field/custom-field.component';
 import { DateFieldComponent } from './date-field/date-field.component';
+import { DateRangeFieldComponent } from './date-range-field/date-range-field.component';
 import { EditableLabelComponent } from './editable-label/editable-label.component';
 import { OptionalTagComponent } from './field-components/optional-tag.component';
 import { ErrorMessagePipe } from './field-error-message/error-message.pipe';
@@ -19,7 +21,6 @@ import { MultilineFieldComponent } from './multiline-field/multiline-field.compo
 import { NgXformComponent } from './ng-xform.component';
 import { RadioGroupFieldComponent } from './radiogroup-field/radiogroup-field.component';
 import { SelectFieldComponent } from './select-field/select-field.component';
-import { CustomFieldComponent } from './custom-field/custom-field.component';
 import { NgXformSaveEditComponent } from './ng-xform-save-edit/ng-xform-save-edit.component';
 import { ButtonBarComponent } from './button-bar/button-bar.component';
 
@@ -48,6 +49,7 @@ import { ButtonBarComponent } from './button-bar/button-bar.component';
     MultilineFieldComponent,
     OptionalTagComponent,
     DateFieldComponent,
+    DateRangeFieldComponent,
     FormControlLayoutComponent,
     ButtonBarComponent,
   ],
