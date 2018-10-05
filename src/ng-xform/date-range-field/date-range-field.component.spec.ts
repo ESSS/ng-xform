@@ -69,14 +69,14 @@ describe('DateRangeFieldComponent', () => {
 
     expect(dateRangeField.dateRangeField.componentControl.value[0].toISOString()).toBe(changeTo[0].toISOString());
     expect(dateRangeField.dateRangeField.componentControl.value[1].toISOString()).toBe(changeTo[1].toISOString());
-    expect(dateRangeField.dateRangeField.formattedValue).toBe('Feb 28, 2018 - Feb 28, 2018');
+
 
     dateRangeField.form.reset();
     tickAndDetectChanges(fixture);
 
     expect(dateRangeField.dateValue).toBe(null);
     expect(dateRangeField.dateRangeField.componentControl.value).toBe(null);
-    expect(dateRangeField.dateRangeField.formattedValue).toBe('-');
+
   }));
 
 });
