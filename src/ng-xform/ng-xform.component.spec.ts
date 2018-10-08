@@ -2,6 +2,7 @@ import { BsLocaleService } from 'ngx-bootstrap/datepicker';
 import { DatePipe } from '@angular/common';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Validators } from '@angular/forms';
+import { Component, ViewChild } from '@angular/core';
 import { By } from '@angular/platform-browser';
 
 
@@ -238,4 +239,72 @@ describe('NgXformComponent', () => {
 
   const expectFormInput = expectFormField.bind(null, 'input', 'input');
   const expectFormTextarea = expectFormField.bind(null, 'textarea', 'input');
+
 });
+
+describe('NgXformComponent - Fields setup', () => {
+  
+  it('should reset on field Change', () => {
+    
+    const fixture = createTestingModule();
+    expect(fixture.componentInstance).toBeTruthy();
+
+    let component: NgXformComponent = fixture.debugElement.componentInstance.form;
+
+    fixture.componentInstance.setModel({field1: 'some value'});
+
+    let el = fixture.debugElement.query(By.css('#field1-div .text-muted'));
+    expect(el).toBeFalsy();
+
+    fixture.detectChanges();
+    
+    fixture.componentInstance.setFields([
+      new TextField({ key: 'field1', label: 'Field 1' }),
+    ]);
+    fixture.detectChanges();
+
+    el = fixture.debugElement.query(By.css('#field1-div .text-muted'));
+    expect(el).toBeTruthy();
+    expect(el.nativeElement.textContent).toEqual(' some value ');
+    
+  });
+
+});
+
+function createTestingModule(): ComponentFixture<any> {
+  TestBed.configureTestingModule({
+    imports: [
+      NgXformModule
+    ],
+    declarations: [
+      DateRangeFieldTestComponent,
+    ]
+  }).compileComponents();
+
+  const fixture = TestBed.createComponent(DateRangeFieldTestComponent);
+  fixture.detectChanges();
+
+  return fixture;
+}
+
+
+@Component({
+  template: `
+  <ng-xform [fields]="fields" [horizontalForm]="false" [labelWidth]="3" [(editing)]="editing"></ng-xform>
+  `,
+})
+class DateRangeFieldTestComponent {
+  @ViewChild(NgXformComponent) form: NgXformComponent;
+
+  fields: any = [];
+  editing: boolean = false;
+
+  setFields(fields:any){
+    this.fields = fields;
+  }
+
+  setModel(model: any){
+    this.form.setValue(model);
+  }
+
+}

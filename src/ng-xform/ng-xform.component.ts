@@ -38,7 +38,6 @@ export class NgXformComponent implements OnInit, OnChanges {
 
   ngOnInit() {
     this.createForm();
-    this.reset();
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -49,6 +48,7 @@ export class NgXformComponent implements OnInit, OnChanges {
 
   createForm() {
     this.form = this.createFormGroup(this.fields);
+    this.reset();
   }
 
   createFormGroup(fields: DynamicField[]): FormGroup {

@@ -1,3 +1,23 @@
+<a name="0.19.2"></a>
+## [0.19.2](https://github.com/ESSS/ng-xform/compare/v0.19.1...v0.19.2) (2018-10-08)
+
+
+
+<a name="0.19.1"></a>
+## [0.19.1](https://github.com/ESSS/ng-xform/compare/v0.19.0...v0.19.1) (2018-10-08)
+
+
+### Bug Fixes
+
+* **lib:** reset model on fields change ([3ae1350](https://github.com/ESSS/ng-xform/commit/3ae1350))
+
+
+### Features
+
+* **DataRangeField:** improve code coverage for data range field and error message pipe ([#37](https://github.com/ESSS/ng-xform/issues/37)) ([e265588](https://github.com/ESSS/ng-xform/commit/e265588))
+
+
+
 <a name="0.19.0"></a>
 # [0.19.0](https://github.com/ESSS/ng-xform/compare/v0.18.0...v0.19.0) (2018-09-20)
 
