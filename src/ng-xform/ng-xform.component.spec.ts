@@ -243,9 +243,9 @@ describe('NgXformComponent', () => {
 });
 
 describe('NgXformComponent - Fields setup', () => {
-  
+
   it('should reset on field Change', () => {
-    
+
     const fixture = createTestingModule();
     expect(fixture.componentInstance).toBeTruthy();
 
@@ -257,7 +257,7 @@ describe('NgXformComponent - Fields setup', () => {
     expect(el).toBeFalsy();
 
     fixture.detectChanges();
-    
+
     fixture.componentInstance.setFields([
       new TextField({ key: 'field1', label: 'Field 1' }),
     ]);
@@ -266,7 +266,7 @@ describe('NgXformComponent - Fields setup', () => {
     el = fixture.debugElement.query(By.css('#field1-div .text-muted'));
     expect(el).toBeTruthy();
     expect(el.nativeElement.textContent).toEqual(' some value ');
-    
+
   });
 
 });
@@ -297,13 +297,13 @@ class DateRangeFieldTestComponent {
   @ViewChild(NgXformComponent) form: NgXformComponent;
 
   fields: any = [];
-  editing: boolean = false;
+  editing = false;
 
-  setFields(fields:any){
+  setFields(fields: any) {
     this.fields = fields;
   }
 
-  setModel(model: any){
+  setModel(model: any) {
     this.form.setValue(model);
   }
 
