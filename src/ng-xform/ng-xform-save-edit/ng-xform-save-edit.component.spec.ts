@@ -1,3 +1,4 @@
+import { required } from './../../../tmp/ng-xform/field-error-message/error-messages';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Validators } from '@angular/forms';
 import { By } from '@angular/platform-browser';
@@ -88,14 +89,20 @@ describe('NgXformSaveEdit', () => {
 
 
   it('should emit form value on submit', (done: any) => {
-    const editBtnEl = fixture.debugElement.query(By.css(`#formEditBtn`));
-    editBtnEl.nativeElement.click();
+    const editBtnEl = fixture.nativeElement.querySelector(`#formEditBtn`);
+    editBtnEl.click();
     fixture.detectChanges();
+
+    const requiredInput: HTMLInputElement = fixture.nativeElement.querySelector('#required');
+    expect(requiredInput).toBeTruthy();
+    requiredInput.value = 'changed';
+    requiredInput.dispatchEvent(new Event('input'));
 
     component.submit.subscribe((value: any) => {
       setTimeout(() => {
         expect(value.text1).toBe(model.text1);
         expect(value.comments).toBe(model.comments);
+        expect(value.required).toBe('changed');
         expect(value.date).toBe(dateTest);
         expect(value.isChecked).toBeFalsy();
         done();
@@ -106,6 +113,29 @@ describe('NgXformSaveEdit', () => {
     expect(buttonEl).toBeTruthy();
     expect(component.xform.form.valid).toBeTruthy();
     buttonEl.nativeElement.click();
+  });
+
+  it('should rollback change on cancel', () => {
+    const editBtnEl = fixture.nativeElement.querySelector(`#formEditBtn`);
+    editBtnEl.click();
+    fixture.detectChanges();
+
+    const text1Input: HTMLInputElement = fixture.nativeElement.querySelector('#text1');
+    expect(text1Input).toBeTruthy();
+    text1Input.value = 'changed';
+    text1Input.dispatchEvent(new Event('input'));
+
+    // formModel expect to be changed
+    let formModel = component.xform.getModel()
+    expect(formModel.text1).toBe('changed')
+
+    const buttonEl = fixture.nativeElement.querySelector(`#formCancelBtn`);
+    expect(buttonEl).toBeTruthy();
+    buttonEl.click();
+    fixture.detectChanges();
+
+    // Form edition was canceled: is expected that the label keeps the origina value
+    expectFormLabel('text1', 'Text 1', 'value1')
   });
 
   it('should be read mode', () => {

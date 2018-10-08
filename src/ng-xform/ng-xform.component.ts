@@ -33,7 +33,7 @@ export class NgXformComponent implements OnInit, OnChanges {
   /** To listening submitSuccessful event */
   @Output() cancel = new EventEmitter();
 
-  model: any;
+  model = {};
   form: FormGroup;
 
   ngOnInit() {
@@ -80,33 +80,9 @@ export class NgXformComponent implements OnInit, OnChanges {
     return modelToSend;
   }
 
-  validateAllFormFields(formGroup: FormGroup) {
-    Object.keys(formGroup.controls).forEach(field => {
-      const control = formGroup.get(field);
-      if (control instanceof FormControl) {
-        control.markAsTouched({ onlySelf: true });
-      } else if (control instanceof FormGroup) {
-        this.validateAllFormFields(control);
-      }
-    });
-  }
-
-  onSubmit() {
-    this.validateAllFormFields(this.form);
-    if (this.form.invalid) {
-      return;
-    }
-
-    // copy object
-    const modelToSend = this.unpatchValue(this.form, this.model);
-    this.submit.emit(modelToSend);
-  }
-
-  /** It is called by cancel button */
-  onCancel() {
-    this.setEditing(false);
-    this.reset();
-    this.cancel.emit();
+  isFormValid(): boolean {
+    this.touchControls(this.form);
+    return !this.form.invalid;
   }
 
   reset() {
@@ -136,10 +112,28 @@ export class NgXformComponent implements OnInit, OnChanges {
    */
   setValue(value: any) {
     this.model = value;
-    this.form.patchValue(value);
+    this.form.patchValue(this.model);
   }
 
   getModel() {
     return this.unpatchValue(this.form, this.model);
   }
+
+  /**
+   * Touch all form fields so they run input validatio, and display validation message in case of
+   * invalid inputs.
+   *
+   * @param formGroup the control group to be touched.
+   */
+  private touchControls(formGroup: FormGroup) {
+    Object.keys(formGroup.controls).forEach(field => {
+      const control = formGroup.get(field);
+      if (control instanceof FormControl) {
+        control.markAsTouched({ onlySelf: true });
+      } else if (control instanceof FormGroup) {
+        this.touchControls(control);
+      }
+    });
+  }
+
 }

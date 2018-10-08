@@ -12,7 +12,7 @@ import { NestedFormGroup } from './fields/nested-form-group';
 import { NgXformComponent } from './ng-xform.component';
 import { NgXformModule } from './ng-xform.module';
 
-describe('DynamicFormComponent', () => {
+describe('NgXformComponent', () => {
   let component: NgXformComponent;
   let fixture: ComponentFixture<NgXformComponent>;
   let model: any;
@@ -89,29 +89,6 @@ describe('DynamicFormComponent', () => {
     expect(component.form.value.nested2).toBeTruthy();
   });
 
-  it('should change nested attr value and patch on null model', (done: any) => {
-    component.setValue(null);
-    fixture.detectChanges();
-    expectFormInput('field1', 'Field1', '')
-
-    const el = fixture.debugElement.query(By.css(`#field1-div`));
-    expect(el).toBeTruthy();
-
-    const input = el.query(By.css('input'));
-    input.nativeElement.value = 'some value';
-    input.nativeElement.dispatchEvent(new Event('input'));
-    expect(component.form.value['nested2']).toBeTruthy();
-    expect(component.form.value['nested2']['field1']).toBe('some value');
-
-    component.submit.subscribe((value: any) => {
-      expect(value.nested2.field1).toBe('some value');
-      done();
-    });
-    fixture.detectChanges();
-    expect(component.form.valid).toBeTruthy();
-    component.onSubmit();
-  });
-
   it('should create', () => {
     expect(component).toBeTruthy();
   });
@@ -158,7 +135,7 @@ describe('DynamicFormComponent', () => {
     expect(component.form.value.nested2).toBeTruthy();
   });
 
-  it('should change nested attr value', (done: any) => {
+  it('should change nested attr value', () => {
     fixture.detectChanges();
 
     const el = fixture.debugElement.query(By.css(`#field1-div`));
@@ -168,32 +145,30 @@ describe('DynamicFormComponent', () => {
     input.nativeElement.dispatchEvent(new Event('input'));
     expect(component.form.value['nested2']).toBeTruthy();
     expect(component.form.value['nested2']['field1']).toBe('some value');
-
-    component.submit.subscribe((value: any) => {
-      expect(value.nested2.field1).toBe('some value');
-      expect(value.address.extra_field).toBe(model.address.extra_field);
-      done();
-    });
-    fixture.detectChanges();
+    let formValue = component.getModel()
+    expect(formValue.nested2.field1).toBe('some value');
+    expect(formValue.address.extra_field).toBe(model.address.extra_field);
     expect(component.form.valid).toBeTruthy();
-    component.onSubmit();
   });
 
-  it('should emit form value on submit', (done: any) => {
-    component.submit.subscribe((value: any) => {
-      setTimeout(() => {
-        expect(value.text1).toBe(model.text1);
-        expect(value.comments).toBe(model.comments);
-        expect(value.date).toBe(dateTest);
-        // TODO RFDAP-593
-        // expect(value.isChecked).not.toBeNull();
-        expect(value.isChecked).toBeFalsy();
-        done();
-      });
-    });
+  it('should change nested attr value and patch on null model', () => {
+    component.setValue(null);
+    fixture.detectChanges();
+    expectFormInput('field1', 'Field1', '')
+
+    const el = fixture.debugElement.query(By.css(`#field1-div`));
+    expect(el).toBeTruthy();
+
+    const input = el.query(By.css('input'));
+    input.nativeElement.value = 'some value';
+    input.nativeElement.dispatchEvent(new Event('input'));
+    expect(component.form.value['nested2']).toBeTruthy();
+    expect(component.form.value['nested2']['field1']).toBe('some value');
+    let formValue = component.getModel()
+    expect(formValue.nested2.field1).toBe('some value');
+
     fixture.detectChanges();
     expect(component.form.valid).toBeTruthy();
-    component.onSubmit();
   });
 
   it('should be read mode', () => {

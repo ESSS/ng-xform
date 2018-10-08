@@ -33,25 +33,26 @@ export class NgXformSaveEditComponent {
 
   @ViewChild(NgXformComponent) xform: NgXformComponent;
 
-  private currentModel: any;
+  protected beforeEditingValue = {};
 
   setEditing(editing: boolean) {
-    if (editing) {
-      this.currentModel = this.xform.getModel();
-    }
     this.editing = editing;
+    if (editing) {
+      this.beforeEditingValue = this.xform.getModel();
+      this.xform.setValue({... this.beforeEditingValue});
+    }
   }
 
   onSubmit() {
-    if (this.xform.form.invalid) {
-      return;
+    if (this.xform.isFormValid()) {
+      this.submit.emit(this.xform.getModel());
+      this.editing = false;
     }
-    this.submit.emit(this.xform.getModel());
   }
 
   onCancel() {
     this.cancel.emit();
-    this.xform.setValue(this.currentModel);
+    this.xform.setValue(this.beforeEditingValue);
     this.editing = false;
   }
 
