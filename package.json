@@ -1,7 +1,7 @@
 {
   "name": "@esss/ng-xform",
   "description": "Angular lib",
-  "version": "0.19.1",
+  "version": "0.19.2",
   "homepage": "https://github.com/ESSS/ng-xform",
   "author": {
     "name": "Eder Soares",

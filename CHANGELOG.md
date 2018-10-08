@@ -1,3 +1,8 @@
+<a name="0.19.2"></a>
+## [0.19.2](https://github.com/ESSS/ng-xform/compare/v0.19.1...v0.19.2) (2018-10-08)
+
+
+
 <a name="0.19.1"></a>
 ## [0.19.1](https://github.com/ESSS/ng-xform/compare/v0.19.0...v0.19.1) (2018-10-08)
 
