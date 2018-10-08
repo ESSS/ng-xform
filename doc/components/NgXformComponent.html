@@ -979,7 +979,7 @@ This component can display an error code if that is defined.</p>
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/ng-xform/ng-xform.component.ts:50</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/ng-xform/ng-xform.component.ts:49</a></div>
                                 </td>
                             </tr>
     
@@ -1082,7 +1082,7 @@ This component can display an error code if that is defined.</p>
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/ng-xform/ng-xform.component.ts:44</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/ng-xform/ng-xform.component.ts:43</a></div>
                                 </td>
                             </tr>
     
@@ -1635,7 +1635,6 @@ export class NgXformComponent implements OnInit, OnChanges {
 
   ngOnInit() {
     this.createForm();
-    this.reset();
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -1646,6 +1645,7 @@ export class NgXformComponent implements OnInit, OnChanges {
 
   createForm() {
     this.form &#x3D; this.createFormGroup(this.fields);
+    this.reset();
   }
 
   createFormGroup(fields: DynamicField[]): FormGroup {
