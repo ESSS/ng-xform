@@ -16,7 +16,6 @@
         </p>
       </div>
     </div>
-
   </div>
 </div>
 
@@ -34,13 +33,17 @@
           <input type="number" class="form-control" [(ngModel)]="labelWidth" [ngModelOptions]="{standalone: true}"/>
         </div>
         <div class="col-sm-3 form-group">
-          <button *ngIf="editing" type="button" class="btn btn-info" (click)="populate()">Populate</button>
+          <button *ngIf="xformComponent.editing" type="button" class="btn btn-info" (click)="populate()">Populate</button>
         </div>
       </fieldset>
     </form>
     <hr />
     <div class="panel-body">
-      <ng-xform-save-edit [horizontalForm]="horizontal" [labelWidth]="labelWidth" (submit)="onSubmit($event)" [fields]="fields" [(editing)]="editing">
+      <ng-xform-save-edit
+        [fields]="fields"
+        [horizontalForm]="horizontal"
+        [labelWidth]="labelWidth"
+        (submit)="onSubmit($event)">
       </ng-xform-save-edit>
       <hr>
       <pre>{{ model | json }}</pre>

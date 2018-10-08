@@ -17,7 +17,7 @@ import {
   CustomField
 } from '@esss/ng-xform';
 import { Observable, of } from 'rxjs';
-import { delay, map } from 'rxjs/operators';
+import { delay, map, buffer, skip } from 'rxjs/operators';
 
 
 @Component({
@@ -41,7 +41,6 @@ export class HomeComponent implements OnInit {
   ];
 
   public fields: DynamicField[];
-  public editing = true;
   public horizontal = false;
   public labelWidth = 2;
   public model: any;
@@ -97,14 +96,14 @@ export class HomeComponent implements OnInit {
         key: 'address',
         fields: [
           new SelectField({
-            key: 'street',
-            label: 'Street',
+            key: 'country',
+            label: 'Country',
             searchHandler: this.observableSource.bind(this),
             searchByValueKeyHandler: this.observableSourceByPlaceId.bind(this),
             searchOnFocus: true,
             searchable: true,
-            optionLabelKey: 'formatted_address',
-            optionValueKey: 'place_id',
+            optionLabelKey: 'name',
+            optionValueKey: 'alpha3Code',
             validators: [
               Validators.required
             ]
@@ -178,7 +177,6 @@ export class HomeComponent implements OnInit {
   }
 
   public onSubmit(values: object) {
-    this.editing = !this.editing;
     this.model = values;
   }
 
@@ -212,20 +210,21 @@ export class HomeComponent implements OnInit {
   }
 
   public observableSource(keyword: any): Observable<any[]> {
-    const apiKey = 'AIzaSyB4Hm7LBQ4482DJC5PoHv37UkRBmT4gNFU';
-    const url = `https://maps.googleapis.com/maps/api/geocode/json?key=${apiKey}&address=${keyword}`;
+    const url = `https://restcountries.eu/rest/v2/name/${keyword}`;
     if (keyword) {
       return this.http.get(url)
-        .pipe(map((res) => res['results']));
+        .pipe(
+          map((res) => res as any[])
+        );
     } else {
       return of([]);
     }
   }
 
-  public observableSourceByPlaceId(place_id: any): Observable<any> {
+  public observableSourceByPlaceId(keyword: any): Observable<any> {
     return of({
-      'place_id': 'ChIJn7h-4b9JJ5URGCq6n0zj1tM',
-      'formatted_address': 'Florianópolis - State of Santa Catarina, Brazil'
+      'alpha3Code': 'BRA',
+      'name': 'Brazil'
     }).pipe(delay(300));
   }
 }
