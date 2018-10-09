@@ -22,7 +22,7 @@ import { NgXformComponent } from './ng-xform.component';
 import { RadioGroupFieldComponent } from './radiogroup-field/radiogroup-field.component';
 import { SelectFieldComponent } from './select-field/select-field.component';
 import { NgXformEditSaveComponent } from './ng-xform-edit-save/ng-xform-edit-save.component';
-import { ButtonBarComponent } from './button-bar/button-bar.component';
+import { EditSaveCancelButtonBarComponent } from './edit-save-cancel-button-bar/edit-save-cancel-button-bar.component';
 
 
 @NgModule({
@@ -51,7 +51,7 @@ import { ButtonBarComponent } from './button-bar/button-bar.component';
     DateFieldComponent,
     DateRangeFieldComponent,
     FormControlLayoutComponent,
-    ButtonBarComponent,
+    EditSaveCancelButtonBarComponent,
   ],
   exports: [
     NgXformComponent,

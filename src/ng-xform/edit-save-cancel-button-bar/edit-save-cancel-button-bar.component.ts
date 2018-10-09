@@ -2,10 +2,10 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 
 @Component({
-    selector: 'ng-xform-button-bar',
-    templateUrl: './button-bar.component.html',
+    selector: 'ng-xform-edit-save-cancel-button-bar',
+    templateUrl: './edit-save-cancel-button-bar.component.html',
 })
-export class ButtonBarComponent {
+export class EditSaveCancelButtonBarComponent {
 
     @Input() editing = false;
     @Output() save = new EventEmitter();

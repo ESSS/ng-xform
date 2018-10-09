@@ -1,6 +1,6 @@
 <ng-xform [horizontalForm]="horizontalForm" [labelWidth]="labelWidth" [fields]='fields' [editing]='editing'></ng-xform>
 <div class="row">
   <div class="col-md-12">
-    <ng-xform-button-bar [editing]='editing' (save)="onSubmit()" (cancel)="onCancel()" (edit)="setEditing(true)"></ng-xform-button-bar>
+    <ng-xform-edit-save-cancel-button-bar [editing]='editing' (save)="onSubmit()" (cancel)="onCancel()" (edit)="setEditing(true)"></ng-xform-edit-save-cancel-button-bar>
   </div>
 </div>
