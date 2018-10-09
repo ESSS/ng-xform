@@ -15,11 +15,11 @@ import { DynamicField } from '../fields/dynamic-field';
  * :editing: Flag to control components state
  */
 @Component({
-  selector: 'ng-xform-save-edit',
-  templateUrl: './ng-xform-save-edit.component.html',
+  selector: 'ng-xform-edit-save',
+  templateUrl: './ng-xform-edit-save.component.html',
   styles: []
 })
-export class NgXformSaveEditComponent {
+export class NgXformEditSaveComponent {
 
   @Input() fields: DynamicField[];
   @Input() editing = false;

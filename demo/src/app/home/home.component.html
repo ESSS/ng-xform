@@ -39,12 +39,12 @@
     </form>
     <hr />
     <div class="panel-body">
-      <ng-xform-save-edit
+      <ng-xform-edit-save
         [fields]="fields"
         [horizontalForm]="horizontal"
         [labelWidth]="labelWidth"
         (submit)="onSubmit($event)">
-      </ng-xform-save-edit>
+      </ng-xform-edit-save>
       <hr>
       <pre>{{ model | json }}</pre>
     </div>

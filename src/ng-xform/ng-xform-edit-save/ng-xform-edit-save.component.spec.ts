@@ -5,16 +5,16 @@ import { By } from '@angular/platform-browser';
 import { DatePipe } from '@angular/common';
 import { BsLocaleService } from 'ngx-bootstrap/datepicker';
 
-import { NgXformSaveEditComponent } from './ng-xform-save-edit.component';
+import { NgXformEditSaveComponent } from './ng-xform-edit-save.component';
 import { DateField, MeasureField, TextField } from '../fields';
 import { CheckboxField } from '../fields/checkbox-field';
 import { MultilineField } from '../fields/multiline-field';
 import { NestedFormGroup } from '../fields/nested-form-group';
 import { NgXformModule } from '../ng-xform.module';
 
-describe('NgXformSaveEdit', () => {
-  let component: NgXformSaveEditComponent;
-  let fixture: ComponentFixture<NgXformSaveEditComponent>;
+describe('NgXformEditSave', () => {
+  let component: NgXformEditSaveComponent;
+  let fixture: ComponentFixture<NgXformEditSaveComponent>;
   let model: any;
   let dateTest: Date;
   let datePipe: DatePipe;
@@ -33,7 +33,7 @@ describe('NgXformSaveEdit', () => {
   );
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(NgXformSaveEditComponent);
+    fixture = TestBed.createComponent(NgXformEditSaveComponent);
     component = fixture.componentInstance;
     dateTest = new Date();
     datePipe = new DatePipe('en');

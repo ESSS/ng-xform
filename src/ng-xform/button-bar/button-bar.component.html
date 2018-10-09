@@ -1,7 +1,9 @@
 <div class="pull-right btn-toolbar">
-  <button type="submit" class="btn btn-primary" id="formEditBtn" (click)="edit.emit()" *ngIf="editing === false">
-    <span class="fa fa-pencil"></span> Edit
-  </button>
+  <ng-template [ngIf]="editing === false">
+    <button type="submit" class="btn btn-primary" id="formEditBtn" (click)="edit.emit()">
+      <span class="fa fa-pencil"></span> Edit
+    </button>
+  </ng-template>
   <ng-template [ngIf]="editing">
     <button type="submit" class="btn btn-primary" id="formSubmitBtn" (click)="save.emit()">Save</button>
     <button type="button" class="btn btn-default" id="formCancelBtn" (click)="cancel.emit()">Cancel</button>

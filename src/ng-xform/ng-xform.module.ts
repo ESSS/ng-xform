@@ -21,7 +21,7 @@ import { MultilineFieldComponent } from './multiline-field/multiline-field.compo
 import { NgXformComponent } from './ng-xform.component';
 import { RadioGroupFieldComponent } from './radiogroup-field/radiogroup-field.component';
 import { SelectFieldComponent } from './select-field/select-field.component';
-import { NgXformSaveEditComponent } from './ng-xform-save-edit/ng-xform-save-edit.component';
+import { NgXformEditSaveComponent } from './ng-xform-edit-save/ng-xform-edit-save.component';
 import { ButtonBarComponent } from './button-bar/button-bar.component';
 
 
@@ -36,7 +36,7 @@ import { ButtonBarComponent } from './button-bar/button-bar.component';
   ],
   declarations: [
     NgXformComponent,
-    NgXformSaveEditComponent,
+    NgXformEditSaveComponent,
     FormGroupComponent,
     EditableLabelComponent,
     CheckboxFieldComponent,
@@ -55,7 +55,7 @@ import { ButtonBarComponent } from './button-bar/button-bar.component';
   ],
   exports: [
     NgXformComponent,
-    NgXformSaveEditComponent,
+    NgXformEditSaveComponent,
     FieldErrorMessageComponent,
     PipesModule,
   ]

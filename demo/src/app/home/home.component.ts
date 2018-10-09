@@ -10,7 +10,7 @@ import {
   MeasureField,
   MultilineField,
   NestedFormGroup,
-  NgXformSaveEditComponent,
+  NgXformEditSaveComponent,
   RadioGroupField,
   SelectField,
   TextField,
@@ -27,7 +27,7 @@ import { delay, map, buffer, skip } from 'rxjs/operators';
 })
 export class HomeComponent implements OnInit {
 
-  @ViewChild(NgXformSaveEditComponent) xformComponent: NgXformSaveEditComponent;
+  @ViewChild(NgXformEditSaveComponent) xformComponent: NgXformEditSaveComponent;
   @ViewChild('customField') customFieldTmpl: TemplateRef<any>;
 
   private colors: any[] = [
