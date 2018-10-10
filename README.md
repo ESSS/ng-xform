@@ -83,7 +83,7 @@ export class OtherModule {
 ## Usage
 Template:
 ```html
- <ng-xform [horizontalForm]="horizontal" [labelWidth]="labelWidth" (onSubmit)="onSubmit($event)" [fields]="fields" [(editing)]="editing"></ng-xform>
+ <ng-xform [horizontalForm]="horizontal" [labelWidth]="labelWidth" [fields]="fields" ></ng-xform>
 ```
 Component:
 ```ts
