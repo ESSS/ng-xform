@@ -10,9 +10,10 @@ import {
 import { DynamicField } from '../fields/dynamic-field';
 
 /**
- * This component builds a form that switches from editable/non-editable mode.
+ * This component builds a ng-xform with a button bar. The button bar shows an Edit button
+ * when `form.editing == false` and Save/Cancel buttons when `form.editing == true`. Save
+ * buttons trigger `onSubmit` event.
  *
- * :editing: Flag to control components state
  */
 @Component({
   selector: 'ng-xform-edit-save',
