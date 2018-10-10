@@ -120,7 +120,7 @@ export class NgXformComponent implements OnInit, OnChanges {
   }
 
   /**
-   * Touch all form fields so they run input validatio, and display validation message in case of
+   * Touch all form fields to force field validations to run, and display validation message in
    * invalid inputs.
    *
    * @param formGroup the control group to be touched.
