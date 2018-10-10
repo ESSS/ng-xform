@@ -84,20 +84,6 @@ describe('NgXformComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should patch value', () => {
-    component.createForm();
-    component.reset();
-    expect(component.form.value.nested2).toBeTruthy();
-  });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-
-  it('should render NestedFormGroup', () => {
-    expectFormInput('city', 'City', 'Ny');
-  });
-
   it('should render TextField', () => {
     expectFormInput('text1', 'Text 1', 'value1');
   });
@@ -112,6 +98,15 @@ describe('NgXformComponent', () => {
 
   it('should render nested field', () => {
     expectFormInput('city', 'City', 'Ny');
+  });
+
+  it('should clear', () => {
+    component.clear();
+    fixture.detectChanges();
+    expectFormInput('city', 'City', '');
+    expectFormInput('text1', 'Text 1', '');
+    expectFormTextarea('comments', 'Comments', '');
+    expectFormInput('measure1', 'Measure 1', undefined);
   });
 
   it('should render DateField', () => {
