@@ -33,7 +33,7 @@ export class NgXformComponent implements OnInit, OnChanges {
   /** To listening submitSuccessful event */
   @Output() cancel = new EventEmitter();
 
-  model = {};
+  model: any = null;
   form: FormGroup;
 
   ngOnInit() {
@@ -93,8 +93,8 @@ export class NgXformComponent implements OnInit, OnChanges {
   }
 
   clear() {
+    this.model = null;
     this.form.reset();
-    this.model = undefined;
   }
 
   setEditing(state: boolean) {

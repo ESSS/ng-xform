@@ -32,7 +32,7 @@ export class NgXformEditSaveComponent {
   /** To listening submitSuccessful event */
   @Output() cancel = new EventEmitter();
 
-  @ViewChild(NgXformComponent) xform: NgXformComponent;
+  @ViewChild('xform') xform: NgXformComponent;
 
   protected beforeEditingValue = {};
 
