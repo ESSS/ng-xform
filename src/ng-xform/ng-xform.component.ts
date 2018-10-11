@@ -28,12 +28,12 @@ export class NgXformComponent implements OnInit, OnChanges {
   @Output() editingChange = new EventEmitter();
 
   /** To listening submitSuccessful event */
-  @Output() onSubmit = new EventEmitter();
+  @Output() submit = new EventEmitter();
 
   /** To listening submitSuccessful event */
-  @Output() onCancel = new EventEmitter();
+  @Output() cancel = new EventEmitter();
 
-  model: any;
+  model: any = null;
   form: FormGroup;
 
   ngOnInit() {
@@ -80,33 +80,9 @@ export class NgXformComponent implements OnInit, OnChanges {
     return modelToSend;
   }
 
-  validateAllFormFields(formGroup: FormGroup) {
-    Object.keys(formGroup.controls).forEach(field => {
-      const control = formGroup.get(field);
-      if (control instanceof FormControl) {
-        control.markAsTouched({ onlySelf: true });
-      } else if (control instanceof FormGroup) {
-        this.validateAllFormFields(control);
-      }
-    });
-  }
-
-  submit() {
-    this.validateAllFormFields(this.form);
-    if (this.form.invalid) {
-      return;
-    }
-
-    // copy object
-    const modelToSend = this.unpatchValue(this.form, this.model);
-    this.onSubmit.emit(modelToSend);
-  }
-
-  /** It is called by cancel button */
-  cancel() {
-    this.setEditing(false);
-    this.reset();
-    this.onCancel.emit();
+  isFormValid(): boolean {
+    this.touchControls(this.form);
+    return !this.form.invalid;
   }
 
   reset() {
@@ -117,8 +93,8 @@ export class NgXformComponent implements OnInit, OnChanges {
   }
 
   clear() {
+    this.model = null;
     this.form.reset();
-    this.model = undefined;
   }
 
   setEditing(state: boolean) {
@@ -136,6 +112,28 @@ export class NgXformComponent implements OnInit, OnChanges {
    */
   setValue(value: any) {
     this.model = value;
-    this.form.patchValue(value);
+    this.form.patchValue(this.model);
   }
+
+  getModel() {
+    return this.unpatchValue(this.form, this.model);
+  }
+
+  /**
+   * Touch all form fields to force field validations to run, and display validation message in
+   * invalid inputs.
+   *
+   * @param formGroup the control group to be touched.
+   */
+  private touchControls(formGroup: FormGroup) {
+    Object.keys(formGroup.controls).forEach(field => {
+      const control = formGroup.get(field);
+      if (control instanceof FormControl) {
+        control.markAsTouched({ onlySelf: true });
+      } else if (control instanceof FormGroup) {
+        this.touchControls(control);
+      }
+    });
+  }
+
 }

@@ -1,9 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { Inject, LOCALE_ID, NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { NgSelectModule } from '@ng-select/ng-select';
-import { BsLocaleService } from 'ngx-bootstrap/datepicker';
 
+import { NgSelectModule } from '@ng-select/ng-select';
+import { bsDatepickerModuleWithProviders, bsDropdownModuleWithProviders } from './ng-xform.module-imports';
+import { BsLocaleService } from 'ngx-bootstrap/datepicker';
 import { PipesModule } from '../pipes/pipes.module';
 import { CheckboxFieldComponent } from './checkbox-field/checkbox-field.component';
 import { CustomFieldComponent } from './custom-field/custom-field.component';
@@ -18,9 +19,10 @@ import { FormGroupComponent } from './form-group/form-group.component';
 import { MeasureFieldComponent } from './measure-field/measure-field.component';
 import { MultilineFieldComponent } from './multiline-field/multiline-field.component';
 import { NgXformComponent } from './ng-xform.component';
-import { bsDatepickerModuleWithProviders, bsDropdownModuleWithProviders } from './ng-xform.module-imports';
 import { RadioGroupFieldComponent } from './radiogroup-field/radiogroup-field.component';
 import { SelectFieldComponent } from './select-field/select-field.component';
+import { NgXformEditSaveComponent } from './ng-xform-edit-save/ng-xform-edit-save.component';
+import { EditSaveCancelButtonBarComponent } from './edit-save-cancel-button-bar/edit-save-cancel-button-bar.component';
 
 
 @NgModule({
@@ -34,6 +36,7 @@ import { SelectFieldComponent } from './select-field/select-field.component';
   ],
   declarations: [
     NgXformComponent,
+    NgXformEditSaveComponent,
     FormGroupComponent,
     EditableLabelComponent,
     CheckboxFieldComponent,
@@ -48,9 +51,11 @@ import { SelectFieldComponent } from './select-field/select-field.component';
     DateFieldComponent,
     DateRangeFieldComponent,
     FormControlLayoutComponent,
+    EditSaveCancelButtonBarComponent,
   ],
   exports: [
     NgXformComponent,
+    NgXformEditSaveComponent,
     FieldErrorMessageComponent,
     PipesModule,
   ]

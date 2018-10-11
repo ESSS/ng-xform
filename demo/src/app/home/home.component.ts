@@ -1,6 +1,6 @@
-import { HttpClient } from '@angular/common/http';
-import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
 import { Validators } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
 import { Title } from '@angular/platform-browser';
 import {
   CheckboxField,
@@ -10,14 +10,14 @@ import {
   MeasureField,
   MultilineField,
   NestedFormGroup,
-  NgXformComponent,
+  NgXformEditSaveComponent,
   RadioGroupField,
   SelectField,
   TextField,
-  CustomField,
+  CustomField
 } from '@esss/ng-xform';
 import { Observable, of } from 'rxjs';
-import { delay, map } from 'rxjs/operators';
+import { delay, map, buffer, skip } from 'rxjs/operators';
 
 
 @Component({
@@ -27,7 +27,7 @@ import { delay, map } from 'rxjs/operators';
 })
 export class HomeComponent implements OnInit {
 
-  @ViewChild(NgXformComponent) xformComponent: NgXformComponent;
+  @ViewChild(NgXformEditSaveComponent) xformComponent: NgXformEditSaveComponent;
   @ViewChild('customField') customFieldTmpl: TemplateRef<any>;
 
   private colors: any[] = [
@@ -41,9 +41,9 @@ export class HomeComponent implements OnInit {
   ];
 
   public fields: DynamicField[];
-  public editing = true;
   public horizontal = false;
   public labelWidth = 2;
+  public model: any;
 
   constructor(private titleService: Title, private http: HttpClient) { }
 
@@ -96,14 +96,14 @@ export class HomeComponent implements OnInit {
         key: 'address',
         fields: [
           new SelectField({
-            key: 'street',
-            label: 'Street',
+            key: 'country',
+            label: 'Country',
             searchHandler: this.observableSource.bind(this),
             searchByValueKeyHandler: this.observableSourceByPlaceId.bind(this),
             searchOnFocus: true,
             searchable: true,
-            optionLabelKey: 'formatted_address',
-            optionValueKey: 'place_id',
+            optionLabelKey: 'name',
+            optionValueKey: 'alpha3Code',
             validators: [
               Validators.required
             ]
@@ -177,8 +177,7 @@ export class HomeComponent implements OnInit {
   }
 
   public onSubmit(values: object) {
-    this.editing = !this.editing;
-    console.log(values);
+    this.model = values;
   }
 
   populate() {
@@ -211,20 +210,21 @@ export class HomeComponent implements OnInit {
   }
 
   public observableSource(keyword: any): Observable<any[]> {
-    const apiKey = 'AIzaSyB4Hm7LBQ4482DJC5PoHv37UkRBmT4gNFU';
-    const url = `https://maps.googleapis.com/maps/api/geocode/json?key=${apiKey}&address=${keyword}`;
+    const url = `https://restcountries.eu/rest/v2/name/${keyword}`;
     if (keyword) {
       return this.http.get(url)
-        .pipe(map((res) => res['results']));
+        .pipe(
+          map((res) => res as any[])
+        );
     } else {
       return of([]);
     }
   }
 
-  public observableSourceByPlaceId(place_id: any): Observable<any> {
+  public observableSourceByPlaceId(keyword: any): Observable<any> {
     return of({
-      'place_id': 'ChIJn7h-4b9JJ5URGCq6n0zj1tM',
-      'formatted_address': 'Florianópolis - State of Santa Catarina, Brazil'
+      'alpha3Code': 'BRA',
+      'name': 'Brazil'
     }).pipe(delay(300));
   }
 }

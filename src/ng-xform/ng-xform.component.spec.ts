@@ -16,9 +16,7 @@ import { NgXformModule } from './ng-xform.module';
 describe('NgXformComponent', () => {
   let component: NgXformComponent;
   let fixture: ComponentFixture<NgXformComponent>;
-  let optieditingons: any[];
   let model: any;
-  let options: any[];
   let dateTest: Date;
   let datePipe: DatePipe;
   let bsLocaleService: BsLocaleService;
@@ -86,50 +84,6 @@ describe('NgXformComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create form', () => {
-    component.createForm();
-    expect(component.form).toBeTruthy();
-  });
-
-  it('should patch value', () => {
-    component.createForm();
-    component.reset();
-    expect(component.form.value.nested2).toBeTruthy();
-  });
-
-  it('should change nested attr value and patch on null model', (done: any) => {
-    component.setValue(null);
-    fixture.detectChanges();
-    expectFormInput('field1', 'Field1', '')
-
-    const el = fixture.debugElement.query(By.css(`#field1-div`));
-    expect(el).toBeTruthy();
-
-    const input = el.query(By.css('input'));
-    input.nativeElement.value = 'some value';
-    input.nativeElement.dispatchEvent(new Event('input'));
-    expect(component.form.value['nested2']).toBeTruthy();
-    expect(component.form.value['nested2']['field1']).toBe('some value');
-
-    component.onSubmit.subscribe((value: any) => {
-      expect(value.nested2.field1).toBe('some value');
-      done();
-    });
-    const buttonEl = fixture.debugElement.query(By.css(`#formSubmitBtn`));
-    fixture.detectChanges();
-    expect(buttonEl).toBeTruthy();
-    expect(component.form.valid).toBeTruthy();
-    buttonEl.nativeElement.click();
-  });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-
-  it('should render NestedFormGroup', () => {
-    expectFormInput('city', 'City', 'Ny');
-  });
-
   it('should render TextField', () => {
     expectFormInput('text1', 'Text 1', 'value1');
   });
@@ -144,6 +98,15 @@ describe('NgXformComponent', () => {
 
   it('should render nested field', () => {
     expectFormInput('city', 'City', 'Ny');
+  });
+
+  it('should clear', () => {
+    component.clear();
+    fixture.detectChanges();
+    expectFormInput('city', 'City', '');
+    expectFormInput('text1', 'Text 1', '');
+    expectFormTextarea('comments', 'Comments', '');
+    expectFormInput('measure1', 'Measure 1', undefined);
   });
 
   it('should render DateField', () => {
@@ -168,7 +131,7 @@ describe('NgXformComponent', () => {
     expect(component.form.value.nested2).toBeTruthy();
   });
 
-  it('should change nested attr value', (done: any) => {
+  it('should change nested attr value', () => {
     fixture.detectChanges();
 
     const el = fixture.debugElement.query(By.css(`#field1-div`));
@@ -178,37 +141,30 @@ describe('NgXformComponent', () => {
     input.nativeElement.dispatchEvent(new Event('input'));
     expect(component.form.value['nested2']).toBeTruthy();
     expect(component.form.value['nested2']['field1']).toBe('some value');
-
-    component.onSubmit.subscribe((value: any) => {
-      expect(value.nested2.field1).toBe('some value');
-      expect(value.address.extra_field).toBe(model.address.extra_field);
-      done();
-    });
-    const buttonEl = fixture.debugElement.query(By.css(`#formSubmitBtn`));
-    fixture.detectChanges();
-    expect(buttonEl).toBeTruthy();
+    let formValue = component.getModel()
+    expect(formValue.nested2.field1).toBe('some value');
+    expect(formValue.address.extra_field).toBe(model.address.extra_field);
     expect(component.form.valid).toBeTruthy();
-    buttonEl.nativeElement.click();
-
   });
 
-  it('should emit form value on submit', (done: any) => {
-    component.onSubmit.subscribe((value: any) => {
-      setTimeout(() => {
-        expect(value.text1).toBe(model.text1);
-        expect(value.comments).toBe(model.comments);
-        expect(value.date).toBe(dateTest);
-        // TODO RFDAP-593
-        // expect(value.isChecked).not.toBeNull();
-        expect(value.isChecked).toBeFalsy();
-        done();
-      });
-    });
-    const buttonEl = fixture.debugElement.query(By.css(`#formSubmitBtn`));
+  it('should change nested attr value and patch on null model', () => {
+    component.setValue(null);
     fixture.detectChanges();
-    expect(buttonEl).toBeTruthy();
+    expectFormInput('field1', 'Field1', '')
+
+    const el = fixture.debugElement.query(By.css(`#field1-div`));
+    expect(el).toBeTruthy();
+
+    const input = el.query(By.css('input'));
+    input.nativeElement.value = 'some value';
+    input.nativeElement.dispatchEvent(new Event('input'));
+    expect(component.form.value['nested2']).toBeTruthy();
+    expect(component.form.value['nested2']['field1']).toBe('some value');
+    let formValue = component.getModel()
+    expect(formValue.nested2.field1).toBe('some value');
+
+    fixture.detectChanges();
     expect(component.form.valid).toBeTruthy();
-    buttonEl.nativeElement.click();
   });
 
   it('should be read mode', () => {
@@ -282,9 +238,9 @@ describe('NgXformComponent', () => {
 });
 
 describe('NgXformComponent - Fields setup', () => {
-  
+
   it('should reset on field Change', () => {
-    
+
     const fixture = createTestingModule();
     expect(fixture.componentInstance).toBeTruthy();
 
@@ -296,7 +252,7 @@ describe('NgXformComponent - Fields setup', () => {
     expect(el).toBeFalsy();
 
     fixture.detectChanges();
-    
+
     fixture.componentInstance.setFields([
       new TextField({ key: 'field1', label: 'Field 1' }),
     ]);
@@ -305,7 +261,7 @@ describe('NgXformComponent - Fields setup', () => {
     el = fixture.debugElement.query(By.css('#field1-div .text-muted'));
     expect(el).toBeTruthy();
     expect(el.nativeElement.textContent).toEqual(' some value ');
-    
+
   });
 
 });
@@ -336,13 +292,13 @@ class DateRangeFieldTestComponent {
   @ViewChild(NgXformComponent) form: NgXformComponent;
 
   fields: any = [];
-  editing: boolean = false;
+  editing = false;
 
-  setFields(fields:any){
+  setFields(fields: any) {
     this.fields = fields;
   }
 
-  setModel(model: any){
+  setModel(model: any) {
     this.form.setValue(model);
   }
 
