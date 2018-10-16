@@ -59,6 +59,12 @@ describe('MeasureFieldComponent', () => {
     expect(inputEl.nativeElement.value).toBe(initialValue);
   });
 
+  it('should format properly form value', () => {
+    const initialValue = '1.2346';
+    component.writeValue({ value: 1.2345678910111213, unit: 'm' });
+    expect(inputEl.nativeElement.value).toBe(initialValue);
+  });
+
   it('should disable form value', () => {
     component.writeValue({ value: 22, unit: 'm' });
 
