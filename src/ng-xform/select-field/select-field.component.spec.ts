@@ -1,7 +1,7 @@
 import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { FormControl } from '@angular/forms';
 import { By } from '@angular/platform-browser';
-import { of } from 'rxjs';
+import { of, Observable } from 'rxjs';
 
 import { getNgSelectElement, KeyCode, tickAndDetectChanges, triggerKeyDownEvent } from '../../testing/helpers';
 import { SelectField } from '../fields';
@@ -10,6 +10,7 @@ import { NgXformModule } from '../ng-xform.module';
 import { SelectFieldComponent } from './select-field.component';
 
 describe('SelectFieldComponent', () => {
+
   it('should render SelectField', () => {
     const fixture = createTestingModule(new SelectField({
       key: 'choice_id',
@@ -22,7 +23,7 @@ describe('SelectFieldComponent', () => {
     expect(fixture.componentInstance).toBeTruthy();
   });
 
-  it('should render SelectField', () => {
+  it('should render SelectField with options', () => {
     const fixture = createTestingModule(new SelectField({
       key: 'choice_id',
       label: 'Choice',
@@ -32,6 +33,28 @@ describe('SelectFieldComponent', () => {
         { id: 1, description: 'Choice1' },
         { id: 2, description: 'Choice2' }
       ]
+    }));
+    fixture.detectChanges();
+    const el = fixture.debugElement.query(By.css(`#choice_id-div`));
+    expect(el).toBeTruthy();
+    const label = el.query(By.css('label'));
+    expect(label).toBeTruthy();
+    expect(label.nativeElement.textContent).toContain('Choice');
+    const selectComponet = el.query(By.css('ng-select'));
+    expect(selectComponet).toBeTruthy();
+  });
+
+  it('should render SelectField with searchHandler', () => {
+    const fixture = createTestingModule(new SelectField({
+      key: 'choice_id',
+      label: 'Choice',
+      optionValueKey: 'id',
+      optionLabelKey: 'description',
+      searchHandler: (value: string) => of([
+        { id: 1, description: 'Choice1' },
+        { id: 2, description: 'Choice2' }
+      ]),
+      searchByValueKeyHandler: (value: string) => of({ id: 1, description: 'Choice1' }),
     }));
     fixture.detectChanges();
     const el = fixture.debugElement.query(By.css(`#choice_id-div`));
