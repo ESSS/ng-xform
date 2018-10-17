@@ -1,12 +1,13 @@
 import { Observable } from 'rxjs';
 import { DynamicField } from './dynamic-field';
+import { FormatOptions } from 'mathjs';
 
 export class MeasureField<T = any> extends DynamicField<T> {
   public controlType ? = 'MEASURE';
   public modelUnit: string;
   public viewUnit?: string | Observable<string>;
   public availableUnits?: string[] | Observable<string[]>;
-  public precision?: number;
+  public formatOptions?: FormatOptions;
   public changedUnitHandler?: (unit: string) => void;
 
   constructor(options: MeasureField<T>) {
@@ -14,7 +15,7 @@ export class MeasureField<T = any> extends DynamicField<T> {
     this.modelUnit = options.modelUnit;
     this.viewUnit = options.viewUnit;
     this.availableUnits = options.availableUnits;
-    this.precision = options.precision || 8;
+    this.formatOptions = options.formatOptions || {precision: 5};
     this.changedUnitHandler = options.changedUnitHandler;
   }
 }
