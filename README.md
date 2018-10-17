@@ -186,7 +186,8 @@ export class HomeComponent implements OnInit {
         label: 'Length',
         modelUnit: 'm',
         viewUnit: of('cm').delay(200),
-        availableUnits: of(['m', 'cm', 'mm', 'ft']).delay(200)
+        availableUnits: of(['m', 'cm', 'mm', 'ft']).delay(200),
+        formatOptions: {notation: 'fixed', precision: 4}
       }),
       new CheckboxField({
         key: 'news',
