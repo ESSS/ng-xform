@@ -109,6 +109,9 @@
                                     <a href="./components/DateRangeFieldComponent.html" >DateRangeFieldComponent</a>
                                 </li>
                                 <li class="link">
+                                    <a href="./components/EditSaveCancelButtonBarComponent.html" >EditSaveCancelButtonBarComponent</a>
+                                </li>
+                                <li class="link">
                                     <a href="./components/EditableLabelComponent.html" >EditableLabelComponent</a>
                                 </li>
                                 <li class="link">
@@ -128,6 +131,9 @@
                                 </li>
                                 <li class="link">
                                     <a href="./components/NgXformComponent.html" >NgXformComponent</a>
+                                </li>
+                                <li class="link">
+                                    <a href="./components/NgXformEditSaveComponent.html" >NgXformEditSaveComponent</a>
                                 </li>
                                 <li class="link">
                                     <a href="./components/OptionalTagComponent.html" >OptionalTagComponent</a>
@@ -358,6 +364,9 @@
                                            <a href="./components/DateRangeFieldComponent.html" >DateRangeFieldComponent</a>
                                        </li>
                                        <li class="link">
+                                           <a href="./components/EditSaveCancelButtonBarComponent.html" >EditSaveCancelButtonBarComponent</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="./components/EditableLabelComponent.html" >EditableLabelComponent</a>
                                        </li>
                                        <li class="link">
@@ -377,6 +386,9 @@
                                        </li>
                                        <li class="link">
                                            <a href="./components/NgXformComponent.html" >NgXformComponent</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="./components/NgXformEditSaveComponent.html" >NgXformEditSaveComponent</a>
                                        </li>
                                        <li class="link">
                                            <a href="./components/OptionalTagComponent.html" >OptionalTagComponent</a>
@@ -566,7 +578,7 @@ export class AppModule {
 export class OtherModule {
 }</code></pre><h2 id="usage">Usage</h2>
 <p>Template:</p>
-<pre class="line-numbers"><code class="language-html"> &lt;ng-xform [horizontalForm]=&quot;horizontal&quot; [labelWidth]=&quot;labelWidth&quot; (onSubmit)=&quot;onSubmit($event)&quot; [fields]=&quot;fields&quot; [(editing)]=&quot;editing&quot;&gt;&lt;/ng-xform&gt;</code></pre><p>Component:</p>
+<pre class="line-numbers"><code class="language-html"> &lt;ng-xform [horizontalForm]=&quot;horizontal&quot; [labelWidth]=&quot;labelWidth&quot; [fields]=&quot;fields&quot; &gt;&lt;/ng-xform&gt;</code></pre><p>Component:</p>
 <pre class="line-numbers"><code class="language-ts">export class HomeComponent implements OnInit {
 
   &#64;ViewChild(NgXformComponent) xformComponent: NgXformComponent;
@@ -666,7 +678,8 @@ export class OtherModule {
         label: &#39;Length&#39;,
         modelUnit: &#39;m&#39;,
         viewUnit: of(&#39;cm&#39;).delay(200),
-        availableUnits: of([&#39;m&#39;, &#39;cm&#39;, &#39;mm&#39;, &#39;ft&#39;]).delay(200)
+        availableUnits: of([&#39;m&#39;, &#39;cm&#39;, &#39;mm&#39;, &#39;ft&#39;]).delay(200),
+        formatOptions: {notation: &#39;fixed&#39;, precision: 4}
       }),
       new CheckboxField({
         key: &#39;news&#39;,
