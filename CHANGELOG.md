@@ -1,3 +1,16 @@
+<a name="0.20.1"></a>
+## [0.20.1](https://github.com/ESSS/ng-xform/compare/v0.20.0...v0.20.1) (2018-10-17)
+
+
+### Features
+
+* **MeasureField:** add format options to measure field to properly format values ([c8cca28](https://github.com/ESSS/ng-xform/commit/c8cca28))
+* **MeasureField:** add formatOptions example for MeasureFiled on README file ([f1862b2](https://github.com/ESSS/ng-xform/commit/f1862b2))
+* **SelectField:** improve coverage os select field with search key handler ([566dd78](https://github.com/ESSS/ng-xform/commit/566dd78))
+* **SelectField:** remove unused import of Observable ([7bb0d9f](https://github.com/ESSS/ng-xform/commit/7bb0d9f))
+
+
+
 <a name="0.20.0"></a>
 # [0.20.0](https://github.com/ESSS/ng-xform/compare/v0.19.2...v0.20.0) (2018-10-11)
 
