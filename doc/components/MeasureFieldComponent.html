@@ -1162,7 +1162,7 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="132" class="link-to-prism">src/ng-xform/measure-field/measure-field.component.ts:132</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="131" class="link-to-prism">src/ng-xform/measure-field/measure-field.component.ts:131</a></div>
                                 </td>
                             </tr>
     
@@ -1201,7 +1201,7 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="118" class="link-to-prism">src/ng-xform/measure-field/measure-field.component.ts:118</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="117" class="link-to-prism">src/ng-xform/measure-field/measure-field.component.ts:117</a></div>
                                 </td>
                             </tr>
     
@@ -1651,7 +1651,7 @@ export class MeasureFieldComponent extends BaseDynamicFieldComponent&lt;MeasureF
   }
 
   get formattedValue() {
-    return this.quantity ? math.format(this.quantity.to(this.viewUnit)) : &#x27;-&#x27;
+    return this.quantity ? math.format(this.quantity.to(this.viewUnit), this.field.formatOptions) : &#x27;-&#x27;;
   }
 
   ngOnInit() {
@@ -1715,9 +1715,8 @@ export class MeasureFieldComponent extends BaseDynamicFieldComponent&lt;MeasureF
   }
 
   private updateInputValue() {
-    const value &#x3D; this.quantity.toNumber(this.viewUnit);
     if (this.input) {
-      this.input.value &#x3D; math.format(value, this.field.formatOptions);
+      this.input.value &#x3D; this.quantity.toNumber(this.viewUnit).toString();
     }
   }
 

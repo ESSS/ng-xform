@@ -815,7 +815,7 @@ export class CheckboxFieldComponent extends BaseDynamicFieldComponent&lt;Checkbo
     if (this.control.value &#x3D;&#x3D;&#x3D; null) {
       // this setTimeout is to avoid ERROR TypeError
       // TODO: Remove after RFDAP-593
-      setTimeout(() &#x3D;&gt; this.control.setValue(false));
+      setTimeout(() &#x3D;&gt; this.control.setValue(!!this.control.value));
     }
   }
 

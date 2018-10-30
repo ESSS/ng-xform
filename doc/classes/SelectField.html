@@ -1225,7 +1225,7 @@ export class SelectField&lt;T &#x3D; any&gt; extends DynamicField&lt;T&gt; {
     this.optionLabelKey &#x3D; options.optionLabelKey;
     this.searchable &#x3D; options.searchable &#x3D;&#x3D;&#x3D; true;
     this.searchHandler &#x3D; options.searchHandler;
-    this.searchOnFocus &#x3D; options.searchOnFocus || false;
+    this.searchOnFocus &#x3D; options.searchOnFocus &#x3D;&#x3D;&#x3D; false ? false : true;
     this.searchByValueKeyHandler &#x3D; options.searchByValueKeyHandler;
     this.markFirst &#x3D; options.markFirst &#x3D;&#x3D;&#x3D; true;
     this.separator &#x3D; options.separator || &#x27;, &#x27;;
