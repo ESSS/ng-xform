@@ -8,6 +8,7 @@ export class DateField<T = any> extends DynamicField<T> {
   public locale?: string;
   public maxDate?: Date;
   public minDate?: Date;
+  public showWeekNumbers?: boolean;
 
   constructor(options: DateField<T>) {
     super(options);
@@ -16,5 +17,6 @@ export class DateField<T = any> extends DynamicField<T> {
     this.maxDate = options.maxDate;
     this.minDate = options.minDate;
     this.locale = options.locale;
+    this.showWeekNumbers = !!options.showWeekNumbers;
   }
 }

@@ -8,7 +8,7 @@ import { tickAndDetectChanges } from '../../testing/helpers';
 import { OptionalTagComponent } from '../field-components/optional-tag.component';
 import { ErrorMessagePipe } from '../field-error-message/error-message.pipe';
 import { FieldErrorMessageComponent } from '../field-error-message/field-error-message.component';
-import { DateRangeField } from '../fields';
+import { DateRangeField, DynamicField } from '../fields';
 import { FormControlLayoutComponent } from '../form-control-layout/form-control-layout.component';
 import { NgXformGroup } from '../ng-xform-group';
 import { DateRangeFieldComponent } from './date-range-field.component';
@@ -20,8 +20,26 @@ describe('DateRangeFieldComponent', () => {
       <ng-xform-date-range-field [field]="field" [form]="form">
       </ng-xform-date-range-field>
     `);
+    const component: DateRangeFieldTestComponent = fixture.componentInstance;
+    expect(component).toBeTruthy();
+    component.dateRangeField.ngAfterContentInit();
+    expect(component.dateRangeField.config.showWeekNumbers).toBeFalsy();
+  });
 
-    expect(fixture.componentInstance).toBeTruthy();
+  it('should create DateRangeField with week numbers', () => {
+    const fieldConfig = new DateRangeField({
+      key: 'date',
+      label: 'Date',
+      showWeekNumbers: true
+    });
+    const fixture = createTestingModule(`
+      <ng-xform-date-range-field [field]="field" [form]="form">
+      </ng-xform-date-range-field>
+    `, fieldConfig);
+    const component = fixture.componentInstance;
+    expect(component).toBeTruthy();
+    component.dateRangeField.ngAfterContentInit();
+    expect(component.dateRangeField.config.showWeekNumbers).toBeTruthy();
   });
 
   it('should patch value to DateRangeField', fakeAsync(() => {
@@ -81,7 +99,7 @@ describe('DateRangeFieldComponent', () => {
 
 });
 
-function createTestingModule( template: string): ComponentFixture<any> {
+function createTestingModule( template: string, field?: DynamicField): ComponentFixture<any> {
   TestBed.configureTestingModule({
     imports: [
       FormsModule,
@@ -104,6 +122,9 @@ function createTestingModule( template: string): ComponentFixture<any> {
   }).compileComponents();
 
   const fixture = TestBed.createComponent(DateRangeFieldTestComponent);
+  if (field) {
+    fixture.componentInstance.field = field;
+  }
   fixture.detectChanges();
 
   return fixture;
