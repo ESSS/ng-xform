@@ -29,7 +29,7 @@ export class SelectField<T = any> extends DynamicField<T> {
     this.optionLabelKey = options.optionLabelKey;
     this.searchable = options.searchable === true;
     this.searchHandler = options.searchHandler;
-    this.searchOnFocus = options.searchOnFocus || false;
+    this.searchOnFocus = options.searchOnFocus === false ? false : true;
     this.searchByValueKeyHandler = options.searchByValueKeyHandler;
     this.markFirst = options.markFirst === true;
     this.separator = options.separator || ', ';
