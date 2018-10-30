@@ -8,7 +8,7 @@ import { tickAndDetectChanges } from '../../testing/helpers';
 import { OptionalTagComponent } from '../field-components/optional-tag.component';
 import { ErrorMessagePipe } from '../field-error-message/error-message.pipe';
 import { FieldErrorMessageComponent } from '../field-error-message/field-error-message.component';
-import { DateField } from '../fields';
+import { DateField, DynamicField } from '../fields';
 import { FormControlLayoutComponent } from '../form-control-layout/form-control-layout.component';
 import { NgXformGroup } from '../ng-xform-group';
 import { DateFieldComponent } from './date-field.component';
@@ -21,7 +21,28 @@ describe('DateFieldComponent', () => {
       </ng-xform-date-field>
     `);
 
-    expect(fixture.componentInstance).toBeTruthy();
+    const component: DateFieldTestComponent = fixture.componentInstance;
+    expect(component).toBeTruthy();
+    component.dateField.ngAfterContentInit();
+    expect(component.dateField.config.showWeekNumbers).toBeFalsy();
+  });
+
+  it('should create DateField with week numbers', () => {
+    const fieldConfig = new DateField({
+      key: 'date',
+      label: 'Date',
+      showWeekNumbers: true
+    });
+
+    const fixture = createTestingModule(`
+      <ng-xform-date-field [field]="field" [form]="form">
+      </ng-xform-date-field>
+    `, fieldConfig);
+
+    const component: DateFieldTestComponent = fixture.componentInstance;
+    expect(component).toBeTruthy();
+    component.dateField.ngAfterContentInit();
+    expect(component.dateField.config.showWeekNumbers).toBeTruthy();
   });
 
   it('should patch value to DateField', fakeAsync(() => {
@@ -80,7 +101,7 @@ describe('DateFieldComponent', () => {
 
 });
 
-function createTestingModule( template: string): ComponentFixture<any> {
+function createTestingModule( template: string, field?: DynamicField): ComponentFixture<any> {
   TestBed.configureTestingModule({
     imports: [
       FormsModule,
@@ -103,6 +124,9 @@ function createTestingModule( template: string): ComponentFixture<any> {
   }).compileComponents();
 
   const fixture = TestBed.createComponent(DateFieldTestComponent);
+  if (field) {
+    fixture.componentInstance.field = field;
+  }
   fixture.detectChanges();
 
   return fixture;
@@ -115,7 +139,7 @@ function createTestingModule( template: string): ComponentFixture<any> {
 class DateFieldTestComponent {
   @ViewChild(DateFieldComponent) dateField: DateFieldComponent;
 
-  field = new DateField({
+  field: DynamicField = new DateField({
     key: 'date',
     label: 'Date',
   });

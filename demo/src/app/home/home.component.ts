@@ -161,7 +161,8 @@ export class HomeComponent implements OnInit {
         label: 'Date of birth',
         theme: 'blue',
         minDate: minDate,
-        maxDate: maxDate
+        maxDate: maxDate,
+        showWeekNumbers: true
       }),
       new DateRangeField({
         key: 'range',

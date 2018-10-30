@@ -44,6 +44,7 @@ export class DateFieldComponent extends BaseDynamicFieldComponent<DateField> imp
     this.componentControl.setValidators(this.field.validators);
     this.config = {
       containerClass: `theme-${this.field.theme}`,
+      showWeekNumbers: this.field.showWeekNumbers
     };
   }
 

@@ -45,7 +45,7 @@ export class MeasureFieldComponent extends BaseDynamicFieldComponent<MeasureFiel
   }
 
   get formattedValue() {
-    return this.quantity ? math.format(this.quantity.to(this.viewUnit)) : '-'
+    return this.quantity ? math.format(this.quantity.to(this.viewUnit), this.field.formatOptions) : '-';
   }
 
   ngOnInit() {
@@ -109,9 +109,8 @@ export class MeasureFieldComponent extends BaseDynamicFieldComponent<MeasureFiel
   }
 
   private updateInputValue() {
-    const value = this.quantity.toNumber(this.viewUnit);
     if (this.input) {
-      this.input.value = math.format(value, this.field.formatOptions);
+      this.input.value = this.quantity.toNumber(this.viewUnit).toString();
     }
   }
 
