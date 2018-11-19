@@ -157,6 +157,29 @@ describe('NgXformEditSave', () => {
   });
 
 
+  it('should reset with cancel when started on editing state', () => {
+    component.editing = true;
+    fixture.detectChanges();
+
+    const text1Input: HTMLInputElement = fixture.nativeElement.querySelector('#text1');
+    expect(text1Input).toBeTruthy();
+    text1Input.value = 'changed';
+    text1Input.dispatchEvent(new Event('input'));
+
+    // formModel expect to be changed
+    let formModel = component.xform.getModel()
+    expect(formModel.text1).toBe('changed')
+
+    const buttonEl = fixture.nativeElement.querySelector(`#formCancelBtn`);
+    expect(buttonEl).toBeTruthy();
+    buttonEl.click();
+    fixture.detectChanges();
+
+    // Form edition was canceled: is expected that the label keeps the origina value
+    expectFormLabel('text1', 'Text 1', 'value1')
+  });
+
+
   function expectFormLabel(fieldId: string, caption: string, value: any) {
     const el = fixture.debugElement.query(By.css(`#${fieldId}-div`));
     expect(el).toBeTruthy();
