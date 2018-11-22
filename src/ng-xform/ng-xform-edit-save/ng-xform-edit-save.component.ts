@@ -39,7 +39,6 @@ export class NgXformEditSaveComponent {
   setEditing(editing: boolean) {
     this.editing = editing;
     if (editing) {
-      this.beforeEditingValue = this.xform.getModel();
       this.xform.setValue({... this.beforeEditingValue});
     }
   }
@@ -58,7 +57,7 @@ export class NgXformEditSaveComponent {
   }
 
   setValue(newModel: any) {
+    this.beforeEditingValue = {... newModel};
     this.xform.setValue(newModel);
-    this.beforeEditingValue = this.xform.getModel();
   }
 }
