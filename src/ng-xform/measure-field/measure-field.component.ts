@@ -77,10 +77,11 @@ export class MeasureFieldComponent extends BaseDynamicFieldComponent<MeasureFiel
   }
 
   writeValue(obj: Measure): void {
-    if (!obj) {
-      return;
+    if (!!obj) {
+      this.quantity = math.unit(obj.value, obj.unit).to(this.field.modelUnit);
+    } else {
+      this.quantity = undefined;
     }
-    this.quantity = math.unit(obj.value, obj.unit).to(this.field.modelUnit);
     this.updateInputValue();
   }
   registerOnChange(fn: any): void {
@@ -109,8 +110,14 @@ export class MeasureFieldComponent extends BaseDynamicFieldComponent<MeasureFiel
   }
 
   private updateInputValue() {
-    if (this.input) {
+    if (!this.input) {
+      return;
+    }
+
+    if (this.quantity) {
       this.input.value = this.quantity.toNumber(this.viewUnit).toString();
+    } else {
+      this.input.value = undefined;
     }
   }
 
