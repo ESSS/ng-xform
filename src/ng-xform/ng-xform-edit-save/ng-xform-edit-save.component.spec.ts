@@ -1,4 +1,3 @@
-import { required } from './../../../tmp/ng-xform/field-error-message/error-messages';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Validators } from '@angular/forms';
 import { By } from '@angular/platform-browser';
@@ -12,7 +11,7 @@ import { MultilineField } from '../fields/multiline-field';
 import { NestedFormGroup } from '../fields/nested-form-group';
 import { NgXformModule } from '../ng-xform.module';
 
-fdescribe('NgXformEditSave', () => {
+describe('NgXformEditSave', () => {
   let component: NgXformEditSaveComponent;
   let fixture: ComponentFixture<NgXformEditSaveComponent>;
   let model: any;
