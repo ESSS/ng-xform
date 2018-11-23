@@ -40,7 +40,7 @@ export class NgXformEditSaveComponent {
     this.editing = editing;
     if (!editing) {
       this.xform.setValue({... this.beforeEditingValue});
-    } 
+    }
   }
 
   onSubmit() {
