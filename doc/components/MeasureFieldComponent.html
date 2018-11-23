@@ -814,7 +814,7 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="97" class="link-to-prism">src/ng-xform/measure-field/measure-field.component.ts:97</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="98" class="link-to-prism">src/ng-xform/measure-field/measure-field.component.ts:98</a></div>
                                 </td>
                             </tr>
     
@@ -962,7 +962,7 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="86" class="link-to-prism">src/ng-xform/measure-field/measure-field.component.ts:86</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="87" class="link-to-prism">src/ng-xform/measure-field/measure-field.component.ts:87</a></div>
                                 </td>
                             </tr>
     
@@ -1028,7 +1028,7 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="89" class="link-to-prism">src/ng-xform/measure-field/measure-field.component.ts:89</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="90" class="link-to-prism">src/ng-xform/measure-field/measure-field.component.ts:90</a></div>
                                 </td>
                             </tr>
     
@@ -1094,7 +1094,7 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="93" class="link-to-prism">src/ng-xform/measure-field/measure-field.component.ts:93</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="94" class="link-to-prism">src/ng-xform/measure-field/measure-field.component.ts:94</a></div>
                                 </td>
                             </tr>
     
@@ -1162,7 +1162,7 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="131" class="link-to-prism">src/ng-xform/measure-field/measure-field.component.ts:131</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="138" class="link-to-prism">src/ng-xform/measure-field/measure-field.component.ts:138</a></div>
                                 </td>
                             </tr>
     
@@ -1201,7 +1201,7 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="117" class="link-to-prism">src/ng-xform/measure-field/measure-field.component.ts:117</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="124" class="link-to-prism">src/ng-xform/measure-field/measure-field.component.ts:124</a></div>
                                 </td>
                             </tr>
     
@@ -1240,7 +1240,7 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="111" class="link-to-prism">src/ng-xform/measure-field/measure-field.component.ts:111</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="112" class="link-to-prism">src/ng-xform/measure-field/measure-field.component.ts:112</a></div>
                                 </td>
                             </tr>
     
@@ -1683,10 +1683,11 @@ export class MeasureFieldComponent extends BaseDynamicFieldComponent&lt;MeasureF
   }
 
   writeValue(obj: Measure): void {
-    if (!obj) {
-      return;
+    if (!!obj) {
+      this.quantity &#x3D; math.unit(obj.value, obj.unit).to(this.field.modelUnit);
+    } else {
+      this.quantity &#x3D; undefined;
     }
-    this.quantity &#x3D; math.unit(obj.value, obj.unit).to(this.field.modelUnit);
     this.updateInputValue();
   }
   registerOnChange(fn: any): void {
@@ -1715,8 +1716,14 @@ export class MeasureFieldComponent extends BaseDynamicFieldComponent&lt;MeasureF
   }
 
   private updateInputValue() {
-    if (this.input) {
+    if (!this.input) {
+      return;
+    }
+
+    if (this.quantity) {
       this.input.value &#x3D; this.quantity.toNumber(this.viewUnit).toString();
+    } else {
+      this.input.value &#x3D; undefined;
     }
   }
 
