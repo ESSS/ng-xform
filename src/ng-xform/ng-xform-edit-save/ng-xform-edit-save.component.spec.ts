@@ -12,7 +12,7 @@ import { MultilineField } from '../fields/multiline-field';
 import { NestedFormGroup } from '../fields/nested-form-group';
 import { NgXformModule } from '../ng-xform.module';
 
-describe('NgXformEditSave', () => {
+fdescribe('NgXformEditSave', () => {
   let component: NgXformEditSaveComponent;
   let fixture: ComponentFixture<NgXformEditSaveComponent>;
   let model: any;
@@ -93,11 +93,6 @@ describe('NgXformEditSave', () => {
     editBtnEl.click();
     fixture.detectChanges();
 
-    const requiredInput: HTMLInputElement = fixture.nativeElement.querySelector('#required');
-    expect(requiredInput).toBeTruthy();
-    requiredInput.value = 'changed';
-    requiredInput.dispatchEvent(new Event('input'));
-
     component.submit.subscribe((value: any) => {
       setTimeout(() => {
         expect(value.text1).toBe(model.text1);
@@ -108,9 +103,27 @@ describe('NgXformEditSave', () => {
         done();
       });
     });
+
+    // set required values as empty
+    const requiredInput: HTMLInputElement = fixture.nativeElement.querySelector('#required');
+    expect(requiredInput).toBeTruthy();
+    requiredInput.value = '';
+    requiredInput.dispatchEvent(new Event('input'));
+
+    // submit invalid form
     const buttonEl = fixture.debugElement.query(By.css(`#formSubmitBtn`));
     fixture.detectChanges();
     expect(buttonEl).toBeTruthy();
+    buttonEl.nativeElement.click();
+    fixture.detectChanges();
+    expect(component.xform.form.valid).toBeFalsy();
+
+    // set required values
+    requiredInput.value = 'changed';
+    requiredInput.dispatchEvent(new Event('input'));
+
+    // submit valid form
+    fixture.detectChanges();
     expect(component.xform.form.valid).toBeTruthy();
     buttonEl.nativeElement.click();
   });
@@ -132,6 +145,27 @@ describe('NgXformEditSave', () => {
     const buttonEl = fixture.nativeElement.querySelector(`#formCancelBtn`);
     expect(buttonEl).toBeTruthy();
     buttonEl.click();
+    fixture.detectChanges();
+
+    // Form edition was canceled: is expected that the label keeps the origina value
+    expectFormLabel('text1', 'Text 1', 'value1')
+  });
+
+  it('should rollback change on setEdit to false', () => {
+    const editBtnEl = fixture.nativeElement.querySelector(`#formEditBtn`);
+    editBtnEl.click();
+    fixture.detectChanges();
+
+    const text1Input: HTMLInputElement = fixture.nativeElement.querySelector('#text1');
+    expect(text1Input).toBeTruthy();
+    text1Input.value = 'changed';
+    text1Input.dispatchEvent(new Event('input'));
+
+    // formModel expect to be changed
+    let formModel = component.xform.getModel()
+    expect(formModel.text1).toBe('changed')
+
+    component.setEditing(false);
     fixture.detectChanges();
 
     // Form edition was canceled: is expected that the label keeps the origina value
