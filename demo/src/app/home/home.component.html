@@ -50,15 +50,26 @@
     </div>
   </div>
 </section>
+<ng-template #onchangefn let-customControl="control" let-isEditing="isEditing">
+  <div class="input-group">
+    <input type="text"
+      [formControl]="customControl"
+      [attr.disabled]="!isEditing || null"
+      class="form-control"
+      style="text-align:left"
+      id="invertedPhrase"
+      [value]="invertedPhraseValue" />
+  </div>
+</ng-template>
 <ng-template #customField let-customControl="control" let-isEditing="isEditing">
   <div class="input-group">
     <div class="input-group-addon">$</div>
     <input type="number"
       [formControl]="customControl"
-      [attr.disabled]="!isEditing || null" 
+      [attr.disabled]="!isEditing || null"
       class="form-control"
-      style="text-align:right" 
-      id="exampleInputAmount" 
+      style="text-align:right"
+      id="exampleInputAmount"
       placeholder="Amount" />
     <div class="input-group-addon">.00</div>
   </div>

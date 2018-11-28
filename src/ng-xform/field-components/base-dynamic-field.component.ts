@@ -1,7 +1,7 @@
 import { Input, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { DynamicField } from '../fields';
-import { Subscription } from 'rxjs';
+import { Subscription, Observable } from 'rxjs';
 
 /**
  * Base class for Dynamic Fields
@@ -36,6 +36,12 @@ export class BaseDynamicFieldComponent<T extends DynamicField> implements OnInit
         }
       });
       this.visible = this.field.visibilityFn(formRoot.value);
+    }
+
+    if (this.field.onChangeFn) {
+      this.control.valueChanges.subscribe(val => {
+        this.field.onChangeFn(val);
+      });
     }
 
   }
@@ -74,6 +80,11 @@ export class BaseDynamicFieldComponent<T extends DynamicField> implements OnInit
       'has-error': this.control.touched && this.control.invalid,
       'has-feedback': this.control.touched && this.control.invalid
     };
+  }
+
+  onChangeFnObservable(): Observable<any> {
+
+    return ;
   }
 
 }

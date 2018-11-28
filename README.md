@@ -87,9 +87,12 @@ Template:
 ```
 Component:
 ```ts
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
 
-  @ViewChild(NgXformComponent) xformComponent: NgXformComponent;
+  @ViewChild(NgXformEditSaveComponent) xformComponent: NgXformEditSaveComponent;
+  @ViewChild('customField') customFieldTmpl: TemplateRef<any>;
+  @ViewChild('onchangefn') onchangefnTmpl: TemplateRef<any>;
+
   private colors: any[] = [
     { id: 0, name: 'other' },
     { id: 1, name: 'blue' },
@@ -100,18 +103,28 @@ export class HomeComponent implements OnInit {
     { id: 6, name: 'purple' }
   ];
 
+  public onchangefnSubject = new Subject<string>();
+
   public fields: DynamicField[];
-  public editing = true;
   public horizontal = false;
   public labelWidth = 2;
+  public model: any;
+  public invertedPhraseValue = '';
+  public subscriptions: Subscription[] = [];
 
-  constructor(private titleService: Title, private http: HttpClient) {
+  constructor(private titleService: Title, private http: HttpClient) { }
+
+  ngOnInit() {
     const minDate = new Date();
     const maxDate = new Date();
 
+    this.subscriptions.push(this.onchangefnSubject.asObservable().subscribe(
+      (value: string) =>  this.invertedPhraseValue = value.split('').reverse().join('')
+    ));
+
     minDate.setDate(minDate.getDate() - 3);
     maxDate.setDate(maxDate.getDate() + 3);
-
+    this.titleService.setTitle('Home | @esss/ng-xform');
     this.fields = [
       new TextField({
         key: 'name',
@@ -141,6 +154,8 @@ export class HomeComponent implements OnInit {
         label: 'Color',
         searchable: true,
         options: this.colors,
+        addNewOption: true,
+        addNewOptionText: 'Add Color',
         optionLabelKey: 'name',
       }),
       new TextField({
@@ -152,13 +167,14 @@ export class HomeComponent implements OnInit {
         key: 'address',
         fields: [
           new SelectField({
-            key: 'street',
-            label: 'Street',
+            key: 'country',
+            label: 'Country',
             searchHandler: this.observableSource.bind(this),
             searchByValueKeyHandler: this.observableSourceByPlaceId.bind(this),
+            searchOnFocus: true,
             searchable: true,
-            optionLabelKey: 'formatted_address',
-            optionValueKey: 'place_id',
+            optionLabelKey: 'name',
+            optionValueKey: 'alpha3Code',
             validators: [
               Validators.required
             ]
@@ -184,14 +200,40 @@ export class HomeComponent implements OnInit {
       new MeasureField({
         key: 'length',
         label: 'Length',
-        modelUnit: 'm',
-        viewUnit: of('cm').delay(200),
-        availableUnits: of(['m', 'cm', 'mm', 'ft']).delay(200),
-        formatOptions: {notation: 'fixed', precision: 4}
+        modelUnit: 'mm',
+        viewUnit: of('m').pipe(delay(200)),
+        availableUnits: of(['m', 'cm', 'mm']).pipe(delay(200))
+      }),
+      new MeasureField({
+        key: 'width',
+        label: 'Width',
+        modelUnit: 'inch',
+        viewUnit: of('inch').pipe(delay(200)),
+        availableUnits: of(['inch', 'ft']).pipe(delay(200))
+      }),
+      new TextField({
+        key: 'phrase',
+        label: 'Write a phrase',
+        onChangeFn: (value: string) => {
+          this.onchangefnSubject.next(value);
+        }
+      }),
+      new CustomField({
+        key: 'invertedPhrase',
+        label: 'Inverted phrase',
+        readOnly: true,
+        tmpl: this.onchangefnTmpl
       }),
       new CheckboxField({
         key: 'news',
         label: 'News'
+      }),
+      new RadioGroupField({
+        key: 'gender',
+        label: 'Gender',
+        options: of([{id: 1, label: 'male'}, {id: 2, label: 'female'}]).pipe(delay(2000)),
+        optionValueKey: 'id',
+        optionLabelKey: 'label'
       }),
       new MultilineField({
         key: 'comment',
@@ -203,22 +245,33 @@ export class HomeComponent implements OnInit {
         label: 'Date of birth',
         theme: 'blue',
         minDate: minDate,
-        maxDate: maxDate
+        maxDate: maxDate,
+        showWeekNumbers: true
+      }),
+      new DateRangeField({
+        key: 'range',
+        label: 'Date range',
+        theme: 'blue'
+      }),
+      new CustomField({
+        key: 'custom_amount',
+        label: 'Custom Field Amount',
+        tmpl: this.customFieldTmpl
       }),
     ];
   }
 
-  ngOnInit() {
-    this.titleService.setTitle('Home | @esss/ng-xform');
+  ngOnDestroy() {
+    this.subscriptions.forEach(sub => sub.unsubscribe());
   }
 
   public onSubmit(values: object) {
-    this.editing = !this.editing;
-    console.log(values);
+    this.model = values;
+    this.model.invertedPhrase = this.invertedPhraseValue;
   }
 
   populate() {
-    this.xformComponent.form.patchValue({
+    this.xformComponent.setValue({
       name: 'Customer',
       email: 'customer@mail.com',
       type_tags: [2],
@@ -228,34 +281,45 @@ export class HomeComponent implements OnInit {
       address: {
         street: 'ChIJn7h-4b9JJ5URGCq6n0zj1tM'
       },
+      gender: 1,
       length: { value: 2, unit: 'm'},
+      width: { value: 3, unit: 'ft'},
+      phrase: 'dogs are awesome',
       news: true,
       comment: 'Mussum Ipsum, cacilds vidis litro abertis. Mauris nec dolor in eros commodo tempor. Aenean aliquam molestie leo, vitae ' +
       'iaculis nisl. Quem num gosta di mé, boa gentis num é. Tá deprimidis, eu conheço uma cachacis que pode alegrar sua vidis. Em pé ' +
       'sem cair, deitado sem dormir, sentado sem cochilar e fazendo pose. Leite de capivaris, leite de mula manquis sem cabeça. Praesent ' +
       'vel viverra nisi. Mauris aliquet nunc non turpis scelerisque, eget. Casamentiss faiz malandris se pirulitá. Sapien in monti ' +
       'palavris qui num significa nadis i pareci latim.',
-      birth: new Date()
+      birth: new Date(),
+      range: [
+        '2018-09-06T03:00:00.000Z',
+        '2018-10-08T03:00:00.000Z'
+      ],
+      custom_amount: 456
     });
   }
 
   public observableSource(keyword: any): Observable<any[]> {
-    const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${keyword}`;
+    const url = `https://restcountries.eu/rest/v2/name/${keyword}`;
     if (keyword) {
       return this.http.get(url)
-        .map((res) => res['results']);
+        .pipe(
+          map((res) => res as any[])
+        );
     } else {
       return of([]);
     }
   }
 
-  public observableSourceByPlaceId(place_id: any): Observable<any> {
+  public observableSourceByPlaceId(keyword: any): Observable<any> {
     return of({
-      'place_id': 'ChIJn7h-4b9JJ5URGCq6n0zj1tM',
-      'formatted_address': 'Florianópolis - State of Santa Catarina, Brazil'
-    }).delay(300);
+      'alpha3Code': 'BRA',
+      'name': 'Brazil'
+    }).pipe(delay(300));
   }
 }
+
 ```
 ### Custom Field
 
@@ -359,6 +423,24 @@ In the example, the ```TextField``` is created specialized whit the ```User``` c
 new TextField<User>({
 ``` 
 the TextField ```key``` attribute will accept only keys of the class User (i.e. 'name', 'email', 'address'), and show and error if any other value is provided.
+
+### On change function
+You can add a parameter ```onChangeFn``` on your ```DynamicField``` fields. This parameter receives a 
+anonymous function, just like in the following example:
+
+```ts
+new TextField({
+  key: 'phrase',
+  label: 'Write a phrase',
+  onChangeFn: (value: string) => {
+    // push new typed value to a subject
+    this.onchangefnSubject.next(value);
+  }
+}),
+```
+This parameter can be used to execute async functions that depends on user input or push values of 
+a field to a ```Subject()``` just like is shown above. 
+
 
 ### Locales
 DatepickerField can use different locales. 

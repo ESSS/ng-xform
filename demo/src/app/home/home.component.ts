@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
+import { Component, OnInit, ViewChild, TemplateRef, OnDestroy } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Title } from '@angular/platform-browser';
@@ -16,7 +16,7 @@ import {
   TextField,
   CustomField
 } from '@esss/ng-xform';
-import { Observable, of } from 'rxjs';
+import { Observable, of, Subject, Subscription } from 'rxjs';
 import { delay, map, buffer, skip } from 'rxjs/operators';
 
 
@@ -25,10 +25,11 @@ import { delay, map, buffer, skip } from 'rxjs/operators';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
 
   @ViewChild(NgXformEditSaveComponent) xformComponent: NgXformEditSaveComponent;
   @ViewChild('customField') customFieldTmpl: TemplateRef<any>;
+  @ViewChild('onchangefn') onchangefnTmpl: TemplateRef<any>;
 
   private colors: any[] = [
     { id: 0, name: 'other' },
@@ -40,16 +41,24 @@ export class HomeComponent implements OnInit {
     { id: 6, name: 'purple' }
   ];
 
+  public onchangefnSubject = new Subject<string>();
+
   public fields: DynamicField[];
   public horizontal = false;
   public labelWidth = 2;
   public model: any;
+  public invertedPhraseValue = '';
+  public subscriptions: Subscription[] = [];
 
   constructor(private titleService: Title, private http: HttpClient) { }
 
   ngOnInit() {
     const minDate = new Date();
     const maxDate = new Date();
+
+    this.subscriptions.push(this.onchangefnSubject.asObservable().subscribe(
+      (value: string) =>  this.invertedPhraseValue = value.split('').reverse().join('')
+    ));
 
     minDate.setDate(minDate.getDate() - 3);
     maxDate.setDate(maxDate.getDate() + 3);
@@ -140,6 +149,19 @@ export class HomeComponent implements OnInit {
         viewUnit: of('inch').pipe(delay(200)),
         availableUnits: of(['inch', 'ft']).pipe(delay(200))
       }),
+      new TextField({
+        key: 'phrase',
+        label: 'Write a phrase',
+        onChangeFn: (value: string) => {
+          this.onchangefnSubject.next(value);
+        }
+      }),
+      new CustomField({
+        key: 'invertedPhrase',
+        label: 'Inverted phrase',
+        readOnly: true,
+        tmpl: this.onchangefnTmpl
+      }),
       new CheckboxField({
         key: 'news',
         label: 'News'
@@ -177,8 +199,13 @@ export class HomeComponent implements OnInit {
     ];
   }
 
+  ngOnDestroy() {
+    this.subscriptions.forEach(sub => sub.unsubscribe());
+  }
+
   public onSubmit(values: object) {
     this.model = values;
+    this.model.invertedPhrase = this.invertedPhraseValue;
   }
 
   populate() {
@@ -195,6 +222,7 @@ export class HomeComponent implements OnInit {
       gender: 1,
       length: { value: 2, unit: 'm'},
       width: { value: 3, unit: 'ft'},
+      phrase: 'dogs are awesome',
       news: true,
       comment: 'Mussum Ipsum, cacilds vidis litro abertis. Mauris nec dolor in eros commodo tempor. Aenean aliquam molestie leo, vitae ' +
       'iaculis nisl. Quem num gosta di mé, boa gentis num é. Tá deprimidis, eu conheço uma cachacis que pode alegrar sua vidis. Em pé ' +
