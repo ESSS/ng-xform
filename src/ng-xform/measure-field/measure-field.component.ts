@@ -42,7 +42,7 @@ export class MeasureFieldComponent extends BaseDynamicFieldComponent<MeasureFiel
   _onTouched = () => { };
 
   get formattedValue() {
-    return this.inputNumber ? `${this.inputNumber.formattedValue} ${this.viewUnit}` : '-';
+    return !!this.inputNumber && !!this.control.value ? `${this.inputNumber.formattedValue} ${this.viewUnit}` : '-';
   }
 
   ngOnInit() {
