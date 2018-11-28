@@ -258,6 +258,39 @@ describe('NgXformComponent - Fields setup', () => {
 
   });
 
+  it('should reset null measure field values', () => {
+    const fixture = createTestingModule();
+    expect(fixture.componentInstance).toBeTruthy();
+
+    let component: NgXformComponent = fixture.debugElement.componentInstance.form;
+
+    fixture.componentInstance.setFields([
+      new MeasureField({ key: 'field1', label: 'Field 1', modelUnit: 'm' }),
+    ]);
+    fixture.detectChanges();
+
+    fixture.componentInstance.setModel({field1: {value: 10, unit: 'm'}});
+    fixture.detectChanges();
+
+    let el = fixture.debugElement.query(By.css('#field1-div .text-muted'));
+    expect(el).toBeTruthy();
+    expect(el.nativeElement.textContent).toEqual(' 10 m ');
+
+    fixture.componentInstance.setModel({field1: null});
+    fixture.detectChanges();
+
+    el = fixture.debugElement.query(By.css('#field1-div .text-muted'));
+    expect(el).toBeTruthy();
+    expect(el.nativeElement.textContent).toEqual(' - ');
+
+    fixture.componentInstance.editing = true;
+    fixture.detectChanges();
+
+    el = fixture.debugElement.query(By.css('#field1-div input'));
+    expect(el).toBeTruthy();
+    expect(el.nativeElement.value).toEqual('');
+  });
+
 });
 
 function createTestingModule(): ComponentFixture<any> {

@@ -1,4 +1,3 @@
-import { required } from './../../../tmp/ng-xform/field-error-message/error-messages';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Validators } from '@angular/forms';
 import { By } from '@angular/platform-browser';
@@ -93,11 +92,6 @@ describe('NgXformEditSave', () => {
     editBtnEl.click();
     fixture.detectChanges();
 
-    const requiredInput: HTMLInputElement = fixture.nativeElement.querySelector('#required');
-    expect(requiredInput).toBeTruthy();
-    requiredInput.value = 'changed';
-    requiredInput.dispatchEvent(new Event('input'));
-
     component.submit.subscribe((value: any) => {
       setTimeout(() => {
         expect(value.text1).toBe(model.text1);
@@ -108,9 +102,27 @@ describe('NgXformEditSave', () => {
         done();
       });
     });
+
+    // set required values as empty
+    const requiredInput: HTMLInputElement = fixture.nativeElement.querySelector('#required');
+    expect(requiredInput).toBeTruthy();
+    requiredInput.value = '';
+    requiredInput.dispatchEvent(new Event('input'));
+
+    // submit invalid form
     const buttonEl = fixture.debugElement.query(By.css(`#formSubmitBtn`));
     fixture.detectChanges();
     expect(buttonEl).toBeTruthy();
+    buttonEl.nativeElement.click();
+    fixture.detectChanges();
+    expect(component.xform.form.valid).toBeFalsy();
+
+    // set required values
+    requiredInput.value = 'changed';
+    requiredInput.dispatchEvent(new Event('input'));
+
+    // submit valid form
+    fixture.detectChanges();
     expect(component.xform.form.valid).toBeTruthy();
     buttonEl.nativeElement.click();
   });
@@ -138,6 +150,27 @@ describe('NgXformEditSave', () => {
     expectFormLabel('text1', 'Text 1', 'value1')
   });
 
+  it('should rollback change on setEdit to false', () => {
+    const editBtnEl = fixture.nativeElement.querySelector(`#formEditBtn`);
+    editBtnEl.click();
+    fixture.detectChanges();
+
+    const text1Input: HTMLInputElement = fixture.nativeElement.querySelector('#text1');
+    expect(text1Input).toBeTruthy();
+    text1Input.value = 'changed';
+    text1Input.dispatchEvent(new Event('input'));
+
+    // formModel expect to be changed
+    let formModel = component.xform.getModel()
+    expect(formModel.text1).toBe('changed')
+
+    component.setEditing(false);
+    fixture.detectChanges();
+
+    // Form edition was canceled: is expected that the label keeps the origina value
+    expectFormLabel('text1', 'Text 1', 'value1')
+  });
+
   it('should be read mode', () => {
     const editBtnEl = fixture.debugElement.query(By.css(`#formEditBtn`));
     editBtnEl.nativeElement.click();
@@ -154,6 +187,29 @@ describe('NgXformEditSave', () => {
     expectFormLabel('street', 'Street', model.address.street);
     expectFormLabel('city', 'City', model.address.city);
     expectFormLabel('date', 'Date', datePipe.transform(dateTest, 'mediumDate', 'en'));
+  });
+
+
+  it('should reset with cancel when started on editing state', () => {
+    component.editing = true;
+    fixture.detectChanges();
+
+    const text1Input: HTMLInputElement = fixture.nativeElement.querySelector('#text1');
+    expect(text1Input).toBeTruthy();
+    text1Input.value = 'changed';
+    text1Input.dispatchEvent(new Event('input'));
+
+    // formModel expect to be changed
+    let formModel = component.xform.getModel()
+    expect(formModel.text1).toBe('changed')
+
+    const buttonEl = fixture.nativeElement.querySelector(`#formCancelBtn`);
+    expect(buttonEl).toBeTruthy();
+    buttonEl.click();
+    fixture.detectChanges();
+
+    // Form edition was canceled: is expected that the label keeps the origina value
+    expectFormLabel('text1', 'Text 1', 'value1')
   });
 
 

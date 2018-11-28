@@ -1,3 +1,14 @@
+<a name="0.21.2"></a>
+## [0.21.2](https://github.com/ESSS/ng-xform/compare/v0.21.1...v0.21.2) (2018-11-23)
+
+
+### Bug Fixes
+
+* **xform:** fix MeasureField writeValue method for null values ([#42](https://github.com/ESSS/ng-xform/issues/42)) ([19a0faf](https://github.com/ESSS/ng-xform/commit/19a0faf))
+* **xform:** fix reset form value with cancel when started on editing … ([#43](https://github.com/ESSS/ng-xform/issues/43)) ([9f6c499](https://github.com/ESSS/ng-xform/commit/9f6c499))
+
+
+
 <a name="0.21.1"></a>
 ## [0.21.1](https://github.com/ESSS/ng-xform/compare/v0.21.0...v0.21.1) (2018-10-30)
 
