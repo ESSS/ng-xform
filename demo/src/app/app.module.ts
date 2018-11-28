@@ -1,6 +1,6 @@
 import { BsLocaleService, BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
@@ -11,10 +11,17 @@ import { AppSharedModule } from './shared/shared.module';
 import { HomeModule } from './home/home.module';
 import { AppComponent } from './app.component';
 
+import localePt from '@angular/common/locales/pt';
+import { registerLocaleData } from '@angular/common';
 import { defineLocale } from 'ngx-bootstrap/chronos';
-import { ptBrLocale, enGbLocale } from 'ngx-bootstrap/locale';
-defineLocale(ptBrLocale.abbr, ptBrLocale);
-defineLocale('en-us', enGbLocale);
+import { ptBrLocale, glLocale } from 'ngx-bootstrap/locale';
+
+// register angular locale
+registerLocaleData(localePt, 'pt');
+
+// register ngx-bootstrap locales
+defineLocale('pt', ptBrLocale);
+
 
 @NgModule({
   declarations: [AppComponent],
@@ -31,12 +38,14 @@ defineLocale('en-us', enGbLocale);
     AppSharedModule,
     HomeModule
   ],
-  providers: [],
+  providers: [
+    { provide: LOCALE_ID, useValue: 'en'}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
   constructor(bsLocaleService: BsLocaleService) {
     // aplly locale
-    bsLocaleService.use(ptBrLocale.abbr);
+    bsLocaleService.use('en');
   }
 }

@@ -33,7 +33,7 @@
           <input type="number" class="form-control" [(ngModel)]="labelWidth" [ngModelOptions]="{standalone: true}"/>
         </div>
         <div class="col-sm-3 form-group">
-          <button *ngIf="xformComponent.editing" type="button" class="btn btn-info" (click)="populate()">Populate</button>
+          <button *ngIf="editing" type="button" class="btn btn-info" (click)="populate()">Populate</button>
         </div>
       </fieldset>
     </form>
@@ -41,6 +41,7 @@
     <div class="panel-body">
       <ng-xform-edit-save
         [fields]="fields"
+        [(editing)]="editing"
         [horizontalForm]="horizontal"
         [labelWidth]="labelWidth"
         (submit)="onSubmit($event)">
@@ -55,10 +56,10 @@
     <div class="input-group-addon">$</div>
     <input type="number"
       [formControl]="customControl"
-      [attr.disabled]="!isEditing || null" 
+      [attr.disabled]="!isEditing || null"
       class="form-control"
-      style="text-align:right" 
-      id="exampleInputAmount" 
+      style="text-align:right"
+      id="exampleInputAmount"
       placeholder="Amount" />
     <div class="input-group-addon">.00</div>
   </div>

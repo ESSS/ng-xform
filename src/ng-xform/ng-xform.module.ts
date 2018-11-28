@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Inject, LOCALE_ID, NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 import { NgSelectModule } from '@ng-select/ng-select';
 import { bsDatepickerModuleWithProviders, bsDropdownModuleWithProviders } from './ng-xform.module-imports';
@@ -23,11 +23,14 @@ import { RadioGroupFieldComponent } from './radiogroup-field/radiogroup-field.co
 import { SelectFieldComponent } from './select-field/select-field.component';
 import { NgXformEditSaveComponent } from './ng-xform-edit-save/ng-xform-edit-save.component';
 import { EditSaveCancelButtonBarComponent } from './edit-save-cancel-button-bar/edit-save-cancel-button-bar.component';
+import { NumberFieldComponent } from './number-field/number-field.component';
+import { InputNumberComponent } from './number-field/input-number.component';
 
 
 @NgModule({
   imports: [
     CommonModule,
+    FormsModule,
     ReactiveFormsModule,
     PipesModule,
     NgSelectModule,
@@ -39,6 +42,7 @@ import { EditSaveCancelButtonBarComponent } from './edit-save-cancel-button-bar/
     NgXformEditSaveComponent,
     FormGroupComponent,
     EditableLabelComponent,
+    NumberFieldComponent,
     CheckboxFieldComponent,
     CustomFieldComponent,
     RadioGroupFieldComponent,
@@ -52,11 +56,13 @@ import { EditSaveCancelButtonBarComponent } from './edit-save-cancel-button-bar/
     DateRangeFieldComponent,
     FormControlLayoutComponent,
     EditSaveCancelButtonBarComponent,
+    InputNumberComponent,
   ],
   exports: [
     NgXformComponent,
     NgXformEditSaveComponent,
     FieldErrorMessageComponent,
+    InputNumberComponent,
     PipesModule,
   ]
 })

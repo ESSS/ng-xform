@@ -1,5 +1,5 @@
 import { DebugElement } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed, tick, fakeAsync } from '@angular/core/testing';
 import { FormControl } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { Subject } from 'rxjs';
@@ -37,6 +37,7 @@ describe('MeasureFieldComponent', () => {
     });
     component.ngOnInit();
     component.ngAfterViewInit();
+    component.inputNumber.ngAfterViewInit();
     fixture.detectChanges();
     inputEl = fixture.debugElement.query(By.css('input'));
   });
@@ -56,7 +57,7 @@ describe('MeasureFieldComponent', () => {
   it('should render form value', () => {
     const initialValue = '22';
     component.writeValue({ value: 22, unit: 'm' });
-    expect(inputEl.nativeElement.value).toBe(initialValue);
+    expect(component.inputNumber.viewModel).toBe(initialValue);
   });
 
   it('should format properly form value', () => {
@@ -65,40 +66,27 @@ describe('MeasureFieldComponent', () => {
     expect(component.formattedValue).toBe(formattedValue);
   });
 
-  it('should disable form value', () => {
-    component.writeValue({ value: 22, unit: 'm' });
-
-    component.setDisabledState(true);
-    expect(inputEl.nativeElement.disabled).toBe(true);
-
-    component.setDisabledState(false);
-    expect(inputEl.nativeElement.disabled).toBe(false);
-  });
-
   it('should update form value', () => {
     const newValueString = '15';
-    let updatedValue;
 
-    component.registerOnChange((val: any) => updatedValue = val);
     inputEl.nativeElement.value = newValueString;
     inputEl.nativeElement.dispatchEvent(new Event('input'));
-    expect(updatedValue).toEqual(new Measure(15, 'm'));
+    expect(component.control.value).toEqual(new Measure(15, 'm'));
 
     component.changeUnit('cm');
     expect(component.formattedValue).toEqual('1500 cm');
-    expect(updatedValue).toEqual(new Measure(15, 'm'));
+    expect(component.control.value).toEqual(new Measure(15, 'm'));
 
     component.changeUnit('');
     expect(component.formattedValue).toEqual('15 m');
-    expect(updatedValue).toEqual(new Measure(15, 'm'));
+    expect(component.control.value).toEqual(new Measure(15, 'm'));
 
     component.field.modelUnit = 'inch';
     fixture.detectChanges();
     component.ngOnInit();
-    component.registerOnChange((val: any) => updatedValue = val);
     inputEl.nativeElement.value = newValueString;
     inputEl.nativeElement.dispatchEvent(new Event('input'));
-    expect(updatedValue).toEqual(new Measure(15, 'inch'));
+    expect(component.control.value).toEqual(new Measure(15, 'inch'));
   });
 
   it('should show unit and units dropdown', () => {

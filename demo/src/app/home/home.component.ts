@@ -14,7 +14,8 @@ import {
   RadioGroupField,
   SelectField,
   TextField,
-  CustomField
+  CustomField,
+  NumberField
 } from '@esss/ng-xform';
 import { Observable, of } from 'rxjs';
 import { delay, map, buffer, skip } from 'rxjs/operators';
@@ -42,6 +43,7 @@ export class HomeComponent implements OnInit {
 
   public fields: DynamicField[];
   public horizontal = false;
+  public editing = true;
   public labelWidth = 2;
   public model: any;
 
@@ -55,6 +57,10 @@ export class HomeComponent implements OnInit {
     maxDate.setDate(maxDate.getDate() + 3);
     this.titleService.setTitle('Home | @esss/ng-xform');
     this.fields = [
+      new NumberField({
+        key: 'number',
+        label: 'Number'
+      }),
       new TextField({
         key: 'name',
         label: 'Name',
@@ -103,10 +109,7 @@ export class HomeComponent implements OnInit {
             searchOnFocus: true,
             searchable: true,
             optionLabelKey: 'name',
-            optionValueKey: 'alpha3Code',
-            validators: [
-              Validators.required
-            ]
+            optionValueKey: 'alpha3Code'
           })
         ]
       }),
@@ -183,6 +186,7 @@ export class HomeComponent implements OnInit {
 
   populate() {
     this.xformComponent.setValue({
+      number: 7846509780989089080945.654,
       name: 'Customer',
       email: 'customer@mail.com',
       type_tags: [2],
