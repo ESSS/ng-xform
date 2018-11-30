@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
+import { Component, OnInit, ViewChild, TemplateRef, OnDestroy } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Title } from '@angular/platform-browser';
@@ -16,8 +16,8 @@ import {
   TextField,
   CustomField
 } from '@esss/ng-xform';
-import { Observable, of } from 'rxjs';
-import { delay, map, buffer, skip } from 'rxjs/operators';
+import { Observable, of, Subject, Subscription } from 'rxjs';
+import { delay, map } from 'rxjs/operators';
 
 
 @Component({
@@ -25,7 +25,7 @@ import { delay, map, buffer, skip } from 'rxjs/operators';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
 
   @ViewChild(NgXformEditSaveComponent) xformComponent: NgXformEditSaveComponent;
   @ViewChild('customField') customFieldTmpl: TemplateRef<any>;
@@ -40,16 +40,24 @@ export class HomeComponent implements OnInit {
     { id: 6, name: 'purple' }
   ];
 
+  public onchangefn = new Subject<string>();
+
   public fields: DynamicField[];
   public horizontal = false;
   public labelWidth = 2;
   public model: any;
+  public outputhelper = {'A': 1, 'B': 2, 'C': 3};
+  public subscriptions: Subscription[] = [];
 
   constructor(private titleService: Title, private http: HttpClient) { }
 
   ngOnInit() {
     const minDate = new Date();
     const maxDate = new Date();
+
+    this.subscriptions.push(this.onchangefn.asObservable().subscribe(
+      (value: any) =>  this.xformComponent.setValue({'outputopt': this.outputhelper[value]})
+    ));
 
     minDate.setDate(minDate.getDate() - 3);
     maxDate.setDate(maxDate.getDate() + 3);
@@ -140,6 +148,21 @@ export class HomeComponent implements OnInit {
         viewUnit: of('inch').pipe(delay(200)),
         availableUnits: of(['inch', 'ft']).pipe(delay(200))
       }),
+      new SelectField({
+        key: 'opt',
+        label: 'Select an option',
+        options: [{id: 'A', description: 'Option A'}, {id: 'B', description: 'Option B'}, {id: 'C', description: 'Option C'}],
+        optionLabelKey: 'description',
+        optionValueKey: 'id',
+        onChangeFn: (value: string) => {
+          this.onchangefn.next(value);
+        }
+      }),
+      new TextField({
+        key: 'outputopt',
+        label: 'Output of option',
+        readOnly: true,
+      }),
       new CheckboxField({
         key: 'news',
         label: 'News'
@@ -177,6 +200,10 @@ export class HomeComponent implements OnInit {
     ];
   }
 
+  ngOnDestroy() {
+    this.subscriptions.forEach(sub => sub.unsubscribe());
+  }
+
   public onSubmit(values: object) {
     this.model = values;
   }
@@ -195,6 +222,7 @@ export class HomeComponent implements OnInit {
       gender: 1,
       length: { value: 2, unit: 'm'},
       width: { value: 3, unit: 'ft'},
+      opt: 'A',
       news: true,
       comment: 'Mussum Ipsum, cacilds vidis litro abertis. Mauris nec dolor in eros commodo tempor. Aenean aliquam molestie leo, vitae ' +
       'iaculis nisl. Quem num gosta di mé, boa gentis num é. Tá deprimidis, eu conheço uma cachacis que pode alegrar sua vidis. Em pé ' +
