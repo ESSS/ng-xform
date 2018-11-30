@@ -50,17 +50,6 @@
     </div>
   </div>
 </section>
-<ng-template #onchangefn let-customControl="control" let-isEditing="isEditing">
-  <div class="input-group">
-    <input type="text"
-      [formControl]="customControl"
-      [attr.disabled]="!isEditing || null"
-      class="form-control"
-      style="text-align:left"
-      id="invertedPhrase"
-      [value]="invertedPhraseValue" />
-  </div>
-</ng-template>
 <ng-template #customField let-customControl="control" let-isEditing="isEditing">
   <div class="input-group">
     <div class="input-group-addon">$</div>

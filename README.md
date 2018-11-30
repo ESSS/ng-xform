@@ -91,7 +91,6 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   @ViewChild(NgXformEditSaveComponent) xformComponent: NgXformEditSaveComponent;
   @ViewChild('customField') customFieldTmpl: TemplateRef<any>;
-  @ViewChild('onchangefn') onchangefnTmpl: TemplateRef<any>;
 
   private colors: any[] = [
     { id: 0, name: 'other' },
@@ -103,13 +102,13 @@ export class HomeComponent implements OnInit, OnDestroy {
     { id: 6, name: 'purple' }
   ];
 
-  public onchangefnSubject = new Subject<string>();
+  public onchangefn = new Subject<string>();
 
   public fields: DynamicField[];
   public horizontal = false;
   public labelWidth = 2;
   public model: any;
-  public invertedPhraseValue = '';
+  public outputhelper = {'A': 1, 'B': 2, 'C': 3};
   public subscriptions: Subscription[] = [];
 
   constructor(private titleService: Title, private http: HttpClient) { }
@@ -118,8 +117,8 @@ export class HomeComponent implements OnInit, OnDestroy {
     const minDate = new Date();
     const maxDate = new Date();
 
-    this.subscriptions.push(this.onchangefnSubject.asObservable().subscribe(
-      (value: string) =>  this.invertedPhraseValue = value.split('').reverse().join('')
+    this.subscriptions.push(this.onchangefn.asObservable().subscribe(
+      (value: any) =>  this.xformComponent.setValue({'outputopt': this.outputhelper[value]})
     ));
 
     minDate.setDate(minDate.getDate() - 3);
@@ -211,18 +210,20 @@ export class HomeComponent implements OnInit, OnDestroy {
         viewUnit: of('inch').pipe(delay(200)),
         availableUnits: of(['inch', 'ft']).pipe(delay(200))
       }),
-      new TextField({
-        key: 'phrase',
-        label: 'Write a phrase',
+      new SelectField({
+        key: 'opt',
+        label: 'Select an option',
+        options: [{id: 'A', description: 'Option A'}, {id: 'B', description: 'Option B'}, {id: 'C', description: 'Option C'}],
+        optionLabelKey: 'description',
+        optionValueKey: 'id',
         onChangeFn: (value: string) => {
-          this.onchangefnSubject.next(value);
+          this.onchangefn.next(value);
         }
       }),
-      new CustomField({
-        key: 'invertedPhrase',
-        label: 'Inverted phrase',
+      new TextField({
+        key: 'outputopt',
+        label: 'Output of option',
         readOnly: true,
-        tmpl: this.onchangefnTmpl
       }),
       new CheckboxField({
         key: 'news',
@@ -267,7 +268,6 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   public onSubmit(values: object) {
     this.model = values;
-    this.model.invertedPhrase = this.invertedPhraseValue;
   }
 
   populate() {
@@ -284,7 +284,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       gender: 1,
       length: { value: 2, unit: 'm'},
       width: { value: 3, unit: 'ft'},
-      phrase: 'dogs are awesome',
+      opt: 'A',
       news: true,
       comment: 'Mussum Ipsum, cacilds vidis litro abertis. Mauris nec dolor in eros commodo tempor. Aenean aliquam molestie leo, vitae ' +
       'iaculis nisl. Quem num gosta di mé, boa gentis num é. Tá deprimidis, eu conheço uma cachacis que pode alegrar sua vidis. Em pé ' +
@@ -319,7 +319,6 @@ export class HomeComponent implements OnInit, OnDestroy {
     }).pipe(delay(300));
   }
 }
-
 ```
 ### Custom Field
 
