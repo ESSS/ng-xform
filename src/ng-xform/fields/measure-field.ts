@@ -15,7 +15,7 @@ export class MeasureField<T = any> extends DynamicField<T> {
     this.modelUnit = options.modelUnit;
     this.viewUnit = options.viewUnit;
     this.availableUnits = options.availableUnits;
-    this.formatOptions = options.formatOptions || {precision: 5, notation: 'auto'};
+    this.formatOptions = options.formatOptions || {precision: 5};
     this.changedUnitHandler = options.changedUnitHandler;
   }
 }

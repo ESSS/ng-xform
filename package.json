@@ -37,7 +37,8 @@
     "@types/mathjs": "^3.20.0",
     "mathjs": "^3.20.0",
     "ngx-bootstrap": "^3.0.1",
-    "rxjs": "^6.2.2"
+    "rxjs": "^6.2.2",
+    "ts-keycode-enum": "^1.0.6"
   },
   "devDependencies": {
     "@angular/animations": "^6.1.3",

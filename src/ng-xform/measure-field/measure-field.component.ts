@@ -33,7 +33,7 @@ export class MeasureFieldComponent extends BaseDynamicFieldComponent<MeasureFiel
   @ViewChild(InputNumberComponent) inputNumber: InputNumberComponent;
 
   private quantity: Unit;
-  private subiscriptions: Subscription[] = [];
+  private subscriptions: Subscription[] = [];
   numberControl = new FormControl();
   viewUnit: string;
   availableUnits: string[];
@@ -49,7 +49,7 @@ export class MeasureFieldComponent extends BaseDynamicFieldComponent<MeasureFiel
     super.ngOnInit();
     this.setViewUnits();
     this.setViewUnit();
-    this.subiscriptions.push(
+    this.subscriptions.push(
       this.numberControl.valueChanges.subscribe((value: any) => {
         let newValue: any;
         if (!value) {
@@ -73,7 +73,7 @@ export class MeasureFieldComponent extends BaseDynamicFieldComponent<MeasureFiel
   }
 
   ngOnDestroy() {
-    this.subiscriptions.forEach(sub => sub.unsubscribe());
+    this.subscriptions.forEach(sub => sub.unsubscribe());
   }
 
   writeValue(obj: Measure): void {
