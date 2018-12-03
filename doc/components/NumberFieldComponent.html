@@ -139,7 +139,7 @@
                                     <a href="../components/NgXformEditSaveComponent.html" >NgXformEditSaveComponent</a>
                                 </li>
                                 <li class="link">
-                                    <a href="../components/NumberFieldComponent.html" >NumberFieldComponent</a>
+                                    <a href="../components/NumberFieldComponent.html"  data-type="entity-link" class="active" >NumberFieldComponent</a>
                                 </li>
                                 <li class="link">
                                     <a href="../components/OptionalTagComponent.html" >OptionalTagComponent</a>
@@ -202,7 +202,7 @@
                                     <a href="../classes/NumberField.html" >NumberField</a>
                                 </li>
                                 <li class="link">
-                                    <a href="../classes/RadioGroupField.html"  data-type="entity-link" class="active" >RadioGroupField</a>
+                                    <a href="../classes/RadioGroupField.html" >RadioGroupField</a>
                                 </li>
                                 <li class="link">
                                     <a href="../classes/SelectField.html" >SelectField</a>
@@ -403,7 +403,7 @@
                                            <a href="../components/NgXformEditSaveComponent.html" >NgXformEditSaveComponent</a>
                                        </li>
                                        <li class="link">
-                                           <a href="../components/NumberFieldComponent.html" >NumberFieldComponent</a>
+                                           <a href="../components/NumberFieldComponent.html"  data-type="entity-link" class="active" >NumberFieldComponent</a>
                                        </li>
                                        <li class="link">
                                            <a href="../components/OptionalTagComponent.html" >OptionalTagComponent</a>
@@ -466,7 +466,7 @@
                                            <a href="../classes/NumberField.html" >NumberField</a>
                                        </li>
                                        <li class="link">
-                                           <a href="../classes/RadioGroupField.html"  data-type="entity-link" class="active" >RadioGroupField</a>
+                                           <a href="../classes/RadioGroupField.html" >RadioGroupField</a>
                                        </li>
                                        <li class="link">
                                            <a href="../classes/SelectField.html" >SelectField</a>
@@ -542,20 +542,15 @@
                    
                    </nav>
                </div>
-               <div class="content class">
+               <div class="content component">
                    <div class="content-data">
 
 
 
 
-
-
-
-
-
 <ol class="breadcrumb">
-  <li>Classes</li>
-  <li>RadioGroupField</li>
+  <li>Components</li>
+  <li>NumberFieldComponent</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -563,283 +558,156 @@
         <a href="#info" id="info-tab" role="tab" data-toggle="tab" data-link="info">Info</a>
     </li>
 
-
     <li>
         <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+    </li>
+
+    <li>
+        <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+    </li>
+    <li>
+        <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
     </li>
 </ul>
 
 <div class="tab-content">
-    <div class="tab-pane fade active in" id="c-info">
-        <p class="comment">
-            <h3>File</h3>
-        </p>
-        <p class="comment">
-            <code>src/ng-xform/fields/radiogroup-field.ts</code>
-        </p>
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/ng-xform/number-field/number-field.component.ts</code>
+</p>
 
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>Component to generate a bootstrap form field of general type number</p>
+<p>:editing: Flag to control component state
+:form: FormGroup containing the field
+:field: Intance of field configurations</p>
 
-            <p class="comment">
-                <h3>Extends</h3>
-            </p>
-            <p class="comment">
-                    <code><a href="../classes/DynamicField.html" target="_self" >DynamicField</a></code>
-            </p>
+    </p>
 
-
-
-            <section>
-                <h3 id="index">Index</h3>
-                <table class="table table-sm table-bordered index-table">
-                    <tbody>
-                        <tr>
-                            <td class="col-md-4">
-                                <h6><b>Properties</b></h6>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <ul class="index-list">
-                                    <li>
-                                            <span class="modifier">Public</span>
-                                        <a href="#controlType">controlType</a>
-                                    </li>
-                                    <li>
-                                            <span class="modifier">Public</span>
-                                        <a href="#optionLabelKey">optionLabelKey</a>
-                                    </li>
-                                    <li>
-                                            <span class="modifier">Public</span>
-                                        <a href="#options">options</a>
-                                    </li>
-                                    <li>
-                                            <span class="modifier">Public</span>
-                                        <a href="#optionValueKey">optionValueKey</a>
-                                    </li>
-                                </ul>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </section>
-
-            <section>
-                <h3 id="constructor">Constructor</h3>
-                    <table class="table table-sm table-bordered">
-                        <tbody>
-                            <tr>
-                                <td class="col-md-4">
-                                    <code>constructor(options: <a href="../classes/RadioGroupField.html">RadioGroupField<T></a>)</code>
-                                </td>
-                            </tr>
-                                    <tr>
-                                        <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">src/ng-xform/fields/radiogroup-field.ts:8</a></div>
-                                        </td>
-                                    </tr>
-            
-                            <tr>
-                                <td class="col-md-4">
-                                        <div>
-                                                <b>Parameters :</b>
-                                                <table class="params">
-                                                    <thead>
-                                                        <tr>
-                                                            <td>Name</td>
-                                                            <td>Type</td>
-                                                            <td>Optional</td>
-                                                            <td>Description</td>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                            <tr>
-                                                              <td>options</td>
-                                                              <td>
-                                                                        <code><a href="../classes/RadioGroupField.html" target="_self" >RadioGroupField&lt;T&gt;</a></code>
-                                                              </td>
-                                                              <td>
-                                                              </td>
-                                                              <td></td>
-                                                            </tr>
-                                                    </tbody>
-                                                </table>
-                                        </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-            </section>
+    <p class="comment">
+        <h3>Extends</h3>
+    </p>
+    <p class="comment">
+            <code><a href="../classes/DynamicField.html" target="_self" >BaseDynamicFieldComponent</a></code>
+    </p>
 
 
 
-            <section>
-                
-                    <h3 id="inputs">
-                        Properties
-                    </h3>
-                    <table class="table table-sm table-bordered">
-                        <tbody>
-                            <tr>
-                                <td class="col-md-4">
-                                    <a name="controlType"></a>
-                                    <span class="name">
-                                        <b>
-                                            <span class="modifier">Public</span>
-                                        controlType
-                                        </b>
-                                        <a href="#controlType"><span class="fa fa-link"></span></a>
-                                    </span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="col-md-4">
-                                    <span class="modifier-icon fa fa-reset"></span><code>controlType:     <code></code>
-            </code>
-                                </td>
-                            </tr>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <i>Default value : </i><code>&#x27;RADIOGROUP&#x27;</code>
-                                    </td>
-                                </tr>
-                                    <tr>
-                                        <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="5" class="link-to-prism">src/ng-xform/fields/radiogroup-field.ts:5</a></div>
-                                        </td>
-                                    </tr>
-            
-            
-                        </tbody>
-                    </table>
-                    <table class="table table-sm table-bordered">
-                        <tbody>
-                            <tr>
-                                <td class="col-md-4">
-                                    <a name="optionLabelKey"></a>
-                                    <span class="name">
-                                        <b>
-                                            <span class="modifier">Public</span>
-                                        optionLabelKey
-                                        </b>
-                                        <a href="#optionLabelKey"><span class="fa fa-link"></span></a>
-                                    </span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="col-md-4">
-                                    <span class="modifier-icon fa fa-reset"></span><code>optionLabelKey:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-            </code>
-                                </td>
-                            </tr>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-            
-                                    </td>
-                                </tr>
-                                    <tr>
-                                        <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">src/ng-xform/fields/radiogroup-field.ts:8</a></div>
-                                        </td>
-                                    </tr>
-            
-            
-                        </tbody>
-                    </table>
-                    <table class="table table-sm table-bordered">
-                        <tbody>
-                            <tr>
-                                <td class="col-md-4">
-                                    <a name="options"></a>
-                                    <span class="name">
-                                        <b>
-                                            <span class="modifier">Public</span>
-                                        options
-                                        </b>
-                                        <a href="#options"><span class="fa fa-link"></span></a>
-                                    </span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="col-md-4">
-                                    <span class="modifier-icon fa fa-reset"></span><code>options:     <code>[] | Observable</code>
-            </code>
-                                </td>
-                            </tr>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <i>Type : </i>    <code>[] | Observable</code>
-            
-                                    </td>
-                                </tr>
-                                    <tr>
-                                        <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="6" class="link-to-prism">src/ng-xform/fields/radiogroup-field.ts:6</a></div>
-                                        </td>
-                                    </tr>
-            
-            
-                        </tbody>
-                    </table>
-                    <table class="table table-sm table-bordered">
-                        <tbody>
-                            <tr>
-                                <td class="col-md-4">
-                                    <a name="optionValueKey"></a>
-                                    <span class="name">
-                                        <b>
-                                            <span class="modifier">Public</span>
-                                        optionValueKey
-                                        </b>
-                                        <a href="#optionValueKey"><span class="fa fa-link"></span></a>
-                                    </span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="col-md-4">
-                                    <span class="modifier-icon fa fa-reset"></span><code>optionValueKey:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-            </code>
-                                </td>
-                            </tr>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-            
-                                    </td>
-                                </tr>
-                                    <tr>
-                                        <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="7" class="link-to-prism">src/ng-xform/fields/radiogroup-field.ts:7</a></div>
-                                        </td>
-                                    </tr>
-            
-            
-                        </tbody>
-                    </table>
-            </section>
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover">
+        <tbody>
 
-    </div>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>ng-xform-number-field</code></td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./number-field.component.html</code></td>
+            </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+
+
+
+
+
+
+
+
+</div>
 
 
     <div class="tab-pane fade tab-source-code" id="c-source">
-        <pre class="line-numbers"><code class="language-typescript">import { Observable } from &#x27;rxjs&#x27;;
-import { DynamicField } from &#x27;./dynamic-field&#x27;;
+        <pre class="line-numbers"><code class="language-typescript">import { AfterViewInit, Component, ElementRef, Inject, LOCALE_ID, Renderer2 } from &#x27;@angular/core&#x27;;
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from &#x27;@angular/forms&#x27;;
+import * as math from &#x27;mathjs&#x27;;
 
-export class RadioGroupField&lt;T &#x3D; any&gt; extends DynamicField&lt;T&gt; {
-  public controlType ? &#x3D; &#x27;RADIOGROUP&#x27;;
-  public options: any[] | Observable&lt;any[]&gt;;
-  public optionValueKey?: string;
-  public optionLabelKey?: string;
-  constructor(options: RadioGroupField&lt;T&gt;) {
-    super(options);
-    this.options &#x3D; options.options;
-    this.optionValueKey &#x3D; options.optionValueKey;
-    this.optionLabelKey &#x3D; options.optionLabelKey;
-  }
-}
+import { BaseDynamicFieldComponent } from &#x27;../field-components/base-dynamic-field.component&#x27;;
+import { NumberField } from &#x27;../fields&#x27;;
+
+
+/**
+ * Component to generate a bootstrap form field of general type number
+ *
+ * :editing: Flag to control component state
+ * :form: FormGroup containing the field
+ * :field: Intance of field configurations
+ */
+@Component({
+  selector: &#x27;ng-xform-number-field&#x27;,
+  templateUrl: &#x27;./number-field.component.html&#x27;,
+})
+export class NumberFieldComponent extends BaseDynamicFieldComponent&lt;NumberField&gt; { }
 </code></pre>
     </div>
+
+    <div class="tab-pane fade" id="c-templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;ng-xform-form-control-layout [fieldComponent]&#x3D;&quot;instance&quot;&gt;
+  &lt;ng-xform-input-number [formControl]&#x3D;&quot;control&quot; [inputClass]&#x3D;&quot;&#x27;form-control&#x27;&quot;&gt;&lt;/ng-xform-input-number&gt;
+&lt;/ng-xform-form-control-layout&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade" id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
 </div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><ng-xform-form-control-layout [fieldComponent]="instance">  <ng-xform-input-number [formControl]="control" [inputClass]="\'form-control\'"></ng-xform-input-number></ng-xform-form-control-layout></div>'
+    var COMPONENTS = [{'name': 'CheckboxFieldComponent', 'selector': 'ng-xform-checkbox-field'},{'name': 'CustomFieldComponent', 'selector': 'ng-xform-custom-field'},{'name': 'DateFieldComponent', 'selector': 'ng-xform-date-field'},{'name': 'DateRangeFieldComponent', 'selector': 'ng-xform-date-range-field'},{'name': 'EditSaveCancelButtonBarComponent', 'selector': 'ng-xform-edit-save-cancel-button-bar'},{'name': 'EditableLabelComponent', 'selector': 'ng-xform-editable-label'},{'name': 'FieldErrorMessageComponent', 'selector': 'ng-xform-field-error-message'},{'name': 'FormControlLayoutComponent', 'selector': 'ng-xform-form-control-layout'},{'name': 'FormGroupComponent', 'selector': 'ng-xform-form-group'},{'name': 'InputNumberComponent', 'selector': 'ng-xform-input-number'},{'name': 'MeasureFieldComponent', 'selector': 'ng-xform-measure-field'},{'name': 'MultilineFieldComponent', 'selector': 'ng-xform-multiline-field'},{'name': 'NgXformComponent', 'selector': 'ng-xform'},{'name': 'NgXformEditSaveComponent', 'selector': 'ng-xform-edit-save'},{'name': 'NumberFieldComponent', 'selector': 'ng-xform-number-field'},{'name': 'OptionalTagComponent', 'selector': 'ng-xform-required-field-tag'},{'name': 'RadioGroupFieldComponent', 'selector': 'ng-xform-radiogroup-field'},{'name': 'SelectFieldComponent', 'selector': 'ng-xform-select-field'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'NumberFieldComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
 
 
 

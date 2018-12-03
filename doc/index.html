@@ -124,6 +124,9 @@
                                     <a href="./components/FormGroupComponent.html" >FormGroupComponent</a>
                                 </li>
                                 <li class="link">
+                                    <a href="./components/InputNumberComponent.html" >InputNumberComponent</a>
+                                </li>
+                                <li class="link">
                                     <a href="./components/MeasureFieldComponent.html" >MeasureFieldComponent</a>
                                 </li>
                                 <li class="link">
@@ -134,6 +137,9 @@
                                 </li>
                                 <li class="link">
                                     <a href="./components/NgXformEditSaveComponent.html" >NgXformEditSaveComponent</a>
+                                </li>
+                                <li class="link">
+                                    <a href="./components/NumberFieldComponent.html" >NumberFieldComponent</a>
                                 </li>
                                 <li class="link">
                                     <a href="./components/OptionalTagComponent.html" >OptionalTagComponent</a>
@@ -191,6 +197,9 @@
                                 </li>
                                 <li class="link">
                                     <a href="./classes/NgXformGroup.html" >NgXformGroup</a>
+                                </li>
+                                <li class="link">
+                                    <a href="./classes/NumberField.html" >NumberField</a>
                                 </li>
                                 <li class="link">
                                     <a href="./classes/RadioGroupField.html" >RadioGroupField</a>
@@ -379,6 +388,9 @@
                                            <a href="./components/FormGroupComponent.html" >FormGroupComponent</a>
                                        </li>
                                        <li class="link">
+                                           <a href="./components/InputNumberComponent.html" >InputNumberComponent</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="./components/MeasureFieldComponent.html" >MeasureFieldComponent</a>
                                        </li>
                                        <li class="link">
@@ -389,6 +401,9 @@
                                        </li>
                                        <li class="link">
                                            <a href="./components/NgXformEditSaveComponent.html" >NgXformEditSaveComponent</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="./components/NumberFieldComponent.html" >NumberFieldComponent</a>
                                        </li>
                                        <li class="link">
                                            <a href="./components/OptionalTagComponent.html" >OptionalTagComponent</a>
@@ -446,6 +461,9 @@
                                        </li>
                                        <li class="link">
                                            <a href="./classes/NgXformGroup.html" >NgXformGroup</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="./classes/NumberField.html" >NumberField</a>
                                        </li>
                                        <li class="link">
                                            <a href="./classes/RadioGroupField.html" >RadioGroupField</a>
@@ -579,9 +597,11 @@ export class OtherModule {
 }</code></pre><h2 id="usage">Usage</h2>
 <p>Template:</p>
 <pre class="line-numbers"><code class="language-html"> &lt;ng-xform [horizontalForm]=&quot;horizontal&quot; [labelWidth]=&quot;labelWidth&quot; [fields]=&quot;fields&quot; &gt;&lt;/ng-xform&gt;</code></pre><p>Component:</p>
-<pre class="line-numbers"><code class="language-ts">export class HomeComponent implements OnInit {
+<pre class="line-numbers"><code class="language-ts">export class HomeComponent implements OnInit, OnDestroy {
 
-  &#64;ViewChild(NgXformComponent) xformComponent: NgXformComponent;
+  &#64;ViewChild(NgXformEditSaveComponent) xformComponent: NgXformEditSaveComponent;
+  &#64;ViewChild(&#39;customField&#39;) customFieldTmpl: TemplateRef&lt;any&gt;;
+
   private colors: any[] = [
     { id: 0, name: &#39;other&#39; },
     { id: 1, name: &#39;blue&#39; },
@@ -592,18 +612,28 @@ export class OtherModule {
     { id: 6, name: &#39;purple&#39; }
   ];
 
+  public onchangefn = new Subject&lt;string&gt;();
+
   public fields: DynamicField[];
-  public editing = true;
   public horizontal = false;
   public labelWidth = 2;
+  public model: any;
+  public outputhelper = {&#39;A&#39;: 1, &#39;B&#39;: 2, &#39;C&#39;: 3};
+  public subscriptions: Subscription[] = [];
 
-  constructor(private titleService: Title, private http: HttpClient) {
+  constructor(private titleService: Title, private http: HttpClient) { }
+
+  ngOnInit() {
     const minDate = new Date();
     const maxDate = new Date();
 
+    this.subscriptions.push(this.onchangefn.asObservable().subscribe(
+      (value: any) =&gt;  this.xformComponent.setValue({&#39;outputopt&#39;: this.outputhelper[value]})
+    ));
+
     minDate.setDate(minDate.getDate() - 3);
     maxDate.setDate(maxDate.getDate() + 3);
-
+    this.titleService.setTitle(&#39;Home | &#64;esss/ng-xform&#39;);
     this.fields = [
       new TextField({
         key: &#39;name&#39;,
@@ -633,6 +663,8 @@ export class OtherModule {
         label: &#39;Color&#39;,
         searchable: true,
         options: this.colors,
+        addNewOption: true,
+        addNewOptionText: &#39;Add Color&#39;,
         optionLabelKey: &#39;name&#39;,
       }),
       new TextField({
@@ -644,13 +676,14 @@ export class OtherModule {
         key: &#39;address&#39;,
         fields: [
           new SelectField({
-            key: &#39;street&#39;,
-            label: &#39;Street&#39;,
+            key: &#39;country&#39;,
+            label: &#39;Country&#39;,
             searchHandler: this.observableSource.bind(this),
             searchByValueKeyHandler: this.observableSourceByPlaceId.bind(this),
+            searchOnFocus: true,
             searchable: true,
-            optionLabelKey: &#39;formatted_address&#39;,
-            optionValueKey: &#39;place_id&#39;,
+            optionLabelKey: &#39;name&#39;,
+            optionValueKey: &#39;alpha3Code&#39;,
             validators: [
               Validators.required
             ]
@@ -676,14 +709,42 @@ export class OtherModule {
       new MeasureField({
         key: &#39;length&#39;,
         label: &#39;Length&#39;,
-        modelUnit: &#39;m&#39;,
-        viewUnit: of(&#39;cm&#39;).delay(200),
-        availableUnits: of([&#39;m&#39;, &#39;cm&#39;, &#39;mm&#39;, &#39;ft&#39;]).delay(200),
-        formatOptions: {notation: &#39;fixed&#39;, precision: 4}
+        modelUnit: &#39;mm&#39;,
+        viewUnit: of(&#39;m&#39;).pipe(delay(200)),
+        availableUnits: of([&#39;m&#39;, &#39;cm&#39;, &#39;mm&#39;]).pipe(delay(200))
+      }),
+      new MeasureField({
+        key: &#39;width&#39;,
+        label: &#39;Width&#39;,
+        modelUnit: &#39;inch&#39;,
+        viewUnit: of(&#39;inch&#39;).pipe(delay(200)),
+        availableUnits: of([&#39;inch&#39;, &#39;ft&#39;]).pipe(delay(200))
+      }),
+      new SelectField({
+        key: &#39;opt&#39;,
+        label: &#39;Select an option&#39;,
+        options: [{id: &#39;A&#39;, description: &#39;Option A&#39;}, {id: &#39;B&#39;, description: &#39;Option B&#39;}, {id: &#39;C&#39;, description: &#39;Option C&#39;}],
+        optionLabelKey: &#39;description&#39;,
+        optionValueKey: &#39;id&#39;,
+        onChangeFn: (value: string) =&gt; {
+          this.onchangefn.next(value);
+        }
+      }),
+      new TextField({
+        key: &#39;outputopt&#39;,
+        label: &#39;Output of option&#39;,
+        readOnly: true,
       }),
       new CheckboxField({
         key: &#39;news&#39;,
         label: &#39;News&#39;
+      }),
+      new RadioGroupField({
+        key: &#39;gender&#39;,
+        label: &#39;Gender&#39;,
+        options: of([{id: 1, label: &#39;male&#39;}, {id: 2, label: &#39;female&#39;}]).pipe(delay(2000)),
+        optionValueKey: &#39;id&#39;,
+        optionLabelKey: &#39;label&#39;
       }),
       new MultilineField({
         key: &#39;comment&#39;,
@@ -695,22 +756,32 @@ export class OtherModule {
         label: &#39;Date of birth&#39;,
         theme: &#39;blue&#39;,
         minDate: minDate,
-        maxDate: maxDate
+        maxDate: maxDate,
+        showWeekNumbers: true
+      }),
+      new DateRangeField({
+        key: &#39;range&#39;,
+        label: &#39;Date range&#39;,
+        theme: &#39;blue&#39;
+      }),
+      new CustomField({
+        key: &#39;custom_amount&#39;,
+        label: &#39;Custom Field Amount&#39;,
+        tmpl: this.customFieldTmpl
       }),
     ];
   }
 
-  ngOnInit() {
-    this.titleService.setTitle(&#39;Home | &#64;esss/ng-xform&#39;);
+  ngOnDestroy() {
+    this.subscriptions.forEach(sub =&gt; sub.unsubscribe());
   }
 
   public onSubmit(values: object) {
-    this.editing = !this.editing;
-    console.log(values);
+    this.model = values;
   }
 
   populate() {
-    this.xformComponent.form.patchValue({
+    this.xformComponent.setValue({
       name: &#39;Customer&#39;,
       email: &#39;customer&#64;mail.com&#39;,
       type_tags: [2],
@@ -720,32 +791,42 @@ export class OtherModule {
       address: {
         street: &#39;ChIJn7h-4b9JJ5URGCq6n0zj1tM&#39;
       },
+      gender: 1,
       length: { value: 2, unit: &#39;m&#39;},
+      width: { value: 3, unit: &#39;ft&#39;},
+      opt: &#39;A&#39;,
       news: true,
       comment: &#39;Mussum Ipsum, cacilds vidis litro abertis. Mauris nec dolor in eros commodo tempor. Aenean aliquam molestie leo, vitae &#39; +
       &#39;iaculis nisl. Quem num gosta di mé, boa gentis num é. Tá deprimidis, eu conheço uma cachacis que pode alegrar sua vidis. Em pé &#39; +
       &#39;sem cair, deitado sem dormir, sentado sem cochilar e fazendo pose. Leite de capivaris, leite de mula manquis sem cabeça. Praesent &#39; +
       &#39;vel viverra nisi. Mauris aliquet nunc non turpis scelerisque, eget. Casamentiss faiz malandris se pirulitá. Sapien in monti &#39; +
       &#39;palavris qui num significa nadis i pareci latim.&#39;,
-      birth: new Date()
+      birth: new Date(),
+      range: [
+        &#39;2018-09-06T03:00:00.000Z&#39;,
+        &#39;2018-10-08T03:00:00.000Z&#39;
+      ],
+      custom_amount: 456
     });
   }
 
   public observableSource(keyword: any): Observable&lt;any[]&gt; {
-    const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${keyword}`;
+    const url = `https://restcountries.eu/rest/v2/name/${keyword}`;
     if (keyword) {
       return this.http.get(url)
-        .map((res) =&gt; res[&#39;results&#39;]);
+        .pipe(
+          map((res) =&gt; res as any[])
+        );
     } else {
       return of([]);
     }
   }
 
-  public observableSourceByPlaceId(place_id: any): Observable&lt;any&gt; {
+  public observableSourceByPlaceId(keyword: any): Observable&lt;any&gt; {
     return of({
-      &#39;place_id&#39;: &#39;ChIJn7h-4b9JJ5URGCq6n0zj1tM&#39;,
-      &#39;formatted_address&#39;: &#39;Florianópolis - State of Santa Catarina, Brazil&#39;
-    }).delay(300);
+      &#39;alpha3Code&#39;: &#39;BRA&#39;,
+      &#39;name&#39;: &#39;Brazil&#39;
+    }).pipe(delay(300));
   }
 }</code></pre><h3 id="custom-field">Custom Field</h3>
 <p>It&#39;s possible to create your own field template and set it on dynamic field list through CustomField</p>
@@ -830,6 +911,18 @@ export class UserComponent {
   }
 }</code></pre><p>In the example, the <code>TextField</code> is created specialized whit the <code>User</code> class</p>
 <pre class="line-numbers"><code class="language-ts">new TextField&lt;User&gt;({</code></pre><p>the TextField <code>key</code> attribute will accept only keys of the class User (i.e. &#39;name&#39;, &#39;email&#39;, &#39;address&#39;), and show and error if any other value is provided.</p>
+<h3 id="on-change-function">On change function</h3>
+<p>You can add a parameter <code>onChangeFn</code> on your <code>DynamicField</code> fields. This parameter receives a 
+anonymous function, just like in the following example:</p>
+<pre class="line-numbers"><code class="language-ts">new TextField({
+  key: &#39;phrase&#39;,
+  label: &#39;Write a phrase&#39;,
+  onChangeFn: (value: string) =&gt; {
+    // push new typed value to a subject
+    this.onchangefnSubject.next(value);
+  }
+}),</code></pre><p>This parameter can be used to execute async functions that depends on user input or push values of 
+a field to a <code>Subject()</code> just like is shown above. </p>
 <h3 id="locales">Locales</h3>
 <p>DatepickerField can use different locales. </p>
 <p>It&#39;s possible to change a locale by calling use method of BsLocaleService, list of available locales is in dropdown below.</p>
