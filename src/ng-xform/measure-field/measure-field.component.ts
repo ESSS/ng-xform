@@ -1,11 +1,12 @@
-import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { Unit } from 'mathjs';
 import * as math from 'mathjs';
-import { isObservable } from 'rxjs';
+import { isObservable, Subscription } from 'rxjs';
 
 import { BaseDynamicFieldComponent } from '../field-components/base-dynamic-field.component';
 import { MeasureField } from '../fields';
+import { InputNumberComponent } from '../number-field/input-number.component';
 import { Measure } from './../models/measure';
 
 
@@ -26,54 +27,48 @@ import { Measure } from './../models/measure';
     multi: true
   }],
 })
-export class MeasureFieldComponent extends BaseDynamicFieldComponent<MeasureField> implements ControlValueAccessor, AfterViewInit,
-  OnInit {
+export class MeasureFieldComponent extends BaseDynamicFieldComponent<MeasureField> implements ControlValueAccessor, OnInit, OnDestroy {
 
-  @ViewChild('unitsDropdown') unitsDropdown: ElementRef;
+  @ViewChild(InputNumberComponent) inputNumber: InputNumberComponent;
 
-  private input: HTMLInputElement;
   private quantity: Unit;
-
+  numberControl = new FormControl();
   viewUnit: string;
   availableUnits: string[];
 
   _onChange = (value: any) => { };
   _onTouched = () => { };
 
-  constructor(private elementRef: ElementRef) {
-    super();
-  }
-
   get formattedValue() {
-    return this.quantity ? math.format(this.quantity.to(this.viewUnit), this.field.formatOptions) : '-';
+    return !!this.inputNumber && !!this.control.value ? `${this.inputNumber.formattedValue} ${this.viewUnit}` : '-';
   }
 
   ngOnInit() {
     super.ngOnInit();
     this.setViewUnits();
     this.setViewUnit();
+    this.subscriptions.push(
+      this.numberControl.valueChanges.subscribe((value: any) => {
+        let newValue: any;
+        if (!value) {
+          this.quantity = null;
+          newValue = null;
+        } else {
+          this.quantity = math.unit(value, this.viewUnit).to(this.field.modelUnit);
+          newValue = new Measure(
+            this.quantity.toNumber(this.field.modelUnit),
+            this.field.modelUnit
+          );
+        }
+
+        this.control.setValue(newValue, { emitEvent: false });
+        this._onChange(newValue);
+      })
+    );
   }
 
-  ngAfterViewInit() {
-    this.input = this.elementRef.nativeElement.querySelector('input');
-    if (this.input) {
-      this.input.onblur = this._onTouched
-    }
-    this.input.oninput = (event: Event) => {
-      const field = event.target as HTMLInputElement;
-      if (!field.value) {
-        this.quantity = null;
-        this._onChange(null);
-        return;
-      }
-
-      const value = Number(field.value);
-      this.quantity = math.unit(value, this.viewUnit).to(this.field.modelUnit);
-      this._onChange(new Measure(
-        this.quantity.toNumber(this.field.modelUnit),
-        this.field.modelUnit
-      ));
-    }
+  ngOnDestroy() {
+    this.subscriptions.forEach(sub => sub.unsubscribe());
   }
 
   writeValue(obj: Measure): void {
@@ -92,15 +87,15 @@ export class MeasureFieldComponent extends BaseDynamicFieldComponent<MeasureFiel
   }
 
   setDisabledState?(isDisabled: boolean): void {
-    this.input.disabled = isDisabled;
+    if (isDisabled) {
+      this.numberControl.disable();
+    } else {
+      this.numberControl.enable();
+    }
   }
 
   changeUnit(unit: string, emitEvent = true) {
-    if (!unit) {
-      this.viewUnit = this.field.modelUnit;
-      return;
-    }
-    this.viewUnit = unit;
+    this.viewUnit = !unit ? this.field.modelUnit : unit;
     if (this.quantity) {
       this.updateInputValue();
     }
@@ -110,14 +105,9 @@ export class MeasureFieldComponent extends BaseDynamicFieldComponent<MeasureFiel
   }
 
   private updateInputValue() {
-    if (!this.input) {
-      return;
-    }
-
-    if (this.quantity) {
-      this.input.value = this.quantity.toNumber(this.viewUnit).toString();
-    } else {
-      this.input.value = undefined;
+    const newValue = this.quantity ? this.quantity.toNumber(this.viewUnit) : undefined;
+    if (this.numberControl.value !== newValue) {
+      this.numberControl.setValue(newValue);
     }
   }
 

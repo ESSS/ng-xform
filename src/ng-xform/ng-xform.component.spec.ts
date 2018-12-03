@@ -59,7 +59,6 @@ describe('NgXformComponent', () => {
     component.fields = [
       new TextField({ key: 'text1', label: 'Text 1' }),
       new TextField({ key: 'required', label: 'Required 1', validators: [Validators.required] }),
-      new MeasureField({ key: 'measure1', label: 'Measure 1', modelUnit: 'degC' }),
       new MultilineField({ key: 'comments', label: 'Comments' }),
       new TextField({ key: 'other_color', label: 'Other Color', visibilityFn: (formVal: any) => formVal.color === 1 }),
       new NestedFormGroup({
@@ -92,10 +91,6 @@ describe('NgXformComponent', () => {
     expectFormTextarea('comments', 'Comments', 'comments here...');
   });
 
-  it('should render MeasureField', () => {
-    expectFormInput('measure1', 'Measure 1');
-  });
-
   it('should render nested field', () => {
     expectFormInput('city', 'City', 'Ny');
   });
@@ -106,7 +101,6 @@ describe('NgXformComponent', () => {
     expectFormInput('city', 'City', '');
     expectFormInput('text1', 'Text 1', '');
     expectFormTextarea('comments', 'Comments', '');
-    expectFormInput('measure1', 'Measure 1', undefined);
   });
 
   it('should render DateField', () => {
