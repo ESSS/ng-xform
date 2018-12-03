@@ -1,7 +1,7 @@
 import { Input, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { DynamicField } from '../fields';
-import { Subscription } from 'rxjs';
+import { Subscription, Observable } from 'rxjs';
 
 /**
  * Base class for Dynamic Fields
@@ -18,31 +18,37 @@ export class BaseDynamicFieldComponent<T extends DynamicField> implements OnInit
   visible = true;
   public hideLabelOnEdit = false;
 
+  public subscriptions: Subscription[] = [];
+
   /** If true, the read-only state will show the value obtained from the formattedValue method;
    * otherwise, will keep the component to manage this behavior.
    */
   public useFormattedValueOnReadonly = true;
 
-  private valueChangeSubscription: Subscription;
-
   ngOnInit() {
     this.control = this.form.controls[this.elementId] as FormControl;
     if (this.field.visibilityFn) {
       const formRoot = this.form.root; // Make sure to get the root form, even for nested FromGroups
-      this.valueChangeSubscription = formRoot.valueChanges.subscribe(val => {
+      this.subscriptions.push(formRoot.valueChanges.subscribe(val => {
         this.visible = this.field.visibilityFn(val);
         if (!this.visible && !this.field.keepValueWhenHiding) {
           this.control.setValue(null, { emitEvent: false });
         }
-      });
+      }));
       this.visible = this.field.visibilityFn(formRoot.value);
+    }
+
+    if (this.field.onChangeFn) {
+      this.subscriptions.push(this.control.valueChanges.subscribe(val => {
+        this.field.onChangeFn(val);
+      }));
     }
 
   }
 
   ngOnDestroy() {
-    if (this.valueChangeSubscription) {
-      this.valueChangeSubscription.unsubscribe();
+    if (this.subscriptions) {
+      this.subscriptions.forEach(sub => sub.unsubscribe());
     }
   }
 
