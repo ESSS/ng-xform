@@ -36,7 +36,6 @@ describe('MeasureFieldComponent', () => {
       modelUnit: 'm'
     });
     component.ngOnInit();
-    component.ngAfterViewInit();
     component.inputNumber.ngAfterViewInit();
     fixture.detectChanges();
     inputEl = fixture.debugElement.query(By.css('input'));

@@ -18,7 +18,7 @@ export class BaseDynamicFieldComponent<T extends DynamicField> implements OnInit
   visible = true;
   public hideLabelOnEdit = false;
 
-  public subscriptions: Subscription[] = [];
+  protected subscriptions: Subscription[] = [];
 
   /** If true, the read-only state will show the value obtained from the formattedValue method;
    * otherwise, will keep the component to manage this behavior.

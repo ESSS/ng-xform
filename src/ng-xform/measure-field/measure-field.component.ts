@@ -1,12 +1,12 @@
-import { AfterViewInit, Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { Unit } from 'mathjs';
 import * as math from 'mathjs';
 import { isObservable, Subscription } from 'rxjs';
 
-import { InputNumberComponent } from '../number-field/input-number.component';
 import { BaseDynamicFieldComponent } from '../field-components/base-dynamic-field.component';
 import { MeasureField } from '../fields';
+import { InputNumberComponent } from '../number-field/input-number.component';
 import { Measure } from './../models/measure';
 
 
@@ -27,13 +27,11 @@ import { Measure } from './../models/measure';
     multi: true
   }],
 })
-export class MeasureFieldComponent extends BaseDynamicFieldComponent<MeasureField> implements ControlValueAccessor, AfterViewInit,
-  OnInit, OnDestroy {
+export class MeasureFieldComponent extends BaseDynamicFieldComponent<MeasureField> implements ControlValueAccessor, OnInit, OnDestroy {
 
   @ViewChild(InputNumberComponent) inputNumber: InputNumberComponent;
 
   private quantity: Unit;
-  private subscriptions: Subscription[] = [];
   numberControl = new FormControl();
   viewUnit: string;
   availableUnits: string[];
@@ -67,9 +65,6 @@ export class MeasureFieldComponent extends BaseDynamicFieldComponent<MeasureFiel
         this._onChange(newValue);
       })
     );
-  }
-
-  ngAfterViewInit() {
   }
 
   ngOnDestroy() {
