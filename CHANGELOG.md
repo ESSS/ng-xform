@@ -1,3 +1,14 @@
+<a name="0.22.0"></a>
+# [0.22.0](https://github.com/ESSS/ng-xform/compare/v0.21.2...v0.22.0) (2018-12-03)
+
+
+### Features
+
+* **ng-xforms:** onChangeFn parameter added to DynamicField ([#44](https://github.com/ESSS/ng-xform/issues/44)) ([6c01689](https://github.com/ESSS/ng-xform/commit/6c01689))
+* **NumberField:** add InputNumberComponent ([#45](https://github.com/ESSS/ng-xform/issues/45)) ([e8c3af9](https://github.com/ESSS/ng-xform/commit/e8c3af9))
+
+
+
 <a name="0.21.2"></a>
 ## [0.21.2](https://github.com/ESSS/ng-xform/compare/v0.21.1...v0.21.2) (2018-11-23)
 
