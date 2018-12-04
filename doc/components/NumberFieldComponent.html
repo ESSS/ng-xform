@@ -669,7 +669,7 @@ export class NumberFieldComponent extends BaseDynamicFieldComponent&lt;NumberFie
 
     <div class="tab-pane fade" id="c-templateData">
         <pre class="line-numbers"><code class="language-html">&lt;ng-xform-form-control-layout [fieldComponent]&#x3D;&quot;instance&quot;&gt;
-  &lt;ng-xform-input-number [formControl]&#x3D;&quot;control&quot; [inputClass]&#x3D;&quot;&#x27;form-control&#x27;&quot;&gt;&lt;/ng-xform-input-number&gt;
+  &lt;ng-xform-input-number [inputId]&#x3D;&quot;elementId&quot; [formControl]&#x3D;&quot;control&quot; [inputClass]&#x3D;&quot;&#x27;form-control&#x27;&quot;&gt;&lt;/ng-xform-input-number&gt;
 &lt;/ng-xform-form-control-layout&gt;
 </code></pre>
     </div>
@@ -697,7 +697,7 @@ export class NumberFieldComponent extends BaseDynamicFieldComponent&lt;NumberFie
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><ng-xform-form-control-layout [fieldComponent]="instance">  <ng-xform-input-number [formControl]="control" [inputClass]="\'form-control\'"></ng-xform-input-number></ng-xform-form-control-layout></div>'
+        var COMPONENT_TEMPLATE = '<div><ng-xform-form-control-layout [fieldComponent]="instance">  <ng-xform-input-number [inputId]="elementId" [formControl]="control" [inputClass]="\'form-control\'"></ng-xform-input-number></ng-xform-form-control-layout></div>'
     var COMPONENTS = [{'name': 'CheckboxFieldComponent', 'selector': 'ng-xform-checkbox-field'},{'name': 'CustomFieldComponent', 'selector': 'ng-xform-custom-field'},{'name': 'DateFieldComponent', 'selector': 'ng-xform-date-field'},{'name': 'DateRangeFieldComponent', 'selector': 'ng-xform-date-range-field'},{'name': 'EditSaveCancelButtonBarComponent', 'selector': 'ng-xform-edit-save-cancel-button-bar'},{'name': 'EditableLabelComponent', 'selector': 'ng-xform-editable-label'},{'name': 'FieldErrorMessageComponent', 'selector': 'ng-xform-field-error-message'},{'name': 'FormControlLayoutComponent', 'selector': 'ng-xform-form-control-layout'},{'name': 'FormGroupComponent', 'selector': 'ng-xform-form-group'},{'name': 'InputNumberComponent', 'selector': 'ng-xform-input-number'},{'name': 'MeasureFieldComponent', 'selector': 'ng-xform-measure-field'},{'name': 'MultilineFieldComponent', 'selector': 'ng-xform-multiline-field'},{'name': 'NgXformComponent', 'selector': 'ng-xform'},{'name': 'NgXformEditSaveComponent', 'selector': 'ng-xform-edit-save'},{'name': 'NumberFieldComponent', 'selector': 'ng-xform-number-field'},{'name': 'OptionalTagComponent', 'selector': 'ng-xform-required-field-tag'},{'name': 'RadioGroupFieldComponent', 'selector': 'ng-xform-radiogroup-field'},{'name': 'SelectFieldComponent', 'selector': 'ng-xform-select-field'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'NumberFieldComponent'};
