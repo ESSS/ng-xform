@@ -40,7 +40,7 @@ export class MeasureFieldComponent extends BaseDynamicFieldComponent<MeasureFiel
   _onTouched = () => { };
 
   get formattedValue() {
-    return !!this.inputNumber && !!this.control.value ? `${this.inputNumber.formattedValue} ${this.viewUnit}` : '-';
+    return !!this.inputNumber && !!this.quantity ? `${this.inputNumber.formattedValue} ${this.viewUnit}` : '-';
   }
 
   ngOnInit() {
@@ -61,7 +61,7 @@ export class MeasureFieldComponent extends BaseDynamicFieldComponent<MeasureFiel
           );
         }
 
-        this.control.setValue(newValue, { emitEvent: false });
+        this.control.setValue(newValue);
         this._onChange(newValue);
       })
     );
@@ -107,7 +107,7 @@ export class MeasureFieldComponent extends BaseDynamicFieldComponent<MeasureFiel
   private updateInputValue() {
     const newValue = this.quantity ? this.quantity.toNumber(this.viewUnit) : undefined;
     if (this.numberControl.value !== newValue) {
-      this.numberControl.setValue(newValue);
+      this.numberControl.setValue(newValue, { emitEvent: false });
     }
   }
 
