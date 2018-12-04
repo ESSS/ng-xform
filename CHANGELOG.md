@@ -1,3 +1,13 @@
+<a name="0.22.1"></a>
+## [0.22.1](https://github.com/ESSS/ng-xform/compare/v0.22.0...v0.22.1) (2018-12-04)
+
+
+### Bug Fixes
+
+* **MeasureField:** fixing loop on writevalue ([#47](https://github.com/ESSS/ng-xform/issues/47)) ([b38579a](https://github.com/ESSS/ng-xform/commit/b38579a))
+
+
+
 <a name="0.22.0"></a>
 # [0.22.0](https://github.com/ESSS/ng-xform/compare/v0.21.2...v0.22.0) (2018-12-03)
 
