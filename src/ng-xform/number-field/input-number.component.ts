@@ -1,3 +1,4 @@
+import { getLocaleNumberSymbol, NumberSymbol } from '@angular/common';
 import {
   AfterViewInit,
   Component,
@@ -10,10 +11,7 @@ import {
   Renderer2,
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { NumberSymbol, getLocaleNumberSymbol } from '@angular/common';
 import * as math from 'mathjs';
-
-import { KeyCode as KC } from './number-utils';
 
 
 /**
@@ -32,7 +30,7 @@ export class InputNumberComponent implements ControlValueAccessor, AfterViewInit
 
   @Output() paste = new EventEmitter();
   @Output() keypress = new EventEmitter<KeyboardEvent>();
-  @Input() formatOptions = { notation: 'auto'};
+  @Input() formatOptions = { notation: 'auto' };
   @Input() inputClass = '';
   @Input() inputStyle = '';
   @Input() inputId = '';
@@ -40,36 +38,21 @@ export class InputNumberComponent implements ControlValueAccessor, AfterViewInit
 
   private input: HTMLInputElement;
   private isValidNumber: RegExp;
-  private allowedKeyCodes = [
-    KC.Plus,
-    KC.Minus,
-    KC.E,
-    KC.Enter,
-    KC.Number0,
-    KC.Number1,
-    KC.Number2,
-    KC.Number3,
-    KC.Number4,
-    KC.Number5,
-    KC.Number6,
-    KC.Number7,
-    KC.Number8,
-    KC.Number9,
-  ];
+  private readonly allowedKeys = ['+', '-', 'e', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+  private readonly specialKeys = ['Enter', 'Backspace', 'Delete', 'ArrowLeft', 'ArrowRight', 'Home', 'End', 'Tab'];
   private thousandSeparator: string;
   private decimalSeparator: string;
 
   _onChange = (value: any) => { };
   _onTouched = () => { };
 
-  constructor(private elementRef: ElementRef, private renderer: Renderer2, @Inject(LOCALE_ID) private locale: string) {
+  constructor(private elementRef: ElementRef, private renderer: Renderer2, @Inject(LOCALE_ID) locale: string) {
     this.thousandSeparator = getLocaleNumberSymbol(locale, NumberSymbol.Group);
     this.decimalSeparator = getLocaleNumberSymbol(locale, NumberSymbol.Decimal);
-    const decimalSymbolKeyCode = this.decimalSeparator.charCodeAt(0);
-    this.allowedKeyCodes.push(decimalSymbolKeyCode);
+    this.allowedKeys.push(this.decimalSeparator);
     this.isValidNumber = new RegExp(
       `^(([+\\-]?(?:(?:\\d{1,3}(?:\\${this.thousandSeparator}\\d{1,3})+)|\\d*))(?:\\${this.decimalSeparator}(\\d*))?)` +
-      `(?:(?:[e]+([+\-]?\\d*)))?$`
+      `(?:(?:[e]{0,1}([+\-]?\\d*)))?$`
     );
   }
 
@@ -79,8 +62,12 @@ export class InputNumberComponent implements ControlValueAccessor, AfterViewInit
       this._onChange(this.getValueAsNumber());
     };
     this.input.onkeypress = (event: KeyboardEvent) => {
+      console.log('key', event.key, event.keyCode, event.charCode);
       this.keypress.emit(event);
-      if (this.allowedKeyCodes.indexOf(event.keyCode) < 0 || !this.isValidNumber.test(this.getFutureValue(event))) {
+      if (event.ctrlKey || this.specialKeys.indexOf(event.key) >= 0) {
+        return;
+      }
+      if (this.allowedKeys.indexOf(event.key) < 0 || !this.isValidNumber.test(this.getFutureValue(event))) {
         event.preventDefault();
       }
     }
