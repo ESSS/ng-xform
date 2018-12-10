@@ -1,3 +1,13 @@
+<a name="0.22.2"></a>
+## [0.22.2](https://github.com/ESSS/ng-xform/compare/v0.22.1...v0.22.2) (2018-12-10)
+
+
+### Bug Fixes
+
+* **InputNumber:** fixing InputNumberComponent on Firefox ([#48](https://github.com/ESSS/ng-xform/issues/48)) ([9acacbc](https://github.com/ESSS/ng-xform/commit/9acacbc))
+
+
+
 <a name="0.22.1"></a>
 ## [0.22.1](https://github.com/ESSS/ng-xform/compare/v0.22.0...v0.22.1) (2018-12-04)
 
