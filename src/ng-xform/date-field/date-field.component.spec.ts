@@ -12,6 +12,7 @@ import { DateField, DynamicField } from '../fields';
 import { FormControlLayoutComponent } from '../form-control-layout/form-control-layout.component';
 import { NgXformGroup } from '../ng-xform-group';
 import { DateFieldComponent } from './date-field.component';
+import { By } from '@angular/platform-browser';
 
 
 describe('DateFieldComponent', () => {
@@ -97,6 +98,49 @@ describe('DateFieldComponent', () => {
     expect(dateField.dateValue).toBe(null);
     expect(dateField.dateField.componentControl.value).toBe(null);
 
+  }));
+
+  it('shouldnt show datepicker on read mode ', fakeAsync(() => {
+    const fixture = createTestingModule(`
+      <form [formGroup]="form">
+        <ng-xform-date-field [field]="field"
+          [formControlName]="field.key"
+          [form]="form"
+          [(ngModel)]="dateValue">
+        </ng-xform-date-field>
+      </form>
+    `);
+    const dateField: DateFieldTestComponent = fixture.componentInstance;
+
+    // Test editing false
+    dateField.dateField.editing = false;
+    tickAndDetectChanges(fixture);
+
+    let date_picker = document.querySelector('bs-datepicker-container');
+    expect(date_picker).toBeFalsy();
+    
+    let label = fixture.debugElement.query(By.css('label'));
+    label.nativeElement.click();
+    
+    tickAndDetectChanges(fixture);
+
+    date_picker = document.querySelector('bs-datepicker-container');
+    expect(date_picker).toBeFalsy();
+
+    // Test editing true
+    dateField.dateField.editing = true;
+    tickAndDetectChanges(fixture);
+
+    date_picker = document.querySelector('bs-datepicker-container');
+    expect(date_picker).toBeFalsy();
+    
+    label = fixture.debugElement.query(By.css('label'));
+    label.nativeElement.click();
+    
+    tickAndDetectChanges(fixture);
+
+    date_picker = document.querySelector('bs-datepicker-container');
+    expect(date_picker).toBeTruthy();
   }));
 
 });
