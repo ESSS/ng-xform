@@ -100,7 +100,7 @@ describe('DateFieldComponent', () => {
 
   }));
 
-  it('shouldnt show datepicker on read mode ', fakeAsync(() => {
+  it('should not show datepicker on read mode ', fakeAsync(() => {
     const fixture = createTestingModule(`
       <form [formGroup]="form">
         <ng-xform-date-field [field]="field"
