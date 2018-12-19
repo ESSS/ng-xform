@@ -3,7 +3,7 @@
   class="form-group"
   [formGroup]="fieldComponent.form">
   <label *ngIf="!fieldComponent.hideLabelOnEdit || (!fieldComponent.isEditing && fieldComponent.visible)"
-   for="{{fieldComponent.elementId}}"
+   for="{{fieldComponent.isEditing ? fieldComponent.elementId : ''}}"
    [ngClass]="labelStyleClass">
     {{ fieldComponent.field.label }}
     <ng-xform-required-field-tag
