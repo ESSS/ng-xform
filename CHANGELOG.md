@@ -1,3 +1,13 @@
+<a name="0.22.3"></a>
+## [0.22.3](https://github.com/ESSS/ng-xform/compare/v0.22.2...v0.22.3) (2018-12-19)
+
+
+### Bug Fixes
+
+* **xform:** date field does not show date picker on read mode ([#49](https://github.com/ESSS/ng-xform/issues/49)) ([5c49da8](https://github.com/ESSS/ng-xform/commit/5c49da8))
+
+
+
 <a name="0.22.2"></a>
 ## [0.22.2](https://github.com/ESSS/ng-xform/compare/v0.22.1...v0.22.2) (2018-12-10)
 
