@@ -1696,7 +1696,7 @@ export class NgXformComponent implements OnInit, OnChanges {
         group[field.key] &#x3D; this.createFormGroup(field.fields);
       } else {
         group[field.key] &#x3D; field.validators
-          ? new FormControl(undefined, field.validators)
+          ? new FormControl(undefined, field.validators, field.asyncValidators)
           : new FormControl();
       }
     });
