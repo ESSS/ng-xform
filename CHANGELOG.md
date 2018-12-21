@@ -1,3 +1,13 @@
+<a name="0.23.0"></a>
+# [0.23.0](https://github.com/ESSS/ng-xform/compare/v0.22.3...v0.23.0) (2018-12-21)
+
+
+### Features
+
+* **ng-xform:** suppot async validators ([#51](https://github.com/ESSS/ng-xform/issues/51)) ([d0e1f15](https://github.com/ESSS/ng-xform/commit/d0e1f15))
+
+
+
 <a name="0.22.3"></a>
 ## [0.22.3](https://github.com/ESSS/ng-xform/compare/v0.22.2...v0.22.3) (2018-12-19)
 
