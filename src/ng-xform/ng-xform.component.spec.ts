@@ -1,3 +1,4 @@
+import { MeasureFieldComponent } from './measure-field/measure-field.component';
 import { BsLocaleService } from 'ngx-bootstrap/datepicker';
 import { DatePipe } from '@angular/common';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
@@ -262,33 +263,34 @@ describe('NgXformComponent - Fields setup', () => {
     const fixture = createTestingModule();
     expect(fixture.componentInstance).toBeTruthy();
 
-    let component: NgXformComponent = fixture.debugElement.componentInstance.form;
-
     fixture.componentInstance.setFields([
       new MeasureField({ key: 'field1', label: 'Field 1', modelUnit: 'm' }),
     ]);
     fixture.detectChanges();
+
+    const measureField: MeasureFieldComponent = fixture.debugElement.query(By.css('ng-xform-measure-field')).componentInstance;
+    expect(measureField).toBeTruthy();
 
     fixture.componentInstance.setModel({field1: {value: 10, unit: 'm'}});
     fixture.detectChanges();
 
     let el = fixture.debugElement.query(By.css('#field1-div .text-muted'));
     expect(el).toBeTruthy();
-    expect(el.nativeElement.textContent).toEqual(' 10 m ');
+
+    expect(measureField.viewModel).toEqual(10);
+    expect(measureField.viewUnit).toEqual('m');
 
     fixture.componentInstance.setModel({field1: null});
     fixture.detectChanges();
 
-    el = fixture.debugElement.query(By.css('#field1-div .text-muted'));
-    expect(el).toBeTruthy();
-    expect(el.nativeElement.textContent).toEqual(' - ');
+    expect(measureField.viewModel).toBeUndefined();
+    expect(measureField.viewUnit).toEqual('m');
 
     fixture.componentInstance.editing = true;
     fixture.detectChanges();
 
     el = fixture.debugElement.query(By.css('#field1-div input'));
     expect(el).toBeTruthy();
-    expect(el.nativeElement.value).toEqual('');
   });
 
 });

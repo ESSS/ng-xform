@@ -32,7 +32,7 @@ export class MeasureFieldComponent extends BaseDynamicFieldComponent<MeasureFiel
   @ViewChild(InputNumberComponent) inputNumber: InputNumberComponent;
 
   private quantity: Unit;
-  numberControl = new FormControl();
+  viewModel: number;
   viewUnit: string;
   availableUnits: string[];
 
@@ -47,28 +47,27 @@ export class MeasureFieldComponent extends BaseDynamicFieldComponent<MeasureFiel
     super.ngOnInit();
     this.setViewUnits();
     this.setViewUnit();
-    this.subscriptions.push(
-      this.numberControl.valueChanges.subscribe((value: any) => {
-        let newValue: any;
-        if (!value) {
-          this.quantity = null;
-          newValue = null;
-        } else {
-          this.quantity = math.unit(value, this.viewUnit).to(this.field.modelUnit);
-          newValue = new Measure(
-            this.quantity.toNumber(this.field.modelUnit),
-            this.field.modelUnit
-          );
-        }
-
-        this.control.setValue(newValue);
-        this._onChange(newValue);
-      })
-    );
   }
 
   ngOnDestroy() {
     this.subscriptions.forEach(sub => sub.unsubscribe());
+  }
+
+  onViewChange(value: any) {
+    let newValue: any;
+    if (!value) {
+      this.quantity = null;
+      newValue = null;
+    } else {
+      this.quantity = math.unit(value, this.viewUnit).to(this.field.modelUnit);
+      newValue = new Measure(
+        this.quantity.toNumber(this.field.modelUnit),
+        this.field.modelUnit
+      );
+    }
+
+    this.control.setValue(newValue, { emitModelToViewChange: false });
+    this._onChange(newValue);
   }
 
   writeValue(obj: Measure): void {
@@ -87,11 +86,7 @@ export class MeasureFieldComponent extends BaseDynamicFieldComponent<MeasureFiel
   }
 
   setDisabledState?(isDisabled: boolean): void {
-    if (isDisabled) {
-      this.numberControl.disable();
-    } else {
-      this.numberControl.enable();
-    }
+    this.inputNumber.setDisabledState(isDisabled);
   }
 
   changeUnit(unit: string, emitEvent = true) {
@@ -106,8 +101,8 @@ export class MeasureFieldComponent extends BaseDynamicFieldComponent<MeasureFiel
 
   private updateInputValue() {
     const newValue = this.quantity ? this.quantity.toNumber(this.viewUnit) : undefined;
-    if (this.numberControl.value !== newValue) {
-      this.numberControl.setValue(newValue, { emitEvent: false });
+    if (this.viewModel !== newValue) {
+      this.viewModel = newValue;
     }
   }
 

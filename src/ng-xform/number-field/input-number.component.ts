@@ -62,7 +62,6 @@ export class InputNumberComponent implements ControlValueAccessor, AfterViewInit
       this._onChange(this.getValueAsNumber());
     };
     this.input.onkeypress = (event: KeyboardEvent) => {
-      console.log('key', event.key, event.keyCode, event.charCode);
       this.keypress.emit(event);
       if (event.ctrlKey || this.specialKeys.indexOf(event.key) >= 0) {
         return;

@@ -16,5 +16,6 @@ script:
 - gulp build
 - npm run setup:demo
 - gulp test:demo_ci
+- gulp test:demo_e2e
 
 after_success: gulp coveralls
