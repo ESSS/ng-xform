@@ -1,3 +1,4 @@
+import { InputNumberComponent } from './../number-field/input-number.component';
 import { DebugElement } from '@angular/core';
 import { async, ComponentFixture, TestBed, tick, fakeAsync } from '@angular/core/testing';
 import { FormControl } from '@angular/forms';
@@ -54,15 +55,9 @@ describe('MeasureFieldComponent', () => {
   });
 
   it('should render form value', () => {
-    const initialValue = '22';
     component.writeValue({ value: 22, unit: 'm' });
-    expect(component.inputNumber.viewModel).toBe(initialValue);
-  });
-
-  it('should format properly form value', () => {
-    const formattedValue = '1.2346 m';
-    component.writeValue({ value: 1.2345678910111213, unit: 'm' });
-    expect(component.formattedValue).toBe(formattedValue);
+    expect(component.viewModel).toBe(22);
+    expect(component.viewUnit).toBe('m');
   });
 
   it('should update form value', () => {
@@ -73,11 +68,13 @@ describe('MeasureFieldComponent', () => {
     expect(component.control.value).toEqual(new Measure(15, 'm'));
 
     component.changeUnit('cm');
-    expect(component.formattedValue).toEqual('1500 cm');
+    expect(component.viewModel).toEqual(1500);
+    expect(component.viewUnit).toEqual('cm');
     expect(component.control.value).toEqual(new Measure(15, 'm'));
 
     component.changeUnit('');
-    expect(component.formattedValue).toEqual('15 m');
+    expect(component.viewModel).toEqual(15);
+    expect(component.viewUnit).toEqual('m');
     expect(component.control.value).toEqual(new Measure(15, 'm'));
 
     component.field.modelUnit = 'inch';

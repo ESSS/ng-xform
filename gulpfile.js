@@ -534,6 +534,10 @@ gulp.task('test:demo_ci', () => {
   return execDemoCmd('test --preserve-symlinks --progress=false --watch=false', { cwd: `${config.demoDir}`});
 });
 
+gulp.task('test:demo_e2e', () => {
+  return execDemoCmd('e2e', { cwd: `${config.demoDir}`});
+});
+
 gulp.task('serve:demo', () => {
   return execDemoCmd('serve --proxy-config proxy.conf.json', { cwd: `${config.demoDir}` });
 });

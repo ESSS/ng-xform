@@ -1,6 +1,6 @@
 <ng-xform-form-control-layout [fieldComponent]="instance">
   <div [class.input-group]="viewUnit" [class.form-group]="!viewUnit">
-    <ng-xform-input-number [inputId]="elementId" [formatOptions]="field.formatOptions" [formControl]="numberControl"
+    <ng-xform-input-number [inputId]="elementId" [formatOptions]="field.formatOptions" [ngModel]="viewModel" (ngModelChange)="onViewChange($event)"
       [inputClass]="'form-control'" [inputStyle]="{'border-top-left-radius': '4px', 'border-bottom-left-radius': '4px'}">
     </ng-xform-input-number>
     <div *ngIf="viewUnit" class="input-group-addon measure-unit-selector" dropdown>

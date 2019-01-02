@@ -7,8 +7,8 @@ describe('ng-xform-demo App', () => {
     page = new NgXformDemoPage ();
   });
 
-  it('should display message saying app works', () => {
+  it('should display message saying ng-xform', () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('app works!');
+    expect(page.getParagraphText()).toEqual('ng-xform');
   });
 });
