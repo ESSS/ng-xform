@@ -1,3 +1,13 @@
+<a name="0.24.0"></a>
+# [0.24.0](https://github.com/ESSS/ng-xform/compare/v0.23.0...v0.24.0) (2019-01-02)
+
+
+### Bug Fixes
+
+* **MeasureField:** accept exponential value input ([#52](https://github.com/ESSS/ng-xform/issues/52)) ([12a7f96](https://github.com/ESSS/ng-xform/commit/12a7f96))
+
+
+
 <a name="0.23.0"></a>
 # [0.23.0](https://github.com/ESSS/ng-xform/compare/v0.22.3...v0.23.0) (2018-12-21)
 
