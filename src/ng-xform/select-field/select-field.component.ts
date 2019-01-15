@@ -2,8 +2,8 @@ import { AfterViewInit, Component, EventEmitter, OnInit, SimpleChange, ViewChild
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { NgSelectComponent } from '@ng-select/ng-select';
 import { BehaviorSubject, Observable, isObservable, from } from 'rxjs';
-import { distinctUntilChanged, switchMap, debounceTime } from 'rxjs/operators';
-import { Subscription } from 'rxjs';
+import { distinctUntilChanged, switchMap, debounceTime, tap } from 'rxjs/operators';
+import { Subscription, of } from 'rxjs';
 
 import { AddNewOptionObservableFn, SelectField } from '../fields';
 import { BaseDynamicFieldComponent } from './../field-components/base-dynamic-field.component';
@@ -53,27 +53,30 @@ export class SelectFieldComponent extends BaseDynamicFieldComponent<SelectField>
     });
     this.select.registerOnTouched(this._onTouched);
     this.subscriptions.push(
-      this.viewModel.subscribe((value: any) => {
-        if (this.field.searchByValueKeyHandler) {
-          if (value === undefined || value === null) {
-            this.updateOptionLabel();
-            return;
-          }
-          this.field.searchByValueKeyHandler(value).subscribe((val: any) => {
-            if (this.field.searchHandler) {
-              const oldValue = this.optionValues;
-              this.optionValues = [val];
-              this.select.ngOnChanges({ items: new SimpleChange(oldValue, this.optionValues, !this.optionValues)});
+      this.viewModel.pipe(
+        switchMap((value: any) => {
+          this.select.writeValue(value);
+          this.updateOptionLabel();
+          if (this.field.searchByValueKeyHandler) {
+            if (value === undefined || value === null) {
+              this.updateOptionLabel();
+              return of(null);
             }
-            this.select.writeValue(value);
-            this.updateOptionLabel();
-          });
-          return;
-        }
-        this.select.writeValue(value);
-        this.updateOptionLabel();
-      }));
-    }
+            return this.field.searchByValueKeyHandler(value);
+          } else {
+            return of(null);
+          }
+        }),
+        tap((val: any) => {
+          if (val && this.field.searchHandler) {
+            const oldValue = this.optionValues;
+            this.optionValues = [val];
+            this.select.ngOnChanges({ items: new SimpleChange(oldValue, this.optionValues, !this.optionValues)});
+          }
+        })
+      ).subscribe()
+    );
+  }
 
     ngOnDestroy(): void {
       this.subscriptions.forEach(sub => sub.unsubscribe());
