@@ -1,8 +1,9 @@
-import { AfterViewInit, Component, EventEmitter, OnInit, SimpleChange, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, OnInit, SimpleChange, ViewChild, OnDestroy } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { NgSelectComponent } from '@ng-select/ng-select';
 import { BehaviorSubject, Observable, isObservable, from } from 'rxjs';
 import { distinctUntilChanged, switchMap, debounceTime } from 'rxjs/operators';
+import { Subscription } from 'rxjs';
 
 import { AddNewOptionObservableFn, SelectField } from '../fields';
 import { BaseDynamicFieldComponent } from './../field-components/base-dynamic-field.component';
@@ -24,10 +25,13 @@ import { BaseDynamicFieldComponent } from './../field-components/base-dynamic-fi
     multi: true
   }],
 })
-export class SelectFieldComponent extends BaseDynamicFieldComponent<SelectField> implements ControlValueAccessor, OnInit, AfterViewInit {
+export class SelectFieldComponent extends BaseDynamicFieldComponent<SelectField> implements ControlValueAccessor, OnInit, AfterViewInit
+, OnDestroy {
 
   @ViewChild(NgSelectComponent) select: NgSelectComponent;
   viewModel = new BehaviorSubject<any>(null);
+
+  subscriptions = new Array<Subscription>();
 
   optionValues: any[] = [];
   optionLabel = '-';
@@ -48,27 +52,32 @@ export class SelectFieldComponent extends BaseDynamicFieldComponent<SelectField>
       this._onChange(value);
     });
     this.select.registerOnTouched(this._onTouched);
-    this.viewModel.subscribe((value: any) => {
-      if (this.field.searchByValueKeyHandler) {
-        if (value === undefined || value === null) {
-          this.updateOptionLabel();
+    this.subscriptions.push(
+      this.viewModel.subscribe((value: any) => {
+        if (this.field.searchByValueKeyHandler) {
+          if (value === undefined || value === null) {
+            this.updateOptionLabel();
+            return;
+          }
+          this.field.searchByValueKeyHandler(value).subscribe((val: any) => {
+            if (this.field.searchHandler) {
+              const oldValue = this.optionValues;
+              this.optionValues = [val];
+              this.select.ngOnChanges({ items: new SimpleChange(oldValue, this.optionValues, !this.optionValues)});
+            }
+            this.select.writeValue(value);
+            this.updateOptionLabel();
+          });
           return;
         }
-        this.field.searchByValueKeyHandler(value).subscribe((val: any) => {
-          if (this.field.searchHandler) {
-            const oldValue = this.optionValues;
-            this.optionValues = [val];
-            this.select.ngOnChanges({ items: new SimpleChange(oldValue, this.optionValues, !this.optionValues)});
-          }
-          this.select.writeValue(value);
-          this.updateOptionLabel();
-        });
-        return;
-      }
-      this.select.writeValue(value);
-      this.updateOptionLabel();
-    })
-  }
+        this.select.writeValue(value);
+        this.updateOptionLabel();
+      }));
+    }
+
+    ngOnDestroy(): void {
+      this.subscriptions.forEach(sub => sub.unsubscribe());
+    }
 
   writeValue(obj: any): void {
     // the form makes writeValue's call before the select attribute is initialized
@@ -139,20 +148,24 @@ export class SelectFieldComponent extends BaseDynamicFieldComponent<SelectField>
       this.typeahead = new EventEmitter<string>();
       this.field.searchable = true;
 
-      this.getTypeaheadWithDistinctAndDebounce()
-        .pipe(switchMap((term: string) => this.field.searchHandler(term)))
-        .subscribe(
-          (items: string[]) => this.optionValues = items,
-          (err: any) => this.optionValues = []
-        );
+      this.subscriptions.push(
+        this.getTypeaheadWithDistinctAndDebounce()
+          .pipe(switchMap((term: string) => this.field.searchHandler(term)))
+          .subscribe(
+            (items: string[]) => this.optionValues = items,
+            (err: any) => this.optionValues = []
+          )
+      );
     }
     const options = this.field.options;
 
     if (isObservable(options)) {
-      (<Observable<any[]>>options).subscribe(ret => {
-        this.optionValues = ret;
-        this.updateOptionLabel();
-      });
+      this.subscriptions.push(
+        (<Observable<any[]>>options).subscribe(ret => {
+          this.optionValues = ret;
+          this.updateOptionLabel();
+        })
+      );
     } else {
       this.optionValues = options;
     }
