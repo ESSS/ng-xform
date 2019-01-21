@@ -136,7 +136,7 @@ describe('NgXformComponent', () => {
     input.nativeElement.dispatchEvent(new Event('input'));
     expect(component.form.value['nested2']).toBeTruthy();
     expect(component.form.value['nested2']['field1']).toBe('some value');
-    let formValue = component.getModel()
+    let formValue = component.getValue()
     expect(formValue.nested2.field1).toBe('some value');
     expect(formValue.address.extra_field).toBe(model.address.extra_field);
     expect(component.form.valid).toBeTruthy();
@@ -155,7 +155,7 @@ describe('NgXformComponent', () => {
     input.nativeElement.dispatchEvent(new Event('input'));
     expect(component.form.value['nested2']).toBeTruthy();
     expect(component.form.value['nested2']['field1']).toBe('some value');
-    let formValue = component.getModel()
+    let formValue = component.getValue()
     expect(formValue.nested2.field1).toBe('some value');
 
     fixture.detectChanges();
