@@ -37,7 +37,8 @@
         </div>
       </fieldset>
     </form>
-    <hr />
+    <hr/>
+    <!-- The actual form component -->
     <div class="panel-body">
       <ng-xform-edit-save
         [fields]="fields"
@@ -49,8 +50,11 @@
       <hr>
       <pre>{{ model | json }}</pre>
     </div>
+
   </div>
 </section>
+
+<!-- Custom Field -->
 <ng-template #customField let-customControl="control" let-isEditing="isEditing">
   <div class="input-group">
     <div class="input-group-addon">$</div>

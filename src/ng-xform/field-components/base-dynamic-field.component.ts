@@ -18,18 +18,22 @@ export class BaseDynamicFieldComponent<T extends DynamicField> implements OnInit
   visible = true;
   public hideLabelOnEdit = false;
 
-  protected subscriptions: Subscription[] = [];
+  protected subscriptions: Subscription;
 
   /** If true, the read-only state will show the value obtained from the formattedValue method;
    * otherwise, will keep the component to manage this behavior.
    */
   public useFormattedValueOnReadonly = true;
 
+  constructor() {
+    this.subscriptions = new Subscription();
+  }
+
   ngOnInit() {
     this.control = this.form.controls[this.elementId] as FormControl;
     if (this.field.visibilityFn) {
       const formRoot = this.form.root; // Make sure to get the root form, even for nested FromGroups
-      this.subscriptions.push(formRoot.valueChanges.subscribe(val => {
+      this.subscriptions.add(formRoot.valueChanges.subscribe(val => {
         this.visible = this.field.visibilityFn(val);
         if (!this.visible && !this.field.keepValueWhenHiding) {
           this.control.setValue(null, { emitEvent: false });
@@ -39,17 +43,17 @@ export class BaseDynamicFieldComponent<T extends DynamicField> implements OnInit
     }
 
     if (this.field.onChangeFn) {
-      this.subscriptions.push(this.control.valueChanges.subscribe(val => {
-        this.field.onChangeFn(val);
-      }));
+      this.subscriptions.add(
+        this.control.valueChanges.subscribe(val => {
+          this.field.onChangeFn(val);
+        })
+      );
     }
 
   }
 
   ngOnDestroy() {
-    if (this.subscriptions) {
-      this.subscriptions.forEach(sub => sub.unsubscribe());
-    }
+    this.subscriptions.unsubscribe()
   }
 
   /**

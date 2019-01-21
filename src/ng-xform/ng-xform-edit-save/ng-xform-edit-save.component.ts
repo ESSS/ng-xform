@@ -33,31 +33,33 @@ export class NgXformEditSaveComponent {
   @Output() cancel = new EventEmitter();
 
   @ViewChild('xform') xform: NgXformComponent;
-
-  protected beforeEditingValue = {};
+  /** Copy the model values beofre switch to edit mode to restore
+   * form values in case user cancel the edition */
+  protected valueBeforeEdit = {};
 
   setEditing(editing: boolean) {
     this.editing = editing;
     if (!editing) {
-      this.xform.setValue({... this.beforeEditingValue});
+      this.xform.setValue({... this.valueBeforeEdit});
     }
   }
 
   onSubmit() {
     if (this.xform.isFormValid()) {
-      this.submit.emit(this.xform.getModel());
+      this.submit.emit(this.xform.getValue());
+      this.valueBeforeEdit = this.xform.getValue();
       this.editing = false;
     }
   }
 
   onCancel() {
     this.cancel.emit();
-    this.xform.setValue(this.beforeEditingValue);
+    this.xform.setValue(this.valueBeforeEdit);
     this.editing = false;
   }
 
-  setValue(newModel: any) {
-    this.beforeEditingValue = {... newModel};
-    this.xform.setValue(newModel);
+  setValue(model: any) {
+    this.valueBeforeEdit = {... model};
+    this.xform.setValue(model);
   }
 }
