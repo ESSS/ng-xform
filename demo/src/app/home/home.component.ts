@@ -61,7 +61,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     this.subscriptions.add(
       this.onOptFieldChange.asObservable().subscribe(
-        (value: any) =>  this.xformComponent.setValue({'output_opt': this.outputhelper[value]})
+        (value: any) =>  this.xformComponent.xform.patchValue({'output_opt': this.outputhelper[value]})
       )
     );
 

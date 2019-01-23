@@ -159,7 +159,9 @@ describe('NgXformComponent', () => {
     expect(formValue.nested2.field1).toBe('some value');
 
     fixture.detectChanges();
-    expect(component.form.valid).toBeTruthy();
+    // Fill required fill to check for form validity
+    component.form.controls['required'].setValue('some')
+    expect(component.isFormValid()).toBeTruthy();
   });
 
   it('should be read mode', () => {

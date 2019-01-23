@@ -110,8 +110,17 @@ export class NgXformComponent implements OnInit, OnChanges {
    * Note: Calling setValue(null) will not clear the form. Use clear() instead.
    */
   setValue(value: any) {
-    this.initialModel = value;
-    this.form.patchValue(this.initialModel);
+    this.clear();
+    if (value != null) {
+      this.initialModel = value;
+      // Use patchValue so it won't fail if model has extra properties that are
+      // not mapped as Form fields.
+      this.patchValue(this.initialModel);
+    }
+  }
+
+  patchValue(value: any) {
+    this.form.patchValue(value);
   }
 
   getValue() {
