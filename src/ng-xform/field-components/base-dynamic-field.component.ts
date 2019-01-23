@@ -76,7 +76,8 @@ export class BaseDynamicFieldComponent<T extends DynamicField> implements OnInit
   }
 
   get formattedValue(): string {
-    return this.form.controls[this.elementId].value || '-';
+    let rawValue = this.form.controls[this.elementId].value;
+    return rawValue !== null ? rawValue : '-';
   }
 
   displayFieldCss(): { [k: string]: boolean } {

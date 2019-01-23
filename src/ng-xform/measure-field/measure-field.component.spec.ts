@@ -115,4 +115,16 @@ describe('MeasureFieldComponent', () => {
     expect(unitEl.nativeElement.textContent.trim()).toBe('mm');
     expect(component.availableUnits.length).toBe(5);
   })
+
+
+  it('should show 0 value', () => {
+    component.writeValue({ value: 0, unit: 'm' });
+    expect(component.formattedValue).toBe('0 m');
+  })
+
+  it('should show "-" when null', () => {
+    component.writeValue(null);
+    expect(component.formattedValue).toBe('-');
+  })
+
 });

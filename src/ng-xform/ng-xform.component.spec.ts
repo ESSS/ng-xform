@@ -283,7 +283,7 @@ describe('NgXformComponent - Fields setup', () => {
     fixture.componentInstance.setModel({field1: null});
     fixture.detectChanges();
 
-    expect(measureField.viewModel).toBeUndefined();
+    expect(measureField.viewModel).toBeNull();
     expect(measureField.viewUnit).toEqual('m');
 
     fixture.componentInstance.editing = true;
