@@ -69,8 +69,7 @@ export class MeasureFieldComponent extends BaseDynamicFieldComponent<MeasureFiel
         this.field.modelUnit
       );
     }
-
-    this.control.setValue(newValue, { emitModelToViewChange: false });
+    this.updateInputValue();
     this._onChange(newValue);
   }
 
