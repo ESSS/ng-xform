@@ -18,12 +18,18 @@ export class BaseDynamicFieldComponent<T extends DynamicField> implements OnInit
   visible = true;
   public hideLabelOnEdit = false;
 
+
   subscriptions = new Subscription;
+
 
   /** If true, the read-only state will show the value obtained from the formattedValue method;
    * otherwise, will keep the component to manage this behavior.
    */
   public useFormattedValueOnReadonly = true;
+
+  constructor() {
+    this.subscriptions = new Subscription();
+  }
 
   ngOnInit() {
     this.control = this.form.controls[this.elementId] as FormControl;
@@ -39,9 +45,12 @@ export class BaseDynamicFieldComponent<T extends DynamicField> implements OnInit
     }
 
     if (this.field.onChangeFn) {
-      this.subscriptions.add(this.control.valueChanges.subscribe(val => {
-        this.field.onChangeFn(val);
-      }));
+
+      this.subscriptions.add(
+        this.control.valueChanges.subscribe(val => {
+          this.field.onChangeFn(val);
+        })
+      );
     }
 
   }
@@ -72,7 +81,8 @@ export class BaseDynamicFieldComponent<T extends DynamicField> implements OnInit
   }
 
   get formattedValue(): string {
-    return this.form.controls[this.elementId].value || '-';
+    let rawValue = this.form.controls[this.elementId].value;
+    return rawValue != null ? rawValue : '-';
   }
 
   displayFieldCss(): { [k: string]: boolean } {

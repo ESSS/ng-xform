@@ -36,18 +36,6 @@ describe('NgXformEditSave', () => {
     component = fixture.componentInstance;
     dateTest = new Date();
     datePipe = new DatePipe('en');
-    model = {
-      text1: 'value1',
-      required: 'value2',
-      comments: 'comments here...',
-      address: {
-        street: 'St wall',
-        city: 'Ny',
-        extra_field: 'Extra',
-      },
-      nested2: null,
-      date: dateTest,
-    };
     const colors: any[] = [
       { id: 1, name: 'blue' },
       { id: 2, name: 'yellow' },
@@ -76,142 +64,195 @@ describe('NgXformEditSave', () => {
       new DateField({ key: 'date', label: 'Date' }),
       new CheckboxField({ key: 'isChecked', label: 'Is Checked' }),
     ];
-
-    fixture.detectChanges();
-    component.setValue(model);
   });
 
+  describe('Initialized with default model', () => {
 
-  it('should patch value', () => {
-    expect(component.xform.form.value.nested2).toBeTruthy();
-  });
+    beforeEach(() => {
+      fixture.detectChanges();
+    })
 
+    it('should edit and rollback changes on cancel', () => {
+      selectElement(`#formEditBtn`).click();
+      fixture.detectChanges();
 
-  it('should emit form value on submit', (done: any) => {
-    const editBtnEl = fixture.nativeElement.querySelector(`#formEditBtn`);
-    editBtnEl.click();
-    fixture.detectChanges();
+      const formInput: HTMLInputElement = selectElement('#required');
+      formInput.value = 'changed';
+      formInput.dispatchEvent(new Event('input'));
+      // Subscribe to submit observable to check if the value changed
+      component.submit.subscribe((value: any) => {
+        setTimeout(() => {
+          expect(value['required']).toBe('changed');
+        })
+      })
+      // Submit form changes
+      expect(component.xform.isFormValid()).toBeTruthy()
+      selectElement(`#formSubmitBtn`).click();
+      fixture.detectChanges();
 
-    component.submit.subscribe((value: any) => {
-      setTimeout(() => {
-        expect(value.text1).toBe(model.text1);
-        expect(value.comments).toBe(model.comments);
-        expect(value.required).toBe('changed');
-        expect(value.date).toBe(dateTest);
-        expect(value.isChecked).toBeFalsy();
-        done();
-      });
+      selectElement(`#formEditBtn`).click();
+      fixture.detectChanges();
+
+      formInput.value = 'changed and cancel';
+      formInput.dispatchEvent(new Event('input'));
+
+      selectElement(`#formCancelBtn`).click();
+      fixture.detectChanges();
+      expectFormLabel('required', 'Required 1', 'changed');
     });
 
-    // set required values as empty
-    const requiredInput: HTMLInputElement = fixture.nativeElement.querySelector('#required');
-    expect(requiredInput).toBeTruthy();
-    requiredInput.value = '';
-    requiredInput.dispatchEvent(new Event('input'));
+  })
 
-    // submit invalid form
-    const buttonEl = fixture.debugElement.query(By.css(`#formSubmitBtn`));
-    fixture.detectChanges();
-    expect(buttonEl).toBeTruthy();
-    buttonEl.nativeElement.click();
-    fixture.detectChanges();
-    expect(component.xform.form.valid).toBeFalsy();
+  describe('Initialized with default model', () => {
 
-    // set required values
-    requiredInput.value = 'changed';
-    requiredInput.dispatchEvent(new Event('input'));
+    beforeEach(() => {
+      model = {
+        text1: 'value1',
+        required: 'value2',
+        comments: 'comments here...',
+        address: {
+          street: 'St wall',
+          city: 'Ny',
+          extra_field: 'Extra',
+        },
+        nested2: null,
+        date: dateTest,
+      };
 
-    // submit valid form
-    fixture.detectChanges();
-    expect(component.xform.form.valid).toBeTruthy();
-    buttonEl.nativeElement.click();
+      fixture.detectChanges();
+      component.setValue(model);
+    })
+
+    it('should patch value', () => {
+      expect(component.xform.form.value.nested2).toBeTruthy();
+    });
+
+
+    it('should emit form value on submit', (done: any) => {
+      const editBtnEl = fixture.nativeElement.querySelector(`#formEditBtn`);
+      editBtnEl.click();
+      fixture.detectChanges();
+
+      component.submit.subscribe((value: any) => {
+        setTimeout(() => {
+          expect(value.text1).toBe(model.text1);
+          expect(value.comments).toBe(model.comments);
+          expect(value.required).toBe('changed');
+          expect(value.date).toBe(dateTest);
+          expect(value.isChecked).toBeFalsy();
+          done();
+        });
+      });
+
+      // set required values as empty
+      const requiredInput: HTMLInputElement = fixture.nativeElement.querySelector('#required');
+      expect(requiredInput).toBeTruthy();
+      requiredInput.value = '';
+      requiredInput.dispatchEvent(new Event('input'));
+
+      // submit invalid form
+      const buttonEl = fixture.debugElement.query(By.css(`#formSubmitBtn`));
+      fixture.detectChanges();
+      expect(buttonEl).toBeTruthy();
+      buttonEl.nativeElement.click();
+      fixture.detectChanges();
+      expect(component.xform.form.valid).toBeFalsy();
+
+      // set required values
+      requiredInput.value = 'changed';
+      requiredInput.dispatchEvent(new Event('input'));
+
+      // submit valid form
+      fixture.detectChanges();
+      expect(component.xform.form.valid).toBeTruthy();
+      buttonEl.nativeElement.click();
+    });
+
+    it('should rollback change on cancel', () => {
+      const editBtnEl = fixture.nativeElement.querySelector(`#formEditBtn`);
+      editBtnEl.click();
+      fixture.detectChanges();
+
+      const text1Input: HTMLInputElement = fixture.nativeElement.querySelector('#text1');
+      expect(text1Input).toBeTruthy();
+      text1Input.value = 'changed';
+      text1Input.dispatchEvent(new Event('input'));
+
+      // formModel expect to be changed
+      let formModel = component.xform.getValue()
+      expect(formModel.text1).toBe('changed')
+
+      const cancelButton = fixture.nativeElement.querySelector(`#formCancelBtn`);
+      expect(cancelButton).toBeTruthy();
+      cancelButton.click();
+      fixture.detectChanges();
+
+      // Form edition was canceled: is expected that the label keeps the origina value
+      expectFormLabel('text1', 'Text 1', 'value1')
+    });
+
+    it('should rollback change on setEdit to false', () => {
+      const editBtnEl = fixture.nativeElement.querySelector(`#formEditBtn`);
+      editBtnEl.click();
+      fixture.detectChanges();
+
+      const text1Input: HTMLInputElement = fixture.nativeElement.querySelector('#text1');
+      expect(text1Input).toBeTruthy();
+      text1Input.value = 'changed';
+      text1Input.dispatchEvent(new Event('input'));
+
+      // formModel expect to be changed
+      let formModel = component.xform.getValue()
+      expect(formModel.text1).toBe('changed')
+
+      component.setEditing(false);
+      fixture.detectChanges();
+
+      // Form edition was canceled: is expected that the label keeps the origina value
+      expectFormLabel('text1', 'Text 1', 'value1')
+    });
+
+    it('should be read mode', () => {
+      const editBtnEl = fixture.debugElement.query(By.css(`#formEditBtn`));
+      editBtnEl.nativeElement.click();
+      fixture.detectChanges();
+
+      expect(component.editing).toBeTruthy();
+      const cancelBtnEl = fixture.debugElement.query(By.css(`#formCancelBtn`));
+      cancelBtnEl.nativeElement.click();
+      fixture.detectChanges();
+      expect(component.editing).toBeFalsy();
+      expectFormLabel('text1', 'Text 1', model.text1);
+      expectFormLabel('comments', 'Comments', model.comments);
+      // implement tes of value
+      expectFormLabel('street', 'Street', model.address.street);
+      expectFormLabel('city', 'City', model.address.city);
+      expectFormLabel('date', 'Date', datePipe.transform(dateTest, 'mediumDate', 'en'));
+    });
+
+
+    it('should reset with cancel when started on editing state', () => {
+      component.editing = true;
+      fixture.detectChanges();
+
+      const text1Input: HTMLInputElement = fixture.nativeElement.querySelector('#text1');
+      expect(text1Input).toBeTruthy();
+      text1Input.value = 'changed';
+      text1Input.dispatchEvent(new Event('input'));
+
+      // formModel expect to be changed
+      let formModel = component.xform.getValue()
+      expect(formModel.text1).toBe('changed')
+
+      const buttonEl = fixture.nativeElement.querySelector(`#formCancelBtn`);
+      expect(buttonEl).toBeTruthy();
+      buttonEl.click();
+      fixture.detectChanges();
+
+      // Form edition was canceled: is expected that the label keeps the origina value
+      expectFormLabel('text1', 'Text 1', 'value1')
+    });
   });
-
-  it('should rollback change on cancel', () => {
-    const editBtnEl = fixture.nativeElement.querySelector(`#formEditBtn`);
-    editBtnEl.click();
-    fixture.detectChanges();
-
-    const text1Input: HTMLInputElement = fixture.nativeElement.querySelector('#text1');
-    expect(text1Input).toBeTruthy();
-    text1Input.value = 'changed';
-    text1Input.dispatchEvent(new Event('input'));
-
-    // formModel expect to be changed
-    let formModel = component.xform.getModel()
-    expect(formModel.text1).toBe('changed')
-
-    const buttonEl = fixture.nativeElement.querySelector(`#formCancelBtn`);
-    expect(buttonEl).toBeTruthy();
-    buttonEl.click();
-    fixture.detectChanges();
-
-    // Form edition was canceled: is expected that the label keeps the origina value
-    expectFormLabel('text1', 'Text 1', 'value1')
-  });
-
-  it('should rollback change on setEdit to false', () => {
-    const editBtnEl = fixture.nativeElement.querySelector(`#formEditBtn`);
-    editBtnEl.click();
-    fixture.detectChanges();
-
-    const text1Input: HTMLInputElement = fixture.nativeElement.querySelector('#text1');
-    expect(text1Input).toBeTruthy();
-    text1Input.value = 'changed';
-    text1Input.dispatchEvent(new Event('input'));
-
-    // formModel expect to be changed
-    let formModel = component.xform.getModel()
-    expect(formModel.text1).toBe('changed')
-
-    component.setEditing(false);
-    fixture.detectChanges();
-
-    // Form edition was canceled: is expected that the label keeps the origina value
-    expectFormLabel('text1', 'Text 1', 'value1')
-  });
-
-  it('should be read mode', () => {
-    const editBtnEl = fixture.debugElement.query(By.css(`#formEditBtn`));
-    editBtnEl.nativeElement.click();
-    fixture.detectChanges();
-
-    expect(component.editing).toBeTruthy();
-    const cancelBtnEl = fixture.debugElement.query(By.css(`#formCancelBtn`));
-    cancelBtnEl.nativeElement.click();
-    fixture.detectChanges();
-    expect(component.editing).toBeFalsy();
-    expectFormLabel('text1', 'Text 1', model.text1);
-    expectFormLabel('comments', 'Comments', model.comments);
-    // implement tes of value
-    expectFormLabel('street', 'Street', model.address.street);
-    expectFormLabel('city', 'City', model.address.city);
-    expectFormLabel('date', 'Date', datePipe.transform(dateTest, 'mediumDate', 'en'));
-  });
-
-
-  it('should reset with cancel when started on editing state', () => {
-    component.editing = true;
-    fixture.detectChanges();
-
-    const text1Input: HTMLInputElement = fixture.nativeElement.querySelector('#text1');
-    expect(text1Input).toBeTruthy();
-    text1Input.value = 'changed';
-    text1Input.dispatchEvent(new Event('input'));
-
-    // formModel expect to be changed
-    let formModel = component.xform.getModel()
-    expect(formModel.text1).toBe('changed')
-
-    const buttonEl = fixture.nativeElement.querySelector(`#formCancelBtn`);
-    expect(buttonEl).toBeTruthy();
-    buttonEl.click();
-    fixture.detectChanges();
-
-    // Form edition was canceled: is expected that the label keeps the origina value
-    expectFormLabel('text1', 'Text 1', 'value1')
-  });
-
 
   function expectFormLabel(fieldId: string, caption: string, value: any) {
     const el = fixture.debugElement.query(By.css(`#${fieldId}-div`));
@@ -225,4 +266,7 @@ describe('NgXformEditSave', () => {
     expect(labelValue.nativeElement.textContent.trim()).toBe(value);
   }
 
+  function selectElement(query: string) {
+    return fixture.nativeElement.querySelector(query);
+  }
 });

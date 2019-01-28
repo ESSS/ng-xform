@@ -135,6 +135,12 @@ describe('InputNumberComponent', () => {
       expect(component.viewModel).toBe('2.32478e+5');
     });
 
+    it('should show 0 value', () => {
+      component.writeValue(0);
+      expect(component.formattedValue).toBe('0')
+      expect(component.viewModel).toBe('0');
+    });
+
     it('should update form value', () => {
       const newValueString = '15.654';
       let updatedValue;

@@ -26,15 +26,14 @@ export class NgXformComponent implements OnInit, OnChanges {
   @Input() horizontalForm = false;
   @Input() labelWidth: number;
   @Output() editingChange = new EventEmitter();
-
   /** To listening submitSuccessful event */
   @Output() submit = new EventEmitter();
-
   /** To listening submitSuccessful event */
   @Output() cancel = new EventEmitter();
 
-  model: any = null;
   form: FormGroup;
+  /** Store form fields initial values. `null` for and empty form */
+  initialModel: any = null;
 
   ngOnInit() {
     this.createForm();
@@ -51,7 +50,7 @@ export class NgXformComponent implements OnInit, OnChanges {
     this.reset();
   }
 
-  createFormGroup(fields: DynamicField[]): FormGroup {
+  protected createFormGroup(fields: DynamicField[]): FormGroup {
     const group: any = {};
 
     fields.forEach(field => {
@@ -87,13 +86,13 @@ export class NgXformComponent implements OnInit, OnChanges {
 
   reset() {
     this.form.reset();
-    if (this.model) {
-      this.form.patchValue(this.model, { onlySelf: true });
+    if (this.initialModel) {
+      this.form.patchValue(this.initialModel, { onlySelf: true });
     }
   }
 
   clear() {
-    this.model = null;
+    this.initialModel = null;
     this.form.reset();
   }
 
@@ -111,17 +110,30 @@ export class NgXformComponent implements OnInit, OnChanges {
    * Note: Calling setValue(null) will not clear the form. Use clear() instead.
    */
   setValue(value: any) {
-    this.model = value;
-    this.form.patchValue(this.model);
+    this.clear();
+    if (value != null) {
+      this.initialModel = value;
+      // Use patchValue so it won't fail if model has extra properties that are
+      // not mapped as Form fields.
+      this.patchValue(this.initialModel);
+    }
+  }
+
+  patchValue(value: any) {
+    this.form.patchValue(value);
+  }
+
+  getValue() {
+    return this.unpatchValue(this.form, this.initialModel);
   }
 
   getModel() {
-    return this.unpatchValue(this.form, this.model);
+    console.warn('"getModel" is deprecated. Use "getValue"');
+    return this.getValue();
   }
 
   /**
-   * Touch all form fields to force field validations to run, and display validation message in
-   * invalid inputs.
+   * Touch all form fields to force field validations to run
    *
    * @param formGroup the control group to be touched.
    */

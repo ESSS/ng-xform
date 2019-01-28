@@ -41,7 +41,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     { id: 6, name: 'purple' }
   ];
 
-  public onchangefn = new Subject<string>();
+  public onOptFieldChange = new Subject<string>();
 
   public fields: DynamicField[];
   public horizontal = false;
@@ -49,17 +49,21 @@ export class HomeComponent implements OnInit, OnDestroy {
   public labelWidth = 2;
   public model: any;
   public outputhelper = {'A': 1, 'B': 2, 'C': 3};
-  public subscriptions: Subscription[] = [];
+  public subscriptions: Subscription;
 
-  constructor(private titleService: Title, private http: HttpClient) { }
+  constructor(private titleService: Title, private http: HttpClient) {
+    this.subscriptions = new Subscription();
+  }
 
   ngOnInit() {
     const minDate = new Date();
     const maxDate = new Date();
 
-    this.subscriptions.push(this.onchangefn.asObservable().subscribe(
-      (value: any) =>  this.xformComponent.setValue({'outputopt': this.outputhelper[value]})
-    ));
+    this.subscriptions.add(
+      this.onOptFieldChange.asObservable().subscribe(
+        (value: any) =>  this.xformComponent.xform.patchValue({'output_opt': this.outputhelper[value]})
+      )
+    );
 
     minDate.setDate(minDate.getDate() - 3);
     maxDate.setDate(maxDate.getDate() + 3);
@@ -158,11 +162,11 @@ export class HomeComponent implements OnInit, OnDestroy {
         optionLabelKey: 'description',
         optionValueKey: 'id',
         onChangeFn: (value: string) => {
-          this.onchangefn.next(value);
+          this.onOptFieldChange.next(value);
         }
       }),
       new TextField({
-        key: 'outputopt',
+        key: 'output_opt',
         label: 'Output of option',
         readOnly: true,
       }),
@@ -204,7 +208,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.subscriptions.forEach(sub => sub.unsubscribe());
+    this.subscriptions.unsubscribe();
   }
 
   public onSubmit(values: object) {

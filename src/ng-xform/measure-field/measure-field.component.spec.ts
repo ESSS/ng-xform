@@ -65,24 +65,24 @@ describe('MeasureFieldComponent', () => {
 
     inputEl.nativeElement.value = newValueString;
     inputEl.nativeElement.dispatchEvent(new Event('input'));
-    expect(component.control.value).toEqual(new Measure(15, 'm'));
+    expect(component.formattedValue).toEqual('15 m');
 
     component.changeUnit('cm');
     expect(component.viewModel).toEqual(1500);
     expect(component.viewUnit).toEqual('cm');
-    expect(component.control.value).toEqual(new Measure(15, 'm'));
+    expect(component.formattedValue).toEqual('1500 cm');
 
     component.changeUnit('');
     expect(component.viewModel).toEqual(15);
     expect(component.viewUnit).toEqual('m');
-    expect(component.control.value).toEqual(new Measure(15, 'm'));
+    expect(component.formattedValue).toEqual('15 m');
 
     component.field.modelUnit = 'inch';
     fixture.detectChanges();
     component.ngOnInit();
     inputEl.nativeElement.value = newValueString;
     inputEl.nativeElement.dispatchEvent(new Event('input'));
-    expect(component.control.value).toEqual(new Measure(15, 'inch'));
+    expect(component.formattedValue).toEqual('15 inch');
   });
 
   it('should show unit and units dropdown', () => {
@@ -115,4 +115,16 @@ describe('MeasureFieldComponent', () => {
     expect(unitEl.nativeElement.textContent.trim()).toBe('mm');
     expect(component.availableUnits.length).toBe(5);
   })
+
+
+  it('should show 0 value', () => {
+    component.writeValue({ value: 0, unit: 'm' });
+    expect(component.formattedValue).toBe('0 m');
+  })
+
+  it('should show "-" when null', () => {
+    component.writeValue(null);
+    expect(component.formattedValue).toBe('-');
+  })
+
 });

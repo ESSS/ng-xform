@@ -81,18 +81,20 @@ export class InputNumberComponent implements ControlValueAccessor, AfterViewInit
   }
 
   public get formattedValue() {
-    return this.viewModel || '-';
+    return this.viewModel != null ? this.viewModel : '-';
   }
 
   private getValueAsNumber(): number {
-    if (!this.isValidNumber.test(this.viewModel)) {
+    if ((this.viewModel === '') || this.viewModel == null) {
+      return null;
+    } else if (!this.isValidNumber.test(this.viewModel)) {
       return NaN;
     }
     const value = this.viewModel.replace(this.thousandSeparator, '').replace(this.decimalSeparator, '.');
     return Number(value);
   }
 
-  private toLocaleString(value: number) {
+  toLocaleString(value: number) {
     let formatedValue = math.format(value, this.formatOptions);
     if (this.decimalSeparator !== '.') {
       return formatedValue.replace('.', this.decimalSeparator);
@@ -101,11 +103,7 @@ export class InputNumberComponent implements ControlValueAccessor, AfterViewInit
   }
 
   writeValue(value: any): void {
-    if (value == null) {
-      this.viewModel = '';
-      return;
-    }
-    this.viewModel = this.toLocaleString(Number(value));
+    this.viewModel = value != null ? this.toLocaleString(Number(value)) : null;
   }
 
   registerOnChange(fn: any): void {

@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { Unit } from 'mathjs';
 import * as math from 'mathjs';
 import { isObservable, Subscription } from 'rxjs';
@@ -41,10 +41,6 @@ export class MeasureFieldComponent extends BaseDynamicFieldComponent<MeasureFiel
   _onChange = (value: any) => { };
   _onTouched = () => { };
 
-  get formattedValue() {
-    return !!this.inputNumber && !!this.quantity ? `${this.inputNumber.formattedValue} ${this.viewUnit}` : '-';
-  }
-
   ngOnInit() {
     super.ngOnInit();
     this.setViewUnits();
@@ -55,9 +51,17 @@ export class MeasureFieldComponent extends BaseDynamicFieldComponent<MeasureFiel
     this.subs.unsubscribe();
   }
 
-  onViewChange(value: any) {
+  get formattedValue() {
+    if ((this.quantity == null) || (this.viewModel == null)) {
+      return '-';
+    }
+
+    return `${this.inputNumber.toLocaleString(this.viewModel)} ${this.viewUnit}`;
+  }
+
+  onModelChange(value: any) {
     let newValue: any;
-    if (!value) {
+    if (value == null) {
       this.quantity = null;
       newValue = null;
     } else {
@@ -67,16 +71,15 @@ export class MeasureFieldComponent extends BaseDynamicFieldComponent<MeasureFiel
         this.field.modelUnit
       );
     }
-
-    this.control.setValue(newValue, { emitModelToViewChange: false });
+    this.updateInputValue();
     this._onChange(newValue);
   }
 
   writeValue(obj: Measure): void {
-    if (!!obj) {
+    if (obj != null) {
       this.quantity = math.unit(obj.value, obj.unit).to(this.field.modelUnit);
     } else {
-      this.quantity = undefined;
+      this.quantity = null;
     }
     this.updateInputValue();
   }
@@ -102,7 +105,7 @@ export class MeasureFieldComponent extends BaseDynamicFieldComponent<MeasureFiel
   }
 
   private updateInputValue() {
-    const newValue = this.quantity ? this.quantity.toNumber(this.viewUnit) : undefined;
+    const newValue = this.quantity != null ? this.quantity.toNumber(this.viewUnit) : null;
     if (this.viewModel !== newValue) {
       this.viewModel = newValue;
     }
