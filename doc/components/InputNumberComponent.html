@@ -719,7 +719,6 @@
                                 <a href="#setDisabledState">setDisabledState</a>
                             </li>
                             <li>
-                                    <span class="modifier">Private</span>
                                 <a href="#toLocaleString">toLocaleString</a>
                             </li>
                             <li>
@@ -1150,7 +1149,7 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="111" class="link-to-prism">src/ng-xform/number-field/input-number.component.ts:111</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="109" class="link-to-prism">src/ng-xform/number-field/input-number.component.ts:109</a></div>
                                 </td>
                             </tr>
     
@@ -1216,7 +1215,7 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="115" class="link-to-prism">src/ng-xform/number-field/input-number.component.ts:115</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="113" class="link-to-prism">src/ng-xform/number-field/input-number.component.ts:113</a></div>
                                 </td>
                             </tr>
     
@@ -1282,7 +1281,7 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="119" class="link-to-prism">src/ng-xform/number-field/input-number.component.ts:119</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="117" class="link-to-prism">src/ng-xform/number-field/input-number.component.ts:117</a></div>
                                 </td>
                             </tr>
     
@@ -1333,7 +1332,6 @@
                             <a name="toLocaleString"></a>
                             <span class="name">
                                 <b>
-                                    <span class="modifier">Private</span>
                                 toLocaleString
                                 </b>
                                 <a href="#toLocaleString"><span class="fa fa-link"></span></a>
@@ -1342,15 +1340,14 @@
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                                <span class="modifier-icon fa fa-reset"></span>
-                            <code>toLocaleString(value: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+    <code>toLocaleString(value: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
                         </td>
                     </tr>
     
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="95" class="link-to-prism">src/ng-xform/number-field/input-number.component.ts:95</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="97" class="link-to-prism">src/ng-xform/number-field/input-number.component.ts:97</a></div>
                                 </td>
                             </tr>
     
@@ -1416,7 +1413,7 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="103" class="link-to-prism">src/ng-xform/number-field/input-number.component.ts:103</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="105" class="link-to-prism">src/ng-xform/number-field/input-number.component.ts:105</a></div>
                                 </td>
                             </tr>
     
@@ -1892,18 +1889,20 @@ export class InputNumberComponent implements ControlValueAccessor, AfterViewInit
   }
 
   public get formattedValue() {
-    return this.viewModel || &#x27;-&#x27;;
+    return this.viewModel !&#x3D; null ? this.viewModel : &#x27;-&#x27;;
   }
 
   private getValueAsNumber(): number {
-    if (!this.isValidNumber.test(this.viewModel)) {
+    if ((this.viewModel &#x3D;&#x3D;&#x3D; &#x27;&#x27;) || this.viewModel &#x3D;&#x3D; null) {
+      return null;
+    } else if (!this.isValidNumber.test(this.viewModel)) {
       return NaN;
     }
     const value &#x3D; this.viewModel.replace(this.thousandSeparator, &#x27;&#x27;).replace(this.decimalSeparator, &#x27;.&#x27;);
     return Number(value);
   }
 
-  private toLocaleString(value: number) {
+  toLocaleString(value: number) {
     let formatedValue &#x3D; math.format(value, this.formatOptions);
     if (this.decimalSeparator !&#x3D;&#x3D; &#x27;.&#x27;) {
       return formatedValue.replace(&#x27;.&#x27;, this.decimalSeparator);
@@ -1912,11 +1911,7 @@ export class InputNumberComponent implements ControlValueAccessor, AfterViewInit
   }
 
   writeValue(value: any): void {
-    if (value &#x3D;&#x3D; null) {
-      this.viewModel &#x3D; &#x27;&#x27;;
-      return;
-    }
-    this.viewModel &#x3D; this.toLocaleString(Number(value));
+    this.viewModel &#x3D; value !&#x3D; null ? this.toLocaleString(Number(value)) : null;
   }
 
   registerOnChange(fn: any): void {

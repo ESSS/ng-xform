@@ -639,7 +639,7 @@ buttons trigger <code>onSubmit</code> event.</p>
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Protected</span>
-                                <a href="#beforeEditingValue">beforeEditingValue</a>
+                                <a href="#valueBeforeEdit">valueBeforeEdit</a>
                             </li>
                             <li>
                                 <a href="#xform">xform</a>
@@ -898,7 +898,7 @@ buttons trigger <code>onSubmit</code> event.</p>
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/ng-xform/ng-xform-edit-save/ng-xform-edit-save.component.ts:53</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/ng-xform/ng-xform-edit-save/ng-xform-edit-save.component.ts:55</a></div>
                                 </td>
                             </tr>
     
@@ -935,7 +935,7 @@ buttons trigger <code>onSubmit</code> event.</p>
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/ng-xform/ng-xform-edit-save/ng-xform-edit-save.component.ts:46</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/ng-xform/ng-xform-edit-save/ng-xform-edit-save.component.ts:47</a></div>
                                 </td>
                             </tr>
     
@@ -972,7 +972,7 @@ buttons trigger <code>onSubmit</code> event.</p>
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/ng-xform/ng-xform-edit-save/ng-xform-edit-save.component.ts:39</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/ng-xform/ng-xform-edit-save/ng-xform-edit-save.component.ts:40</a></div>
                                 </td>
                             </tr>
     
@@ -1031,14 +1031,14 @@ buttons trigger <code>onSubmit</code> event.</p>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-    <code>setValue(newModel: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+    <code>setValue(model: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
                         </td>
                     </tr>
     
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">src/ng-xform/ng-xform-edit-save/ng-xform-edit-save.component.ts:59</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">src/ng-xform/ng-xform-edit-save/ng-xform-edit-save.component.ts:61</a></div>
                                 </td>
                             </tr>
     
@@ -1058,7 +1058,7 @@ buttons trigger <code>onSubmit</code> event.</p>
                                             </thead>
                                             <tbody>
                                                     <tr>
-                                                      <td>newModel</td>
+                                                      <td>model</td>
                                                       <td>
                                                               <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
                                                       </td>
@@ -1093,19 +1093,19 @@ buttons trigger <code>onSubmit</code> event.</p>
                 <tbody>
                     <tr>
                         <td class="col-md-4">
-                            <a name="beforeEditingValue"></a>
+                            <a name="valueBeforeEdit"></a>
                             <span class="name">
                                 <b>
                                     <span class="modifier">Protected</span>
-                                beforeEditingValue
+                                valueBeforeEdit
                                 </b>
-                                <a href="#beforeEditingValue"><span class="fa fa-link"></span></a>
+                                <a href="#valueBeforeEdit"><span class="fa fa-link"></span></a>
                             </span>
                         </td>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                            <span class="modifier-icon fa fa-reset"></span><code>beforeEditingValue:     <code></code>
+                            <span class="modifier-icon fa fa-reset"></span><code>valueBeforeEdit:     <code></code>
     </code>
                         </td>
                     </tr>
@@ -1116,10 +1116,17 @@ buttons trigger <code>onSubmit</code> event.</p>
                         </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/ng-xform/ng-xform-edit-save/ng-xform-edit-save.component.ts:37</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/ng-xform/ng-xform-edit-save/ng-xform-edit-save.component.ts:38</a></div>
                                 </td>
                             </tr>
     
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-description"><p>Copy the model values beofre switch to edit mode to restore
+    form values in case user cancel the edition </p>
+    </div>
+                        </td>
+                    </tr>
     
                 </tbody>
             </table>
@@ -1203,32 +1210,34 @@ export class NgXformEditSaveComponent {
   @Output() cancel &#x3D; new EventEmitter();
 
   @ViewChild(&#x27;xform&#x27;) xform: NgXformComponent;
-
-  protected beforeEditingValue &#x3D; {};
+  /** Copy the model values beofre switch to edit mode to restore
+   * form values in case user cancel the edition */
+  protected valueBeforeEdit &#x3D; {};
 
   setEditing(editing: boolean) {
     this.editing &#x3D; editing;
     if (!editing) {
-      this.xform.setValue({... this.beforeEditingValue});
+      this.xform.setValue({... this.valueBeforeEdit});
     }
   }
 
   onSubmit() {
     if (this.xform.isFormValid()) {
-      this.submit.emit(this.xform.getModel());
+      this.submit.emit(this.xform.getValue());
+      this.valueBeforeEdit &#x3D; this.xform.getValue();
       this.editing &#x3D; false;
     }
   }
 
   onCancel() {
     this.cancel.emit();
-    this.xform.setValue(this.beforeEditingValue);
+    this.xform.setValue(this.valueBeforeEdit);
     this.editing &#x3D; false;
   }
 
-  setValue(newModel: any) {
-    this.beforeEditingValue &#x3D; {... newModel};
-    this.xform.setValue(newModel);
+  setValue(model: any) {
+    this.valueBeforeEdit &#x3D; {... model};
+    this.xform.setValue(model);
   }
 }
 </code></pre>
