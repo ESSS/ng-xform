@@ -711,11 +711,11 @@ gulp.task('release', (cb) => {
 // and, thanks to 'npm link ng-scrollreveal' on demo project, be sure to always use the latest built
 // version of the library ( which is in 'dist/' folder)
 gulp.task('link', () => {
-  return execExternalCmd('npm', 'link', { cwd: `${config.outputDir}` });
+  return execExternalCmd('sudo npm', 'link', { cwd: `${config.outputDir}` });
 });
 
 gulp.task('unlink', () => {
-  return execExternalCmd('npm', 'unlink', { cwd: `${config.outputDir}` });
+  return execExternalCmd('sudo npm', 'unlink', { cwd: `${config.outputDir}` });
 });
 
 // Upload code coverage report to coveralls.io (will be triggered by Travis CI on successful build)

@@ -37,6 +37,8 @@ export class SelectFieldComponent extends BaseDynamicFieldComponent<SelectField>
   optionLabel = '-';
   typeahead: EventEmitter<string>;
   parsedAddNewOption: boolean | ((term: string) => any | Promise<any>);
+  searchHandlersValue: any;
+
 
   _onChange: any = (value: any) => { };
   _onTouched: any = () => { };
@@ -55,23 +57,27 @@ export class SelectFieldComponent extends BaseDynamicFieldComponent<SelectField>
     this.subscriptions.push(
       this.viewModel.pipe(
         switchMap((value: any) => {
-          this.select.writeValue(value);
-          this.updateOptionLabel();
+          this.searchHandlersValue = value;
           if (this.field.searchByValueKeyHandler) {
-            if (value === undefined || value === null) {
-              this.updateOptionLabel();
-              return of(null);
+            if (this.field.searchHandler && this.searchHandlersValue != null) {
+              return this.field.searchByValueKeyHandler(this.searchHandlersValue);
             }
-            return this.field.searchByValueKeyHandler(value);
+            return of(null);
           } else {
             return of(null);
           }
         }),
         tap((val: any) => {
-          if (val && this.field.searchHandler) {
+          if (val) {
             const oldValue = this.optionValues;
             this.optionValues = [val];
             this.select.ngOnChanges({ items: new SimpleChange(oldValue, this.optionValues, !this.optionValues)});
+          }
+          if (this.searchHandlersValue == null) {
+            this.updateOptionLabel();
+          } else {
+            this.select.writeValue(this.searchHandlersValue);
+            this.updateOptionLabel();
           }
         })
       ).subscribe()
