@@ -1,3 +1,13 @@
+<a name="0.25.0"></a>
+# [0.25.0](https://github.com/ESSS/ng-xform/compare/v0.24.1...v0.25.0) (2019-01-28)
+
+
+### Bug Fixes
+
+* **ng-xform:** unsubscribing from searchHandlers  ([#53](https://github.com/ESSS/ng-xform/issues/53)) ([a1ba276](https://github.com/ESSS/ng-xform/commit/a1ba276))
+
+
+
 <a name="0.24.1"></a>
 ## [0.24.1](https://github.com/ESSS/ng-xform/compare/v0.24.0...v0.24.1) (2019-01-28)
 
