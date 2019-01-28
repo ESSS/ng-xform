@@ -31,7 +31,7 @@ export class SelectFieldComponent extends BaseDynamicFieldComponent<SelectField>
   @ViewChild(NgSelectComponent) select: NgSelectComponent;
   viewModel = new BehaviorSubject<any>(null);
 
-  subscriptions = new Array<Subscription>();
+  subs = new Subscription();
 
   optionValues: any[] = [];
   optionLabel = '-';
@@ -54,7 +54,7 @@ export class SelectFieldComponent extends BaseDynamicFieldComponent<SelectField>
       this._onChange(value);
     });
     this.select.registerOnTouched(this._onTouched);
-    this.subscriptions.push(
+    this.subs.add(
       this.viewModel.pipe(
         switchMap((value: any) => {
           this.searchHandlersValue = value;
@@ -85,7 +85,7 @@ export class SelectFieldComponent extends BaseDynamicFieldComponent<SelectField>
   }
 
     ngOnDestroy(): void {
-      this.subscriptions.forEach(sub => sub.unsubscribe());
+      this.subs.unsubscribe();
     }
 
   writeValue(obj: any): void {
@@ -157,7 +157,7 @@ export class SelectFieldComponent extends BaseDynamicFieldComponent<SelectField>
       this.typeahead = new EventEmitter<string>();
       this.field.searchable = true;
 
-      this.subscriptions.push(
+      this.subs.add(
         this.getTypeaheadWithDistinctAndDebounce()
           .pipe(switchMap((term: string) => this.field.searchHandler(term)))
           .subscribe(
@@ -169,7 +169,7 @@ export class SelectFieldComponent extends BaseDynamicFieldComponent<SelectField>
     const options = this.field.options;
 
     if (isObservable(options)) {
-      this.subscriptions.push(
+      this.subs.add(
         (<Observable<any[]>>options).subscribe(ret => {
           this.optionValues = ret;
           this.updateOptionLabel();
