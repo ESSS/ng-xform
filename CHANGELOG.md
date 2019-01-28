@@ -1,3 +1,16 @@
+<a name="0.24.1"></a>
+## [0.24.1](https://github.com/ESSS/ng-xform/compare/v0.24.0...v0.24.1) (2019-01-28)
+
+
+### Bug Fixes
+
+* **ngxform:** fix measure field value not reseting ([d3c4222](https://github.com/ESSS/ng-xform/commit/d3c4222))
+* **NumberField:** not showing zero values ([a742e6d](https://github.com/ESSS/ng-xform/commit/a742e6d))
+* **xform:** fix cancel not reverting form field values ([bfe3c62](https://github.com/ESSS/ng-xform/commit/bfe3c62))
+* **xform:** fix cancel not reverting form field values ([2387513](https://github.com/ESSS/ng-xform/commit/2387513))
+
+
+
 <a name="0.24.0"></a>
 # [0.24.0](https://github.com/ESSS/ng-xform/compare/v0.23.0...v0.24.0) (2019-01-02)
 
