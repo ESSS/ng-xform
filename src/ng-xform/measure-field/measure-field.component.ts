@@ -36,6 +36,8 @@ export class MeasureFieldComponent extends BaseDynamicFieldComponent<MeasureFiel
   viewUnit: string;
   availableUnits: string[];
 
+  subs = new Subscription();
+
   _onChange = (value: any) => { };
   _onTouched = () => { };
 
@@ -46,7 +48,7 @@ export class MeasureFieldComponent extends BaseDynamicFieldComponent<MeasureFiel
   }
 
   ngOnDestroy() {
-    this.subscriptions.unsubscribe();
+    this.subs.unsubscribe();
   }
 
   get formattedValue() {

@@ -18,7 +18,9 @@ export class BaseDynamicFieldComponent<T extends DynamicField> implements OnInit
   visible = true;
   public hideLabelOnEdit = false;
 
-  protected subscriptions: Subscription;
+
+  subscriptions = new Subscription;
+
 
   /** If true, the read-only state will show the value obtained from the formattedValue method;
    * otherwise, will keep the component to manage this behavior.
@@ -43,6 +45,7 @@ export class BaseDynamicFieldComponent<T extends DynamicField> implements OnInit
     }
 
     if (this.field.onChangeFn) {
+
       this.subscriptions.add(
         this.control.valueChanges.subscribe(val => {
           this.field.onChangeFn(val);
@@ -53,7 +56,9 @@ export class BaseDynamicFieldComponent<T extends DynamicField> implements OnInit
   }
 
   ngOnDestroy() {
-    this.subscriptions.unsubscribe()
+    if (this.subscriptions) {
+      this.subscriptions.unsubscribe();
+    }
   }
 
   /**
