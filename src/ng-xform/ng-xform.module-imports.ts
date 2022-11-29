@@ -5,5 +5,5 @@ import { ModuleWithProviders } from '@angular/core';
 /** Issue: Having a problem when creating package with RouterModule imported in NgModule decorator
  * https://github.com/dherges/ng-packagr/issues/778#issuecomment-385122626
  */
-export const bsDatepickerModuleWithProviders: ModuleWithProviders = BsDatepickerModule.forRoot();
-export const bsDropdownModuleWithProviders: ModuleWithProviders = BsDropdownModule.forRoot();
+export const bsDatepickerModuleWithProviders: ModuleWithProviders<any> = BsDatepickerModule.forRoot();
+export const bsDropdownModuleWithProviders: ModuleWithProviders<any> = BsDropdownModule.forRoot();
