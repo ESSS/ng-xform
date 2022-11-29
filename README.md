@@ -1,7 +1,7 @@
 # ng-xform - Angular library built using ngx-library yeoman generator.
 
-[![npm version](https://badge.fury.io/js/%40esss%2Fng-xform.svg)](https://badge.fury.io/js/%40esss%2Fng-xform),
-[![Build Status](https://travis-ci.org/ESSS/ng-xform.svg?branch=master)](https://travis-ci.org/ESSS/ng-xform)
+[![npm version](https://badge.fury.io/js/%40esss%2Fng-xform.svg)](https://badge.fury.io/js/%40esss%2Fng-xform)
+[![Build Status](https://github.com/ESSS/serialchemy/workflows/build/badge.svg)](https://github.com/ESSS/serialchemy/actions)
 [![Coverage Status](https://coveralls.io/repos/github/ESSS/ng-xform/badge.svg?branch=master)](https://coveralls.io/github/ESSS/ng-xform?branch=master)
 [![dependencies Status](https://david-dm.org/esss/ng-xform/status.svg)](https://david-dm.org/esss/ng-xform)
 [![devDependencies Status](https://david-dm.org/esss/ng-xform/dev-status.svg)](https://david-dm.org/esss/ng-xform?type=dev)
