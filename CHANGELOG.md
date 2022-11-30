@@ -1,3 +1,14 @@
+<a name="0.25.1"></a>
+## [0.25.1](https://github.com/ESSS/ng-xform/compare/v0.25.0...v0.25.1) (2022-11-30)
+
+
+### Bug Fixes
+
+* **ng-xform:** fix ci and move to github actions ([#58](https://github.com/ESSS/ng-xform/issues/58)) ([f9a6141](https://github.com/ESSS/ng-xform/commit/f9a6141))
+* **ngxform:** fix export module not compatible with angular 10 projects ([#57](https://github.com/ESSS/ng-xform/issues/57)) ([68ea135](https://github.com/ESSS/ng-xform/commit/68ea135))
+
+
+
 <a name="0.25.0"></a>
 # [0.25.0](https://github.com/ESSS/ng-xform/compare/v0.24.1...v0.25.0) (2019-01-28)
 
